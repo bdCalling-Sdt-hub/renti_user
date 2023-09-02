@@ -1,7 +1,6 @@
 class AppImages{
 
   static const String basePath = "assets/images";
-
   static const String bannerHome = "$basePath/banner_home.png";
   static const String carBg = "$basePath/car_bg.png";
   static const String carBgh = "$basePath/car_bgh.png";
