@@ -25,7 +25,8 @@ class AppIcons{
   static const String lucidFuel = "$basePath/lucide_fuel.svg";
   static const String nextIcon = "$basePath/next_icon.svg";
   static const String otpLogo = "$basePath/otp_logo.svg";
-  static const String passEye = "$basePath/pass_eye.svg";
+  static const String visibleIcon = "$basePath/visible_on.svg";
+  static const String inVisibleIcon = "$basePath/pass_eye.svg";
   static const String paymentIcon = "$basePath/payment_icon.svg";
   static const String phoneCall = "$basePath/phone_call.svg";
   static const String phoneIcon = "$basePath/phone_icon.svg";
