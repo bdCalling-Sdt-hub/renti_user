@@ -30,7 +30,6 @@ class AppColors {
 
   static const Color greenNormal = Color(0xff00A991);
   static const Color greenLight = Color(0xffE6F6F4);
-
   //ShadowColor
   static const Color shadowColor = Color(0x19000000);
 }
