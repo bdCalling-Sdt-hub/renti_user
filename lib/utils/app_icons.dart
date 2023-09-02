@@ -40,6 +40,6 @@ class AppIcons{
   static const String starIcon = "$basePath/star_icon.svg";
   static const String support = "$basePath/support.svg";
   static const String tableStarIcon = "$basePath/table_star_icon.svg";
-
+  static const String imageIcons = "$basePath/image_gallery.svg";
 
 }

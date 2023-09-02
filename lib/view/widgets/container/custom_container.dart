@@ -6,13 +6,17 @@ class CustomContainer extends StatelessWidget {
   const CustomContainer(
       {super.key,
         this.height,
-        this.marginTop = 20,
-        this.paddingVertical = 24,
-        this.paddingHorizontal = 20,
-        this.radiusTopLeft = 16,
-        this.radiusTopRight = 16,
+        this.marginTop = 0,
+        this.paddingVertical = 0,
+        this.paddingHorizontal = 16,
+        this.radiusTopLeft = 0,
+        this.radiusTopRight = 0,
         this.width = double.infinity,
-        required this.child});
+        required this.child,
+        this.borderColor = AppColors.blackNormal,
+        this.borderRadius = 8,
+        this.containerBgColor = AppColors.blueLightActive,
+      });
 
   final double radiusTopLeft;
   final double radiusTopRight;
@@ -22,6 +26,9 @@ class CustomContainer extends StatelessWidget {
   final double? height;
   final Widget child;
   final double marginTop;
+  final Color  borderColor;
+  final double  borderRadius;
+  final Color containerBgColor;
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +39,9 @@ class CustomContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           horizontal: paddingHorizontal, vertical: paddingVertical),
       decoration: BoxDecoration(
-        color: AppColors.whiteLight1,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(radiusTopLeft),
-          topRight: Radius.circular(radiusTopRight),
-        ),
+          color: containerBgColor,
+          borderRadius: BorderRadius.circular(borderRadius),
+          border: Border.all(color: borderColor,width: 1)
       ),
       child: child,
     );
