@@ -10,6 +10,8 @@ class AppStrings{
   static const String seeAll = "See all";
   static const String toyotaHarrier = "Toyota Harrier";
   static const String luxuryCars = "Luxury Cars";
+  static const String bmw = "BMW";
+  static const String lamborghini = "Lamborghini";
 
   //message screen
 
@@ -108,22 +110,54 @@ class AppStrings{
   static const String   editCard = "Edit Card";
   static const String   country  = "Country";
   //setting Strings
-static const String   changeLanguage= "Change Language";
-static const String   termsConditions= "Terms & Conditions";
-static const String   privacyPolicy= "Privacy Policy";
+  static const String   changeLanguage= "Change Language";
+  static const String   termsConditions= "Terms & Conditions";
+  static const String   privacyPolicy= "Privacy Policy";
 // change password
-static const String   changePasswordTitle= "Please enter current password to set a new password";
-static const String   currentPassword= "Current password";
-static const String   confirmNewPassword= "Confirm new password";
-static const String   changePassword= "Change Password";
-static const String   select= "Select";
+   static const String   changePasswordTitle= "Please enter current password to set a new password";
+  static const String   currentPassword= "Current password";
+  static const String   confirmNewPassword= "Confirm new password";
+  static const String   changePassword= "Change Password";
+  static const String   select= "Select";
 
+  //offer car
+  static const String seeDetails = "See details";
 
+  //selwct car
 
-
-
-
-
-
+static const String carDetails ="Car Details";
+static const String carInformation ="Car Information";
+static const String hostInformation ="Host Information";
+static const String totalMileage ="Total Mileage";
+static const String color ="Color";
+static const String contact ="Contact";
+static const String email ="Address";
+static const String name ="Name";
+static const String fuelTankCapacity ="Fuel tank capacity";
+static const String gearType ="Gear type";
+static const String capacity ="Capacity";
+static const String sentRentRequest ="Sent Rent Request";
+static const String waitApprovalTitle ="Please wait for host’s approval.";
+static const String cancelRequest ="Cancel Request";
+static const String cancelTrip ="Cancel Trip";
+static const String cancelTripTitle ="Why you want to cancel the trip?";
+static const String wailLong ="Wait to long";
+static const String changeMind ="I have changed my mind";
+static const String changeRoute ="I have changed my route";
+static const String capture ="Capture";
+static const String makePayment ="Make Payment";
+static const String bankMexico ="Bank of Mexico";
+static const String hsbcmxico ="Hsbc méxico";
+static const String totalAmount ="Total Amount";
+static const String drivingLicenseNo ="Driving license no:";
+static const String ine ="INE:";
+static const String rentalDate ="Rental date";
+static const String rentalTime ="Rental time";
+static const String pickupLocation  ="Pickup location :";
+static const String endTrip  ="End Trip";
+static const String sendReview  ="Send Review";
+static const String startTrip  ="Start Trip";
+static const String review  ="Review";
+static const String giveReviewTitle  ="Give us rating out of 5";
 
 }
