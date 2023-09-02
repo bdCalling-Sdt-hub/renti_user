@@ -8,8 +8,11 @@ class CustomCard extends StatelessWidget {
   final double elevation;
   final double borderWidth;
   final double borderRadius;
-  final double horizontalPadding;
-  final double verticalPadding;
+  final double topPadding;
+  final double bottomPadding;
+  final double leftPadding;
+  final double endPadding;
+
   final Widget child;
 
   const CustomCard(
@@ -18,10 +21,13 @@ class CustomCard extends StatelessWidget {
         this.elevation = 1,
         this.borderWidth = 1,
         this.borderRadius = 8,
-        this.horizontalPadding = 16,
-        this.verticalPadding = 16,
         required this.child,
-        super.key});
+         this.bottomPadding = 0,
+        this.leftPadding = 0,
+        this.endPadding = 0,
+        super.key,
+        this.topPadding =0,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +40,10 @@ class CustomCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.symmetric(
-            horizontal: horizontalPadding, vertical: verticalPadding),
+        padding: EdgeInsetsDirectional.only(
+            top: topPadding, bottom: bottomPadding,start: leftPadding,end: endPadding
+
+        ),
         child: child,
       ),
     );

@@ -2,7 +2,7 @@ class AppStrings{
 
   //Home Screen All Strings
   static const String searchCar = "Search cars...";
-  static const String searchNearCar = "Search cars...";
+  static const String searchNearCar = "Search nearby cars";
   static const String from = "From";
   static const String until = "Until";
   static const String enterTime = "Enter time & date";

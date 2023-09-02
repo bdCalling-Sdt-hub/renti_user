@@ -20,6 +20,7 @@ class AppIcons{
   static const String howRentiWorks = "$basePath/how_renti_works.svg";
   static const String kycVector = "$basePath/kyc_vector.svg";
   static const String locationHome = "$basePath/location_home.svg";
+  static const String location = "$basePath/location_icon.svg";
   static const String locationIcon = "$basePath/kyc_vector.svg";
   static const String logOutIcon = "$basePath/log_out_icon.svg";
   static const String lucidFuel = "$basePath/lucide_fuel.svg";
