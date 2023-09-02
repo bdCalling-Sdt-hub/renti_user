@@ -1,5 +1,15 @@
 class AppStrings{
 
+  // splash screen Strings
+  static const String lanmguageName = "English";
+  static const String getStarted = "Get Started";
+
+  // select language Strings
+  static const String selectLanguage = "Select Language";
+  static const String confirm = "Confirm";
+
+
+
   //Home Screen All Strings
   static const String searchCar = "Search cars...";
   static const String searchNearCar = "Search cars...";
@@ -17,11 +27,30 @@ class AppStrings{
 
   static const String message = "Message";
 
+  //signIn screen Strings
+
+  static const String signIn = "Sign In";
+  static const String enterEmail = "Enter your email";
+  static const String enterPassword = "Enter your password";
+  static const String notBeEmpty = "This field can not be empty";
+  static const String enterValidEmail = "Please enter a valid email";
+  static const String passwordShouldBe = "Password should be more than 6 characters";
+  static const String password = "Password";
+  static const String confirmPassword = "Confirm Password";
+  static const String successful = "Successful";
+  static const String failed = "Failed";
+  static const String or = "Or";
+  static const String google = "Google";
+  static const String apple = "Apple";
+  static const String anAcount = "Don’t have an account?";
+
+
   //SignUp Screen All Strings
 
   static const String signUp = "Sign Up";
   static const String fullName = "Full Name";
-  static const String enterFullName = "Enter full name";
+  static const String typeFullName = "Enter your name";
+  static const String typeEmail = "Enter your email";
   static const String gender = "Gender";
   static const String male = "Male";
   static const String female = "Female";
@@ -31,6 +60,14 @@ class AppStrings{
   static const String mm = "MM";
   static const String yy = "YY";
   static const String mm_yy = "MM-YY";
+  static const String typeHere = "Type here...";
+  static const String continuw = "Continue";
+  static const String creditCardNum = "Credit Card Number";
+  static const String enterCreditCardNum = "Enter Credit card Number";
+  static const String expireDate = "Expire Date";
+  static const String cvv = "CVV";
+  static const String enterCVV = "Enter Credit card CVV";
+
 
   //Sign UpScreen All Strings
   static const String phoneNumber = "Phone Number";
@@ -45,10 +82,12 @@ class AppStrings{
   //KYC Screen All Strings
   static const String kyc = "KYC";
   static const String upload = "Upload";
-  static const String uploadINE =
-      "1. Upload INE/Passport\n2. Tax stamps .key extension file.";
+  static const String uploadINE = "2.Upload INE/Passport ";
+  static const String uploadDL = "1.Upload driving licence ";
   static const String rfc = "RFC";
   static const String enterRFC = "Enter RFC";
+  static const String enterIne = "Enter INE/Passport";
+  static const String inePassword = "INE/Passport";
 
   //KYC Upload Image All Strings
   static const String selectPhoto = "Select Photo";
@@ -68,7 +107,7 @@ class AppStrings{
   static const String reWritePassword = "Did not get the email?";
   static const String setNewPassword= "Set New Password";
   static const String newPassword= "New Password";
-  static const String forgetPassword= "Forget Password";
+  static const String forgetPassword= "Forget Password?";
   static const String newPasswordRange = "Your password must have 8-10 characters.";
   static const String  optCodeTitle= "Please enter the OTP code.";
   static const String  otp= "OTP";
@@ -82,7 +121,8 @@ class AppStrings{
   static const String  emailError= "Please enter a valid email";
   static const String  passwordError= "Password should be more than 6 characters";
   static const String  enterMail= "Enter your email";
-  static const String  enterPassword= "Enter your password";
+  static const String  enterpassword= "Enter your email";
+
 
   // drawer all strings
 
@@ -102,7 +142,7 @@ class AppStrings{
   static const String   addCard = "Add Card";
   static const String   cardNumber = "Card Number";
   static const String   expiredDate = "Expired Date";
-  static const String   cvv = "CVV";
+
   static const String   enterCvv = "Enter Card CVV number";
   static const String   accountHolderName = "Account Holder Name";
   static const String   addCarTitle = "Please enter the details to add a new credit card number";
@@ -131,7 +171,7 @@ static const String hostInformation ="Host Information";
 static const String totalMileage ="Total Mileage";
 static const String color ="Color";
 static const String contact ="Contact";
-static const String email ="Address";
+static const String email ="Email";
 static const String name ="Name";
 static const String fuelTankCapacity ="Fuel tank capacity";
 static const String gearType ="Gear type";
