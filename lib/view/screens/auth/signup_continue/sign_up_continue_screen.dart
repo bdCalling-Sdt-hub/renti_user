@@ -64,7 +64,7 @@ class _SignUpContinueScreenState extends State<SignUpContinueScreen> {
                                       width: 1.0,
                                       style: BorderStyle.solid),
                                 ),
-                                child:  Row(
+                                child:  const Row(
                                   children: [
                                     CustomImage(
                                         imageSrc: AppIcons.flafMaxico,

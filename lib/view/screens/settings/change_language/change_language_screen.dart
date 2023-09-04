@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import '../../../utils/app_colors.dart';
-import '../../../utils/app_strings.dart';
-import '../../widgets/appbar/custom_app_bar.dart';
-import '../../widgets/buttons/custom_back_button.dart';
-import '../../widgets/buttons/custom_elevated_button.dart';
-import '../../widgets/container/custom_container.dart';
-import '../../widgets/text/custom_text.dart';
+import 'package:renti_user/utils/app_strings.dart';
 
-class SelectLanguageScreen extends StatefulWidget {
-  const SelectLanguageScreen({super.key});
+import '../../../../utils/app_colors.dart';
+import '../../../widgets/appbar/custom_app_bar.dart';
+import '../../../widgets/buttons/custom_back_button.dart';
+import '../../../widgets/buttons/custom_elevated_button.dart';
+import '../../../widgets/container/custom_container.dart';
+import '../../../widgets/text/custom_text.dart';
+
+class ChangeLanguageScreen extends StatefulWidget {
+  const ChangeLanguageScreen({super.key});
 
   @override
-  State<SelectLanguageScreen> createState() => _SelectLanguageScreenState();
+  State<ChangeLanguageScreen> createState() => _ChangeLanguageScreenState();
 }
 
-class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
+class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
   List<String> languageName = [
     'English',
     'English UK',
@@ -35,7 +36,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
     return SafeArea(
       child: Scaffold(
         extendBody: true,
-        appBar:  const CustomAppBar(appBarContent: CustomBack(text:AppStrings.selectLanguage,),),
+        appBar:  const CustomAppBar(appBarContent: CustomBack(text:AppStrings.changeLanguage,),),
         backgroundColor: AppColors.blueNormal,
         body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) =>
@@ -60,7 +61,6 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                             margin: const EdgeInsets.only(bottom: 8),
                             width: MediaQuery.of(context).size.width,
                             decoration: ShapeDecoration(
-
                               color: AppColors.whiteLight,
                               shape: RoundedRectangleBorder(
 
@@ -113,7 +113,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
           child: CustomElevatedButton(
               onPressed: () {
 
-              }, titleText: AppStrings.confirm),
+              }, titleText: AppStrings.select),
         ),
       ),
     );

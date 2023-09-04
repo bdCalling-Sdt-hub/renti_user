@@ -38,8 +38,6 @@ class _SignInScreenState extends State<SignInScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SignInAuth(),
-
-
                       //Don't have an Account? Sign Up Text button
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

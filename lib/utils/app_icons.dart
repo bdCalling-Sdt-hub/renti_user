@@ -19,7 +19,7 @@ class AppIcons{
   static const String history = "$basePath/history.svg";
   static const String howRentiWorks = "$basePath/how_renti_works.svg";
   static const String kycVector = "$basePath/kyc_vector.svg";
-  static const String locationHome = "$basePath/loc ation_home.svg";
+  static const String locationHome = "$basePath/location_home.svg";
   static const String locationIcon = "$basePath/kyc_vector.svg";
   static const String logOutIcon = "$basePath/log_out_icon.svg";
   static const String lucidFuel = "$basePath/lucide_fuel.svg";
@@ -30,7 +30,6 @@ class AppIcons{
   static const String paymentIcon = "$basePath/payment_icon.svg";
   static const String phoneCall = "$basePath/phone_call.svg";
   static const String phoneIcon = "$basePath/phone_icon.svg";
-  static const String profileHome = "$basePath/profile_home.svg";
   static const String profileBassie = "$basePath/profile_bassie.svg";
   static const String searchIcon = "$basePath/search_icon.svg";
   static const String selectCamera = "$basePath/select_camera.svg";
@@ -39,6 +38,9 @@ class AppIcons{
   static const String starIcon = "$basePath/star_icon.svg";
   static const String support = "$basePath/support.svg";
   static const String tableStarIcon = "$basePath/table_star_icon.svg";
+  static const String location = "$basePath/location_icon.svg";
+  static const String visaIcon = "$basePath/visa_pay.svg";
+  static const String dropDown = "$basePath/drop_down.svg";
 
 
 }

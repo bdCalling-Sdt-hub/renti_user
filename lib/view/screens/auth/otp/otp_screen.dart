@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
 
@@ -107,7 +108,7 @@ class ForgotPassOTP extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: CustomElevatedButton(
               onPressed: () {
-
+                  Get.toNamed(AppRoute.newPassword);
               },
               titleText: AppStrings.verify),
         ),

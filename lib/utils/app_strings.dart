@@ -200,4 +200,34 @@ static const String startTrip  ="Start Trip";
 static const String review  ="Review";
 static const String giveReviewTitle  ="Give us rating out of 5";
 
+//profile all Strings
+
+  static const String profile  ="Profile";
+  static const String profileName  ="Jane Cooper";
+  static const String profileNumber  ="(603) 555-0123";
+  static const String profileEmail  ="jane.c@gmail.com";
+  static const String birthdayDate  ="8-01-1999";
+  static const String addressplace  ="Estado de México";
+
+
+
+  static const String profileSettings  ="Profile Settings";
+  static const String changePhoto  ="Change Photo";
+  static const String updateprofile  ="Update Profile";
+
+  //Payment Method
+  static const String debit  ="Debit Card";
+  static const String enterName  ="Enter your name";
+
+
+
+  //Renti works,Support , Condition
+  static const String rentiWorks  ="How Renti Works";
+  static const String rentiTitle ="Lorem ipsum dolor sit amet consectetur.";
+  static const String rentiDescription  ="Lorem ipsum dolor sit amet consectetur. Nunc tortor et volutpat interdum dis tellus volutpat senectus ut. Nunc quis purus consectetur tortor eu pellentesque ornare. Ante eu suscipit ante sed diam. Lorem enim ornare curabitur odio eget aliquam tincidunt neque urna.";
+
+//Renti History
+  static const String rentiHistory  ="Rent History";
+
+
 }

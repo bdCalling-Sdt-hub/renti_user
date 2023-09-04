@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 width: constraints.maxWidth,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    opacity: .6,
+                    opacity: .5,
                     image: AssetImage(AppImages.splashBgImage),
                     fit: BoxFit.fill,
                     colorFilter:
@@ -73,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         const SizedBox(height: 24),
                         CustomElevatedButton(
                           onPressed: () {
-                              Get.toNamed(AppRoute.signInScreen);
+                              Get.toNamed(AppRoute.rentiHistory);
                           },
                           titleText: AppStrings.getStarted,
                           buttonWidth: double.maxFinite,
