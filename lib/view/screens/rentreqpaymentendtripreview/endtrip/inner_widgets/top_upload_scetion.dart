@@ -1,19 +1,18 @@
-import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/material.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
-import '../../../../utils/app_icons.dart';
-import '../../../../utils/app_strings.dart';
-import '../../../widgets/buttons/custom_elevated_button.dart';
 
-class TopUploadSection extends StatefulWidget {
-  const TopUploadSection({super.key});
+class TopUploadScetion extends StatefulWidget {
+  const TopUploadScetion({super.key});
   @override
-  State<TopUploadSection> createState() => _TopUploadSectionState();
+  State<TopUploadScetion> createState() => _TopUploadScetionState();
 }
-
-class _TopUploadSectionState extends State<TopUploadSection> {
+class _TopUploadScetionState extends State<TopUploadScetion> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -51,9 +50,9 @@ class _TopUploadSectionState extends State<TopUploadSection> {
                     ),
                     child: const Center(
                         child: CustomImage(
-                      imageSrc: AppIcons.imageIcons,
-                      size: 40,
-                    )),
+                          imageSrc: AppIcons.imageIcons,
+                          size: 40,
+                        )),
                   )),
             ),
             const SizedBox(width: 8),
@@ -80,9 +79,9 @@ class _TopUploadSectionState extends State<TopUploadSection> {
                         ),
                         child: const Center(
                             child: CustomImage(
-                          imageSrc: AppIcons.imageIcons,
-                          size: 40,
-                        )),
+                              imageSrc: AppIcons.imageIcons,
+                              size: 40,
+                            )),
                       )),
                   const SizedBox(
                     height: 8,
@@ -106,9 +105,9 @@ class _TopUploadSectionState extends State<TopUploadSection> {
                         ),
                         child: const Center(
                             child: CustomImage(
-                          imageSrc: AppIcons.imageIcons,
-                          size: 40,
-                        )),
+                              imageSrc: AppIcons.imageIcons,
+                              size: 40,
+                            )),
                       ))
                 ],
               ),

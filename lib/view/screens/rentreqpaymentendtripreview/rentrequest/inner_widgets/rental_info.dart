@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
-
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_strings.dart';
-import '../../../widgets/text/custom_text.dart';
-
-class RentalInfostart extends StatelessWidget {
-  const RentalInfostart({super.key});
+import '../../../../../utils/app_colors.dart';
+import '../../../../../utils/app_strings.dart';
+import '../../../../widgets/text/custom_text.dart';
+class RentalInfo extends StatelessWidget {
+  const RentalInfo({super.key});
   @override
   Widget build(BuildContext context) {
     return const Column(
@@ -59,7 +57,6 @@ class RentalInfostart extends StatelessWidget {
             Text("61-10-TMD",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
-
         SizedBox(height: 8,),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

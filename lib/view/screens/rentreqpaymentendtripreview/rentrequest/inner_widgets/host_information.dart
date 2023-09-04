@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_strings.dart';
-import '../../../widgets/text/custom_text.dart';
-class HostInformationScreen extends StatefulWidget {
-  const HostInformationScreen({super.key});
+import '../../../../../utils/app_colors.dart';
+import '../../../../../utils/app_strings.dart';
+import '../../../../widgets/text/custom_text.dart';
+class HostInfo extends StatefulWidget {
+  const HostInfo({super.key});
   @override
-  State<HostInformationScreen> createState() => _HostInformationScreenState();
+  State<HostInfo> createState() => _HostInfoState();
 }
-class _HostInformationScreenState extends State<HostInformationScreen> {
+class _HostInfoState extends State<HostInfo> {
   @override
   Widget build(BuildContext context) {
     return const Column(

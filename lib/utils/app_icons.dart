@@ -1,7 +1,7 @@
 class AppIcons{
 
   static const String basePath = "assets/icons";
-
+  static const String backarrowIcon = "$basePath/backarrow.svg";
   static const String aboutUsIcon = "$basePath/about_us.svg";
   static const String addCardIcon = "$basePath/add_card_icon.svg";
   static const String appleIcon = "$basePath/apple_icon.svg";

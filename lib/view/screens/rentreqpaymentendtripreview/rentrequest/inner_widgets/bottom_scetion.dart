@@ -1,29 +1,50 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/view/widgets/container/custom_container.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-import '../../../../utils/app_icons.dart';
-import '../../../../utils/app_strings.dart';
+import '../../../../../utils/app_icons.dart';
+import '../../../../../utils/app_strings.dart';
+
+import '../../../../widgets/buttons/custom_elevated_button.dart';
+
 import 'hsbc_méxico_card.dart';
 
 class BottomScetion extends StatefulWidget {
-  const BottomScetion({super.key});
-
+     BottomScetion({super.key, required this.scrollController});
+  final ScrollController scrollController;
   @override
   State<BottomScetion> createState() => _BottomScetionState();
 }
 
 class _BottomScetionState extends State<BottomScetion> {
  bool isarrowup = false;
+
+ void scrollToBottomExtentBefore() {
+   widget.scrollController.animateTo(
+     widget.scrollController.position.extentBefore,
+     duration: const Duration(milliseconds: 50),
+     curve: Curves.ease,
+   );
+ }
+
+ void scrollToBottomExtentTotal() {
+   widget.scrollController.animateTo(
+     widget.scrollController.position.extentTotal,
+     duration: const Duration(milliseconds: 1200),
+     curve: Curves.easeIn,
+   );
+ }
   @override
   Widget build(BuildContext context) {
     return   Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
@@ -43,7 +64,7 @@ class _BottomScetionState extends State<BottomScetion> {
             )
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
                CustomContainer(
                borderColor:AppColors.blueNormal ,
                borderRadius: 4,
@@ -52,7 +73,7 @@ class _BottomScetionState extends State<BottomScetion> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
+                const Row(
                   children: [
                     CustomImage(
                         imageSrc: AppIcons.paymentIcon,
@@ -70,23 +91,33 @@ class _BottomScetionState extends State<BottomScetion> {
                   onTap: (){
                     setState(() {
                       isarrowup  =! isarrowup;
+                      isarrowup?  scrollToBottomExtentTotal(): scrollToBottomExtentBefore();
                     });
-
                   },
-                  child:isarrowup? Icon(Icons.keyboard_arrow_up,
+                  child:isarrowup? const Icon(Icons.keyboard_arrow_up,
                     size: 20,
                     color: Color(0xff000B90) ,
 
-                  ):Icon(Icons.keyboard_arrow_down,
+                  ):const Icon(Icons.keyboard_arrow_down,
                     size: 20,
                     color: Color(0xff000B90) ,
-
                   ),
                 )
               ],
             )
                ),
-         isarrowup ? HsbcMexicoCard() : const SizedBox()
+         isarrowup ? const HsbcMexicoCard() : const SizedBox(),
+        const SizedBox(height: 24),
+        CustomElevatedButton(
+          buttonWidth: MediaQuery.of(context).size.width,
+          onPressed: () {
+            Get.toNamed(AppRoute.startTrip);
+          },
+          titleText: AppStrings.makePayment,
+          titleColor: AppColors.whiteLight,
+          titleSize: 18,
+          titleWeight: FontWeight.w600,
+        ),
       ],
     );
   }

@@ -14,10 +14,12 @@ class CustomImage extends StatefulWidget {
   final double? size;
   final ImageType imageType;
 
-  const CustomImage({
 
+
+  const CustomImage({
     required this.imageSrc,
     this.imageColor ,
+
     this.size,
     this.imageType = ImageType.svg,
     super.key,
@@ -26,17 +28,13 @@ class CustomImage extends StatefulWidget {
   @override
   State<CustomImage> createState() => _CustomImageState();
 }
-
 class _CustomImageState extends State<CustomImage> {
-
   late Widget imageWidget;
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
 
@@ -45,9 +43,9 @@ class _CustomImageState extends State<CustomImage> {
         widget.imageSrc,
         color: widget.imageColor,
         height: widget.size, width: widget.size,
+
       );
     }
-
     if(widget.imageType == ImageType.png){
       imageWidget = Image.asset(
         widget.imageSrc,

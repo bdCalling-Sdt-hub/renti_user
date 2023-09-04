@@ -98,6 +98,7 @@ class AppStrings{
 
   //payment method
 
+  static const String rentRequest = "Rent Request";
   static const String  visaCard = "Visa Card";
   static const String   addCard = "Add Card";
   static const String   cardNumber = "Card Number";
