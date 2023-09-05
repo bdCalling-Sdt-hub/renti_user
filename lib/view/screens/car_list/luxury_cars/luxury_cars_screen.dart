@@ -7,7 +7,8 @@ import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
-import '../offercarscreen/inner_widgets/scarch_filter.dart';
+
+import '../offer_car/inner_widgets/search_filter.dart';
 
 class LuxuryCarsScreen extends StatefulWidget {
   const LuxuryCarsScreen({super.key});
@@ -42,19 +43,20 @@ class _LuxuryCarsScreenState extends State<LuxuryCarsScreen> {
                 )
               ],
             )),
-        body:  SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
-            child: Column(
-              children: [
-                const SearchFilter(),
-                const SizedBox(height: 16),
-                Column(
-                    children:  List.generate(
-                      40, (index) => Stack(
-                        children: [Container(
+        body:  Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
+          child: Column(
+            children: [
+              const SearchFilter(),
+              const SizedBox(height: 24),
+              Flexible(
+                child: SingleChildScrollView(
+                  child: Column(
+                      children:  List.generate(
+                        40, (index) =>
+                          Container(
                           width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsetsDirectional.symmetric(vertical: 8),
+                          margin: const EdgeInsets.only(bottom: 16),
                           padding: const EdgeInsetsDirectional.all(16),
                           decoration: BoxDecoration(
                             border: Border.all(color: AppColors.whiteNormalActive,width: 1),
@@ -138,7 +140,7 @@ class _LuxuryCarsScreenState extends State<LuxuryCarsScreen> {
                                   ],
                                 ),
                               ),
-                              const Expanded(
+                               const Expanded(
                                 child: CustomImage(
                                   imageSrc: AppImages.carImage,
                                   imageType: ImageType.png,
@@ -147,32 +149,11 @@ class _LuxuryCarsScreenState extends State<LuxuryCarsScreen> {
                             ],
                           ),
                         ),
-                          Positioned.fill(
-                            top: 8,left: 274,
-                            child: Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                  padding: const EdgeInsetsDirectional.symmetric(vertical: 4,horizontal: 6),
-                                  decoration: const BoxDecoration(
-                                      color: AppColors.blueNormal,
-                                      borderRadius: BorderRadius.only(topRight: Radius.circular(4),)
-                                  ),
-                                  child: const CustomText(
-                                    textAlign: TextAlign.center,
-                                    text: '12%Off',
-                                    color: AppColors.whiteLight,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,)
-                              ),
-                            ),
-                          ),
-                        ]
-                    ),
-
-                    )
-                )
-              ],
-            ),
+                      )
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       ),

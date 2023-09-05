@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:renti_user/view/widgets/image/custom_image.dart';
+import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_strings.dart';
 
-import '../../../../widgets/image/custom_image.dart';
-import '../../../../widgets/text/custom_text.dart';
+
 
 
 class HsbcMexicoCard extends StatelessWidget {
@@ -29,7 +30,7 @@ class HsbcMexicoCard extends StatelessWidget {
             ),
           ),
         ),
-      child: const Row(
+      child:  Row(
         children: [
           CustomImage(
             imageSrc: AppIcons.paymentIcon,

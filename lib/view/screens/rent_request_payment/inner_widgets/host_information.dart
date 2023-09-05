@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:renti_user/view/widgets/text/custom_text.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
-import '../../../../widgets/text/custom_text.dart';
+
 class HostInfo extends StatefulWidget {
   const HostInfo({super.key});
   @override

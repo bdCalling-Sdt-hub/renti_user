@@ -21,6 +21,7 @@ class AppColors {
   static const Color whiteDarkActive = Color(0xff737373);
 
   static const Color whiteDarker = Color(0xff595959);
+  static const Color whiteNormalhover = Color(0xffE6E6E6);
 
   static const Color whiteLight1 = Color(0xffFCFCFC);
 

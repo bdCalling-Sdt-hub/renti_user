@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:renti_user/view/widgets/text/custom_text.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
-import '../../../../widgets/text/custom_text.dart';
+
 class RentalInfo extends StatelessWidget {
   const RentalInfo({super.key});
   @override
@@ -25,7 +26,7 @@ class RentalInfo extends StatelessWidget {
              fontWeight: FontWeight.w400,
              color: AppColors.whiteDarkHover,
            ),
-            SizedBox(),
+
             Text("Toyota Corolla",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),

@@ -1,31 +1,33 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/view/screens/rentreqpaymentendtripreview/endtrip/inner_widgets/review.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
-class BottomInfoScetion extends StatefulWidget {
-  const BottomInfoScetion({super.key});
+
+class BottomScetions extends StatefulWidget {
+  const BottomScetions({super.key});
+
   @override
-  State<BottomInfoScetion> createState() => _BottomInfoScetionState();
+  State<BottomScetions> createState() => _BottomScetionsState();
 }
-class _BottomInfoScetionState extends State<BottomInfoScetion> {
+
+class _BottomScetionsState extends State<BottomScetions> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return   const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CustomText(
+        CustomText(
           text:  AppStrings.rentalInformation,
           fontSize: 16,
           fontWeight: FontWeight.w500,
           color: AppColors.blackNormal,
         ),
-        const SizedBox(height: 16,),
-        const Row(
+        SizedBox(height: 16,),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
@@ -38,8 +40,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
             Text("Toyota Corolla",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
-        const SizedBox(height: 8,),
-        const Row(
+        SizedBox(height: 8,),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
@@ -52,8 +54,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
             Text("Blue",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
-        const SizedBox(height: 8,),
-        const Row(
+        SizedBox(height: 8,),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
@@ -66,8 +68,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
             Text("61-10-TMD",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
-        const SizedBox(height: 8,),
-        const Row(
+        SizedBox(height: 8,),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
@@ -80,8 +82,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
             Text("48 Hr",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
-        const SizedBox(height: 8,),
-        const Row(
+        SizedBox(height: 8,),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
@@ -94,17 +96,17 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
             Text('08 Aug 2023',style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
-        const SizedBox(height: 16),
-        const CustomText(
+        SizedBox(height: 16),
+        CustomText(
           text:  AppStrings.hostInformation,
           fontSize: 16,
           fontWeight: FontWeight.w500,
           color: AppColors.blackNormal,
         ),
-        const SizedBox(
+        SizedBox(
           height: 24,
         ),
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
@@ -117,8 +119,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
             Text("Md Jubayed",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
-        const SizedBox(height: 8,),
-        const Row(
+        SizedBox(height: 8,),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
@@ -132,8 +134,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
 
           ],
         ),
-        const SizedBox(height: 8,),
-        const Row(
+        SizedBox(height: 8,),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
@@ -146,8 +148,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
             Text("61-10-2222",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
-        const SizedBox(height: 8,),
-        const Row(
+        SizedBox(height: 8,),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
@@ -158,24 +160,7 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
             ),
             SizedBox(),
             Text("Mexico",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
-
           ],
-        ),
-        const SizedBox(height: 32),
-        CustomElevatedButton(
-          buttonWidth: MediaQuery.of(context).size.width,
-          onPressed: () {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) => const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: ReviewDialog() ,
-            )
-            );
-          },
-          titleText: AppStrings.endTrip,
-          titleSize: 18,
-          titleWeight: FontWeight.w600,
         ),
       ],
     );

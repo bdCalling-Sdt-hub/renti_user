@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/container/custom_container.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
@@ -10,20 +11,20 @@ import 'package:renti_user/view/widgets/text/custom_text.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_strings.dart';
 
-import '../../../../widgets/buttons/custom_elevated_button.dart';
 
 import 'hsbc_méxico_card.dart';
 
-class BottomScetion extends StatefulWidget {
-     BottomScetion({super.key, required this.scrollController});
+class PaymentSection extends StatefulWidget {
+     PaymentSection({
+       super.key, required this.scrollController
+     });
   final ScrollController scrollController;
   @override
-  State<BottomScetion> createState() => _BottomScetionState();
+  State<PaymentSection> createState() => _PaymentSectionState();
 }
 
-class _BottomScetionState extends State<BottomScetion> {
+class _PaymentSectionState extends State<PaymentSection> {
  bool isarrowup = false;
-
  void scrollToBottomExtentBefore() {
    widget.scrollController.animateTo(
      widget.scrollController.position.extentBefore,
@@ -41,7 +42,7 @@ class _BottomScetionState extends State<BottomScetion> {
  }
   @override
   Widget build(BuildContext context) {
-    return   Column(
+    return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Row(
@@ -58,7 +59,7 @@ class _BottomScetionState extends State<BottomScetion> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
-                color: Color(0xff000b90),
+                color: AppColors.blueNormal,
               ),
               textAlign: TextAlign.right,
             )
@@ -96,28 +97,19 @@ class _BottomScetionState extends State<BottomScetion> {
                   },
                   child:isarrowup? const Icon(Icons.keyboard_arrow_up,
                     size: 20,
-                    color: Color(0xff000B90) ,
+                    color: AppColors.blueNormal,
 
                   ):const Icon(Icons.keyboard_arrow_down,
                     size: 20,
-                    color: Color(0xff000B90) ,
+                    color: AppColors.blueNormal ,
                   ),
                 )
               ],
-            )
+              )
                ),
-         isarrowup ? const HsbcMexicoCard() : const SizedBox(),
-        const SizedBox(height: 24),
-        CustomElevatedButton(
-          buttonWidth: MediaQuery.of(context).size.width,
-          onPressed: () {
-            Get.toNamed(AppRoute.startTrip);
-          },
-          titleText: AppStrings.makePayment,
-          titleColor: AppColors.whiteLight,
-          titleSize: 18,
-          titleWeight: FontWeight.w600,
-        ),
+            isarrowup ? const HsbcMexicoCard() : const SizedBox(),
+            const SizedBox(height: 24),
+
       ],
     );
   }

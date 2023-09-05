@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
+import 'package:renti_user/view/widgets/buttons/custom_nav_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'inner_widgets/bottom_scetions.dart';
 import 'inner_widgets/top_upload_scetions.dart';
@@ -58,6 +60,11 @@ class _StartTripScreenState extends State<StartTripScreen> {
                   ),
                 );
               },
-            )));
+            ),
+          bottomNavigationBar: BottomNavButton(onTap: (){
+            Get.toNamed(AppRoute.endTrip);
+          }, buttonName: AppStrings.startTrip, buttonColor: AppColors.blueNormal),
+        )
+    );
   }
 }

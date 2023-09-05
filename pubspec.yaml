@@ -43,6 +43,7 @@ dependencies:
   syncfusion_flutter_sliders: ^22.2.9
   get:
   flutter_rating_bar: ^4.0.1
+  flutter_slidable: ^3.0.0
 
 
 dev_dependencies:

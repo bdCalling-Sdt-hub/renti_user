@@ -97,7 +97,7 @@ class AppStrings{
   static const String logOut = "Log Out";
 
   //payment method
-
+  static const String bessieCooper = "Bessie Cooper";
   static const String rentRequest = "Rent Request";
   static const String  visaCard = "Visa Card";
   static const String   addCard = "Add Card";

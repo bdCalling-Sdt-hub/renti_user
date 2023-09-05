@@ -17,7 +17,6 @@ class _SearchFilterState extends State<SearchFilter> {
   Widget build(BuildContext context) {
     return  SizedBox(
       height: 52,
-
       child: Row(
         children: [
           Expanded(
