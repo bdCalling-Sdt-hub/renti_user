@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:renti_user/view/screens/auth/select_photo/inner_widgets/select_photo_bottom_nav_section.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_strings.dart';
@@ -73,12 +74,7 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                 ),
               ),
         ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
-          child: CustomElevatedButton(onPressed: (){
-
-          }, titleText:AppStrings.continuw),
-        ),
+        bottomNavigationBar: const SelectPhotoBottomNavSection()
       ),
     );
   }

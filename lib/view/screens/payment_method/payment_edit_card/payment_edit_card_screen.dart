@@ -4,6 +4,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/payment_method/payment_edit_card/inner_widgets/edit_card_bottom_nav_section.dart';
+import 'package:renti_user/view/screens/payment_method/payment_edit_card/inner_widgets/edit_card_edit_section.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:country_picker/country_picker.dart';
 import '../../../../utils/app_colors.dart';
@@ -21,7 +23,7 @@ class PaymentEditCardScreen extends StatefulWidget {
 }
 
 class _PaymentEditCardScreenState extends State<PaymentEditCardScreen> {
-  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
@@ -55,117 +57,24 @@ class _PaymentEditCardScreenState extends State<PaymentEditCardScreen> {
           )),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) =>
-            SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
-              physics: const BouncingScrollPhysics(),
+            const SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: 20,vertical: 24),
+              physics: BouncingScrollPhysics(),
               child:Column(
 
                 children: [
-                  const CustomText(
+                  CustomText(
                     textAlign: TextAlign.start,
                     text: AppStrings.addCarTitle,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
-                  Form(
-                    key: _formKey,
-
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        //New Password Text and TextField
-                        const CustomText(
-                            text: AppStrings.cardNumber,
-                            top: 16,
-                            bottom: 12),
-                        CustomTextField(
-                          textInputAction: TextInputAction.done,
-                          hintText: '1234 1234 1234 1234 ',
-                          suffixIconColor: AppColors.whiteNormalActive,
-                          hintStyle: GoogleFonts.poppins(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.whiteNormalActive),
-                        ),
-
-                        const CustomText(
-                            text: AppStrings.expireDate,
-                            top: 16,
-                            bottom: 12),
-                        CustomTextField(
-                          textInputAction: TextInputAction.done,
-                          hintText: AppStrings.mm_yy,
-                          suffixIconColor: AppColors.whiteNormalActive,
-                          hintStyle: GoogleFonts.poppins(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.whiteNormalActive),
-                        ),
-                        const CustomText(
-                            text: AppStrings.cvv,
-                            top: 16,
-                            bottom: 12),
-                        CustomTextField(
-                          textInputAction: TextInputAction.done,
-                          hintText: AppStrings.enterCvv,
-                          suffixIconColor: AppColors.whiteNormalActive,
-                          hintStyle: GoogleFonts.poppins(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.whiteNormalActive),
-                        ),
-                        const CustomText(
-                            text: AppStrings.country,
-                            top: 16,
-                            bottom: 12),
-                        Container(
-                            height: 60,
-                            padding:  const EdgeInsets.symmetric(
-                                vertical: 6, horizontal: 14),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border:
-                                Border.all(color:AppColors.whiteNormalActive)),
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             CustomText(
-                               text: 'Select Country',
-                             ),
-                             CustomImage(imageSrc: AppIcons.dropDown,size: 18,)
-
-                           ],
-                         ),
-
-                        ),
-                        const CustomText(
-                            text: AppStrings.accountHolderName,
-                            top: 16,
-                            bottom: 12),
-                        CustomTextField(
-                          textInputAction: TextInputAction.done,
-                          hintText: AppStrings.enterName,
-                          suffixIconColor: AppColors.whiteNormalActive,
-                          hintStyle: GoogleFonts.poppins(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.whiteNormalActive),
-                        ),
-                      ],
-                    ),
-                  ),
+                   EditCardEditSection() ,
                 ],
               ),
             ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-        child: CustomElevatedButton(
-            onPressed: () {
-              Get.toNamed(AppRoute.paymentMethod);
-            },
-            titleText:AppStrings.update),
-      ),
+      bottomNavigationBar:const EditCardBottomNavSection() ,
     ));
   }
 }

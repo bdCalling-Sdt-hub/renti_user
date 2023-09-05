@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/payment_method/payment_method/inner_widgets/payment_method_debit_card_section.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
-import '../../../widgets/container/custom_container.dart';
 import '../../../widgets/text/custom_text.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
@@ -51,63 +51,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  Column(
-                    children: List.generate( 3, (index){
-                      return   Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: InkWell(
-                          onTap: (){
-                              Get.toNamed(AppRoute.paymentEditCard);
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: const Color(0xffcccccc),width: 1)
-                            ),
-                            child:  const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                   CustomImage(imageSrc: AppIcons.visaIcon),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        CustomText(
-                                          text: AppStrings.debit,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.blackNormal,
-                                          left: 16,
-                                        ),
-                                        CustomText(
-                                          text: '**** **** **** 6432',
-
-                                          fontWeight: FontWeight.w600,
-                                          color: AppColors.blueNormal,
-                                          top: 8,
-                                          left: 16,
-                                        ),
-                                      ],
-                                    )
-
-                                  ],
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 16,
-                                  color: Color(0xFF2E2C2C),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-
-                    }
-                    ),
-                  ),
+                  const PaymentMethodDebidCardSection(),
                   const SizedBox(height: 28,),
                   GestureDetector(
                     onTap: (){

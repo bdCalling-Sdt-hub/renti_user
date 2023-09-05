@@ -4,6 +4,7 @@ import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/profile/profile_details/inner_widget/profile_details.dart';
+import 'package:renti_user/view/screens/profile/profile_details/inner_widget/profile_top_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
@@ -35,73 +36,14 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
       ),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) =>
-              SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
+              const SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
                 padding:
-                    const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                    EdgeInsets.symmetric(vertical: 24, horizontal: 20),
                 child: Column(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 17, horizontal: 16),
-                      margin: const EdgeInsets.only(bottom: 16),
-                      width: MediaQuery.of(context).size.width,
-                      decoration: ShapeDecoration(
-                        color: AppColors.blueNormal,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        shadows: const [
-                          BoxShadow(
-                            color: AppColors.shadowColor,
-                            blurRadius: 10,
-                            offset: Offset(0, 1),
-                            spreadRadius: 0,
-                          )
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Row(
-                            children: [
-                              CustomImage(
-                                imageSrc: AppImages.profileImg,
-                                imageType: ImageType.png,
-                                size: 50,
-                              ),
-                              Column(
-                                children: [
-                                  CustomText(
-                                    text: AppStrings.profileName,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.whiteLight,
-                                    left: 12,
-                                  ),
-                                  CustomText(
-                                    text: AppStrings.profileNumber,
-                                    color: AppColors.whiteLight,
-                                    left: 12,
-                                    top: 8,
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                          GestureDetector(
-                              onTap: () {
-                                Get.toNamed(AppRoute.profilesettingsScreen);
-                              },
-                              child: const CustomImage(
-                                imageSrc: AppIcons.editProfileIcon,
-                                imageType: ImageType.svg,
-                                size: 18,
-                              ))
-                        ],
-                      ),
-                    ),
-                    const ProfileDetails()
+                    ProfileTopSection(),
+                    ProfileDetails()
                   ],
                 ),
               )),

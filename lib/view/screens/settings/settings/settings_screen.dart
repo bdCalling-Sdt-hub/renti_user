@@ -31,8 +31,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             CustomContainer(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
+              child: const SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     SettingName()

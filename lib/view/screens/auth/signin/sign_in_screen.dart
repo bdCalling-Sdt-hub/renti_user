@@ -24,57 +24,53 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.blueNormal,
-        appBar:  CustomAppBar(appBarContent: CustomBack(text:AppStrings.signIn),),
-        body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) =>
-              CustomContainer(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SignInAuth(),
-                      //Don't have an Account? Sign Up Text button
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const CustomText(
+          backgroundColor: AppColors.blueNormal,
+          appBar: const CustomAppBar(
+            appBarContent: CustomBack(text: AppStrings.signIn),
+          ),
+          body: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) =>
+                CustomContainer(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SignInAuth(),
+                    //Don't have an Account? Sign Up Text button
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const CustomText(
+                          top: 200,
+                          text: AppStrings.anAcount,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          left: 4,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(AppRoute.signUpScreen);
+                          },
+                          child: const CustomText(
                             top: 200,
-                            text: AppStrings.anAcount,
+                            text: AppStrings.signUp,
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                             left: 4,
+                            color: AppColors.blueNormal,
                           ),
-                          GestureDetector(
-                            onTap: (){
-                              Get.toNamed(AppRoute.signUpScreen);
-                            },
-                            child: const CustomText(
-                              top: 200,
-                              text: AppStrings.signUp,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              left: 4,
-                              color: AppColors.blueNormal,
-                            ),
-                          ),
-
-
-                        ],
-                      ),
-
-
-
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-        )
-      ),
+            ),
+          )),
     );
   }
 }

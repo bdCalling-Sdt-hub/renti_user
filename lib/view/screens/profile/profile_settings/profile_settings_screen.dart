@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_body_section.dart';
+import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_bottom_nav_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
-import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
-import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
-
-import '../../../../utils/app_icons.dart';
-import '../../../../utils/app_images.dart';
 import '../../../../utils/app_strings.dart';
-import '../../../widgets/buttons/custom_elevated_button.dart';
-import '../../../widgets/text_field/custom_text_field.dart';
 
 class ProfileSettingsScreen extends StatefulWidget {
   const ProfileSettingsScreen({super.key});
@@ -35,12 +29,12 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               onTap: () {
                 Get.toNamed(AppRoute.profileDetails);
               },
-              child: Icon(
+              child: const Icon(
                 Icons.arrow_back_ios_new,
                 size: 18,
                 color: AppColors.blackNormal,
               )),
-          CustomText(
+          const CustomText(
             text: AppStrings.profileSettings,
             color: AppColors.blackNormal,
             fontSize: 18,
@@ -51,160 +45,13 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
       )),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) =>
-              SingleChildScrollView(
+              const SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
-                padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-                child: Column(
-                  children: [
-                    const CustomImage(
-                      imageSrc: AppImages.profileImg,
-                      imageType: ImageType.png,
-                      size: 100,
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomImage(
-                          imageSrc: AppIcons.selectCamera,
-                          size: 18,
-                          imageColor: AppColors.blueNormal,
-                        ),
-                        CustomText(
-                          text: AppStrings.changePhoto,
-                          color: AppColors.blueNormal,
-                          left: 10,
-                        )
-                      ],
-                    ),
-                    Form(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const CustomText(
-                              text: AppStrings.fullName, bottom: 12),
-                          CustomTextField(
-                            hintText: AppStrings.typeFullName,
-                            hintStyle: GoogleFonts.poppins(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.whiteNormalActive),
-                          ),
-
-                          //Email and TextField
-                          const CustomText(
-                            text: AppStrings.email,
-                            top: 16,
-                            bottom: 12,
-                          ),
-                          CustomTextField(
-                            textInputAction: TextInputAction.done,
-                            hintText: AppStrings.typeFullName,
-                            hintStyle: GoogleFonts.poppins(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                letterSpacing: 1,
-                                color: AppColors.whiteNormalActive),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return AppStrings.notBeEmpty;
-                              } else if (!value.contains(RegExp('\@'))) {
-                                return AppStrings.enterValidEmail;
-                              } else {
-                                return null;
-                              }
-                            },
-                          ),
-                          const CustomText(
-                            text: AppStrings.phoneNumber,
-                            bottom: 12,
-                            top: 16,
-                          ),
-                          //Country Flag and Enter Phone Number TextField
-                          SizedBox(
-                            height: 56,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 110,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 8),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: AppColors.whiteLight,
-                                    border: Border.all(
-                                        color: AppColors.whiteDark,
-                                        width: 1.0,
-                                        style: BorderStyle.solid),
-                                  ),
-                                  child: const Row(
-                                    children: [
-                                      CustomImage(
-                                          imageSrc: AppIcons.flafMaxico,
-                                          imageType: ImageType.svg,
-                                          size: 40),
-                                      CustomText(
-                                          text: AppStrings.phone,
-                                          left: 10,
-                                          color: AppColors.whiteNormalActive)
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: CustomTextField(
-                                    keyboardType: TextInputType.phone,
-                                    hintText: AppStrings.enterPhoneNumber,
-                                    hintStyle: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColors.whiteNormalActive),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          //Address Text and TextField
-                          const CustomText(
-                              text: AppStrings.address, top: 16, bottom: 12),
-
-                          Container(
-                            height: 100,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 0, vertical: 0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: AppColors.whiteLight,
-                                border: Border.all(
-                                    color: AppColors.whiteNormalActive,
-                                    style: BorderStyle.solid,
-                                    width: 1.0,
-                                    strokeAlign: 1)),
-                            child: CustomTextField(
-                              textInputAction: TextInputAction.done,
-                              fieldBorderColor: AppColors.whiteLight,
-                              hintText: AppStrings.enterAddress,
-                              hintStyle: GoogleFonts.poppins(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColors.whiteNormalActive),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                padding:
+                    EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                child: ProfileSettingsBodySection(),
               )),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-        child: CustomElevatedButton(
-            onPressed: () {}, titleText: AppStrings.updateprofile),
-      ),
+      bottomNavigationBar:const ProfileSettingsBottomNavSection(),
     ));
   }
 }

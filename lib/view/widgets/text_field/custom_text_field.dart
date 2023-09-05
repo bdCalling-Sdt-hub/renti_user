@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
@@ -80,11 +80,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintStyle: widget.hintStyle,
         fillColor: widget.fillColor,
         filled: true,
-        suffixIcon: widget.isPassword ? GestureDetector(
+        suffixIcon: widget.isPassword ? InkWell(
           onTap: toggle,
           child: Padding(
             padding: const EdgeInsets.only(left: 16,right: 16),
-            child: SvgPicture.asset(obscureText ? AppIcons.inVisibleIcon: AppIcons.visibleIcon,height: 18,width: 18),
+            child: SvgPicture.asset(obscureText ? AppIcons.inVisibleIcon : AppIcons.visibleIcon,height: 14,width: 14),
           ),
         ) : widget.suffixIcon,
         suffixIconColor: widget.suffixIconColor,

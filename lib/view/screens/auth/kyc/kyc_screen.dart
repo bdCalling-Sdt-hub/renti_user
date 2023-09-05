@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/auth/kyc/inner_widgets/kyc_body_section.dart';
+import 'package:renti_user/view/screens/auth/kyc/inner_widgets/kyc_bottom_nav_section.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
@@ -37,85 +39,13 @@ class _KYCScreenState extends State<KYCScreen> {
               CustomContainer(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      //Image Upload Section
-                      Container(
-                        width: constraints.maxWidth,
-                        decoration: BoxDecoration(
-                          color: AppColors.blueLight,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: DottedBorder(
-                          strokeWidth: 1,
-                          dashPattern: const [10, 10],
-                          color: AppColors.blueLightActive,
-                          borderType: BorderType.RRect,
-                          radius: const Radius.circular(8),
-                          padding: const EdgeInsets.all(2),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                            child: Column(
-                              children: [
-                                 const CustomImage(
-                                  imageSrc:AppIcons.kycVector ,
-                                  imageType: ImageType.svg,
-                                  size: 50,
-                                ),
-                                const SizedBox(height: 16),
-                                CustomElevatedButton(
-                                  onPressed: () {},
-                                  titleText: AppStrings.upload,
-                                  buttonWidth: double.maxFinite,
-                                  buttonHeight: 48,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      //Upload Image Type Text..
-                       const CustomText(
-                        text: AppStrings.uploadDL,
-                        color: AppColors.whiteDarkActive,
-                        top: 16,
-                        textAlign: TextAlign.start,
-                      ),
-                      const CustomText(
-                        text: AppStrings.uploadINE,
-                        color: AppColors.whiteDarkActive,
-                        textAlign: TextAlign.start,
-                      ),
-                      //RFC Text and TextField
-                       const CustomText(
-                        text: AppStrings.inePassword,
-                        top: 16,
-                        bottom: 12,
-                        textAlign: TextAlign.start,
-                      ),
-                      CustomTextField(
-                        textInputAction: TextInputAction.done,
-                        hintText: AppStrings.enterIne,
-                        hintStyle: GoogleFonts.poppins(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.whiteNormalActive),
-                      ),
-                    ],
-                  ),
+                child: const SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: KycBodySection(),
                 ),
               ),
         ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
-          child: CustomElevatedButton(onPressed: (){
-              Get.toNamed(AppRoute.selectPhoto);
-          }, titleText: AppStrings.continuw),
-        ),
+        bottomNavigationBar: const KycBottomNavSection()
       ),
     );
   }

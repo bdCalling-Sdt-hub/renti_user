@@ -6,6 +6,7 @@ import 'package:renti_user/view/screens/auth/select_photo/select_photo_screen.da
 import 'package:renti_user/view/screens/auth/signin/sign_in_screen.dart';
 import 'package:renti_user/view/screens/auth/signup/sign_up_screen.dart';
 import 'package:renti_user/view/screens/auth/signup_continue/sign_up_continue_screen.dart';
+import 'package:renti_user/view/screens/car_select/select_car/car_details_screen.dart';
 import 'package:renti_user/view/screens/payment_method/add_card/add_card_screen.dart';
 import 'package:renti_user/view/screens/payment_method/payment_edit_card/payment_edit_card_screen.dart';
 import 'package:renti_user/view/screens/payment_method/payment_method/payment_method_screen.dart';
@@ -51,6 +52,7 @@ class AppRoute {
   static const String addCard = "/add_card_screen";
   static const String paymentEditCard = "/payment_edit_card";
   static const String rentiHistory = "/renti_history_screen";
+  static const String carDetails = "/car_details_screen";
 
   static List<GetPage> routes = [
 
@@ -77,6 +79,7 @@ class AppRoute {
     GetPage(name: paymentMethod, page: ()=>const PaymentMethodScreen()),
     GetPage(name: addCard, page: ()=>const AddCardScreen()),
     GetPage(name: paymentEditCard, page: ()=>const PaymentEditCardScreen()),
+    GetPage(name: carDetails, page: ()=>const CarDetailsScreen()),
     GetPage(name: rentiHistory, page: ()=>const RentHistoryScreen()),
 
   ];
