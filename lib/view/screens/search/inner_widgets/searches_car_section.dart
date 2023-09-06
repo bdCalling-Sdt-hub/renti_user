@@ -15,7 +15,7 @@ class SearchesCarSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
         children:   List.generate(10, (index) =>  Container(
-            margin: EdgeInsetsDirectional.only(top: 8),
+            margin: const EdgeInsetsDirectional.only(top: 8),
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.whiteNormalActive,width: 1),
               color: AppColors.whiteLight,
@@ -25,17 +25,17 @@ class SearchesCarSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const CustomText(
-                      left:12,
-                      top:12,
+                      textAlign: TextAlign.start,
+                      left: 12,
                       bottom: 12,
                       text: AppStrings.toyotaHarrier,
                       color: AppColors.blueNormal,
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
-
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       child: Row(
@@ -46,6 +46,7 @@ class SearchesCarSection extends StatelessWidget {
                               SvgPicture.asset(AppIcons.lucidFuel),
                               const CustomText(
                                 left: 8,
+                                right: 8,
                                 text: "10 km/h",
                                 color: AppColors.whiteDark,
                                 fontSize: 10,
@@ -94,11 +95,10 @@ class SearchesCarSection extends StatelessWidget {
                   decoration: const ShapeDecoration(
                     image: DecorationImage(
                       image: AssetImage(AppImages.carBg),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
-
                           topRight: Radius.circular(8),
                           bottomRight: Radius.circular(8)
                       ),

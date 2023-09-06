@@ -1,20 +1,13 @@
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/auth/forgot_password/inner_widgets/fogot_password_top_section.dart';
 import 'package:renti_user/view/screens/auth/forgot_password/inner_widgets/forgot_password_bottom_nav-section.dart';
 
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_icons.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
 import '../../../widgets/buttons/custom_back_button.dart';
-import '../../../widgets/buttons/custom_elevated_button.dart';
 import '../../../widgets/container/custom_container.dart';
-import '../../../widgets/image/custom_image.dart';
-import '../../../widgets/text/custom_text.dart';
-import '../../../widgets/text_field/custom_text_field.dart';
 
 
 class ForgotPasswordScreen extends StatefulWidget {

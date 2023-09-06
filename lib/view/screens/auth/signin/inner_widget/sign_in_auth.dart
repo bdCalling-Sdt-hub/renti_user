@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
-
+import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../widgets/buttons/custom_elevated_button.dart';
 import '../../../../widgets/buttons/custom_elevated_button_with_icon.dart';
@@ -14,7 +14,6 @@ import '../../../../widgets/text_field/custom_text_field.dart';
 
 class SignInAuth extends StatefulWidget {
   const SignInAuth({super.key});
-
   @override
   State<SignInAuth> createState() => _SignInAuthState();
 }
@@ -34,12 +33,11 @@ class _SignInAuthState extends State<SignInAuth> {
         //Email pass auth section
         Form(
           key: _formKey,
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Email Text and TextField.
-               CustomText(text: AppStrings.email, bottom: 12),
+               const CustomText(text: AppStrings.email, bottom: 12),
               CustomTextField(
                 hintText: AppStrings.enterEmail,
                 hintStyle: GoogleFonts.poppins(
@@ -59,7 +57,7 @@ class _SignInAuthState extends State<SignInAuth> {
               ),
 
               //Password Text and TextField.
-               CustomText(
+               const CustomText(
                 text: AppStrings.password,
                 bottom: 12,
                 top: 16,
@@ -67,7 +65,7 @@ class _SignInAuthState extends State<SignInAuth> {
               CustomTextField(
                 isPassword: true,
                 textInputAction: TextInputAction.done,
-                isPrefixIcon: true,
+                isPrefixIcon: false,
                 hintText:AppStrings.enterPassword,
                 keyboardType: TextInputType.visiblePassword,
                 hintStyle: GoogleFonts.poppins(
@@ -111,6 +109,7 @@ class _SignInAuthState extends State<SignInAuth> {
                   } else {
                     print(AppStrings.failed);
                   }
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>const CustomNavBar()));
 
                 },
                 titleText: AppStrings.signIn,

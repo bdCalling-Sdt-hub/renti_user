@@ -122,7 +122,6 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
               ),
             ],
           ),
-
           //Date Of Birth
           const CustomText(
               text: AppStrings.dateOfBirth, top: 8, bottom: 12),
@@ -168,7 +167,6 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
               text: AppStrings.password, bottom: 12, top: 16),
           CustomTextField(
             isPassword: true,
-            isPrefixIcon: true,
             hintText: AppStrings.typeHere,
             keyboardType: TextInputType.visiblePassword,
             hintStyle: GoogleFonts.poppins(
@@ -195,7 +193,6 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
           CustomTextField(
             isPassword: true,
             textInputAction: TextInputAction.done,
-            isPrefixIcon: true,
             hintText: AppStrings.typeHere,
             keyboardType: TextInputType.visiblePassword,
             hintStyle: GoogleFonts.poppins(

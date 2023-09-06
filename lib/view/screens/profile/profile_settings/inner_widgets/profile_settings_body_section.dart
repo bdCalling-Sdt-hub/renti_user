@@ -96,7 +96,7 @@ class _ProfileSettingsBodySectionState extends State<ProfileSettingsBodySection>
                     Container(
                       width: 110,
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
+                          horizontal: 12, vertical: 8),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: AppColors.whiteLight,

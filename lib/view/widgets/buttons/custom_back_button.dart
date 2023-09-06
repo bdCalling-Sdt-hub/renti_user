@@ -4,7 +4,7 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class CustomBack extends StatelessWidget {
-  const CustomBack(appIcon, 
+  const CustomBack(
       {super.key,
         this.horizontal = 0,
         this.vertical = 0,

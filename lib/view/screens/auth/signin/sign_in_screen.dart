@@ -46,7 +46,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const CustomText(
-                          top: 200,
+                          top: 24,
                           text: AppStrings.anAcount,
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -57,7 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             Get.toNamed(AppRoute.signUpScreen);
                           },
                           child: const CustomText(
-                            top: 200,
+                            top: 24,
                             text: AppStrings.signUp,
                             fontSize: 16,
                             fontWeight: FontWeight.w500,

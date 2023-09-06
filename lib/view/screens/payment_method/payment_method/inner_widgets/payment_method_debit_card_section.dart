@@ -38,7 +38,7 @@ class _PaymentMethodDebidCardSectionState extends State<PaymentMethodDebidCardSe
                 children: [
                   Row(
                     children: [
-                      CustomImage(imageSrc: AppIcons.visaIcon),
+                      CustomImage(imageSrc: AppIcons.location),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

@@ -21,6 +21,9 @@ class _SelectLanguageSectionState extends State<SelectLanguageSection> {
     'Dutch',
     'Korean',
     'Swedish',
+    'Swedish',
+    'Swedish',
+    'Swedish',
     'Bangla',
   ];
   int selectedItem = 0;

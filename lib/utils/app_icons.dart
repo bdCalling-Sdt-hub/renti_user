@@ -1,5 +1,4 @@
 class AppIcons{
-
   static const String basePath = "assets/icons";
   static const String backarrowIcon = "$basePath/backarrow.svg";
   static const String aboutUsIcon = "$basePath/about_us.svg";
@@ -16,7 +15,6 @@ class AppIcons{
   static const String filterIcon = "$basePath/filter_icon.svg";
   static const String flafMaxico = "$basePath/flag_maxico.svg";
   static const String googleIcon = "$basePath/google_icon.svg";
-  static const String history = "$basePath/history.svg";
   static const String howRentiWorks = "$basePath/how_renti_works.svg";
   static const String kycVector = "$basePath/kyc_vector.svg";
   static const String locationHome = "$basePath/location_home.svg";
@@ -38,8 +36,15 @@ class AppIcons{
   static const String settingsIcon = "$basePath/settings_icon.svg";
   static const String splashLogo = "$basePath/splashlogo.png";
   static const String starIcon = "$basePath/star_icon.svg";
-  static const String support = "$basePath/support.svg";
+  static const String support1 = "$basePath/support1.svg";
   static const String tableStarIcon = "$basePath/table_star_icon.svg";
   static const String imageIcons = "$basePath/image_gallery.svg";
+  static const String location = "$basePath/location_icon.svg";
+  static const String dropDown = "$basePath/drop_down.svg";
+  static const String homeIcon = "$basePath/home.svg";
+  static const String messageIcon = "$basePath/message_icon.svg";
+  static const String personIcon = "$basePath/person_icon.svg";
+  static const String history = "$basePath/history.svg";
+
 
 }

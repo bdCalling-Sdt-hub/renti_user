@@ -33,17 +33,19 @@ class _SupportScreenState extends State<SupportScreen> {
               child:  const SingleChildScrollView(
 
                 physics: BouncingScrollPhysics(),
-                child: Column(
+                child:Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomText(text: AppStrings.rentiTitle,fontSize: 16,fontWeight: FontWeight.w500,bottom: 12,),
+                    FittedBox(
+                      child: CustomText(text: AppStrings.rentiTitle,fontSize: 16,fontWeight: FontWeight.w500,bottom: 12,),
+                    ),
                     CustomText(text: AppStrings.rentiDescription,textAlign: TextAlign.start,),
-                    CustomText(text: AppStrings.rentiTitle,fontSize: 16,fontWeight: FontWeight.w500,bottom: 12,top: 16,),
+                    FittedBox(child: CustomText(text: AppStrings.rentiTitle,fontSize: 16,fontWeight: FontWeight.w500,bottom: 12,top: 16,)),
                     CustomText(text: AppStrings.rentiDescription,textAlign: TextAlign.start,),
-                    CustomText(text: AppStrings.rentiTitle,fontSize: 16,fontWeight: FontWeight.w500,bottom: 12,top: 16,),
+                    FittedBox(child: CustomText(text: AppStrings.rentiTitle,fontSize: 16,fontWeight: FontWeight.w500,bottom: 12,top: 16,)),
                     CustomText(text: AppStrings.rentiDescription,textAlign: TextAlign.start,),
                   ],
-                ),
+                )
               ),
             ),
       ),

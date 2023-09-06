@@ -38,7 +38,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: const SingleChildScrollView(
                     physics: BouncingScrollPhysics(),
                     padding: EdgeInsets.only(bottom: 100),
-                    child:SignUpAuthSection() ,
+                    child:SignUpAuthSection(),
                   ),
                 )),
         bottomNavigationBar:SignUpBottomSection(),

@@ -38,13 +38,13 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
             child: const SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               padding: EdgeInsets.only(
-                  top: 24, left: 20, bottom: 100, right: 20),
+                  top: 24, left: 20,bottom: 100, right: 20),
               child: SelectLanguageSection(),
             ),
           ),
         ),
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
           child: CustomElevatedButton(
               onPressed: () {}, titleText: AppStrings.confirm),
         ),

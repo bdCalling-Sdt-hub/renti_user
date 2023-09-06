@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/route/app_route.dart';
-import 'package:renti_user/select_country.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
-
-
-
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
 
@@ -39,10 +37,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
             const CustomText(text: "Jane Cooper", fontSize: 16, fontWeight: FontWeight.w500,top: 8),
             const CustomText(text: "(480) 555-0103", fontSize: 12, color: AppColors.whiteDarkHover,top: 8,bottom: 8),
             const Divider(color: AppColors.blackLightHover,thickness: 1),
-
             // rent history
-            GestureDetector(
-              // onTap: () => Get.toNamed(AppRoute.userListScreen),
+            InkWell(
+              onTap: () => Get.toNamed(AppRoute.rentiHistory),
               child: Container(
                 width: double.maxFinite,
                 padding: const EdgeInsets.all(8),
@@ -60,8 +57,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
             ),
             // paymentMethod
-            GestureDetector(
-              // onTap: () => Get.toNamed(AppRoute.userListScreen),
+            InkWell(
+              onTap: () => Get.toNamed(AppRoute.paymentMethod),
               child: Container(
                 width: double.maxFinite,
                 padding: const EdgeInsets.all(8),
@@ -79,8 +76,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
             ),
             // howRentiWorks
-            GestureDetector(
-              // onTap: () => Get.toNamed(AppRoute.userListScreen),
+            InkWell(
+              onTap: () => Get.toNamed(AppRoute.rentiWorks),
               child: Container(
                 width: double.maxFinite,
                 padding: const EdgeInsets.all(8),
@@ -98,8 +95,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
             ),
             //support
-            GestureDetector(
-              // onTap: () => Get.toNamed(AppRoute.userListScreen),
+            InkWell(
+               onTap: () => Get.toNamed(AppRoute.support),
               child: Container(
                 width: double.maxFinite,
                 padding: const EdgeInsets.all(8),
@@ -117,8 +114,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
             ),
             //aboutUs
-            GestureDetector(
-              // onTap: () => Get.toNamed(AppRoute.userListScreen),
+            InkWell(
+              onTap: () => Get.toNamed(AppRoute.aboutUs),
               child: Container(
                 width: double.maxFinite,
                 padding: const EdgeInsets.all(8),
@@ -136,8 +133,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
             ),
             //settings
-            GestureDetector(
-              // onTap: () => Get.toNamed(AppRoute.userListScreen),
+            InkWell(
+              onTap: () => Get.toNamed(AppRoute.settings),
               child: Container(
                 width: double.maxFinite,
                 padding: const EdgeInsets.all(8),
@@ -156,8 +153,88 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             const Divider(color: AppColors.blackLightHover,thickness: 1),
             // logOut
-            GestureDetector(
-              // onTap: () => Get.toNamed(AppRoute.settingScreen),
+            InkWell(
+              onTap: (){
+                showDialog(context: context, builder: (context){
+                  return AlertDialog(
+                    title: SizedBox(
+                      width: 350,
+                      child: Column(
+                        children: [
+                           Text(
+                            "You sure want to log out",
+                            style: GoogleFonts.poppins(
+                                color: AppColors.blackNormal,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 24.0, horizontal: 0),
+                            child: Divider(
+                              height: 1,
+                              color: AppColors.whiteDarkHover,
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                  child:InkWell(
+                                    onTap: (){
+                                      Navigator.pop(context);
+                                    },
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                            color: const Color(0x7FFBE9EC),
+                                            borderRadius: BorderRadius.circular(8)
+                                        ),
+                                        child:  Padding(
+                                          padding: EdgeInsets.symmetric(vertical: 11.5),
+                                          child: Text(
+                                            "Yes",style: GoogleFonts.poppins(color: AppColors.redNormal,
+                                              fontSize: 18,fontWeight: FontWeight.w600),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )
+                                    ),
+                                  )
+                              ),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Expanded(
+                                  child: InkWell(
+                                    onTap: (){
+                                      Navigator.pop(context);
+                                    },
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xff000B90),
+                                            borderRadius:
+                                            BorderRadius.circular(8)),
+                                        child:  Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 11.5),
+                                          child: Text(
+                                            "No",
+                                            style: GoogleFonts.poppins(
+                                                color: AppColors.whiteLight,
+                                                fontSize: 18,
+                                                fontWeight:
+                                                FontWeight.w600),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),
+                                  )),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ); ;
+                }
+                );
+              },
               child: Container(
                 width: double.maxFinite,
                 padding: const EdgeInsets.all(8),

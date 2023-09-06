@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
@@ -29,7 +31,9 @@ class _HomeLuxuryCarSectionState extends State<HomeLuxuryCarSection> {
               fontWeight: FontWeight.w500,
             ),
             InkWell(
-              onTap: (){},
+              onTap: (){
+                Get.toNamed(AppRoute.luxuryCars);
+              },
               child:  const CustomText(
                 text: AppStrings.seeAll,
                 color: AppColors.blueNormal,

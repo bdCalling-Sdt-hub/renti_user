@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
@@ -32,24 +33,27 @@ class _HomeFromUntilSectionState extends State<HomeFromUntilSection> {
                 fontWeight: FontWeight.w500,
               ),
               SizedBox(height: 12,),
-              CustomTextField(
-                fieldBorderRadius: 4,
-                 hintText: AppStrings.enterTime,
-                hintStyle: GoogleFonts.poppins(
-                  color: AppColors.whiteDarkActive,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
+              SizedBox(
+                height: 40,
+                child: CustomTextField(
+                  textAlign: TextAlign.start,
+                  fieldBorderRadius: 4,
+                   hintText: AppStrings.enterTime,
+                   hintStyle: GoogleFonts.poppins(
+                    color: AppColors.whiteDarkActive,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  fillColor: Colors.transparent,
+                  isPrefixIcon: true,
+                  prefixIconSrc: AppIcons.calenderIcon,
+                  prefixIconColor: AppColors.blueNormal,
                 ),
-                fillColor: Colors.transparent,
-                isPrefixIcon: true,
-                prefixIconSrc: AppIcons.calenderIcon,
-                prefixIconColor: AppColors.blueNormal,
-
               )
             ],
           ),
         ),
-        const SizedBox(width: 16),
+        const SizedBox(width: 8),
         Flexible(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,19 +65,22 @@ class _HomeFromUntilSectionState extends State<HomeFromUntilSection> {
                 fontWeight: FontWeight.w500,
               ),
               SizedBox(height: 12,),
-              CustomTextField(
-                fieldBorderRadius: 4,
-                hintText: AppStrings.enterTime,
-                hintStyle: GoogleFonts.poppins(
-                  color: AppColors.whiteDarkActive,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
+              SizedBox(
+                height: 40,
+                child: CustomTextField(
+                  fieldBorderRadius: 4,
+                  hintText: AppStrings.enterTime,
+                  hintStyle: GoogleFonts.poppins(
+                    color: AppColors.whiteDarkActive,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
 
+                  ),
+                  fillColor: Colors.transparent,
+                  isPrefixIcon: true,
+                  prefixIconSrc: AppIcons.calenderIcon,
+                  prefixIconColor: AppColors.blueNormal,
                 ),
-                fillColor: Colors.transparent,
-                isPrefixIcon: true,
-                prefixIconSrc: AppIcons.calenderIcon,
-                prefixIconColor: AppColors.blueNormal,
               )
             ],
           ),

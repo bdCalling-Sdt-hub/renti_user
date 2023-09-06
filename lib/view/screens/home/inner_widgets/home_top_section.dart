@@ -11,7 +11,6 @@ import '../../../widgets/text/custom_text.dart';
 
 class HomeTopSection extends StatelessWidget {
   const HomeTopSection({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,6 +30,7 @@ class HomeTopSection extends StatelessWidget {
           children: [
             const Expanded(
                 child: CustomTextField(
+                  isPrefixIcon: true  ,
                   hintText: AppStrings.searchCar,
                   hintStyle: TextStyle(
                     fontSize: 14,

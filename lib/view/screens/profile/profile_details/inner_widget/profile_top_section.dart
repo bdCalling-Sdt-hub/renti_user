@@ -70,7 +70,7 @@ class _ProfileTopSectionState extends State<ProfileTopSection> {
           ),
           GestureDetector(
               onTap: () {
-                Get.toNamed(AppRoute.profilesettingsScreen);
+                Get.toNamed(AppRoute.profileSettingsScreen);
               },
               child: const CustomImage(
                 imageSrc: AppIcons.editProfileIcon,

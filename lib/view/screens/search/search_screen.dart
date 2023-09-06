@@ -39,7 +39,6 @@ class _SearchScreenState extends State<SearchScreen> {
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
               ),
-
             ),
             const SizedBox(height: 16,),
          const Expanded(
