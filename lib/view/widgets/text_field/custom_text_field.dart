@@ -41,7 +41,7 @@ class CustomTextField extends StatefulWidget {
   final TextAlignVertical? textAlignVertical;
   final TextAlign textAlign;
   final int? maxLines;
-  final void Function(String)? onChanged;
+  final void Function(String) ? onChanged;
   final FormFieldValidator? validator;
   final String? hintText;
   final TextStyle? hintStyle;
@@ -55,7 +55,6 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final bool isPrefixIcon;
   final bool readOnly;
-
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }

@@ -45,6 +45,7 @@ dependencies:
   country_picker: ^2.0.21
   country_list_pick: ^1.0.1+6
   syncfusion_flutter_datepicker: ^22.2.12
+  flutter_intl:
 
 dev_dependencies:
   flutter_test:

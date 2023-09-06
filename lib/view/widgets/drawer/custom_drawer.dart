@@ -152,7 +152,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
             const Divider(color: AppColors.blackLightHover,thickness: 1),
             GestureDetector(
               // onTap: () => Get.toNamed(AppRoute.settingScreen),
-              onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>SelectCountry())),
               child: Container(
                 width: double.maxFinite,
                 padding: const EdgeInsets.all(8),

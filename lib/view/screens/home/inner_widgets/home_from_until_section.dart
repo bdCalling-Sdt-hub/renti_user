@@ -5,10 +5,15 @@ import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-
-class HomeFromUntilSection extends StatelessWidget {
+class HomeFromUntilSection extends StatefulWidget {
   const HomeFromUntilSection({super.key});
+
+  @override
+  State<HomeFromUntilSection> createState() => _HomeFromUntilSectionState();
+}
+
+class _HomeFromUntilSectionState extends State<HomeFromUntilSection> {
+  final TextEditingController dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +25,14 @@ class HomeFromUntilSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomText(
+              const CustomText(
                 text: AppStrings.from,
                 color: AppColors.blackNormal,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
               CustomTextField(
+
                 fieldBorderRadius: 4,
                  hintText: AppStrings.enterTime,
                 hintStyle: GoogleFonts.poppins(
@@ -49,7 +55,7 @@ class HomeFromUntilSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomText(
+              const CustomText(
                 text: AppStrings.until,
                 color: AppColors.blackNormal,
                 fontSize: 14,
