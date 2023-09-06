@@ -31,15 +31,14 @@ class _HomeFromUntilSectionState extends State<HomeFromUntilSection> {
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
+              SizedBox(height: 12,),
               CustomTextField(
-
                 fieldBorderRadius: 4,
                  hintText: AppStrings.enterTime,
                 hintStyle: GoogleFonts.poppins(
                   color: AppColors.whiteDarkActive,
                   fontSize: 10,
                   fontWeight: FontWeight.w400,
-
                 ),
                 fillColor: Colors.transparent,
                 isPrefixIcon: true,
@@ -61,6 +60,7 @@ class _HomeFromUntilSectionState extends State<HomeFromUntilSection> {
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
+              SizedBox(height: 12,),
               CustomTextField(
                 fieldBorderRadius: 4,
                 hintText: AppStrings.enterTime,

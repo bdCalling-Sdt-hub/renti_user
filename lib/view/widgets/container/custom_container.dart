@@ -6,16 +6,13 @@ class CustomContainer extends StatelessWidget {
   const CustomContainer(
       {super.key,
         this.height,
-        this.marginTop = 0,
-        this.paddingVertical = 0,
-        this.paddingHorizontal = 0,
-        this.radiusTopLeft = 0,
-        this.radiusTopRight = 0,
+        this.marginTop = 20,
+        this.paddingVertical = 24,
+        this.paddingHorizontal = 20,
+        this.radiusTopLeft = 16,
+        this.radiusTopRight = 16,
         this.width = double.infinity,
-        required this.child,
-        this.borderColor = AppColors.blackNormal,
-        this.borderRadius = 8
-      });
+        required this.child});
 
   final double radiusTopLeft;
   final double radiusTopRight;
@@ -25,8 +22,6 @@ class CustomContainer extends StatelessWidget {
   final double? height;
   final Widget child;
   final double marginTop;
-  final Color  borderColor;
-  final double  borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +33,10 @@ class CustomContainer extends StatelessWidget {
           horizontal: paddingHorizontal, vertical: paddingVertical),
       decoration: BoxDecoration(
         color: AppColors.whiteLight1,
-        borderRadius: BorderRadius.circular(borderRadius),
-        border: Border.all(color: borderColor,width: 1)
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(radiusTopLeft),
+          topRight: Radius.circular(radiusTopRight),
+        ),
       ),
       child: child,
     );

@@ -39,7 +39,7 @@ class AppIcons{
   static const String settingsIcon = "$basePath/settings_icon.svg";
   static const String splashLogo = "$basePath/splashlogo.png";
   static const String starIcon = "$basePath/star_icon.svg";
-  static const String support = "$basePath/support.svg";
+  static const String support1 = "$basePath/support1.svg";
   static const String tableStarIcon = "$basePath/table_star_icon.svg";
 
 

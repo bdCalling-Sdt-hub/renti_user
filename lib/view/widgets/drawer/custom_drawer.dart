@@ -40,7 +40,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             const CustomText(text: "(480) 555-0103", fontSize: 12, color: AppColors.whiteDarkHover,top: 8,bottom: 8),
             const Divider(color: AppColors.blackLightHover,thickness: 1),
 
-            //Add cars Section
+            // rent history
             GestureDetector(
               // onTap: () => Get.toNamed(AppRoute.userListScreen),
               child: Container(
@@ -59,6 +59,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
               ),
             ),
+            // paymentMethod
             GestureDetector(
               // onTap: () => Get.toNamed(AppRoute.userListScreen),
               child: Container(
@@ -77,6 +78,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
               ),
             ),
+            // howRentiWorks
             GestureDetector(
               // onTap: () => Get.toNamed(AppRoute.userListScreen),
               child: Container(
@@ -95,6 +97,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
               ),
             ),
+            //support
             GestureDetector(
               // onTap: () => Get.toNamed(AppRoute.userListScreen),
               child: Container(
@@ -107,12 +110,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 child: const Row(
                   children: [
-                    CustomImage(imageSrc: AppIcons.support,size: 18,),
+                    CustomImage(imageSrc: AppIcons.support1,size: 18,),
                     CustomText(text: AppStrings.support,color: AppColors.whiteDarkHover,left: 8)
                   ],
                 ),
               ),
             ),
+            //aboutUs
             GestureDetector(
               // onTap: () => Get.toNamed(AppRoute.userListScreen),
               child: Container(
@@ -131,6 +135,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
               ),
             ),
+            //settings
             GestureDetector(
               // onTap: () => Get.toNamed(AppRoute.userListScreen),
               child: Container(
@@ -150,6 +155,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
             ),
             const Divider(color: AppColors.blackLightHover,thickness: 1),
+            // logOut
             GestureDetector(
               // onTap: () => Get.toNamed(AppRoute.settingScreen),
               child: Container(

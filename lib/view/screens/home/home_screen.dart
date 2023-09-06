@@ -85,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
             HomeFromUntilSection(),
             SizedBox(height: 24),
             HomeOfferCarSection(),
+            SizedBox(height: 24,),
             HomeLuxuryCarSection()
           ],
         ),

@@ -13,7 +13,6 @@ class HomeOfferCarSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -46,7 +45,7 @@ class HomeOfferCarSection extends StatelessWidget {
                 4, (index) => Stack(
                   children: [
                     Container(
-                      margin: EdgeInsetsDirectional.only(end: 12),
+                      margin: const EdgeInsetsDirectional.only(end: 12),
                       width: MediaQuery.of(context).size.width * 0.5,
                       padding: const EdgeInsetsDirectional.only(bottom: 12),
                       decoration: ShapeDecoration(
