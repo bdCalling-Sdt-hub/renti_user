@@ -1,0 +1,26 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../../../../core/route/app_route.dart';
+import '../../../../../utils/app_strings.dart';
+import '../../../../widgets/buttons/custom_elevated_button.dart';
+
+class KycBottomNavSection extends StatefulWidget {
+  const KycBottomNavSection({super.key});
+
+  @override
+  State<KycBottomNavSection> createState() => _KycBottomNavSectionState();
+}
+
+class _KycBottomNavSectionState extends State<KycBottomNavSection> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
+      child: CustomElevatedButton(onPressed: (){
+        Get.toNamed(AppRoute.selectPhoto);
+      }, titleText: AppStrings.continuw),
+    );
+  }
+}

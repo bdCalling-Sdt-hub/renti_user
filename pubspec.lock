@@ -49,14 +49,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.2"
-  country_list_pick:
-    dependency: "direct main"
-    description:
-      name: country_list_pick
-      sha256: "379da3b8d194d4bd5a07472128c3ce5b4d205a0a15e217236aed1c393959a8b6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1+6"
   country_picker:
     dependency: "direct main"
     description:
@@ -110,14 +102,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_intl:
-    dependency: "direct main"
-    description:
-      name: flutter_intl
-      sha256: "17b138fab0477c7d17abd8ba67d294786eef8fe80342e58b6253aef7d0ca2bad"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -364,18 +348,10 @@ packages:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: "9f0a4593f7642b2f106e329734d0e5fc746baf8d0a59495eec586cd0d9ba7d02"
+      sha256: "2baf60cd245a21a7069f036bbca1ca222633d38f57748e133da97a305712627c"
       url: "https://pub.dev"
     source: hosted
-    version: "22.2.12"
-  syncfusion_flutter_datepicker:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_datepicker
-      sha256: c09d8a84f07da41c12b02ac350f4aab8b73be2c51095fca9f9404b2a5af67585
-      url: "https://pub.dev"
-    source: hosted
-    version: "22.2.12"
+    version: "22.2.11"
   syncfusion_flutter_sliders:
     dependency: "direct main"
     description:
