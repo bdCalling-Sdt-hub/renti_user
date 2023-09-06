@@ -73,21 +73,14 @@ class MessageList extends StatelessWidget {
                     SlidableAction(
                       flex: 1,
                         onPressed: (v) {
-                          // showDialog(
-                          //   context: context,
-                          //   builder: (context) {
-                          //     return CommonPopUp(
-                          //         title: AppStrings.deleteMessage,
-                          //         onTapYes: () {},
-                          //         onTapNo: () {});
-                          //   },
-                          // );
+
                         },
                         backgroundColor: AppColors.redNormal,
                         icon: CupertinoIcons.delete),
                   ],
                 ),
                 child: Container(
+
                   width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.all(16),
                   decoration: ShapeDecoration(

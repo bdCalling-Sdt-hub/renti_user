@@ -46,10 +46,10 @@ class _InboxScreenState extends State<InboxScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       top: true,
+      bottom: true,
       child: Scaffold(
-        extendBody: true,
-        backgroundColor: AppColors.blueNormal,
         appBar: CustomAppBar(
+          appBarBgColor: AppColors.blueNormal,
           appBarContent: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,50 +84,40 @@ class _InboxScreenState extends State<InboxScreen> {
             ],
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 16.0),
-          child: CustomContainer(
-            containerBgColor: Colors.white,
-            radiusTopLeft: 16,
-            radiusTopRight: 16,
-            paddingVertical: 0,
-            paddingHorizontal: 0,
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.only(top: 24, bottom: 100),
-              child: Column(
-                children: List.generate(
-                  messages.length,
-                      (index) => Container(
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.only(top: 24, bottom: 24),
+          child: Column(
+            children: List.generate(
+              messages.length,
+                  (index) => Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4)
+                ),
+                padding: const EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                  top: 16,
+                ),
+                child: Align(
+                  alignment: (messages[index].messageType == "sender"
+                      ? Alignment.topRight
+                      : Alignment.topLeft),
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    width: MediaQuery.of(context).size.width / 1.5,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4)
+                      borderRadius: BorderRadius.circular(4),
+                      color: (messages[index].messageType == "sender"
+                          ? AppColors.blueNormal
+                          : AppColors.whiteNormalhover),
                     ),
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                      top: 16,
-                    ),
-                    child: Align(
-                      alignment: (messages[index].messageType == "sender"
-                          ? Alignment.topRight
-                          : Alignment.topLeft),
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        width: MediaQuery.of(context).size.width / 1.5,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: (messages[index].messageType == "sender"
-                              ? AppColors.blueNormal
-                              : AppColors.whiteNormalhover),
-                        ),
-                        child: CustomText(
-                            textAlign: TextAlign.start,
-                            text: messages[index].messageContent,
-                            color: messages[index].messageType == "sender"
-                                ? AppColors.whiteLight
-                                : AppColors.blackNormal),
-                      ),
-                    ),
+                    child: CustomText(
+                        textAlign: TextAlign.start,
+                        text: messages[index].messageContent,
+                        color: messages[index].messageType == "sender"
+                            ? AppColors.whiteLight
+                            : AppColors.blackNormal),
                   ),
                 ),
               ),
@@ -136,7 +126,7 @@ class _InboxScreenState extends State<InboxScreen> {
         ),
         bottomNavigationBar: AnimatedPadding(
           padding: MediaQuery.of(context).viewInsets,
-          duration: const Duration(milliseconds: 10),
+          duration: const Duration(milliseconds: 100),
           curve: Curves.decelerate,
           child: Container(
             padding: const EdgeInsetsDirectional.symmetric(
