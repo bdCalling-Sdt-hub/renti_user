@@ -23,6 +23,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: true,
       child: Scaffold(
           backgroundColor: AppColors.blueNormal,
           appBar: const CustomAppBar(

@@ -28,6 +28,7 @@ class _KYCScreenState extends State<KYCScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: true,
       child: Scaffold(
         extendBody: true,
         backgroundColor: AppColors.blueNormal,

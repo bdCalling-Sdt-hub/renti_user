@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:renti_user/utils/app_icons.dart';
-import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/rent_history/inner_widgets/rent_history_section.dart';
-import 'package:renti_user/view/widgets/image/custom_image.dart';
-
 import '../../../utils/app_colors.dart';
 import '../../widgets/appbar/custom_app_bar.dart';
 import '../../widgets/text/custom_text.dart';
@@ -22,6 +18,7 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: true,
         child: Scaffold(
       backgroundColor: AppColors.whiteLight,
       appBar: CustomAppBar(

@@ -67,15 +67,15 @@ class _CancelShowDialogueState extends State<CancelShowDialogue> {
             child: Column(
                 children: List.generate(cancelReason.length, (index) =>  Padding(
                   padding: const EdgeInsets.only(bottom: 24.0),
-                  child: Row(
-                    children: [
-                      InkWell(
-                        onTap: (){
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                        child: Container(
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                    child: Row(
+                      children: [
+                        Container(
                           height: 20,
                           width: 20,
                           decoration: BoxDecoration(
@@ -86,12 +86,12 @@ class _CancelShowDialogueState extends State<CancelShowDialogue> {
                               border: Border.all(width: 1,color: AppColors.whiteDark.withOpacity(0.3))
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 10,),
-                      CustomText(
-                        text: cancelReason[index],
-                      ),
-                    ],
+                        const SizedBox(width: 10,),
+                        CustomText(
+                          text: cancelReason[index],
+                        ),
+                      ],
+                    ),
                   ),
                 ),)
             ),

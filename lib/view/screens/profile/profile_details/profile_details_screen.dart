@@ -23,6 +23,7 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: true,
         child: Scaffold(
       backgroundColor: AppColors.whiteLight,
       

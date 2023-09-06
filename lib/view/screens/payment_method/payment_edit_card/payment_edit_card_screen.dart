@@ -26,7 +26,9 @@ class _PaymentEditCardScreenState extends State<PaymentEditCardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return SafeArea(
+        top: true,
+        child: Scaffold(
       backgroundColor: AppColors.whiteLight,
       appBar: CustomAppBar(
           appBarContent: Row(

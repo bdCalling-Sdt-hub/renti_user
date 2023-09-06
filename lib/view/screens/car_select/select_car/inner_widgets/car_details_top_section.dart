@@ -48,7 +48,7 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
             child:   const Column(
               children: [
                 Row(
-
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
                       text: 'Toyota Harrier',
@@ -59,7 +59,8 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                       bottom: 8,
                     ),
                     CustomImage(
-                      imageSrc: AppIcons.starIcon,size: 12,),
+                      imageSrc: AppIcons.starIcon,
+                      size: 12,),
                     CustomText(
                       text: '(4.5)',
                       fontSize: 10,

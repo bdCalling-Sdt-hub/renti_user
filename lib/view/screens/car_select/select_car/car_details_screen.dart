@@ -23,6 +23,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: true,
         child: Scaffold(
       backgroundColor: AppColors.whiteLight,
       appBar: CustomAppBar(
@@ -50,16 +51,16 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
         builder: (BuildContext context, BoxConstraints constraints) =>
              SingleChildScrollView(
                 padding:
-                    EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-                physics: BouncingScrollPhysics(),
+                    const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
 
                   children: [
-                    CarDetailsTopSection(),
-                    CarDetailsCarInfoSection(),
-                    CarDetailsHostInfoSection(),
-                    CarDetailsMapSection(),
-                    SizedBox(height: 16,),
+                    const CarDetailsTopSection(),
+                    const CarDetailsCarInfoSection(),
+                    const CarDetailsHostInfoSection(),
+                    const CarDetailsMapSection(),
+                    const SizedBox(height: 16,),
                     CustomElevatedButton(
                       titleSize: 14,
                       buttonWidth: MediaQuery.of(context).size.width,

@@ -46,7 +46,10 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
                   bottom: 12,
                   right: 8,
                 ),
-                CustomImage(imageSrc: AppIcons.starIcon,size: 12,),
+                Padding(
+                  padding: EdgeInsets.only(top: 3),
+                  child: CustomImage(imageSrc: AppIcons.starIcon,size: 12,),
+                ),
                 CustomText(
                   text: '(4.5)',
                   color: AppColors.blackNormal,

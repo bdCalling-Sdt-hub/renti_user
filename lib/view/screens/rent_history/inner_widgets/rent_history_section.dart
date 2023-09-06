@@ -83,11 +83,20 @@ class _RentHistorySectionState extends State<RentHistorySection> {
                     )),
                 Expanded(
                     flex: 1,
-                    child: Image.asset(
-                      AppImages.carBg,
-                      height: 131,
-                      fit: BoxFit.cover,
-                    ))
+                    child: Container(
+                      height: 130,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                            image: AssetImage(AppImages.carBg)
+                        ),
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(8),bottomRight: Radius.circular(8)
+                        ),
+                      ),
+
+                    )
+                )
               ],
             ),
           );

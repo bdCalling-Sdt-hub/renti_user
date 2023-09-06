@@ -73,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         const SizedBox(height: 24),
                         CustomElevatedButton(
                           onPressed: () {
-                              Get.toNamed(AppRoute.carDetails);
+                              Get.toNamed(AppRoute.rentiHistory);
                           },
                           titleText: AppStrings.getStarted,
                           buttonWidth: double.maxFinite,

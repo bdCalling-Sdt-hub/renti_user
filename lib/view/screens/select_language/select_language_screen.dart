@@ -19,6 +19,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: true,
       child: Scaffold(
         extendBody: true,
         appBar: const CustomAppBar(
