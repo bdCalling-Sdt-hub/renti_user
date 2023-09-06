@@ -9,6 +9,7 @@ import 'package:renti_user/view/screens/home/inner_widgets/home_luxery_car_secti
 import 'package:renti_user/view/screens/home/inner_widgets/home_offer_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_top_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
+import 'package:renti_user/view/widgets/drawer/custom_drawer.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
@@ -18,28 +19,28 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-
 class _HomeScreenState extends State<HomeScreen> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: scaffoldKey,
+      drawer: const CustomDrawer(),
       appBar: CustomAppBar(
         appBarContent: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             GestureDetector(
-
+              onTap: () => scaffoldKey.currentState?.openDrawer(),
               child: const Icon(Icons.menu,
                   color: AppColors.blueNormal, size: 40),
             ),
             Expanded(
               child: GestureDetector(
                 onTap: () {
-
                     Get.toNamed(AppRoute.searchScreen);
-
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 16),

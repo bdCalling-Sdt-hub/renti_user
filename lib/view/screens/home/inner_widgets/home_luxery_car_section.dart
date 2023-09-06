@@ -46,8 +46,9 @@ class _HomeLuxuryCarSectionState extends State<HomeLuxuryCarSection> {
             child: Row(
               children: List.generate(
                   4, (index) => Container(
+                margin: EdgeInsetsDirectional.only(end: 12),
                     width: MediaQuery.of(context).size.width * 0.5,
-                    padding: const EdgeInsetsDirectional.only(end: 16,bottom: 12),
+                    padding: const EdgeInsetsDirectional.only(bottom: 12),
                     decoration: ShapeDecoration(
                       color: Colors.white,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
@@ -131,7 +132,8 @@ class _HomeLuxuryCarSectionState extends State<HomeLuxuryCarSection> {
                                                   fontFamily: 'Poppins',
                                                   fontWeight: FontWeight.w400,
                                                   height: 1.40,
-                                                ))
+                                                )
+                                            )
                                           ]
                                       )
                                   )

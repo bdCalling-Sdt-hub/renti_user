@@ -46,8 +46,9 @@ class HomeOfferCarSection extends StatelessWidget {
                 4, (index) => Stack(
                   children: [
                     Container(
+                      margin: EdgeInsetsDirectional.only(end: 12),
                       width: MediaQuery.of(context).size.width * 0.5,
-                      padding: const EdgeInsetsDirectional.only(end: 16,bottom: 12),
+                      padding: const EdgeInsetsDirectional.only(bottom: 12),
                       decoration: ShapeDecoration(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),

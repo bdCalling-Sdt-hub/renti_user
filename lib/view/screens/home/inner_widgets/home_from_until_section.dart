@@ -5,6 +5,7 @@ import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class HomeFromUntilSection extends StatelessWidget {
   const HomeFromUntilSection({super.key});
@@ -38,6 +39,7 @@ class HomeFromUntilSection extends StatelessWidget {
                 isPrefixIcon: true,
                 prefixIconSrc: AppIcons.calenderIcon,
                 prefixIconColor: AppColors.blueNormal,
+
               )
             ],
           ),
