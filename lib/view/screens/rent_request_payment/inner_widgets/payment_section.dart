@@ -66,11 +66,17 @@ class _PaymentSectionState extends State<PaymentSection> {
           ],
         ),
         const SizedBox(height: 16),
-               CustomContainer(
-               borderColor:AppColors.blueNormal ,
-               borderRadius: 4,
-               containerBgColor: AppColors.whiteLight,
-               paddingVertical: 16,
+        Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            decoration: ShapeDecoration(
+              color: AppColors.whiteLight,
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(width: 0.5, color: AppColors.blueNormal),
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -108,7 +114,7 @@ class _PaymentSectionState extends State<PaymentSection> {
               )
                ),
             isarrowup ? const HsbcMexicoCard() : const SizedBox(),
-            const SizedBox(height: 24),
+
 
       ],
     );
