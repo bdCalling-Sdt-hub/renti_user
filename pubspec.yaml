@@ -42,7 +42,9 @@ dependencies:
   intl_phone_field: ^3.2.0
   syncfusion_flutter_sliders: ^22.2.9
   get:
-  country_picker: ^2.0.21
+  flutter_rating_bar: ^4.0.1
+  flutter_slidable: ^3.0.0
+
 
 dev_dependencies:
   flutter_test:

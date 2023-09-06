@@ -137,7 +137,8 @@ class AppStrings{
   static const String logOut = "Log Out";
 
   //payment method
-
+  static const String bessieCooper = "Bessie Cooper";
+  static const String rentRequest = "Rent Request";
   static const String  visaCard = "Visa Card";
   static const String   addCard = "Add Card";
   static const String   cardNumber = "Card Number";
@@ -159,12 +160,15 @@ class AppStrings{
   static const String   confirmNewPassword= "Confirm new password";
   static const String   changePassword= "Change Password";
   static const String   select= "Select";
-
   //offer car
   static const String seeDetails = "See details";
 
   //selwct car
-
+  static const String carlicenseno = "Car license no :";
+  static const String carColor = "Car color:";
+static const String carmodel ="Car model:";
+static const String rentalInformation = "Rental Information";
+static const String uploadecarphoto ="Upload Car Photo";
 static const String carDetails ="Car Details";
 static const String carInformation ="Car Information";
 static const String hostInformation ="Host Information";
