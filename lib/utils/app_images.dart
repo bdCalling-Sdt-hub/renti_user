@@ -8,6 +8,8 @@ class AppImages{
   static const String map = "$basePath/map.png";
   static const String profileImg = "$basePath/profile_img.png";
   static const String rentCar = "$basePath/rent_car.png";
-  static const String splashBgImage = "$basePath/splashbgimage.png";
+  static const String splashBgImage = "$basePath/splash_bg_image.png";
+  static const String splashLogo = "$basePath/splashlogo.png";
+  static const String mapLocationCar = "$basePath/map_location_car.png";
 
 }

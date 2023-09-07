@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
@@ -51,6 +51,7 @@ class _CustomImageState extends State<CustomImage> {
         widget.imageSrc,
         color: widget.imageColor,
         height: widget.size, width: widget.size,
+
       );
     }
 

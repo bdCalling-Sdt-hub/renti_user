@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
@@ -23,11 +23,13 @@ class CustomTextField extends StatefulWidget {
     this.fieldBorderRadius = 8,
     this.fieldBorderColor = AppColors.whiteNormalActive,
     this.isPassword = false,
-    this.isPrefixIcon = true,
+    this.isPrefixIcon = false,
+    this.prefixIconColor,
+    this.prefixIconSrc,
     this.readOnly = false,
-
     super.key
-  });
+     }
+  );
 
   final TextEditingController? textEditingController;
   final FocusNode? focusNode;
@@ -49,6 +51,8 @@ class CustomTextField extends StatefulWidget {
   final Color fieldBorderColor;
   final bool isPassword;
   final bool isPrefixIcon;
+  final String ?prefixIconSrc;
+  final Color ? prefixIconColor;
   final bool readOnly;
 
 
@@ -62,7 +66,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-
     return TextFormField(
       readOnly: widget.readOnly,
       controller: widget.textEditingController,
@@ -80,14 +83,24 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintStyle: widget.hintStyle,
         fillColor: widget.fillColor,
         filled: true,
+        prefixIcon: widget.isPrefixIcon ? Padding(
+          padding:  const EdgeInsetsDirectional.only(start: 0, top: 10, bottom: 10, end: 0),
+          child: SvgPicture.asset(widget.prefixIconSrc ?? ""),
+        ) : null,
+        prefixIconColor: widget.prefixIconColor,
         suffixIcon: widget.isPassword ? GestureDetector(
-          onTap: toggle,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16,right: 16),
-            child: SvgPicture.asset(obscureText ? AppIcons.inVisibleIcon: AppIcons.visibleIcon,height: 18,width: 18),
-          ),
-        ) : widget.suffixIcon,
+            onTap: toggle,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.only(start: 16, top: 16, bottom: 16, end: 16),
+              child: SvgPicture.asset(
+                  obscureText ? AppIcons.inVisibleIcon : AppIcons.visibleIcon,color: AppColors.whiteDark,height: 14,),
+            )
+        ) : Padding(
+          padding: const EdgeInsetsDirectional.only(start: 16, top: 16, bottom: 16, end: 16),
+          child: widget.suffixIcon,
+        ),
         suffixIconColor: widget.suffixIconColor,
+
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(widget.fieldBorderRadius),
             borderSide: BorderSide(color: widget.fieldBorderColor, width: 1),

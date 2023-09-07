@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
@@ -7,18 +9,19 @@ import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-class SearchCarScetion extends StatefulWidget {
-  const SearchCarScetion({super.key});
+class OfferCarSection extends StatefulWidget {
+  const OfferCarSection({super.key});
 
   @override
-  State<SearchCarScetion> createState() => _SearchCarScetionState();
+  State<OfferCarSection> createState() => _SearchCarScetionState();
 }
 
-class _SearchCarScetionState extends State<SearchCarScetion> {
+class _SearchCarScetionState extends State<OfferCarSection> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-          children: [Container(
+          children: [
+            Container(
             margin: const EdgeInsets.only(bottom: 16),
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsetsDirectional.all(16),
@@ -96,7 +99,7 @@ class _SearchCarScetionState extends State<SearchCarScetion> {
                       ),
                       const SizedBox(height: 8),
                       CustomElevatedButton(onPressed: (){
-
+                            Get.toNamed(AppRoute.carDetails);
                       }
                         , titleText: AppStrings.seeDetails,
                         titleWeight: FontWeight.w400,

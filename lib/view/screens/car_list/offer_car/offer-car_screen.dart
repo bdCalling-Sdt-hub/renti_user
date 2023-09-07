@@ -23,7 +23,7 @@ class _OfferCarScreenState extends State<OfferCarScreen> {
               children: [
                 GestureDetector(
                     onTap: () {
-                    Get.back;
+                      Get.back();
                     },
                     child: const Icon(
                       Icons.arrow_back_ios_new,
@@ -35,7 +35,7 @@ class _OfferCarScreenState extends State<OfferCarScreen> {
                   color: AppColors.blackNormal,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
-                  left: 20,
+                  left: 14,
                 )
               ],
             )),
@@ -49,8 +49,7 @@ class _OfferCarScreenState extends State<OfferCarScreen> {
                child: SingleChildScrollView(
                  child: Column(
                    children:  List.generate(
-                     40, (index) =>const SearchCarScetion()
-
+                     40, (index) =>const OfferCarSection()
                    )
                  ),
                ),
