@@ -1,17 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
-import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
-import 'package:renti_user/view/widgets/container/custom_container.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
-
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_strings.dart';
-
-
 import 'hsbc_méxico_card.dart';
 
 class PaymentSection extends StatefulWidget {
