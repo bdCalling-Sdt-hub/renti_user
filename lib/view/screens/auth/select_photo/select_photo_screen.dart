@@ -1,12 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/view/screens/auth/select_photo/inner_widgets/select_photo_bottom_nav_section.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_strings.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
 import '../../../widgets/buttons/custom_back_button.dart';
-import '../../../widgets/buttons/custom_elevated_button.dart';
 import '../../../widgets/container/custom_container.dart';
 import '../../../widgets/text/custom_text.dart';
 
@@ -18,6 +22,21 @@ class SelectPhotoScreen extends StatefulWidget {
 }
 
 class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
+
+  final ImagePicker _imagePicker = ImagePicker();
+  XFile ? image;
+  fromCamera ()async{
+   image = await _imagePicker.pickImage(source: ImageSource.camera);
+   setState(() {
+   });
+  }
+
+  fromGellery () async{
+   image = await _imagePicker.pickImage(source: ImageSource.gallery);
+   setState(() {
+
+   });
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,7 +56,7 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                   physics: const BouncingScrollPhysics(),
                   child: Column(
                     children: [
-                      Container(
+                     image == null ? Container(
                         margin: const EdgeInsets.only(top: 20),
                         height: 150,
                         width: 150,
@@ -55,13 +74,35 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                               color: AppColors.blueLight, shape: BoxShape.circle),
                           height: 130,
                           width: 130,
-                          child: const Icon(
-                            Icons.camera_alt_outlined,
-                            size: 50,
-                            color: AppColors.blueLightActive,
+                          child: InkWell(
+                            onTap: (){
+                              fromGellery();
+                            },
+                            child: const Icon(
+                              Icons.camera_alt_outlined,
+                              size: 50,
+                              color: AppColors.blueLightActive,
+                            ),
                           ),
                         ),
-                      ),
+                      ):
+                     Container(
+                       margin:  EdgeInsets.only(top: 20),
+                       height: 150,
+                       width: 150,
+                       decoration: BoxDecoration(
+                         color: Colors.white,
+                         border: Border.all(
+                             color: AppColors.blueNormal,
+                             width: 2,
+                             strokeAlign: 1,
+                             style: BorderStyle.solid),
+                         shape: BoxShape.circle,
+                       ),
+                       child: CircleAvatar(
+                         child: Image.file(File(image!.path),height: 100,width: 100,fit: BoxFit.cover,),
+                       )
+                     ) ,
                       const CustomText(
                         top: 16,
                         text: AppStrings.uploadYourPhoto,
