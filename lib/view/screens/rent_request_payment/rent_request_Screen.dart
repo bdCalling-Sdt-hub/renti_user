@@ -24,8 +24,8 @@ class RentRequestScreen extends StatelessWidget {
             },
             child:  Row(
               children: [
-                Icon(Icons.arrow_back_ios_new,color: AppColors.blackNormal,size: 18,),
-                SizedBox(width: 8,),
+                const Icon(Icons.arrow_back_ios_new,color: AppColors.blackNormal,size: 18,),
+                const SizedBox(width: 8,),
                 Text("Rent Request",
                   style: GoogleFonts.poppins(
                   fontSize: 18,
