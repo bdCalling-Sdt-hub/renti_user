@@ -81,7 +81,7 @@ class AppRoute {
     GetPage(name: inboxScreen, page: ()=> const InboxScreen()),
     GetPage(name: messageScreen, page: ()=> const MessageScreen()),
     GetPage(name:luxuryCars , page: ()=>const LuxuryCarsScreen()),
-     GetPage(name: splashScreen, page: ()=>const SplashScreen()),
+    GetPage(name: splashScreen, page: ()=>const SplashScreen()),
     GetPage(name: selectLanguageScreen, page: ()=>const SelectLanguageScreen()),
     GetPage(name: signInScreen, page: ()=>const SignInScreen()),
     GetPage(name: signUpScreen, page: ()=>const SignUpScreen()),
