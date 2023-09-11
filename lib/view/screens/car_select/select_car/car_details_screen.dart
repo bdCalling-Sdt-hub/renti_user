@@ -65,8 +65,8 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
                     CustomElevatedButton(
                       titleSize: 14,
                       buttonWidth: MediaQuery.of(context).size.width,
-                      buttonColor: AppColors.blueLight,
-                      titleColor: AppColors.blueNormal,
+                      buttonColor: AppColors.lightBlueColor,
+                      titleColor: AppColors.primaryColor,
 
                       onPressed: (){
                          // waiting for approval button
@@ -83,10 +83,10 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsetsDirectional.symmetric(vertical: 16),
                         padding: const EdgeInsetsDirectional.symmetric(vertical: 16),
-                        child: CustomText(text: AppStrings.cancelRequest,fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.blueNormal,),
+                        child: CustomText(text: AppStrings.cancelRequest,fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.primaryColor,),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          border: Border.all(width: 1,color: AppColors.blueNormal)
+                          border: Border.all(width: 1,color: AppColors.primaryColor)
                         ),
                       ),
                     )

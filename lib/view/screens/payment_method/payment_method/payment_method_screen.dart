@@ -66,7 +66,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                          text: AppStrings.addCard,
                          fontSize: 18,
                          fontWeight: FontWeight.w600,
-                         color: AppColors.blueNormal,
+                         color: AppColors.primaryColor,
                          left: 10,
                        )
                       ],

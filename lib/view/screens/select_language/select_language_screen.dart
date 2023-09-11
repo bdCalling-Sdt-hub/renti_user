@@ -27,7 +27,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
             text: AppStrings.selectLanguage,
           ),
         ),
-        backgroundColor: AppColors.blueNormal,
+        backgroundColor: AppColors.primaryColor,
         body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) =>
               CustomContainer(

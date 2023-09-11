@@ -29,7 +29,7 @@ class _OtpTopSectionState extends State<OtpTopSection> {
         const Align(
           alignment: Alignment.center,
           child: CircleAvatar(
-            backgroundColor: AppColors.blueNormal,
+            backgroundColor: AppColors.primaryColor,
             maxRadius: 50,
             child: CustomImage(imageSrc: AppIcons.otpLogo),
           ),
@@ -75,7 +75,7 @@ class _OtpTopSectionState extends State<OtpTopSection> {
               onTap: () {},
               child: const CustomText(
                 text: AppStrings.resend,
-                color: AppColors.blueNormal,
+                color: AppColors.primaryColor,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),

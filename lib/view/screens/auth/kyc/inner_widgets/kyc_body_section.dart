@@ -27,13 +27,13 @@ class _KycBodySectionState extends State<KycBodySection> {
         Container(
 
           decoration: BoxDecoration(
-            color: AppColors.blueLight,
+            color: AppColors.lightBlueColor,
             borderRadius: BorderRadius.circular(8),
           ),
           child: DottedBorder(
             strokeWidth: 1,
             dashPattern: const [10, 10],
-            color: AppColors.blueLightActive,
+            color: AppColors.lightBlueColorActive,
             borderType: BorderType.RRect,
             radius: const Radius.circular(8),
             padding: const EdgeInsets.all(2),

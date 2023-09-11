@@ -49,7 +49,7 @@ class LuxuryCarDetails extends StatelessWidget {
                                   text: AppStrings.toyotaHarrier,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
-                                  color: AppColors.blueDark,
+                                  color: AppColors.darkBlueColor,
                                 ),
                                 SizedBox(width: 8,),
                                 CustomImage(imageSrc: AppIcons.starIcon),

@@ -25,7 +25,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return SafeArea(
       top: true,
       child: Scaffold(
-          backgroundColor: AppColors.blueNormal,
+          backgroundColor: AppColors.primaryColor,
           appBar: const CustomAppBar(
             appBarContent: CustomBack(text: AppStrings.signIn),
           ),
@@ -62,7 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                             left: 4,
-                            color: AppColors.blueNormal,
+                            color: AppColors.primaryColor,
                           ),
                         ),
                       ],

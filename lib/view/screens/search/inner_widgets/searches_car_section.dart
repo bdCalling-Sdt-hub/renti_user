@@ -32,7 +32,7 @@ class SearchesCarSection extends StatelessWidget {
                       left: 12,
                       bottom: 12,
                       text: AppStrings.toyotaHarrier,
-                      color: AppColors.blueNormal,
+                      color: AppColors.primaryColor,
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
@@ -73,7 +73,7 @@ class SearchesCarSection extends StatelessWidget {
                                         const TextSpan(
                                             text: '/hr',
                                             style: TextStyle(
-                                              color: AppColors.blueNormal,
+                                              color: AppColors.primaryColor,
                                               fontSize: 10,
                                               fontFamily: 'Poppins',
                                               fontWeight: FontWeight.w400,

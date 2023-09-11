@@ -94,7 +94,7 @@ class _SignInAuthState extends State<SignInAuth> {
                   child: CustomText(
                     text: AppStrings.forgetPassword,
                     fontSize: 16,
-                    color: AppColors.blueDark,
+                    color: AppColors.darkBlueColor,
                     bottom: 24,
                     top: 16,
                   ),

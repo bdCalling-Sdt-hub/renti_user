@@ -27,7 +27,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     return SafeArea(child: Scaffold(
       extendBody: true,
       appBar:  const CustomAppBar(appBarContent: CustomBack(text:AppStrings.changePassword,),),
-      backgroundColor: AppColors.blueNormal,
+      backgroundColor: AppColors.primaryColor,
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) =>
             CustomContainer(

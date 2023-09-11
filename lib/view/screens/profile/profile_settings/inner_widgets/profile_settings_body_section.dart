@@ -35,11 +35,11 @@ class _ProfileSettingsBodySectionState extends State<ProfileSettingsBodySection>
             CustomImage(
               imageSrc: AppIcons.selectCamera,
               size: 18,
-              imageColor: AppColors.blueNormal,
+              imageColor: AppColors.primaryColor,
             ),
             CustomText(
               text: AppStrings.changePhoto,
-              color: AppColors.blueNormal,
+              color: AppColors.primaryColor,
               left: 10,
             )
           ],

@@ -31,7 +31,7 @@ class _KYCScreenState extends State<KYCScreen> {
       top: true,
       child: Scaffold(
         extendBody: true,
-        backgroundColor: AppColors.blueNormal,
+        backgroundColor: AppColors.primaryColor,
         appBar: const CustomAppBar(
           appBarContent: CustomBack(text: AppStrings.kyc),
         ),

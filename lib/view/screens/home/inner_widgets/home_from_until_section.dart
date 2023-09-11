@@ -46,7 +46,7 @@ class _HomeFromUntilSectionState extends State<HomeFromUntilSection> {
                   fillColor: Colors.transparent,
                   isPrefixIcon: true,
                   prefixIconSrc: AppIcons.calenderIcon,
-                  prefixIconColor: AppColors.blueNormal,
+                  prefixIconColor: AppColors.primaryColor,
                 ),
               )
             ],
@@ -78,7 +78,7 @@ class _HomeFromUntilSectionState extends State<HomeFromUntilSection> {
                   fillColor: Colors.transparent,
                   isPrefixIcon: true,
                   prefixIconSrc: AppIcons.calenderIcon,
-                  prefixIconColor: AppColors.blueNormal,
+                  prefixIconColor: AppColors.primaryColor,
                 ),
               )
             ],

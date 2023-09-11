@@ -43,7 +43,7 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
       top: true,
       child: Scaffold(
         extendBody: true,
-        backgroundColor: AppColors.blueNormal,
+        backgroundColor: AppColors.primaryColor,
         appBar: const CustomAppBar(
           appBarContent: CustomBack(text: AppStrings.selectPhoto),
         ),
@@ -62,7 +62,7 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                         width: 150,
                         decoration: BoxDecoration(
                           border: Border.all(
-                              color: AppColors.blueNormal,
+                              color: AppColors.primaryColor,
                               width: 2,
                               strokeAlign: 1,
                               style: BorderStyle.solid),
@@ -71,7 +71,7 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                         child: Container(
                           margin: const EdgeInsets.all(10),
                           decoration: const BoxDecoration(
-                              color: AppColors.blueLight, shape: BoxShape.circle),
+                              color: AppColors.lightBlueColor, shape: BoxShape.circle),
                           height: 130,
                           width: 130,
                           child: InkWell(
@@ -81,7 +81,7 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                             child: const Icon(
                               Icons.camera_alt_outlined,
                               size: 50,
-                              color: AppColors.blueLightActive,
+                              color: AppColors.lightBlueColorActive,
                             ),
                           ),
                         ),
@@ -93,7 +93,7 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                        decoration: BoxDecoration(
                          color: Colors.white,
                          border: Border.all(
-                             color: AppColors.blueNormal,
+                             color: AppColors.primaryColor,
                              width: 2,
                              strokeAlign: 1,
                              style: BorderStyle.solid),
@@ -108,7 +108,7 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                         text: AppStrings.uploadYourPhoto,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
-                        color: AppColors.blueNormal,
+                        color: AppColors.primaryColor,
                       ),
                     ],
                   ),

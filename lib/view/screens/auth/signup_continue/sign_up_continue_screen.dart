@@ -23,7 +23,7 @@ class _SignUpContinueScreenState extends State<SignUpContinueScreen> {
       top: true,
       child: Scaffold(
         extendBody: true,
-        backgroundColor: AppColors.blueNormal,
+        backgroundColor: AppColors.primaryColor,
         appBar: const CustomAppBar(appBarContent: CustomBack(text: AppStrings.signUp),),
         body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) =>

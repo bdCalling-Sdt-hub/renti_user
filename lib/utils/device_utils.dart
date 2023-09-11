@@ -9,7 +9,7 @@ class DeviceUtils{
       const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
         systemNavigationBarIconBrightness: Brightness.light,
-        systemNavigationBarColor: AppColors.blueNormal,
+        systemNavigationBarColor: AppColors.primaryColor,
         statusBarColor: Colors.transparent
       )
     );

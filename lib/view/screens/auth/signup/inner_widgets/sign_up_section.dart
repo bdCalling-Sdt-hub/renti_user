@@ -67,7 +67,7 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                 children: [
                   Radio(
                     fillColor: const MaterialStatePropertyAll(
-                        AppColors.blueNormal),
+                        AppColors.primaryColor),
                     value: 1,
                     groupValue: _radioGroupValue,
                     onChanged: (value) {
@@ -87,7 +87,7 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                 children: [
                   Radio(
                     fillColor: const MaterialStatePropertyAll(
-                        AppColors.blueNormal),
+                        AppColors.primaryColor),
                     value: 2,
                     groupValue: _radioGroupValue,
                     onChanged: (value) {
@@ -106,7 +106,7 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                   Radio(
                     activeColor:Colors.red,
                     fillColor: const MaterialStatePropertyAll(
-                        AppColors.blueNormal),
+                        AppColors.primaryColor),
                     value: 3,
                     groupValue: _radioGroupValue,
                     onChanged: (value) {

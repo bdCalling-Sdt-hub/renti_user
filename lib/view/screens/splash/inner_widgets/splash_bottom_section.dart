@@ -46,7 +46,7 @@ class SplashBottomSection extends StatelessWidget {
           titleText: AppStrings.getStarted,
           buttonWidth: double.maxFinite,
           buttonColor: AppColors.whiteLight,
-          titleColor: AppColors.blueNormal,
+          titleColor: AppColors.primaryColor,
         ),
       ],
     );

@@ -28,7 +28,7 @@ class CustomElevatedButtonWithIcon extends StatelessWidget {
         this.imageType = ImageType.svg,
         this.titleColor = AppColors.blackNormal,
         this.buttonColor = AppColors.whiteLight,
-        this.buttonBorderColor = AppColors.blueLight,
+        this.buttonBorderColor = AppColors.lightBlueColor,
         this.iconColor,
         this.titleSize = 14,
         this.buttonRadius = 8,

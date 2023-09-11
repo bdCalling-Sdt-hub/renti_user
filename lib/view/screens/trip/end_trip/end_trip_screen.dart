@@ -68,7 +68,7 @@ class _EndTripScreenState extends State<EndTripScreen> {
               return ReviewDialog();
              }
             );
-          }, buttonName: AppStrings.endTrip, buttonColor: AppColors.blueNormal),
+          }, buttonName: AppStrings.endTrip, buttonColor: AppColors.primaryColor),
         ),
 
 

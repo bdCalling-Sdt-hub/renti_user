@@ -51,7 +51,7 @@ class _SearchCarScetionState extends State<OfferCarSection> {
                             text: AppStrings.toyotaHarrier,
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: AppColors.blueDark,
+                            color: AppColors.darkBlueColor,
                           ),
                           SizedBox(width: 8,),
                           CustomImage(imageSrc: AppIcons.starIcon),
@@ -82,7 +82,7 @@ class _SearchCarScetionState extends State<OfferCarSection> {
                               SizedBox(width: 8),
                               CustomText(
                                 text: "\$12",
-                                color: AppColors.blueNormal,
+                                color: AppColors.primaryColor,
                               ),
                               SizedBox(width: 8),
                               CustomText(
@@ -127,7 +127,7 @@ class _SearchCarScetionState extends State<OfferCarSection> {
                 child: Container(
                     padding: const EdgeInsetsDirectional.symmetric(vertical: 4,horizontal: 6),
                     decoration: const BoxDecoration(
-                        color: AppColors.blueNormal,
+                        color: AppColors.primaryColor,
                         borderRadius: BorderRadius.only(topRight: Radius.circular(4),)
                     ),
                     child: const CustomText(

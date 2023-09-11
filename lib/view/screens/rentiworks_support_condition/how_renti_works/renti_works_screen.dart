@@ -18,7 +18,7 @@ class _RentiWorksScreenState extends State<RentiWorksScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
-      backgroundColor: AppColors.blueNormal,
+      backgroundColor: AppColors.primaryColor,
       appBar: const CustomAppBar(
         appBarContent: CustomBack(
           text: AppStrings.rentiWorks,

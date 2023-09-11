@@ -28,7 +28,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
             text: AppStrings.changeLanguage,
           ),
         ),
-        backgroundColor: AppColors.blueNormal,
+        backgroundColor: AppColors.primaryColor,
         body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) =>
               CustomContainer(

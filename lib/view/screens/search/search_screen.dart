@@ -31,7 +31,7 @@ class _SearchScreenState extends State<SearchScreen> {
             CustomTextField(
               prefixIconSrc: AppIcons.searchIcon,
               isPrefixIcon: true,
-              suffixIcon: SvgPicture.asset(AppIcons.deleteIcon,color: AppColors.blueNormal,),
+              suffixIcon: SvgPicture.asset(AppIcons.deleteIcon,color: AppColors.primaryColor,),
               fieldBorderRadius: 8,
                hintText: AppStrings.searchCar,
                inputTextStyle: GoogleFonts.poppins(

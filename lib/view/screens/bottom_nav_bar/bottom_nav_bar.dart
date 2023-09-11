@@ -110,12 +110,12 @@ class MenuBarItems extends StatelessWidget {
         Column(
           children: [
             CustomImage(
-                imageColor:selectedIndex == index  ?AppColors.blueNormal :AppColors.whiteDark,size:24,
+                imageColor:selectedIndex == index  ?AppColors.primaryColor :AppColors.whiteDark,size:24,
                 imageSrc: image),
             CustomText(
               fontSize: 12,fontWeight: FontWeight.w600,
               text: text,
-              color: selectedIndex == index ?AppColors.blueNormal : AppColors.whiteDark,
+              color: selectedIndex == index ?AppColors.primaryColor : AppColors.whiteDark,
             ),
           ],
         ),

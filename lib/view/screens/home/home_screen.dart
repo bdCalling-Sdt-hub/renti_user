@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 GestureDetector(
                   onTap: () => scaffoldKey.currentState?.openDrawer(),
                   child: const Icon(Icons.menu,
-                      color: AppColors.blueNormal, size: 40),
+                      color: AppColors.primaryColor, size: 40),
                 ),
                 Expanded(
                   child: GestureDetector(

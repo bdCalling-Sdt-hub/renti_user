@@ -58,7 +58,7 @@ class RentRequestScreen extends StatelessWidget {
           ),
         bottomNavigationBar: BottomNavButton(onTap: (){
           Get.toNamed(AppRoute.startTrip);
-        }, buttonName: AppStrings.makePayment, buttonColor: AppColors.blueNormal),
+        }, buttonName: AppStrings.makePayment, buttonColor: AppColors.primaryColor),
       )
     );
   }
