@@ -7,8 +7,8 @@ import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-class SplashBottomSection extends StatelessWidget {
-  const SplashBottomSection({super.key});
+class IntroBottomSection extends StatelessWidget {
+  const IntroBottomSection({super.key});
 
   @override
   Widget build(BuildContext context) {

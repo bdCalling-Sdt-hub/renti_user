@@ -10,6 +10,7 @@ import 'package:renti_user/view/screens/auth/signup_continue/sign_up_continue_sc
 import 'package:renti_user/view/screens/car_list/luxury_cars/luxury_cars_screen.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_screen.dart';
 import 'package:renti_user/view/screens/home/home_screen.dart';
+import 'package:renti_user/view/screens/intro/intro_screen.dart';
 import 'package:renti_user/view/screens/message/inbox/inbox_screen.dart';
 import 'package:renti_user/view/screens/message/messages/messages_screen.dart';
 import 'package:renti_user/view/screens/payment_method/add_card/add_card_screen.dart';
@@ -29,13 +30,10 @@ import 'package:renti_user/view/screens/select_language/select_language_screen.d
 import 'package:renti_user/view/screens/settings/change_language/change_language_screen.dart';
 import 'package:renti_user/view/screens/settings/change_password/change_password_screen.dart';
 import 'package:renti_user/view/screens/settings/settings/settings_screen.dart';
-import 'package:renti_user/view/screens/splash/splash_screen.dart';
 import 'package:renti_user/view/screens/trip/end_trip/end_trip_screen.dart';
-
 import 'package:renti_user/view/screens/trip/star_trip/start_trip_screen.dart';
-
-
 import '../../view/screens/car_list/offer_car/offer-car_screen.dart';
+
 class AppRoute {
 
   static  String rentRequest = "/rent_request_screen";
@@ -81,7 +79,7 @@ class AppRoute {
     GetPage(name: inboxScreen, page: ()=> const InboxScreen()),
     GetPage(name: messageScreen, page: ()=> const MessageScreen()),
     GetPage(name:luxuryCars , page: ()=>const LuxuryCarsScreen()),
-    GetPage(name: splashScreen, page: ()=>const SplashScreen()),
+    GetPage(name: splashScreen, page: ()=> const IntroScreen()),
     GetPage(name: selectLanguageScreen, page: ()=>const SelectLanguageScreen()),
     GetPage(name: signInScreen, page: ()=>const SignInScreen()),
     GetPage(name: signUpScreen, page: ()=>const SignUpScreen()),
@@ -108,7 +106,5 @@ class AppRoute {
     GetPage(name: rentiHistory, page: ()=>const RentHistoryScreen()),
     GetPage(name: homeScreen, page: ()=>const HomeScreen()),
     GetPage(name: searchScreen, page: ()=>const SearchScreen()),
-
-
   ];
 }
