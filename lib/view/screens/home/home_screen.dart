@@ -4,6 +4,7 @@ import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_from_until_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_luxery_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_offer_car_section.dart';
@@ -92,7 +93,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 HomeLuxuryCarSection()
               ],
             ),
-          )
+          ),
+
+          bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0),
 
       ),
     ) ;

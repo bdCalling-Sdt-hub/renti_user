@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:renti_user/view/screens/profile/profile_details/inner_widget/profile_details.dart';
 import 'package:renti_user/view/screens/profile/profile_details/inner_widget/profile_top_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
@@ -48,6 +49,7 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
                   ],
                 ),
               )),
+      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 3),
     ));
   }
 }

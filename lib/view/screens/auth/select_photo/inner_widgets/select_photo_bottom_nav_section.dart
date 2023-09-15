@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:renti_user/core/route/app_route.dart';
-import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:renti_user/view/screens/home/home_screen.dart';
 
 import '../../../../../utils/app_strings.dart';
 import '../../../../widgets/buttons/custom_elevated_button.dart';
@@ -19,7 +17,7 @@ class _SelectPhotoBottomNavSectionState extends State<SelectPhotoBottomNavSectio
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
       child: CustomElevatedButton(onPressed: (){
-        Navigator.push(context, MaterialPageRoute(builder: (_)=>CustomNavBar()));
+        Navigator.push(context, MaterialPageRoute(builder: (_)=> const HomeScreen()));
       }, titleText:AppStrings.continuw),
     );
   }

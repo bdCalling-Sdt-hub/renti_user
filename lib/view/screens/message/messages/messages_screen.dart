@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:renti_user/view/screens/message/messages/inner_widgets/message_list.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
@@ -34,6 +35,7 @@ class _MessageScreenState extends State<MessageScreen> {
             );
           },
         ),
+        bottomNavigationBar: const CustomBottomNavBar(currentIndex: 2),
       ),
     );
   }

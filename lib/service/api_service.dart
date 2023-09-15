@@ -24,7 +24,7 @@ class ApiClient extends GetxService{
     try {
       if (responseMethod == ApiResponseMethod.postMethod) {
         if(passHeader){
-          initToken();
+          //initToken();
           if(isOnlyAcceptType){
             response = await http.post(url, body: params,headers: {
               "Accept": "application/json",
@@ -44,7 +44,7 @@ class ApiClient extends GetxService{
       }
       else if (responseMethod == ApiResponseMethod.postMethod) {
         if(passHeader){
-          initToken();
+          // initToken();
           response = await http.post(
             url,
             body: params,
@@ -66,7 +66,7 @@ class ApiClient extends GetxService{
         response = await http.patch(url);
       } else {
         if(passHeader){
-          initToken();
+          //initToken();
           response = await http.get(
             url, headers: {
             "Content-Type": "application/json",

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:renti_user/view/screens/search/inner_widgets/searches_car_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
@@ -51,6 +52,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 1),
     );
   }
 }

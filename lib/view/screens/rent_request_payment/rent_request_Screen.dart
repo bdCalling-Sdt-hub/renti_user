@@ -21,6 +21,7 @@ class RentRequestScreen extends StatelessWidget {
         appBar: CustomAppBar(
           appBarContent: GestureDetector(
             onTap: (){
+              Get.back();
             },
             child:  Row(
               children: [

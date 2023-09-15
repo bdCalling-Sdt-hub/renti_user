@@ -5,6 +5,7 @@ import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:renti_user/view/screens/home/home_screen.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../widgets/buttons/custom_elevated_button.dart';
 import '../../../../widgets/buttons/custom_elevated_button_with_icon.dart';
@@ -109,7 +110,7 @@ class _SignInAuthState extends State<SignInAuth> {
                   } else {
                     print(AppStrings.failed);
                   }
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>const CustomNavBar()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>const HomeScreen()));
 
                 },
                 titleText: AppStrings.signIn,
