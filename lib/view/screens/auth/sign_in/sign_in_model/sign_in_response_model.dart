@@ -1,5 +1,5 @@
-class SignInModel {
-  SignInModel({
+class SignInResponseModel {
+  SignInResponseModel({
       String? message, 
       User? user, 
       String? accessToken,}){
@@ -8,7 +8,7 @@ class SignInModel {
     _accessToken = accessToken;
 }
 
-  SignInModel.fromJson(dynamic json) {
+  SignInResponseModel.fromJson(dynamic json) {
     _message = json['message'];
     _user = json['user'] != null ? User.fromJson(json['user']) : null;
     _accessToken = json['accessToken'];

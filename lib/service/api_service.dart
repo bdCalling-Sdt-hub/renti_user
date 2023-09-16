@@ -9,10 +9,10 @@ import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ApiClient extends GetxService{
+class ApiService extends GetxService{
 
   SharedPreferences sharedPreferences;
-  ApiClient({required this.sharedPreferences});
+  ApiService({required this.sharedPreferences});
 
   Future<ApiResponseModel> request(
       String uri,
@@ -21,7 +21,7 @@ class ApiClient extends GetxService{
       {bool passHeader=false,
         bool isOnlyAcceptType=false,}) async {
 
-    Uri url=Uri.parse(uri);
+    Uri url = Uri.parse(uri);
     http.Response response;
 
     try {
@@ -33,7 +33,7 @@ class ApiClient extends GetxService{
               url,
               body: params,
               headers: {
-                "Accept": "application/json",
+                "Content-Type": "application/json",
                 "Authorization": "$tokenType $token"
           });
         }
