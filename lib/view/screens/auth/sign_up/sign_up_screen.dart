@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:renti_user/view/screens/auth/signup/inner_widgets/bottom_nav_section.dart';
-import 'package:renti_user/view/screens/auth/signup/inner_widgets/sign_up_section.dart';
-
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_strings.dart';
-import '../../../widgets/appbar/custom_app_bar.dart';
-import '../../../widgets/buttons/custom_back_button.dart';
-import '../../../widgets/container/custom_container.dart';
+import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/auth/sign_up/inner_widgets/bottom_nav_section.dart';
+import 'package:renti_user/view/screens/auth/sign_up/inner_widgets/sign_up_section.dart';
+import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
+import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
+import 'package:renti_user/view/widgets/container/custom_container.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -41,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child:SignUpAuthSection(),
                   ),
                 )),
-        bottomNavigationBar:SignUpBottomSection(),
+        bottomNavigationBar: const SignUpBottomSection(),
       ),
     );
   }
