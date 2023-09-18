@@ -42,8 +42,8 @@ class _SignInAuthState extends State<SignInAuth> {
                 CustomTextField(
                   hintText: AppStrings.enterEmail,
                   textEditingController: controller.emailController,
-                  focusNode: controller.emailFocusNode,
                   textInputAction: TextInputAction.next,
+                  focusNode: controller.emailFocusNode,
                   hintStyle: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -68,6 +68,7 @@ class _SignInAuthState extends State<SignInAuth> {
                   isPassword: true,
                   textEditingController: controller.passwordController,
                   textInputAction: TextInputAction.done,
+                  focusNode: controller.passwordFocusNode,
                   isPrefixIcon: false,
                   hintText:AppStrings.enterPassword,
                   keyboardType: TextInputType.visiblePassword,
@@ -102,7 +103,7 @@ class _SignInAuthState extends State<SignInAuth> {
                   ),
                 ),
 
-                controller.isSubmit ? const CustomElevatedLoadingButton() : CustomElevatedButton(
+                CustomElevatedButton(
                   onPressed: (){
                     if(formKey.currentState!.validate()){
                       controller.signInUser();

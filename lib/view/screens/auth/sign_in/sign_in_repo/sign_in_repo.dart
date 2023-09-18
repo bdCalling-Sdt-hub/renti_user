@@ -14,11 +14,12 @@ class SignInRepo{
       "email" : email,
       "password" : password
     };
+    print("params: ${params.toString()}");
 
     String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.signInEndPoint}";
     print("Url: $url");
 
-    ApiResponseModel responseModel = await apiService.request(url, ApiResponseMethod.postMethod, params, passHeader: false);
+    ApiResponseModel responseModel = await apiService.request(url, ApiResponseMethod.postMethod, params);
 
     print("Data: ${responseModel.responseJson}");
     print("status code: ${responseModel.statusCode}");

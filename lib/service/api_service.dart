@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_method.dart';
 import 'package:http/http.dart' as http;
@@ -17,15 +18,12 @@ class ApiService extends GetxService{
   Future<ApiResponseModel> request(
       String uri,
       String method,
-      Map<String, dynamic>? params,
-      {bool passHeader=false,
-        bool isOnlyAcceptType=false,}) async {
+      Map<String, dynamic>? params, {bool passHeader = false}) async {
 
     Uri url = Uri.parse(uri);
     http.Response response;
 
     try {
-
       if (method == ApiResponseMethod.postMethod) {
         if(passHeader){
           initToken();
@@ -44,26 +42,23 @@ class ApiService extends GetxService{
           );
         }
       }
-      if (method == ApiResponseMethod.deleteMethod) {
+      else if (method == ApiResponseMethod.deleteMethod) {
         response = await http.delete(url);
       }
-      if (method == ApiResponseMethod.updateMethod) {
+      else if (method == ApiResponseMethod.updateMethod) {
         response = await http.patch(url);
       }
       else {
-
         if(passHeader){
           initToken();
           response = await http.get(
-              url,headers: {
+            url,headers: {
             "Accept": "application/json",
             "Authorization": "$tokenType $token"
           });
-
-        }else{
-          response = await http.get(
-            url,
-          );
+        }
+        else{
+          response = await http.get(url);
         }
       }
 
