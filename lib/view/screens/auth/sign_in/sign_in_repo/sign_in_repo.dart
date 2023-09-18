@@ -10,19 +10,15 @@ class SignInRepo{
 
   Future<ApiResponseModel> signInUser({required String email, required String password}) async{
 
+    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.signInEndPoint}";
+    String requestMethod = ApiResponseMethod.postMethod;
     Map<String, String> params = {
       "email" : email,
       "password" : password
     };
-    print("params: ${params.toString()}");
 
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.signInEndPoint}";
-    print("Url: $url");
+    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, params, passHeader: false);
 
-    ApiResponseModel responseModel = await apiService.request(url, ApiResponseMethod.postMethod, params);
-
-    print("Data: ${responseModel.responseJson}");
-    print("status code: ${responseModel.statusCode}");
     return responseModel;
   }
 }

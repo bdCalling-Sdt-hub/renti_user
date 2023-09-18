@@ -9,17 +9,17 @@ import 'package:renti_user/view/screens/auth/sign_in/sign_in_repo/sign_in_repo.d
 
 class SignInController extends GetxController{
 
-  SignInController({required this.signInRepo});
-
   SignInRepo signInRepo;
-
-  final FocusNode emailFocusNode = FocusNode();
-  final FocusNode passwordFocusNode = FocusNode();
+  SignInController({required this.signInRepo});
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  final FocusNode emailFocusNode = FocusNode();
+  final FocusNode passwordFocusNode = FocusNode();
+
   bool remember = false;
+
   bool isSubmit = false;
 
   Future<void> signInUser() async{
@@ -28,7 +28,6 @@ class SignInController extends GetxController{
     update();
 
     ApiResponseModel responseModel = await signInRepo.signInUser(email: emailController.text.toString(), password: passwordController.text.toString());
-    print("respone: ${responseModel.responseJson.toString()}");
 
     if(responseModel.statusCode == 200){
       SignInResponseModel signInResponseModel = SignInResponseModel.fromJson(jsonDecode(responseModel.responseJson));
@@ -46,12 +45,12 @@ class SignInController extends GetxController{
 
     bool emailVerification = signInResponseModel.user?.emailVerified == false ? false : true;
 
-    if(remember){
+    /*if(remember){
       await signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, true);
     }
     else{
       await signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, false);
-    }
+    }*/
 
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userIdKey, signInResponseModel.user?.id.toString() ?? "");
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.accessTokenKey, signInResponseModel.accessToken ?? "");
@@ -85,75 +84,3 @@ class SignInController extends GetxController{
     passwordController.text = "";
   }
 }
-
-/*class LogInController extends GetxController{
-
-  // LoginRepository loginRepository;
-
-  final emailController = TextEditingController().obs;
-  final passwordController = TextEditingController().obs;
-  final emailFocusNode = FocusNode().obs;
-  final passwordFocusNode = FocusNode().obs;
-
-  RxBool loading = false.obs;
-
-  //LogInController({required this.loginRepository});
-  Future<void> loginUser() async {
-    loading = true.obs;
-    try {
-      loading = true.obs;
-      // API endpoint URL
-      final apiUrl = Uri.parse('http://103.161.9.106:3001/api/user/sign-in');
-
-      // User credentials
-      final credentials = {
-        "email": emailController.value.text,
-        "password": passwordController.value.text,
-      };
-
-      // Make a POST request to the login API
-      final response = await http.post(apiUrl, body: credentials);
-
-      loading = false.obs;
-      // Check if the response is successful
-      if (response.statusCode == 200) {
-        loading = false.obs;
-        if (kDebugMode) {
-          print(response.statusCode);
-        }
-        final responseData = jsonDecode(response.body);
-        final accessToken = responseData['accessToken'];
-
-        // Save the access token using shared_preferences
-        final prefs = await SharedPreferences.getInstance();
-        prefs.setString('accessToken', accessToken);
-        if (kDebugMode) {
-          print(response.body);
-        }
-        if (kDebugMode) {
-          print(prefs.getString("accessToken"));
-        }
-        // Navigate to the next screen (Home Page)
-        //Get.toNamed(AppRoute.navigation);
-        //Utils.toastMessage("Successfully Signed In");
-        if (kDebugMode) {
-          print("Successfully Signed In");
-        }
-      } else {
-        // Handle login failure (e.g., show an error message)
-        if (kDebugMode) {
-          print('Login failed: ${response.body}');
-        }
-        // You can show an error message here if needed
-        //Utils.toastMessage("Authentication failed");
-      }
-    } catch (error) {
-      // Handle any network or other errors
-      if (kDebugMode) {
-        print('Error occurred: $error');
-      }
-      // You can show an error message here if needed
-      //Utils.snackBar("ERROR", "$error");
-    }
-  }
-}*/
