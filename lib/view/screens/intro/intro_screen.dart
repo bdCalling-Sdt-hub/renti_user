@@ -20,6 +20,12 @@ class _IntroScreenState extends State<IntroScreen> {
   }
 
   @override
+  void dispose() {
+    DeviceUtils.authUtils();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,

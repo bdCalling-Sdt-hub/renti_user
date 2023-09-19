@@ -5,6 +5,7 @@ import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_controller/sign_in_controller.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_repo/sign_in_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
@@ -28,16 +29,17 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void initState() {
 
+    DeviceUtils.authUtils();
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(SignInRepo(apiService: Get.find()));
     Get.put(SignInController(signInRepo: Get.find()));
-
     super.initState();
   }
 
   @override
   void dispose() {
 
+    DeviceUtils.screenUtils();
     super.dispose();
   }
 
@@ -48,7 +50,8 @@ class _SignInScreenState extends State<SignInScreen> {
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: SafeArea(
-          top: true,
+          top: false,
+          bottom: false,
           child: Scaffold(
               backgroundColor: AppColors.primaryColor,
               appBar: const CustomAppBar(

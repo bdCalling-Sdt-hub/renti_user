@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return  GetMaterialApp(
       debugShowCheckedModeBanner: false,
        defaultTransition: Transition.noTransition,
-       initialRoute:AppRoute.splashScreen,
+       initialRoute: AppRoute.introScreen,
        navigatorKey: Get.key,
       transitionDuration: const Duration(milliseconds: 200),
        getPages: AppRoute.routes,

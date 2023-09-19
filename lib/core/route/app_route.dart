@@ -46,7 +46,7 @@ class AppRoute {
   static  String inboxScreen= "/inbox_screen";
   static const String messageScreen = "/message_screen";
   static const String cancelShowDialog = "/cancel_show_dialog";
-  static const String splashScreen = "/splash_screen";
+  static const String introScreen = "/splash_screen";
   static const String selectLanguageScreen = "/select_language_screen";
   static const String signInScreen = "/signin_screen";
   static const String signUpScreen = "/sign_up_screen";
@@ -79,7 +79,7 @@ class AppRoute {
     GetPage(name: inboxScreen, page: ()=> const InboxScreen()),
     GetPage(name: messageScreen, page: ()=> const MessageScreen()),
     GetPage(name:luxuryCars , page: ()=>const LuxuryCarsScreen()),
-    GetPage(name: splashScreen, page: ()=> const IntroScreen()),
+    GetPage(name: introScreen, page: ()=> const IntroScreen()),
     GetPage(name: selectLanguageScreen, page: ()=>const SelectLanguageScreen()),
     GetPage(name: signInScreen, page: ()=>const SignInScreen()),
     GetPage(name: signUpScreen, page: ()=>const SignUpScreen()),
