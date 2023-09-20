@@ -6,7 +6,6 @@ import '../../widgets/appbar/custom_app_bar.dart';
 import '../../widgets/buttons/custom_back_button.dart';
 import '../../widgets/buttons/custom_elevated_button.dart';
 import '../../widgets/container/custom_container.dart';
-import '../../widgets/text/custom_text.dart';
 
 class SelectLanguageScreen extends StatefulWidget {
   const SelectLanguageScreen({super.key});
@@ -33,8 +32,6 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
               CustomContainer(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            paddingHorizontal: 0,
-            paddingVertical: 0,
             child: const SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               padding: EdgeInsets.only(

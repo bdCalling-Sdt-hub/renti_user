@@ -11,6 +11,7 @@ import '../../../../widgets/text/custom_text.dart';
 import '../../../../widgets/text_field/custom_text_field.dart';
 
 class KycBodySection extends StatefulWidget {
+
   const KycBodySection({super.key});
 
   @override
@@ -23,69 +24,70 @@ class _KycBodySectionState extends State<KycBodySection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        //Image Upload Section
-        Container(
-
-          decoration: BoxDecoration(
-            color: AppColors.lightBlueColor,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: DottedBorder(
-            strokeWidth: 1,
-            dashPattern: const [10, 10],
-            color: AppColors.lightBlueColorActive,
-            borderType: BorderType.RRect,
-            radius: const Radius.circular(8),
-            padding: const EdgeInsets.all(2),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Column(
-                children: [
-                  const CustomImage(
-                    imageSrc:AppIcons.kycVector ,
-                    imageType: ImageType.svg,
-                    size: 50,
-                  ),
-                  const SizedBox(height: 16),
-                  CustomElevatedButton(
-                    onPressed: () {},
-                    titleText: AppStrings.upload,
-                    buttonWidth: double.maxFinite,
-                    buttonHeight: 48,
-                  )
-                ],
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const CustomText(
+              text: "Upload Driving License",
+              bottom: 12,
+              textAlign: TextAlign.start,
+            ),
+            GestureDetector(
+              onTap: (){},
+              child: Container(
+                height: 115, width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    border: Border.all(width: 1, color: const Color(0xFFCCCCCC)),
+                    borderRadius: BorderRadius.circular(8)
+                ),
+                alignment: Alignment.center,
+                child: const CustomImage(imageSrc: "assets/icons/upload.svg"),
               ),
             ),
-          ),
+            const CustomText(
+              text: "Upload INE/Passport",
+              top: 16,
+              bottom: 12,
+              textAlign: TextAlign.start,
+            ),
+            GestureDetector(
+              onTap: (){},
+              child: Container(
+                height: 115, width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    border: Border.all(width: 1, color: const Color(0xFFCCCCCC)),
+                    borderRadius: BorderRadius.circular(8)
+                ),
+                alignment: Alignment.center,
+                child: const CustomImage(imageSrc: "assets/icons/upload.svg"),
+              ),
+            ),
+            const CustomText(
+              text: AppStrings.inePassword,
+              top: 16,
+              bottom: 12,
+              textAlign: TextAlign.start,
+            ),
+            CustomTextField(
+              textInputAction: TextInputAction.done,
+              hintText: AppStrings.enterIne,
+              hintStyle: GoogleFonts.poppins(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: AppColors.whiteNormalActive
+              ),
+            ),
+          ],
         ),
-
-        //Upload Image Type Text..
-        const CustomText(
-          text: AppStrings.uploadDL,
-          color: AppColors.whiteDarkActive,
-          top: 16,
-          textAlign: TextAlign.start,
-        ),
-        const CustomText(
-          text: AppStrings.uploadINE,
-          color: AppColors.whiteDarkActive,
-          textAlign: TextAlign.start,
-        ),
-        //RFC Text and TextField
-        const CustomText(
-          text: AppStrings.inePassword,
-          top: 16,
-          bottom: 12,
-          textAlign: TextAlign.start,
-        ),
-        CustomTextField(
-          textInputAction: TextInputAction.done,
-          hintText: AppStrings.enterIne,
-          hintStyle: GoogleFonts.poppins(
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-              color: AppColors.whiteNormalActive),
-        ),
+        const SizedBox(height: 190),
+        CustomElevatedButton(
+            buttonWidth: MediaQuery.of(context).size.width,
+            onPressed: (){},
+            titleText: "Continue"
+        )
       ],
     );
   }

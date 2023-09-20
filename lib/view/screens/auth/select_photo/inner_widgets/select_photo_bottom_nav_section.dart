@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:renti_user/view/screens/home/home_screen.dart';
-
-import '../../../../../utils/app_strings.dart';
 import '../../../../widgets/buttons/custom_elevated_button.dart';
 
 class SelectPhotoBottomNavSection extends StatefulWidget {
@@ -18,7 +16,7 @@ class _SelectPhotoBottomNavSectionState extends State<SelectPhotoBottomNavSectio
       padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
       child: CustomElevatedButton(onPressed: (){
         Navigator.push(context, MaterialPageRoute(builder: (_)=> const HomeScreen()));
-      }, titleText:AppStrings.continuw),
+      }, titleText: "Continue"),
     );
   }
 }

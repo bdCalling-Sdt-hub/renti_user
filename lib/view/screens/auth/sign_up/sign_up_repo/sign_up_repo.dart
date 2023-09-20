@@ -19,6 +19,7 @@ class SignUpRepo{
     required String dateOfBirth,
     required String password,
     required List<File> kycImages,
+    required File profileImage,
     required String ineNumber,
   }) async{
 
@@ -32,7 +33,8 @@ class SignUpRepo{
       "address" : address,
       "dateOfBirth" : dateOfBirth,
       "password" : password,
-      "image" : kycImages,
+      "image" : profileImage,
+      "KYC" : kycImages,
       "ine" : ineNumber,
       "role" : "user"
     };

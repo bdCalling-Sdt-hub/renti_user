@@ -61,7 +61,6 @@ class AppStrings{
   static const String yy = "YY";
   static const String mm_yy = "MM-YY";
   static const String typeHere = "Type here...";
-  static const String continuw = "Continue";
   static const String creditCardNum = "Credit Card Number";
   static const String enterCreditCardNum = "Enter Credit card Number";
   static const String expireDate = "Expire Date";
@@ -86,7 +85,7 @@ class AppStrings{
   static const String uploadDL = "1.Upload driving licence ";
   static const String rfc = "RFC";
   static const String enterRFC = "Enter RFC";
-  static const String enterIne = "Enter INE/Passport";
+  static const String enterIne = "Enter your INE/Passport";
   static const String inePassword = "INE/Passport";
 
   //KYC Upload Image All Strings

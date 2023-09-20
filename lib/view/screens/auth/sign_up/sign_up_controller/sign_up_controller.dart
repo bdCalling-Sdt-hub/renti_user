@@ -32,6 +32,8 @@ class SignUpController extends GetxController{
   List<String> genderList = ["Male", "Female", "Others"];
   int selectedGender = 0;
   List<File> kycDocFiles = [];
+  File? profileImage;
+  String phoneCode = "+52";
 
   void initialState(){
     isSubmit = true;
@@ -48,18 +50,19 @@ class SignUpController extends GetxController{
     ApiResponseModel responseModel = await signUpRepo.createUser(
         fullName: fullNameController.text.toString(),
         email: emailController.text.toString(),
-        phoneNumber: phoneNumberController.text.toString(),
+        phoneNumber: "$phoneCode ${phoneNumberController.text.toString()}",
         gender: genderList[selectedGender],
         address: addressController.text.toString(),
         dateOfBirth: "${dateController.text.toString()}/${monthController.text.toString()}/${yearController.text.toString()}",
         password: passwordController.text.toString(),
         kycImages: kycDocFiles,
-        ineNumber: ineNumberController.text.toString()
+        ineNumber: ineNumberController.text.toString(),
+        profileImage: profileImage!
     );
 
     if(responseModel.statusCode == 200){
       SignUpResponseModel signUpResponseModel = SignUpResponseModel.fromJson(jsonDecode(responseModel.responseJson));
-      gotoNextStep();
+      gotoNextStep(signUpResponseModel);
     }
     else{
 
@@ -71,7 +74,7 @@ class SignUpController extends GetxController{
     update();
   }
 
-  void gotoNextStep() {
+  void gotoNextStep(SignUpResponseModel signUpResponseModel) {
     Get.offAndToNamed(AppRoute.homeScreen);
   }
 }

@@ -54,7 +54,7 @@ class _ReviewDialogState extends State<ReviewDialog> {
               children: [
             const CustomText(
               text: AppStrings.giveReviewTitle,
-              color: AppColors.black,
+              color: AppColors.blackNormal,
               fontWeight: FontWeight.w500,
               fontSize: 16,
             ),

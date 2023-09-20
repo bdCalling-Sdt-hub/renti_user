@@ -64,6 +64,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         height: MediaQuery.of(context).size.height,
                         width: MediaQuery.of(context).size.width,
                         child: SingleChildScrollView(
+                          padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
                           physics: const BouncingScrollPhysics(),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

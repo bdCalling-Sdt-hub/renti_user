@@ -19,4 +19,13 @@ class SharedPreferenceHelper{
   static const String languageJson = 'language_json';
   static const String languageKey = 'language-key';
   static const String languageListKey = 'language-list-key';
+
+  //sign up helper
+  static const String fullName = 'fullName';
+  static const String email = 'email';
+  static const String gender = 'gender';
+  static const String dob = 'dateOfBirth';
+  static const String password = 'password';
+  static const String phoneNumber = 'phoneNumber';
+  static const String address = 'address';
 }

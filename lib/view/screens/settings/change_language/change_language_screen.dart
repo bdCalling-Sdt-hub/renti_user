@@ -6,9 +6,7 @@ import 'package:renti_user/view/screens/settings/change_language/inner_widgets/c
 import '../../../../utils/app_colors.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
 import '../../../widgets/buttons/custom_back_button.dart';
-import '../../../widgets/buttons/custom_elevated_button.dart';
 import '../../../widgets/container/custom_container.dart';
-import '../../../widgets/text/custom_text.dart';
 
 class ChangeLanguageScreen extends StatefulWidget {
   const ChangeLanguageScreen({super.key});
@@ -34,8 +32,6 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
               CustomContainer(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            paddingHorizontal: 0,
-            paddingVertical: 0,
             child: const SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               padding:
