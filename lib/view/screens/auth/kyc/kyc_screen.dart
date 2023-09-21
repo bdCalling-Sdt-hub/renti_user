@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/auth/kyc/inner_widgets/kyc_body_section.dart';
+import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
 import 'package:renti_user/view/widgets/container/custom_container.dart';
@@ -37,17 +39,19 @@ class _KYCScreenState extends State<KYCScreen> {
         appBar: const CustomAppBar(
           appBarContent: CustomBack(text: AppStrings.kyc),
         ),
-        body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) =>
-              CustomContainer(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: const SingleChildScrollView(
-                  padding: EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
-                  physics: BouncingScrollPhysics(),
-                  child: KycBodySection(),
+        body: GetBuilder<SignUpController>(
+          builder: (controller) => LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) =>
+                CustomContainer(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: const SingleChildScrollView(
+                    padding: EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
+                    physics: BouncingScrollPhysics(),
+                    child: KycBodySection(),
+                  ),
                 ),
-              ),
+          ),
         ),
       ),
     );

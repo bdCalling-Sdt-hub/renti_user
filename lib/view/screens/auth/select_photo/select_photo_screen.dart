@@ -1,10 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:renti_user/utils/app_icons.dart';
-import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/view/screens/auth/select_photo/inner_widgets/select_photo_bottom_nav_section.dart';
 
 import '../../../../utils/app_colors.dart';

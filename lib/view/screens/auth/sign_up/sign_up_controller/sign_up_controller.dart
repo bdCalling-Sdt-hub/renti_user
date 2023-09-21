@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
@@ -76,5 +77,47 @@ class SignUpController extends GetxController{
 
   void gotoNextStep(SignUpResponseModel signUpResponseModel) {
     Get.offAndToNamed(AppRoute.homeScreen);
+  }
+
+  File? uploadDrivingLicense;
+  File? uploadPassport;
+  String drivingLicenseFileName = "";
+  String passportFileName = "";
+
+  Future<void> pickDrivingLicenceFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, allowedExtensions: ["pdf"], type: FileType.custom);
+
+    if (result != null && result.files.isNotEmpty) {
+      uploadDrivingLicense = File(result.files.single.name);
+      drivingLicenseFileName = result.files.single.name;
+
+      kycDocFiles.add(uploadDrivingLicense!);
+      update();
+    }
+  }
+
+  Future<void> pickPassportFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, allowedExtensions: ["pdf"], type: FileType.custom);
+
+    if (result != null && result.files.isNotEmpty) {
+      uploadPassport = File(result.files.single.name);
+      passportFileName = result.files.single.name;
+      kycDocFiles.add(uploadPassport!);
+      update();
+    }
+  }
+
+  void removeDrivingLicenceFile() {
+    uploadDrivingLicense = null;
+    drivingLicenseFileName = "";
+    kycDocFiles.removeAt(0);
+    update();
+  }
+
+  void removePassportFile() {
+    uploadPassport = null;
+    passportFileName = "";
+    kycDocFiles.removeAt(1);
+    update();
   }
 }

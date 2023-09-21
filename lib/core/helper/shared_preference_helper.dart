@@ -28,4 +28,7 @@ class SharedPreferenceHelper{
   static const String password = 'password';
   static const String phoneNumber = 'phoneNumber';
   static const String address = 'address';
+
+  static const String drivingLicense = "drivingLicense";
+  static const String passport = "passport";
 }

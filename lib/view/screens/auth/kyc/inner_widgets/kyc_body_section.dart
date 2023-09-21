@@ -1,9 +1,13 @@
-import 'package:dotted_border/dotted_border.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/core/helper/shared_preference_helper.dart';
+import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
 
 import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_strings.dart';
 import '../../../../widgets/buttons/custom_elevated_button.dart';
 import '../../../../widgets/image/custom_image.dart';
@@ -21,74 +25,169 @@ class KycBodySection extends StatefulWidget {
 class _KycBodySectionState extends State<KycBodySection> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const CustomText(
-              text: "Upload Driving License",
-              bottom: 12,
-              textAlign: TextAlign.start,
-            ),
-            GestureDetector(
-              onTap: (){},
-              child: Container(
-                height: 115, width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(width: 1, color: const Color(0xFFCCCCCC)),
-                    borderRadius: BorderRadius.circular(8)
+
+    return GetBuilder<SignUpController>(
+      builder: (controller) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CustomText(
+                text: "Upload Driving License",
+                bottom: 12,
+                textAlign: TextAlign.start,
+              ),
+              controller.uploadDrivingLicense == null ? GestureDetector(
+                onTap: () => controller.pickDrivingLicenceFile(),
+                child: Container(
+                  height: 115, width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border.all(width: 1, color: const Color(0xFFCCCCCC)),
+                      borderRadius: BorderRadius.circular(8)
+                  ),
+                  alignment: Alignment.center,
+                  child: const CustomImage(imageSrc: "assets/icons/upload.svg"),
                 ),
-                alignment: Alignment.center,
-                child: const CustomImage(imageSrc: "assets/icons/upload.svg"),
-              ),
-            ),
-            const CustomText(
-              text: "Upload INE/Passport",
-              top: 16,
-              bottom: 12,
-              textAlign: TextAlign.start,
-            ),
-            GestureDetector(
-              onTap: (){},
-              child: Container(
-                height: 115, width: MediaQuery.of(context).size.width,
+              ) : Container(
+                padding: const EdgeInsetsDirectional.only(end: 12),
+                width: MediaQuery.of(context).size.width,
+                height: 52,
                 decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(width: 1, color: const Color(0xFFCCCCCC)),
-                    borderRadius: BorderRadius.circular(8)
+                  color: Colors.transparent, borderRadius: BorderRadius.circular(8), border: Border.all(width: 1, color: const Color(0xFFCCCCCC)),
                 ),
-                alignment: Alignment.center,
-                child: const CustomImage(imageSrc: "assets/icons/upload.svg"),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 50,
+                          height: MediaQuery.of(context).size.height,
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                            color: Color(0xFFD7263D),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              bottomLeft: Radius.circular(8),
+                            ),
+                          ),
+                          child: const CustomImage(imageSrc: "assets/icons/pdf.svg"),
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          controller.drivingLicenseFileName,
+                          style: GoogleFonts.poppins(
+                            color: const Color(0xFF2E2C2C),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: () => controller.removeDrivingLicenceFile(),
+                      child: const Icon(Icons.cancel_outlined, color: AppColors.redNormal, size: 24),
+                    )
+                  ],
+                ),
               ),
-            ),
-            const CustomText(
-              text: AppStrings.inePassword,
-              top: 16,
-              bottom: 12,
-              textAlign: TextAlign.start,
-            ),
-            CustomTextField(
-              textInputAction: TextInputAction.done,
-              hintText: AppStrings.enterIne,
-              hintStyle: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: AppColors.whiteNormalActive
+              const CustomText(
+                text: "Upload INE/Passport",
+                top: 16,
+                bottom: 12,
+                textAlign: TextAlign.start,
               ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 190),
-        CustomElevatedButton(
-            buttonWidth: MediaQuery.of(context).size.width,
-            onPressed: (){},
-            titleText: "Continue"
-        )
-      ],
+              controller.uploadPassport == null ? GestureDetector(
+                onTap: () => controller.pickPassportFile(),
+                child: Container(
+                  height: 115, width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border.all(width: 1, color: const Color(0xFFCCCCCC)),
+                      borderRadius: BorderRadius.circular(8)
+                  ),
+                  alignment: Alignment.center,
+                  child: const CustomImage(imageSrc: "assets/icons/upload.svg"),
+                ),
+              ) : Container(
+                padding: const EdgeInsetsDirectional.only(end: 12),
+                width: MediaQuery.of(context).size.width,
+                height: 52,
+                decoration: BoxDecoration(
+                  color: Colors.transparent, borderRadius: BorderRadius.circular(8), border: Border.all(width: 1, color: const Color(0xFFCCCCCC)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 50,
+                          height: MediaQuery.of(context).size.height,
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                            color: Color(0xFFD7263D),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              bottomLeft: Radius.circular(8),
+                            ),
+                          ),
+                          child: const CustomImage(imageSrc: "assets/icons/pdf.svg"),
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          controller.passportFileName,
+                          style: GoogleFonts.poppins(
+                            color: const Color(0xFF2E2C2C),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: () => controller.removePassportFile(),
+                      child: const Icon(Icons.cancel_outlined, color: AppColors.redNormal, size: 24),
+                    )
+                  ],
+                ),
+              ),
+              const CustomText(
+                text: AppStrings.inePassword,
+                top: 16,
+                bottom: 12,
+                textAlign: TextAlign.start,
+              ),
+              CustomTextField(
+                textInputAction: TextInputAction.done,
+                hintText: AppStrings.enterIne,
+                hintStyle: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.whiteNormalActive
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 190),
+          CustomElevatedButton(
+              buttonWidth: MediaQuery.of(context).size.width,
+              onPressed: () => setDataToLocalStore(controller, controller.drivingLicenseFileName, controller.passportFileName, controller.ineNumberController.text),
+              titleText: "Continue"
+          )
+        ],
+      )
     );
+  }
+
+  setDataToLocalStore(SignUpController controller, String drivingLicenseFileName, String passportFileName, String text) async{
+
+    await controller.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.drivingLicense, drivingLicenseFileName);
+    await controller.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.passport, passportFileName);
+
+    Get.toNamed(AppRoute.selectPhoto);
   }
 }
