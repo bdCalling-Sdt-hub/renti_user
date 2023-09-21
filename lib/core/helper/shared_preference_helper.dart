@@ -31,4 +31,6 @@ class SharedPreferenceHelper{
 
   static const String drivingLicense = "drivingLicense";
   static const String passport = "passport";
+
+  static const String ineNumber = "ineNumber";
 }

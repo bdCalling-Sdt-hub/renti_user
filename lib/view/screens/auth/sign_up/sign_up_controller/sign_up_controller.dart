@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_model/sign_up_response_model.dart';
@@ -119,5 +120,31 @@ class SignUpController extends GetxController{
     passportFileName = "";
     kycDocFiles.removeAt(1);
     update();
+  }
+
+  File? imageFile;
+  final imagePicker = ImagePicker();
+  String? imageUrl;
+
+  void openGallery() async{
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery, maxHeight: 120, maxWidth: 120);
+
+    if(pickedFile != null){
+      imageFile = File(pickedFile.path);
+      update();
+    }
+  }
+
+  void openCamera(BuildContext context)  async{
+    final pickedFile = await ImagePicker().pickImage(
+        source: ImageSource.camera,
+        maxHeight: 120,
+        maxWidth: 120
+    );
+
+    if(pickedFile != null) {
+      imageFile = File(pickedFile.path);
+      update();
+    }
   }
 }

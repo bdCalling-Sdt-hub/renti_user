@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -162,6 +160,7 @@ class _KycBodySectionState extends State<KycBodySection> {
                 textAlign: TextAlign.start,
               ),
               CustomTextField(
+                textEditingController: controller.ineNumberController,
                 textInputAction: TextInputAction.done,
                 hintText: AppStrings.enterIne,
                 hintStyle: GoogleFonts.poppins(
@@ -183,10 +182,11 @@ class _KycBodySectionState extends State<KycBodySection> {
     );
   }
 
-  setDataToLocalStore(SignUpController controller, String drivingLicenseFileName, String passportFileName, String text) async{
+  setDataToLocalStore(SignUpController controller, String drivingLicenseFileName, String passportFileName, String ineNumber) async{
 
     await controller.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.drivingLicense, drivingLicenseFileName);
     await controller.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.passport, passportFileName);
+    await controller.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.ineNumber, ineNumber);
 
     Get.toNamed(AppRoute.selectPhoto);
   }
