@@ -24,7 +24,9 @@ class SignUpRepo{
   }) async{
 
     String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.signUpEndPoint}";
+
     String responseMethod = ApiResponseMethod.postMethod;
+
     Map<String, dynamic> params = {
       "fullName" : fullName,
       "email" : email,

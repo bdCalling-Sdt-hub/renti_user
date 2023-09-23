@@ -19,18 +19,19 @@ class SignInController extends GetxController{
   final FocusNode passwordFocusNode = FocusNode();
 
   bool remember = false;
-
   bool isSubmit = false;
 
   Future<void> signInUser() async{
-
     isSubmit = true;
     update();
 
     ApiResponseModel responseModel = await signInRepo.signInUser(email: emailController.text.toString(), password: passwordController.text.toString());
 
+    print("status code: ${responseModel.statusCode}");
+
     if(responseModel.statusCode == 200){
       SignInResponseModel signInResponseModel = SignInResponseModel.fromJson(jsonDecode(responseModel.responseJson));
+      print("data: ${signInResponseModel.user.toString()}");
       await gotoNextStep(signInResponseModel);
     }
     else{
@@ -43,14 +44,14 @@ class SignInController extends GetxController{
 
   gotoNextStep(SignInResponseModel signInResponseModel) async{
 
-    bool emailVerification = signInResponseModel.user?.emailVerified == false ? false : true;
+    print("email verified: ${signInResponseModel.user?.emailVerified}");
 
-    /*if(remember){
+    if(remember){
       await signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, true);
     }
     else{
       await signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, false);
-    }*/
+    }
 
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userIdKey, signInResponseModel.user?.id.toString() ?? "");
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.accessTokenKey, signInResponseModel.accessToken ?? "");
@@ -59,8 +60,11 @@ class SignInController extends GetxController{
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userPhoneNumberKey, signInResponseModel.user?.phoneNumber.toString() ?? "");
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userNameKey, signInResponseModel.user?.fullName.toString() ?? "");
 
-    if(emailVerification == false){
-      Get.offAndToNamed(AppRoute.signInScreen);
+    if(signInResponseModel.user == null){
+      Get.toNamed(AppRoute.signInScreen);
+    }
+    else if(signInResponseModel.user?.emailVerified == false){
+      Get.toNamed(AppRoute.otpScreen);
     }
     else{
       Get.offAndToNamed(AppRoute.homeScreen);
@@ -82,5 +86,6 @@ class SignInController extends GetxController{
     isSubmit = false;
     emailController.text = "";
     passwordController.text = "";
+    update();
   }
 }

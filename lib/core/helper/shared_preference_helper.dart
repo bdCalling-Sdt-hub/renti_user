@@ -1,6 +1,6 @@
 class SharedPreferenceHelper{
 
-  static const String accessTokenKey = 'access_token';
+  static const String accessTokenKey = 'accessToken';
   static const String accessTokenType = 'access_type';
   static const String resetPassTokenKey = 'reset_pass_token';
   static const String userEmailKey = 'user_email';

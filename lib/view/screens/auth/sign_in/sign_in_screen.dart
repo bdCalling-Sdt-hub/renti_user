@@ -28,8 +28,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   void initState() {
-
     DeviceUtils.authUtils();
+
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(SignInRepo(apiService: Get.find()));
     Get.put(SignInController(signInRepo: Get.find()));

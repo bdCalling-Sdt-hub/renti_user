@@ -9,7 +9,7 @@ class SignInResponseModel {
 }
 
   SignInResponseModel.fromJson(dynamic json) {
-    _message = json['message'];
+    _message = json['message'] ?? "";
     _user = json['user'] != null ? User.fromJson(json['user']) : null;
     _accessToken = json['accessToken'];
   }
