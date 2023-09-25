@@ -20,7 +20,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       extendBody: true,
-      backgroundColor: AppColors.blueNormal,
+      backgroundColor: AppColors.primaryColor,
       appBar: const CustomAppBar(
         appBarContent: CustomBack(
           text: AppStrings.settings,

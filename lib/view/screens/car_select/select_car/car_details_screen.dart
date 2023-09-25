@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/bottom_nav_section.dart';
+import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/cancel_show_dialogue.dart';
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/car_details_map_section.dart';
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/car_details_top_section.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
@@ -64,16 +65,31 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
                     CustomElevatedButton(
                       titleSize: 14,
                       buttonWidth: MediaQuery.of(context).size.width,
-                      buttonColor: AppColors.blueLight,
-                      titleColor: AppColors.blueNormal,
+                      buttonColor: AppColors.lightBlueColor,
+                      titleColor: AppColors.primaryColor,
 
                       onPressed: (){
                          // waiting for approval button
 
                       },
-                         titleText: AppStrings.waitApprovalTitle)
-
-
+                         titleText: AppStrings.waitApprovalTitle),
+                    InkWell(
+                      onTap: (){
+                        showDialog(context: context, builder: (context){
+                          return CancelShowDialogue();
+                        });
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsetsDirectional.symmetric(vertical: 16),
+                        padding: const EdgeInsetsDirectional.symmetric(vertical: 16),
+                        child: CustomText(text: AppStrings.cancelRequest,fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.primaryColor,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(width: 1,color: AppColors.primaryColor)
+                        ),
+                      ),
+                    )
                   ],
                 )),
       ),

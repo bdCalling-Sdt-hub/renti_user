@@ -32,7 +32,7 @@ class _ForgotPasswordTopSectionState extends State<ForgotPasswordTopSection> {
         const Align(
           alignment: Alignment.center,
           child: CircleAvatar(
-            backgroundColor: AppColors.blueNormal,
+            backgroundColor: AppColors.primaryColor,
             maxRadius: 50,
             child: CustomImage(imageSrc: AppIcons.emailLogo,imageType: ImageType.svg,),
           ),

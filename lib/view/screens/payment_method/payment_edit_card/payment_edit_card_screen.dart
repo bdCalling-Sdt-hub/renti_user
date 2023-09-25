@@ -5,6 +5,7 @@ import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/payment_method/payment_edit_card/inner_widgets/edit_card_bottom_nav_section.dart';
 import 'package:renti_user/view/screens/payment_method/payment_edit_card/inner_widgets/edit_card_edit_section.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
+
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';

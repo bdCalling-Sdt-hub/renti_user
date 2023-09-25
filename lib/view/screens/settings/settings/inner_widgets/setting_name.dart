@@ -2,19 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
-import 'package:renti_user/utils/app_icons.dart';
-import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 class SettingName extends StatefulWidget {
   const SettingName({super.key,
-
   });
   @override
   State<SettingName> createState() => _SettingNameState();
 }
 
 class _SettingNameState extends State<SettingName> {
-  double _value = 10;
   List settingData = ["change Language", "Change Password","Terms & Conditions","Privacy Policy"];
   @override
   Widget build(BuildContext context) {
@@ -29,14 +25,14 @@ class _SettingNameState extends State<SettingName> {
                 Get.toNamed(AppRoute.changePassword);
               }
               else if(index==2){
-                Get.toNamed(AppRoute.terms_conditions);
+                Get.toNamed(AppRoute.termsConditions);
               }
               else if(index==3){
                 Get.toNamed(AppRoute.privacyPolicy);
               }
             },
             child: Container(
-              margin: EdgeInsets.only(bottom: 8),
+              margin: const EdgeInsets.only(bottom: 8),
                 width: MediaQuery.of(context).size.width,
                 decoration: ShapeDecoration(
                   color: Colors.white,

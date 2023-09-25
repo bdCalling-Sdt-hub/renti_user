@@ -38,7 +38,7 @@ class _PaymentMethodDebidCardSectionState extends State<PaymentMethodDebidCardSe
                 children: [
                   Row(
                     children: [
-                      CustomImage(imageSrc: AppIcons.visaIcon),
+                      CustomImage(imageSrc: AppIcons.location),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -53,7 +53,7 @@ class _PaymentMethodDebidCardSectionState extends State<PaymentMethodDebidCardSe
                             text: '**** **** **** 6432',
 
                             fontWeight: FontWeight.w600,
-                            color: AppColors.blueNormal,
+                            color: AppColors.primaryColor,
                             top: 8,
                             left: 16,
                           ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/cancel_show_dialogue.dart';
 
 import '../../../../../utils/app_strings.dart';
@@ -18,9 +20,7 @@ class _BottomNavSectionState extends State<BottomNavSection> {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
       child: CustomElevatedButton(
           onPressed: () {
-            showDialog(context: context, builder: (context){
-              return CancelShowDialogue();
-            });
+           Get.toNamed(AppRoute.rentRequest);
           },
           titleText: AppStrings.sentRentRequest),
     );

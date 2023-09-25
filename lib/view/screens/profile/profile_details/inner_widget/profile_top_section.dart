@@ -26,7 +26,7 @@ class _ProfileTopSectionState extends State<ProfileTopSection> {
       margin: const EdgeInsets.only(bottom: 16),
       width: MediaQuery.of(context).size.width,
       decoration: ShapeDecoration(
-        color: AppColors.blueNormal,
+        color: AppColors.primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -70,7 +70,7 @@ class _ProfileTopSectionState extends State<ProfileTopSection> {
           ),
           GestureDetector(
               onTap: () {
-                Get.toNamed(AppRoute.profilesettingsScreen);
+                Get.toNamed(AppRoute.profileSettingsScreen);
               },
               child: const CustomImage(
                 imageSrc: AppIcons.editProfileIcon,

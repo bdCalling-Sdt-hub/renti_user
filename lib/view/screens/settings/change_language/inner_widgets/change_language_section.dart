@@ -69,7 +69,7 @@ class _ChangeLanguageSectionState extends State<ChangeLanguageSection> {
                             color: Colors.black12.withOpacity(.2),
                             width: 1),
                         color: index == selectedItem
-                            ? AppColors.blueNormal
+                            ? AppColors.primaryColor
                             : AppColors.whiteLight,
                       ),
                     ),

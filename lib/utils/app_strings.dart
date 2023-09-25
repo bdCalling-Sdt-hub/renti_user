@@ -12,7 +12,7 @@ class AppStrings{
 
   //Home Screen All Strings
   static const String searchCar = "Search cars...";
-  static const String searchNearCar = "Search cars...";
+  static const String searchNearCar = "Search nearby cars";
   static const String from = "From";
   static const String until = "Until";
   static const String enterTime = "Enter time & date";
@@ -61,7 +61,6 @@ class AppStrings{
   static const String yy = "YY";
   static const String mm_yy = "MM-YY";
   static const String typeHere = "Type here...";
-  static const String continuw = "Continue";
   static const String creditCardNum = "Credit Card Number";
   static const String enterCreditCardNum = "Enter Credit card Number";
   static const String expireDate = "Expire Date";
@@ -86,7 +85,7 @@ class AppStrings{
   static const String uploadDL = "1.Upload driving licence ";
   static const String rfc = "RFC";
   static const String enterRFC = "Enter RFC";
-  static const String enterIne = "Enter INE/Passport";
+  static const String enterIne = "Enter your INE/Passport";
   static const String inePassword = "INE/Passport";
 
   //KYC Upload Image All Strings
@@ -137,7 +136,8 @@ class AppStrings{
   static const String logOut = "Log Out";
 
   //payment method
-
+  static const String bessieCooper = "Bessie Cooper";
+  static const String rentRequest = "Rent Request";
   static const String  visaCard = "Visa Card";
   static const String   addCard = "Add Card";
   static const String   cardNumber = "Card Number";
@@ -159,12 +159,15 @@ class AppStrings{
   static const String   confirmNewPassword= "Confirm new password";
   static const String   changePassword= "Change Password";
   static const String   select= "Select";
-
   //offer car
   static const String seeDetails = "See details";
 
   //selwct car
-
+  static const String carlicenseno = "Car license no :";
+  static const String carColor = "Car color:";
+static const String carmodel ="Car model:";
+static const String rentalInformation = "Rental Information";
+static const String uploadecarphoto ="Upload Car Photo";
 static const String carDetails ="Car Details";
 static const String carInformation ="Car Information";
 static const String hostInformation ="Host Information";
