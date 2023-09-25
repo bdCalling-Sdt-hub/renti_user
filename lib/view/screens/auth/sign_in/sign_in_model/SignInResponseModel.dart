@@ -9,7 +9,7 @@ class SignInResponseModel {
 }
 
   SignInResponseModel.fromJson(dynamic json) {
-    _message = json['message'] ?? "";
+    _message = json['message'];
     _user = json['user'] != null ? User.fromJson(json['user']) : null;
     _accessToken = json['accessToken'];
   }
@@ -43,8 +43,7 @@ class User {
       String? address, 
       String? dateOfBirth, 
       String? password, 
-      List<String>? kyc, 
-      String? rfc, 
+      String? kyc, 
       String? ine, 
       String? image, 
       String? role, 
@@ -54,7 +53,9 @@ class User {
       dynamic oneTimeCode, 
       String? createdAt, 
       String? updatedAt, 
-      int? v,}){
+      int? v, 
+      String? rfc, 
+      String? creaditCardNumber,}){
     _id = id;
     _fullName = fullName;
     _email = email;
@@ -64,7 +65,6 @@ class User {
     _dateOfBirth = dateOfBirth;
     _password = password;
     _kyc = kyc;
-    _rfc = rfc;
     _ine = ine;
     _image = image;
     _role = role;
@@ -75,6 +75,8 @@ class User {
     _createdAt = createdAt;
     _updatedAt = updatedAt;
     _v = v;
+    _rfc = rfc;
+    _creaditCardNumber = creaditCardNumber;
 }
 
   User.fromJson(dynamic json) {
@@ -86,8 +88,7 @@ class User {
     _address = json['address'];
     _dateOfBirth = json['dateOfBirth'];
     _password = json['password'];
-    _kyc = json['KYC'] != null ? json['KYC'].cast<String>() : [];
-    _rfc = json['RFC'];
+    _kyc = json['KYC'];
     _ine = json['ine'];
     _image = json['image'];
     _role = json['role'];
@@ -98,6 +99,8 @@ class User {
     _createdAt = json['createdAt'];
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
+    _rfc = json['RFC'];
+    _creaditCardNumber = json['creaditCardNumber'];
   }
   String? _id;
   String? _fullName;
@@ -107,8 +110,7 @@ class User {
   String? _address;
   String? _dateOfBirth;
   String? _password;
-  List<String>? _kyc;
-  String? _rfc;
+  String? _kyc;
   String? _ine;
   String? _image;
   String? _role;
@@ -119,6 +121,8 @@ class User {
   String? _createdAt;
   String? _updatedAt;
   int? _v;
+  String? _rfc;
+  String? _creaditCardNumber;
 
   String? get id => _id;
   String? get fullName => _fullName;
@@ -128,8 +132,7 @@ class User {
   String? get address => _address;
   String? get dateOfBirth => _dateOfBirth;
   String? get password => _password;
-  List<String>? get kyc => _kyc;
-  String? get rfc => _rfc;
+  String? get kyc => _kyc;
   String? get ine => _ine;
   String? get image => _image;
   String? get role => _role;
@@ -140,6 +143,8 @@ class User {
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;
   int? get v => _v;
+  String? get rfc => _rfc;
+  String? get creaditCardNumber => _creaditCardNumber;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -152,7 +157,6 @@ class User {
     map['dateOfBirth'] = _dateOfBirth;
     map['password'] = _password;
     map['KYC'] = _kyc;
-    map['RFC'] = _rfc;
     map['ine'] = _ine;
     map['image'] = _image;
     map['role'] = _role;
@@ -163,6 +167,8 @@ class User {
     map['createdAt'] = _createdAt;
     map['updatedAt'] = _updatedAt;
     map['__v'] = _v;
+    map['RFC'] = _rfc;
+    map['creaditCardNumber'] = _creaditCardNumber;
     return map;
   }
 

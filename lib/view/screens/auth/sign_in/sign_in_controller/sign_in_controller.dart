@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
-import 'package:renti_user/view/screens/auth/sign_in/sign_in_model/sign_in_response_model.dart';
+import 'package:renti_user/view/screens/auth/sign_in/sign_in_model/SignInResponseModel.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_repo/sign_in_repo.dart';
 
 class SignInController extends GetxController{

@@ -13,4 +13,7 @@ class ApiUrlContainer{
 
   static const String userInfoEndPoint = "user/user-info";
   static const String updateUserEndPont = "user/update";
+  static const String aboutEndPont = "about/all";
+  static const String privatePolicyEndPont = "privacyPolicy/all";
+  static const String termsConditionsEndPont = "termsConditionRouter/all";
 }
