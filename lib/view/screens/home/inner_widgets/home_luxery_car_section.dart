@@ -118,7 +118,6 @@ class _HomeLuxuryCarSectionState extends State<HomeLuxuryCarSection> {
                                       text: TextSpan(
                                           children: [
                                             TextSpan(
-
                                               text: '\$25',
                                               style: GoogleFonts.poppins(
                                                 color: const Color(0xFF595959),

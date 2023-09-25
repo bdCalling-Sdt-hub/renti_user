@@ -95,7 +95,7 @@ class AppRoute {
     GetPage(name: support, page: ()=>const SupportScreen()),
     GetPage(name: aboutUs, page: ()=>const AboutUsScreen()),
     GetPage(name: termsConditions, page: ()=>const TermsConditionsScreen()),
-    GetPage(name: privacyPolicy, page: ()=>const PrivatePolicyScreen()),
+    GetPage(name: privacyPolicy, page: ()=> PrivatePolicyScreen()),
     GetPage(name: settings, page: ()=>const SettingsScreen()),
     GetPage(name: changeLanguage, page: ()=>const ChangeLanguageScreen()),
     GetPage(name: changePassword, page: ()=>const ChangePasswordScreen()),
