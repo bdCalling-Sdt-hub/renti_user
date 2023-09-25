@@ -63,11 +63,13 @@ class _PrivatePolicyScreenState extends State<PrivatePolicyScreen> {
                 GetBuilder<PrivacyPolicyController>(builder: (controller) {
                   if (controller.isLoading) {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(color: AppColors.primaryColor,),
                     );
                   } else {
                     return CustomText(
                       textAlign: TextAlign.start,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
                       text: controller.privacyPolicyModel.privacyPolicy!.content.toString(),
                        maxLines: null,
                     );
