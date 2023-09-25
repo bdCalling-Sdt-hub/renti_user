@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/payment_method/payment_edit_card/inner_widgets/edit_card_bottom_nav_section.dart';
 import 'package:renti_user/view/screens/payment_method/payment_edit_card/inner_widgets/edit_card_edit_section.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
-import 'package:country_picker/country_picker.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
-import '../../../widgets/buttons/custom_elevated_button.dart';
 import '../../../widgets/text/custom_text.dart';
-import '../../../widgets/text_field/custom_text_field.dart';
 
 class PaymentEditCardScreen extends StatefulWidget {
   const PaymentEditCardScreen({super.key});
