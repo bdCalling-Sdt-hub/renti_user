@@ -16,4 +16,5 @@ class ApiUrlContainer{
   static const String aboutEndPont = "about/all";
   static const String privatePolicyEndPont = "privacyPolicy/all";
   static const String termsConditionsEndPont = "termsConditionRouter/all";
+  static const String carAllEndPont = "car/all";
 }
