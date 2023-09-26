@@ -8,14 +8,14 @@ import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
-class HomeLuxuryCarSection extends StatefulWidget {
-  const HomeLuxuryCarSection({super.key});
+class HomeAllCarSection extends StatefulWidget {
+  const HomeAllCarSection({super.key});
 
   @override
-  State<HomeLuxuryCarSection> createState() => _HomeLuxuryCarSectionState();
+  State<HomeAllCarSection> createState() => _HomeAllCarSectionState();
 }
 
-class _HomeLuxuryCarSectionState extends State<HomeLuxuryCarSection> {
+class _HomeAllCarSectionState extends State<HomeAllCarSection> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,7 +25,7 @@ class _HomeLuxuryCarSectionState extends State<HomeLuxuryCarSection> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const CustomText(
-              text: AppStrings.luxuryCars,
+              text: "All Cars",
               color: AppColors.blackNormal,
               fontSize: 14,
               fontWeight: FontWeight.w500,

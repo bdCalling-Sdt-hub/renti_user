@@ -8,10 +8,10 @@ import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-import '../../../../utils/app_images.dart';
+import '../../../../../utils/app_images.dart';
 
-class HomeOfferCarSection extends StatelessWidget {
-  const HomeOfferCarSection({super.key});
+class HomePopularSection extends StatelessWidget {
+  const HomePopularSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class HomeOfferCarSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const CustomText(
-              text: AppStrings.offerCars,
+              text: "Popular Cars",
               color: AppColors.blackNormal,
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -126,7 +126,6 @@ class HomeOfferCarSection extends StatelessWidget {
                                               ),
 
                                               TextSpan(
-
                                                 text: '\$25',
                                                 style: GoogleFonts.poppins(
                                                   color: const Color(0xFF595959),
@@ -136,14 +135,12 @@ class HomeOfferCarSection extends StatelessWidget {
                                                   height: 1.40,
                                                 ),
                                               ),
-                                              const TextSpan(
+                                               TextSpan(
                                                   text: '/hr',
-                                                  style: TextStyle(
+                                                  style: GoogleFonts.openSans(
                                                     color: AppColors.primaryColor,
                                                     fontSize: 10,
-                                                    fontFamily: 'Poppins',
                                                     fontWeight: FontWeight.w400,
-                                                    height: 1.40,
                                                   ))
                                             ]
                                         )

@@ -6,6 +6,7 @@ import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/bott
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/cancel_show_dialogue.dart';
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/car_details_map_section.dart';
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/car_details_top_section.dart';
+import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/from_until_section.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
@@ -58,6 +59,8 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
 
                   children: [
                     const CarDetailsTopSection(),
+                     SizedBox(height: 24,),
+                     FromUntilSection(),
                     const CarDetailsCarInfoSection(),
                     const CarDetailsHostInfoSection(),
                     const CarDetailsMapSection(),

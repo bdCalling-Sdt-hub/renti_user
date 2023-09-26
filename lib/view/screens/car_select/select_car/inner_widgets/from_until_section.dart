@@ -5,14 +5,14 @@ import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
-class HomeFromUntilSection extends StatefulWidget {
-  const HomeFromUntilSection({super.key});
+class FromUntilSection extends StatefulWidget {
+  const FromUntilSection({super.key});
 
   @override
-  State<HomeFromUntilSection> createState() => _HomeFromUntilSectionState();
+  State<FromUntilSection> createState() => _FromUntilSectionState();
 }
 
-class _HomeFromUntilSectionState extends State<HomeFromUntilSection> {
+class _FromUntilSectionState extends State<FromUntilSection> {
   final TextEditingController dateController = TextEditingController();
 
   @override

@@ -31,7 +31,7 @@ class _OfferCarScreenState extends State<OfferCarScreen> {
                       color: AppColors.blackNormal,
                     )),
                 const CustomText(
-                  text: AppStrings.offerCars,
+                  text: "Popular Cars",
                   color: AppColors.blackNormal,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,

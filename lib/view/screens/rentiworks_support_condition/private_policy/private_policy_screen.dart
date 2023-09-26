@@ -11,8 +11,6 @@ import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
 import 'package:renti_user/view/widgets/container/custom_container.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-
-
 class PrivatePolicyScreen extends StatefulWidget {
   const PrivatePolicyScreen({super.key});
 
