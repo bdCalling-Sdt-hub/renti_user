@@ -36,7 +36,7 @@ class _HomeLuxuryCarSectionState extends State<HomeLuxuryCarSection> {
               },
               child:  const CustomText(
                 text: AppStrings.seeAll,
-                color: AppColors.blueNormal,
+                color: AppColors.primaryColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
               ),
@@ -89,7 +89,7 @@ class _HomeLuxuryCarSectionState extends State<HomeLuxuryCarSection> {
                           top:12,
                           bottom: 12,
                           text: AppStrings.toyotaHarrier,
-                          color: AppColors.blueNormal,
+                          color: AppColors.primaryColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                         ),
@@ -131,7 +131,7 @@ class _HomeLuxuryCarSectionState extends State<HomeLuxuryCarSection> {
                                             const TextSpan(
                                                 text: '/hr',
                                                 style: TextStyle(
-                                                  color: AppColors.blueNormal,
+                                                  color: AppColors.primaryColor,
                                                   fontSize: 10,
                                                   fontFamily: 'Poppins',
                                                   fontWeight: FontWeight.w400,

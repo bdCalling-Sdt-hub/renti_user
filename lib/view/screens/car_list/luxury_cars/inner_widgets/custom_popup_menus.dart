@@ -35,10 +35,10 @@ class _PopupMenuButtonState extends State<CustomPopupMenus> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: index == selectedItem
-                          ? AppColors.blueNormal
+                          ? AppColors.primaryColor
                           : AppColors.whiteLight,
                       border: Border.all(
-                          color: AppColors.blueLight, width: 1),
+                          color: AppColors.lightBlueColor, width: 1),
                     ),
                   ),
                   const SizedBox(width: 10),

@@ -25,7 +25,7 @@ class _RentHistorySectionState extends State<RentHistorySection> {
             decoration: ShapeDecoration(
               color: AppColors.whiteLight,
               shape: RoundedRectangleBorder(
-                side: const BorderSide(width: 1, color: AppColors.blueLight),
+                side: const BorderSide(width: 1, color: AppColors.lightBlueColor),
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
@@ -43,7 +43,7 @@ class _RentHistorySectionState extends State<RentHistorySection> {
                             text: '\$ ${'400'}',
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: AppColors.blueNormal,
+                            color: AppColors.primaryColor,
                             textAlign: TextAlign.left,
                             bottom: 8,
                           ),

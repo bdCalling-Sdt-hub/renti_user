@@ -80,7 +80,7 @@ class _CancelShowDialogueState extends State<CancelShowDialogue> {
                           width: 20,
                           decoration: BoxDecoration(
                               color: index == selectedIndex
-                                  ? AppColors.blueNormal
+                                  ? AppColors.primaryColor
                                   : AppColors.whiteLight,
                               shape: BoxShape.circle,
                               border: Border.all(width: 1,color: AppColors.whiteDark.withOpacity(0.3))

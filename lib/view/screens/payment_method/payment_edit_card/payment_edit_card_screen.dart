@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/payment_method/payment_edit_card/inner_widgets/edit_card_bottom_nav_section.dart';
 import 'package:renti_user/view/screens/payment_method/payment_edit_card/inner_widgets/edit_card_edit_section.dart';

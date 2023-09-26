@@ -54,7 +54,7 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                       text: 'Toyota Harrier',
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.blueDark,
+                      color: AppColors.darkBlueColor,
                       right: 8,
                       bottom: 8,
                     ),

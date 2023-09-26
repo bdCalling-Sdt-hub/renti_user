@@ -1,12 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/auth/select_photo/inner_widgets/select_photo_bottom_nav_section.dart';
+import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_strings.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
 import '../../../widgets/buttons/custom_back_button.dart';
-import '../../../widgets/buttons/custom_elevated_button.dart';
 import '../../../widgets/container/custom_container.dart';
 import '../../../widgets/text/custom_text.dart';
 
@@ -18,61 +22,83 @@ class SelectPhotoScreen extends StatefulWidget {
 }
 
 class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
+
+  final ImagePicker _imagePicker = ImagePicker();
+  XFile ? image;
+
+  fromCamera ()async{
+   image = await _imagePicker.pickImage(source: ImageSource.camera);
+   setState(() {
+   });
+  }
+
+  fromGallery () async{
+   image = await _imagePicker.pickImage(source: ImageSource.gallery);
+   setState(() {
+
+   });
+  }
+
+  @override
+  void initState() {
+    DeviceUtils.screenUtils();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
-      top: true,
+      top: false, bottom: false,
       child: Scaffold(
         extendBody: true,
-        backgroundColor: AppColors.blueNormal,
+        backgroundColor: AppColors.primaryColor,
         appBar: const CustomAppBar(
           appBarContent: CustomBack(text: AppStrings.selectPhoto),
         ),
-        body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) =>
-              CustomContainer(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 20),
-                        height: 150,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: AppColors.blueNormal,
-                              width: 2,
-                              strokeAlign: 1,
-                              style: BorderStyle.solid),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Container(
-                          margin: const EdgeInsets.all(10),
-                          decoration: const BoxDecoration(
-                              color: AppColors.blueLight, shape: BoxShape.circle),
-                          height: 130,
-                          width: 130,
-                          child: const Icon(
-                            Icons.camera_alt_outlined,
-                            size: 50,
-                            color: AppColors.blueLightActive,
+        body: GetBuilder<SignUpController>(
+          builder: (controller) => LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) =>
+                CustomContainer(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsetsDirectional.symmetric(vertical: 44),
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 150,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsetsDirectional.symmetric(vertical: 10, horizontal: 10),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.transparent,
+                            border: Border.all(width: 2, color: AppColors.darkBlueColor)
+                          ),
+                          child: Container(
+                            width: 130,
+                            height: 130,
+                            alignment: Alignment.center,
+                            padding: const EdgeInsetsDirectional.symmetric(vertical: 10, horizontal: 10),
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(image: AssetImage("assets/images/user.png"), fit: BoxFit.fill)
+                            ),
                           ),
                         ),
-                      ),
-                      const CustomText(
-                        top: 16,
-                        text: AppStrings.uploadYourPhoto,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.blueNormal,
-                      ),
-                    ],
+                        const CustomText(
+                          top: 16,
+                          text: AppStrings.uploadYourPhoto,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.primaryColor,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
+          ),
         ),
         bottomNavigationBar: const SelectPhotoBottomNavSection()
       ),

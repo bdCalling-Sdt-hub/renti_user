@@ -49,7 +49,7 @@ class _InboxScreenState extends State<InboxScreen> {
       bottom: true,
       child: Scaffold(
         appBar: CustomAppBar(
-          appBarBgColor: AppColors.blueNormal,
+          appBarBgColor: AppColors.primaryColor,
           appBarContent: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,7 +109,7 @@ class _InboxScreenState extends State<InboxScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
                       color: (messages[index].messageType == "sender"
-                          ? AppColors.blueNormal
+                          ? AppColors.primaryColor
                           : AppColors.whiteNormalhover),
                     ),
                     child: CustomText(

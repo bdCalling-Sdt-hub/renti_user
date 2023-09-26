@@ -44,14 +44,14 @@ class _PaymentSectionState extends State<PaymentSection> {
               text: AppStrings.totalAmount,
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: AppColors.blueNormal ,
+              color: AppColors.primaryColor ,
             ),
             Text(
               "\$ 250",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
-                color: AppColors.blueNormal,
+                color: AppColors.primaryColor,
               ),
               textAlign: TextAlign.right,
             )
@@ -64,7 +64,7 @@ class _PaymentSectionState extends State<PaymentSection> {
             decoration: ShapeDecoration(
               color: AppColors.whiteLight,
               shape: RoundedRectangleBorder(
-                side: const BorderSide(width: 0.5, color: AppColors.blueNormal),
+                side: const BorderSide(width: 0.5, color: AppColors.primaryColor),
                 borderRadius: BorderRadius.circular(4),
               ),
             ),
@@ -82,7 +82,7 @@ class _PaymentSectionState extends State<PaymentSection> {
                       text: AppStrings.bankMexico,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
-                      color: AppColors.blueNormal,
+                      color: AppColors.primaryColor,
                     ),
                   ],
                 ),
@@ -95,11 +95,11 @@ class _PaymentSectionState extends State<PaymentSection> {
                   },
                   child:isarrowup? const Icon(Icons.keyboard_arrow_up,
                     size: 20,
-                    color: AppColors.blueNormal,
+                    color: AppColors.primaryColor,
 
                   ):const Icon(Icons.keyboard_arrow_down,
                     size: 20,
-                    color: AppColors.blueNormal ,
+                    color: AppColors.primaryColor ,
                   ),
                 )
               ],

@@ -104,7 +104,7 @@ class _ChangePasswordAuthSectionState extends State<ChangePasswordAuthSection> {
             },
             child: const CustomText(
               text: AppStrings.forgetPassword,
-              color: AppColors.blueDark,
+              color: AppColors.darkBlueColor,
               top: 24,
             ),
           )

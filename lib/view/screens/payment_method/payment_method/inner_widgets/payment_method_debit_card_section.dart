@@ -53,7 +53,7 @@ class _PaymentMethodDebidCardSectionState extends State<PaymentMethodDebidCardSe
                             text: '**** **** **** 6432',
 
                             fontWeight: FontWeight.w600,
-                            color: AppColors.blueNormal,
+                            color: AppColors.primaryColor,
                             top: 8,
                             left: 16,
                           ),

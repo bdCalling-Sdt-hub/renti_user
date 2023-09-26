@@ -44,6 +44,12 @@ dependencies:
   get:
   flutter_rating_bar: ^4.0.1
   flutter_slidable: ^3.0.0
+  image_picker: ^1.0.4
+  http: ^1.1.0
+  shared_preferences: ^2.2.1
+  intl: ^0.18.1
+  file_picker: ^5.5.0
+  open_file: ^3.3.2
 
 
 dev_dependencies:

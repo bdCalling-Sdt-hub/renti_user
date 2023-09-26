@@ -47,7 +47,7 @@ class HomeTopSection extends StatelessWidget {
                 padding: const EdgeInsetsDirectional.all(12),
                 decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.blueLight
+                    color: AppColors.lightBlueColor
                 ),
                 child: SvgPicture.asset(AppIcons.locationHome)
             )

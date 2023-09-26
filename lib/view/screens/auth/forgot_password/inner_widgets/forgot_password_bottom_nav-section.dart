@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../../core/route/app_route.dart';
 import '../../../../../utils/app_strings.dart';
@@ -20,7 +19,7 @@ class _ForgotPasswordBottomNavSectionState extends State<ForgotPasswordBottomNav
         onPressed: () {
           Get.toNamed(AppRoute.otpScreen);
         },
-        titleText: (AppStrings.continuw)
+        titleText: "Continue"
     );
   }
 }

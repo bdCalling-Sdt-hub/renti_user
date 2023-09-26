@@ -33,7 +33,7 @@ class HomeOfferCarSection extends StatelessWidget {
               },
               child:  const CustomText(
                 text: AppStrings.seeAll,
-                color: AppColors.blueNormal,
+                color: AppColors.primaryColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
               ),
@@ -88,7 +88,7 @@ class HomeOfferCarSection extends StatelessWidget {
                             top:12,
                             bottom: 12,
                             text: AppStrings.toyotaHarrier,
-                            color: AppColors.blueNormal,
+                            color: AppColors.primaryColor,
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                           ),
@@ -119,7 +119,7 @@ class HomeOfferCarSection extends StatelessWidget {
                                               TextSpan(
                                                 text: '\$20  ',
                                                 style: GoogleFonts.poppins(
-                                                  color: AppColors.blueNormal,
+                                                  color: AppColors.primaryColor,
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w400,
                                                 ),
@@ -139,7 +139,7 @@ class HomeOfferCarSection extends StatelessWidget {
                                               const TextSpan(
                                                   text: '/hr',
                                                   style: TextStyle(
-                                                    color: AppColors.blueNormal,
+                                                    color: AppColors.primaryColor,
                                                     fontSize: 10,
                                                     fontFamily: 'Poppins',
                                                     fontWeight: FontWeight.w400,
@@ -162,7 +162,7 @@ class HomeOfferCarSection extends StatelessWidget {
                         child: Container(
                             padding: const EdgeInsetsDirectional.symmetric(vertical: 4,horizontal: 6),
                             decoration: const BoxDecoration(
-                                color: AppColors.blueNormal,
+                                color: AppColors.primaryColor,
                                 borderRadius: BorderRadius.only(topLeft: Radius.circular(4),bottomRight: Radius.circular(4))
                             ),
                             child: const CustomText(

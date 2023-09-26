@@ -63,7 +63,7 @@ class _StartTripScreenState extends State<StartTripScreen> {
             ),
           bottomNavigationBar: BottomNavButton(onTap: (){
             Get.toNamed(AppRoute.endTrip);
-          }, buttonName: AppStrings.startTrip, buttonColor: AppColors.blueNormal),
+          }, buttonName: AppStrings.startTrip, buttonColor: AppColors.primaryColor),
         )
     );
   }

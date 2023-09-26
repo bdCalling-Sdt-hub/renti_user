@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
@@ -47,7 +46,7 @@ class _HomeFromUntilSectionState extends State<HomeFromUntilSection> {
                   fillColor: Colors.transparent,
                   isPrefixIcon: true,
                   prefixIconSrc: AppIcons.calenderIcon,
-                  prefixIconColor: AppColors.blueNormal,
+                  prefixIconColor: AppColors.primaryColor,
                 ),
               )
             ],
@@ -79,7 +78,7 @@ class _HomeFromUntilSectionState extends State<HomeFromUntilSection> {
                   fillColor: Colors.transparent,
                   isPrefixIcon: true,
                   prefixIconSrc: AppIcons.calenderIcon,
-                  prefixIconColor: AppColors.blueNormal,
+                  prefixIconColor: AppColors.primaryColor,
                 ),
               )
             ],

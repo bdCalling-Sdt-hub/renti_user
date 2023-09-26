@@ -19,7 +19,7 @@ class _SupportScreenState extends State<SupportScreen> {
   Widget build(BuildContext context) {
     return  SafeArea(child: Scaffold(
 
-      backgroundColor: AppColors.blueNormal,
+      backgroundColor: AppColors.primaryColor,
       appBar: const CustomAppBar(
         appBarContent: CustomBack(
           text:AppStrings.support,
