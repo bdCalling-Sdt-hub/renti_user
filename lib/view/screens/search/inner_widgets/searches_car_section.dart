@@ -45,7 +45,7 @@ class SearchesCarSection extends StatelessWidget {
 
             return Column(
               children: List.generate(
-                searchModel.totalCar!.toInt(),
+                searchModel.cars!.length.toInt(),
                     (index) => Container(
                   margin: const EdgeInsetsDirectional.only(top: 8),
                   decoration: BoxDecoration(
@@ -124,9 +124,9 @@ class SearchesCarSection extends StatelessWidget {
                       Container(
                         width: 120,
                         height: 80,
-                        decoration:  const ShapeDecoration(
+                        decoration:   ShapeDecoration(
                           image: DecorationImage(
-                            image: AssetImage(AppImages.carBg),
+                            image: NetworkImage(searchModel.cars![index].image[0].toString()),
                             fit: BoxFit.cover,
                           ),
                           shape: RoundedRectangleBorder(

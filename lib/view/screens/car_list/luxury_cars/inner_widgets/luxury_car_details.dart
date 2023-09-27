@@ -39,11 +39,11 @@ class LuxuryCarDetails extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                     children:  List.generate(
-                      offerCarModel.totalCar!.toInt(), (index) =>
+                      offerCarModel.cars!.length.toInt(), (index) =>
                         Container(
                           width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.only(bottom: 16),
-                          padding: const EdgeInsetsDirectional.all(16),
+                          margin:  EdgeInsets.only(bottom: 16),
+                          padding:  EdgeInsetsDirectional.all(16),
                           decoration: BoxDecoration(
                             border: Border.all(color: AppColors.whiteNormalActive,width: 1),
                             color: AppColors.whiteLight,
@@ -84,7 +84,7 @@ class LuxuryCarDetails extends StatelessWidget {
                                       ],
                                     ),
                                     const SizedBox(height: 10),
-                                    const Row(
+                                     Row(
                                       children: [
                                         CustomImage(imageSrc: AppIcons.lucidFuel, size: 16),
                                         Row(
@@ -126,11 +126,8 @@ class LuxuryCarDetails extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              const Expanded(
-                                child: CustomImage(
-                                  imageSrc: AppImages.carImage,
-                                  imageType: ImageType.png,
-                                ),
+                              Expanded(
+                                child:Image.network(offerCarModel.cars![index].image[0].toString()),
                               ),
                             ],
                           ),
