@@ -23,12 +23,12 @@ class AllCarsController extends GetxController{
   Future<void> allCarResult({String search = ""}) async{
 
     ApiResponseModel responseModel = await allCarsRepo.AllCarsRepoResponse(search: search);
-    print("status code: ${responseModel.statusCode}");
+    // print("status code: ${responseModel.statusCode}");
 
     if(responseModel.statusCode == 200){
         allCarsModel = AllCarsModel.fromJson(jsonDecode(responseModel.responseJson));
         isLoading = false;
-      update();
+         update();
       // print("data: ${allCarsModel.cars![0].id}");
     }
     else{
@@ -38,3 +38,5 @@ class AllCarsController extends GetxController{
   }
 
 }
+
+

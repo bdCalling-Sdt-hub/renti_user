@@ -12,8 +12,7 @@ import 'package:renti_user/view/screens/search/search_repo/search_repo.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class SearchesCarSection extends StatelessWidget {
-      SearchesCarSection({super.key,
-    });
+      SearchesCarSection({super.key,});
 
 
   @override

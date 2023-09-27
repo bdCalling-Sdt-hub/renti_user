@@ -110,9 +110,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 16),
                     const HomeFromUntilSection(),
                     const SizedBox(height: 24),
-                    HomePopularSection(popularCarModel: PopularCarModel()),
+                    //HomePopularSection(),
                     const SizedBox(height: 24,),
-                    HomeAllCarSection(allCarsModel: AllCarsModel(),)
+                    HomeAllCarSection()
                     
                   
                   ],

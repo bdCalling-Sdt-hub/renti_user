@@ -35,20 +35,20 @@ class Car {
   int? year;
   String? carLicenseNumber;
   String? carDescription;
-  String? insuranceStartDate;
-  String? insuranceEndDate;
+  InsuranceStartDate? insuranceStartDate;
+  InsuranceEndDate? insuranceEndDate;
   List<String>? kyc;
-  String? carColor;
+  CarColor? carColor;
   String? carDoors;
   String? carSeats;
-  String? totalRun;
+  TotalRun? totalRun;
   String? hourlyRate;
-  String? registrationDate;
+  RegistrationDate? registrationDate;
   int? popularity;
-  String? gearType;
-  String? specialCharacteristics;
+  GearType? gearType;
+  SpecialCharacteristics? specialCharacteristics;
   bool? activeReserve;
-  String? tripStatus;
+  TripStatus? tripStatus;
   CarOwner? carOwner;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -98,20 +98,20 @@ class Car {
     year: json["year"],
     carLicenseNumber: json["carLicenseNumber"],
     carDescription: json["carDescription"],
-    insuranceStartDate: json["insuranceStartDate"],
-    insuranceEndDate: json["insuranceEndDate"],
+    insuranceStartDate: insuranceStartDateValues.map[json["insuranceStartDate"]]!,
+    insuranceEndDate: insuranceEndDateValues.map[json["insuranceEndDate"]]!,
     kyc: json["KYC"] == null ? [] : List<String>.from(json["KYC"]!.map((x) => x)),
-    carColor: json["carColor"],
+    carColor: carColorValues.map[json["carColor"]]!,
     carDoors: json["carDoors"],
     carSeats: json["carSeats"],
-    totalRun: json["totalRun"],
+    totalRun: totalRunValues.map[json["totalRun"]]!,
     hourlyRate: json["hourlyRate"],
-    registrationDate: json["registrationDate"],
+    registrationDate: registrationDateValues.map[json["registrationDate"]]!,
     popularity: json["popularity"],
-    gearType: json["gearType"],
-    specialCharacteristics: json["specialCharacteristics"],
+    gearType: gearTypeValues.map[json["gearType"]]!,
+    specialCharacteristics: specialCharacteristicsValues.map[json["specialCharacteristics"]]!,
     activeReserve: json["activeReserve"],
-    tripStatus: json["tripStatus"],
+    tripStatus: tripStatusValues.map[json["tripStatus"]]!,
     carOwner: json["carOwner"] == null ? null : CarOwner.fromJson(json["carOwner"]),
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -128,20 +128,20 @@ class Car {
     "year": year,
     "carLicenseNumber": carLicenseNumber,
     "carDescription": carDescription,
-    "insuranceStartDate": insuranceStartDate,
-    "insuranceEndDate": insuranceEndDate,
+    "insuranceStartDate": insuranceStartDateValues.reverse[insuranceStartDate],
+    "insuranceEndDate": insuranceEndDateValues.reverse[insuranceEndDate],
     "KYC": kyc == null ? [] : List<dynamic>.from(kyc!.map((x) => x)),
-    "carColor": carColor,
+    "carColor": carColorValues.reverse[carColor],
     "carDoors": carDoors,
     "carSeats": carSeats,
-    "totalRun": totalRun,
+    "totalRun": totalRunValues.reverse[totalRun],
     "hourlyRate": hourlyRate,
-    "registrationDate": registrationDate,
+    "registrationDate": registrationDateValues.reverse[registrationDate],
     "popularity": popularity,
-    "gearType": gearType,
-    "specialCharacteristics": specialCharacteristics,
+    "gearType": gearTypeValues.reverse[gearType],
+    "specialCharacteristics": specialCharacteristicsValues.reverse[specialCharacteristics],
     "activeReserve": activeReserve,
-    "tripStatus": tripStatus,
+    "tripStatus": tripStatusValues.reverse[tripStatus],
     "carOwner": carOwner?.toJson(),
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
@@ -151,6 +151,14 @@ class Car {
     "userId": userId,
   };
 }
+
+enum CarColor {
+  BLACK
+}
+
+final carColorValues = EnumValues({
+  "Black": CarColor.BLACK
+});
 
 class CarOwner {
   String? id;
@@ -169,7 +177,7 @@ class CarOwner {
   bool? emailVerified;
   bool? approved;
   String? isBanned;
-  dynamic oneTimeCode;
+  String? oneTimeCode;
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
@@ -252,12 +260,76 @@ class CarOwner {
   };
 }
 
+enum GearType {
+  MANUAL
+}
+
+final gearTypeValues = EnumValues({
+  "Manual": GearType.MANUAL
+});
+
+enum InsuranceEndDate {
+  THE_22082023,
+  THE_22082024
+}
+
+final insuranceEndDateValues = EnumValues({
+  "22-08-2023": InsuranceEndDate.THE_22082023,
+  "22-08-2024": InsuranceEndDate.THE_22082024
+});
+
+enum InsuranceStartDate {
+  THE_22012023,
+  THE_22082022
+}
+
+final insuranceStartDateValues = EnumValues({
+  "22-01-2023": InsuranceStartDate.THE_22012023,
+  "22-08-2022": InsuranceStartDate.THE_22082022
+});
+
+enum RegistrationDate {
+  THE_22082023,
+  THE_22082025
+}
+
+final registrationDateValues = EnumValues({
+  "22-08-2023 ": RegistrationDate.THE_22082023,
+  "22-08-2025": RegistrationDate.THE_22082025
+});
+
+enum SpecialCharacteristics {
+  GPS
+}
+
+final specialCharacteristicsValues = EnumValues({
+  "GPS": SpecialCharacteristics.GPS
+});
+
+enum TotalRun {
+  THE_50_KM
+}
+
+final totalRunValues = EnumValues({
+  "50 km": TotalRun.THE_50_KM
+});
+
+enum TripStatus {
+  PENDING,
+  START
+}
+
+final tripStatusValues = EnumValues({
+  "Pending": TripStatus.PENDING,
+  "Start": TripStatus.START
+});
+
 class Pagination {
   int? totalDocuments;
   int? totalPage;
   int? currentPage;
   dynamic previousPage;
-  dynamic nextPage;
+  int? nextPage;
 
   Pagination({
     this.totalDocuments,
@@ -286,4 +358,16 @@ class Pagination {
     "previousPage": previousPage,
     "nextPage": nextPage,
   };
+}
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
 }

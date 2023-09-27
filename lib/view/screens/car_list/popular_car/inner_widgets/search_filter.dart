@@ -68,6 +68,7 @@ class _SearchFilterState extends State<SearchFilter> {
                             setState(() {
                               selectedItem = index;
                             });
+                             Navigator.pop(context);
                           },
                           child: Row(
                             children: [

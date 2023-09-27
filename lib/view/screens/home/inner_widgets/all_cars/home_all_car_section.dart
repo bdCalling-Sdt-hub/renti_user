@@ -16,19 +16,24 @@ import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class HomeAllCarSection extends StatelessWidget {
 
-  HomeAllCarSection({super.key , required this.allCarsModel});
+  HomeAllCarSection({super.key ,});
 
-  // void initState() {
-  //   Get.put(ApiService(sharedPreferences: Get.find()));
-  //   Get.put(AllCarsRepo(apiService: Get.find()));
-  //   Get.put(AllCarsController(allCarsRepo: Get.find()));
-  // }
+  void initState() {
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(AllCarsRepo(apiService: Get.find()));
+    Get.put(AllCarsController(allCarsRepo: Get.find()));
+  }
 
-  AllCarsModel allCarsModel;
   @override
   Widget build(BuildContext context) {
 
     return GetBuilder<AllCarsController>(builder: (controller){
+      if(controller.isLoading==true){
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+      AllCarsModel allCarsModel = controller.allCarsModel;
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -43,7 +48,8 @@ class HomeAllCarSection extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){
-                  Get.toNamed(AppRoute.allCarScreen,arguments: allCarsModel);
+                  Get.toNamed(AppRoute.allCarScreen,arguments:allCarsModel);
+
                 },
                 child:  const CustomText(
                   text: AppStrings.seeAll,
@@ -57,10 +63,10 @@ class HomeAllCarSection extends StatelessWidget {
           const SizedBox(height: 16),
           SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              physics:   BouncingScrollPhysics(),
+              physics:   const BouncingScrollPhysics(),
               child: Row(
                 children: List.generate(
-                    allCarsModel.cars!.length.toInt(),(index) => Stack(
+                    controller.allCarsModel.cars!.length.toInt(),(index) => Stack(
                   children: [
                     Container(
                       margin: const EdgeInsetsDirectional.only(end: 12),
@@ -86,11 +92,11 @@ class HomeAllCarSection extends StatelessWidget {
                             height: 95,
                             decoration:  ShapeDecoration(
                               image: DecorationImage(
-                                image: NetworkImage(allCarsModel.cars![index].image[0]) ,
+                                image: NetworkImage(controller.allCarsModel.cars![index].image[0]) ,
                                 // image: AssetImage(AppImages.carImage),
                                 fit: BoxFit.fill,
                               ),
-                              shape: RoundedRectangleBorder(
+                              shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(4),
                                   topRight: Radius.circular(4),
@@ -102,7 +108,7 @@ class HomeAllCarSection extends StatelessWidget {
                             left:12,
                             top:12,
                             bottom: 12,
-                            text: allCarsModel.cars![index].carModelName.toString(),
+                            text: controller.allCarsModel.cars![index].carModelName.toString(),
                             color: AppColors.primaryColor,
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -118,7 +124,7 @@ class HomeAllCarSection extends StatelessWidget {
                                     SvgPicture.asset(AppIcons.lucidFuel),
                                     CustomText(
                                       left: 8,
-                                      text:"${allCarsModel.cars![index].totalRun.toString()}${"/L"}",
+                                      text:"${controller.allCarsModel.cars![index].totalRun.toString()}${"/L"}",
                                       color: AppColors.whiteDark,
                                       fontSize: 10,
                                       fontWeight: FontWeight.w400,
@@ -132,7 +138,7 @@ class HomeAllCarSection extends StatelessWidget {
                                         text: TextSpan(
                                             children: [
                                               TextSpan(
-                                                text: "${"\$"}${allCarsModel.cars![index].hourlyRate.toString()}",
+                                                text: "${"\$"}${controller.allCarsModel.cars![index].hourlyRate.toString()}",
                                                 style: GoogleFonts.poppins(
                                                   color: const Color(0xFF595959),
                                                   fontSize: 10,
