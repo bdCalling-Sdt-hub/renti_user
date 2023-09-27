@@ -20,7 +20,7 @@ class AllCarDetaills extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
             children:  List.generate(
-              40, (index) =>
+              allCarsModel.cars!.length.toInt(), (index) =>
                 Container(
                   width: MediaQuery.of(context).size.width,
                   margin: const EdgeInsets.only(bottom: 16),
@@ -45,18 +45,18 @@ class AllCarDetaills extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                             Row(
-                              children: const [
+                              Row(
+                              children: [
                                 CustomText(
-                                  text: AppStrings.toyotaHarrier,
+                                  text: allCarsModel.cars![index].carModelName.toString(),
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.darkBlueColor,
                                 ),
-                                SizedBox(width: 8,),
-                                CustomImage(imageSrc: AppIcons.starIcon),
-                                SizedBox(width: 8,),
-                                CustomText(
+                                const SizedBox(width: 8,),
+                                const CustomImage(imageSrc: AppIcons.starIcon),
+                                const SizedBox(width: 8,),
+                                const CustomText(
                                   text: "(4.5)",
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400,
@@ -65,27 +65,30 @@ class AllCarDetaills extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(height: 10),
-                            const Row(
+                             Row(
                               children: [
-                                CustomImage(imageSrc: AppIcons.lucidFuel, size: 16),
+                                const CustomImage(imageSrc: AppIcons.lucidFuel, size: 16),
                                 Row(
                                   children: [
                                     CustomText(
-                                      text: "10",
+                                      text: allCarsModel.cars![index].totalRun.toString(),
                                       color: AppColors.whiteDarkActive,
                                       left: 8,
                                       textAlign: TextAlign.start,
                                     ),
-                                    CustomText(
-                                        text: "km/L",
+                                    const CustomText(
+                                        text: "/L",
                                         color: AppColors.whiteDarkActive),
-                                    SizedBox(width: 8),
-
+                                    const SizedBox(width: 16),
                                     CustomText(
-                                      text: "\$25",
-
+                                      text: "${"\$"}${ allCarsModel.cars![index].hourlyRate.toString()}",
                                     ),
-                                    CustomText(
+
+                                    // CustomText(
+                                    //   text: "\$25",
+                                    //
+                                    // ),
+                                    const CustomText(
                                       text: "/hr",
                                     )
 
@@ -107,10 +110,15 @@ class AllCarDetaills extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Expanded(
-                        child: CustomImage(
-                          imageSrc: AppImages.carImage,
-                          imageType: ImageType.png,
+                       Expanded(
+                        child: Container(
+                          height: 60,
+                          width: 120,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(image: NetworkImage(allCarsModel.cars![index].image[0].toString()),
+                              fit: BoxFit.fill
+                              )
+                          ),
                         ),
                       ),
                     ],

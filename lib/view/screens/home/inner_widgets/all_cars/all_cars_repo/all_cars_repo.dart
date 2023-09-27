@@ -8,7 +8,7 @@ class AllCarsRepo{
   ApiService apiService;
   AllCarsRepo({required this.apiService});
 
-  Future<ApiResponseModel> AllCarsRepoResponse() async{
+  Future<ApiResponseModel> AllCarsRepoResponse({String search = ""}) async{
 
     String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.allCarsEndPoint}";
 
