@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/utils/app_colors.dart';
-import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/view/screens/car_list/offer_car/inner_widgets/search_car_scetion.dart';
+import 'package:renti_user/view/screens/car_list/popular_car/inner_widgets/search_car_scetion.dart';
+
+import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_model/home_popular_model.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'inner_widgets/search_filter.dart';
-class OfferCarScreen extends StatefulWidget {
-  const OfferCarScreen({super.key});
+class PopularCarScreen extends StatefulWidget {
+  const PopularCarScreen({super.key});
   @override
-  State<OfferCarScreen> createState() => _OfferCarScreenState();
+  State<PopularCarScreen> createState() => _PopularCarScreenState();
 }
-class _OfferCarScreenState extends State<OfferCarScreen> {
+class _PopularCarScreenState extends State<PopularCarScreen> {
+  PopularCarModel popularCarModel = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -47,11 +49,7 @@ class _OfferCarScreenState extends State<OfferCarScreen> {
               const SizedBox(height: 24),
              Expanded(
                child: SingleChildScrollView(
-                 child: Column(
-                   children:  List.generate(
-                     40, (index) =>const OfferCarSection()
-                   )
-                 ),
+                 child: PopularCarSection()
                ),
              )
             ],

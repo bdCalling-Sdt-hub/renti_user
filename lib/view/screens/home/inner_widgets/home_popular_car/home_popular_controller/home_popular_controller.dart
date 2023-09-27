@@ -6,10 +6,12 @@ import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home
 
 
 class PopularCarController extends GetxController{
+
   PopularCarRepo popularCarRepo;
+
   PopularCarController({required this.popularCarRepo});
 
-  Future<PopularCarModel> searchResult() async{
+  Future<PopularCarModel> popularCarResult() async{
     ApiResponseModel responseModel = await popularCarRepo.PopularCarRepoResponse();
    PopularCarModel popularCarModel;
     print("status code: ${responseModel.statusCode}");

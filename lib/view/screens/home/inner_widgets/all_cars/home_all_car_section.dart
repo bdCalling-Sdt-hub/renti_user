@@ -8,26 +8,27 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_controller/home_popular_controller.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_repo/all_cars_repo.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_model/home_popular_model.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_repo/home_popular_repo.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-class HomePopularSection extends StatelessWidget {
+class HomeAllCarSection extends StatelessWidget {
 
-   HomePopularSection({super.key,required this.popularCarModel});
+  HomeAllCarSection({super.key,required this.allCarsModel});
 
-  void initState() {
-    Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(PopularCarRepo(apiService: Get.find()));
-    Get.put(PopularCarController(popularCarRepo: Get.find()));
-  }
-   PopularCarModel popularCarModel;
+  // void initState() {
+  //   Get.put(ApiService(sharedPreferences: Get.find()));
+  //   Get.put(AllCarsRepo(apiService: Get.find()));
+  //   Get.put(AllCarsController(allCarsRepo: Get.find()));
+  // }
+  AllCarsModel allCarsModel;
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<PopularCarController>(builder: (controller){
-      return FutureBuilder(future: controller.popularCarResult(), builder: (context,snapshot){
+    return GetBuilder<AllCarsController>(builder: (controller){
+      return FutureBuilder(future: controller.allCarResult(), builder: (context,snapshot){
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
               child:
@@ -39,7 +40,7 @@ class HomePopularSection extends StatelessWidget {
           return const Text(
               "No data available"); // Handle case where no data is available
         }
-        popularCarModel = snapshot.data!;
+        allCarsModel = snapshot.data!;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -47,14 +48,14 @@ class HomePopularSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const CustomText(
-                  text: "Popular Cars",
+                  text: "All Cars",
                   color: AppColors.blackNormal,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
                 InkWell(
                   onTap: (){
-                    Get.toNamed(AppRoute.popularCarScreen,arguments: popularCarModel);
+                    Get.toNamed(AppRoute.popularCarScreen,arguments: PopularCarModel());
                   },
                   child:  const CustomText(
                     text: AppStrings.seeAll,
@@ -71,7 +72,7 @@ class HomePopularSection extends StatelessWidget {
                 physics:  const BouncingScrollPhysics(),
                 child: Row(
                   children: List.generate(
-                      popularCarModel.cars!.length.toInt(), (index) => Stack(
+                      allCarsModel.cars!.length.toInt(),(index) => Stack(
                     children: [
                       Container(
                         margin: const EdgeInsetsDirectional.only(end: 12),
@@ -97,8 +98,8 @@ class HomePopularSection extends StatelessWidget {
                               height: 95,
                               decoration:  ShapeDecoration(
                                 image: DecorationImage(
-                                  image: NetworkImage(popularCarModel.cars![index].image[0]),
-                                  // image: AssetImage(AppImages.carBg),
+                                  image: NetworkImage(allCarsModel.cars![index].image[0]) ,
+                                  // image: AssetImage(AppImages.carImage),
                                   fit: BoxFit.fill,
                                 ),
                                 shape: RoundedRectangleBorder(
@@ -109,11 +110,11 @@ class HomePopularSection extends StatelessWidget {
                                 ),
                               ),
                             ),
-                             CustomText(
+                            CustomText(
                               left:12,
                               top:12,
                               bottom: 12,
-                              text: popularCarModel.cars![index].carModelName.toString(),
+                              text: allCarsModel.cars![index].carModelName.toString(),
                               color: AppColors.primaryColor,
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
@@ -127,9 +128,9 @@ class HomePopularSection extends StatelessWidget {
                                   Row(
                                     children: [
                                       SvgPicture.asset(AppIcons.lucidFuel),
-                                       CustomText(
+                                      CustomText(
                                         left: 8,
-                                        text:"${popularCarModel.cars![index].totalRun.toString()}${"/L"}",
+                                        text:"${allCarsModel.cars![index].totalRun.toString()}${"/L"}",
                                         color: AppColors.whiteDark,
                                         fontSize: 10,
                                         fontWeight: FontWeight.w400,
@@ -143,7 +144,7 @@ class HomePopularSection extends StatelessWidget {
                                           text: TextSpan(
                                               children: [
                                                 TextSpan(
-                                                  text: "${"\$"}${popularCarModel.cars![index].hourlyRate.toString()}",
+                                                  text: "${"\$"}${allCarsModel.cars![index].hourlyRate.toString()}",
                                                   style: GoogleFonts.poppins(
                                                     color: const Color(0xFF595959),
                                                     fontSize: 10,
@@ -176,25 +177,7 @@ class HomePopularSection extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Positioned.fill(
-                        left: 0, top: 0,
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Container(
-                              padding: const EdgeInsetsDirectional.symmetric(vertical: 4,horizontal: 6),
-                              decoration: const BoxDecoration(
-                                  color: AppColors.primaryColor,
-                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(4),bottomRight: Radius.circular(4))
-                              ),
-                              child: const CustomText(
-                                textAlign: TextAlign.center,
-                                text: '12%Off',
-                                color: AppColors.whiteLight,
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,)
-                          ),
-                        ),
-                      ),
+
                     ],
                   )
                   ),
@@ -206,3 +189,4 @@ class HomePopularSection extends StatelessWidget {
     });
   }
 }
+

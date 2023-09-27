@@ -9,8 +9,8 @@ import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-class LuxuryCarDetails extends StatelessWidget {
-  const LuxuryCarDetails({super.key});
+class AllCarDetaills extends StatelessWidget {
+  const AllCarDetaills({super.key});
 
   @override
   Widget build(BuildContext context) {

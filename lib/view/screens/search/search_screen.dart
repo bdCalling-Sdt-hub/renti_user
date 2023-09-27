@@ -32,8 +32,8 @@ class _SearchScreenState extends State<SearchScreen> {
     Get.put(SearchRepo(apiService: Get.find()));
     Get.put(SearchScreenController(searchRepo: Get.find()));
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return  GetBuilder<SearchScreenController>(

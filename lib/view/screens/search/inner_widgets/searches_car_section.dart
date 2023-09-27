@@ -6,7 +6,6 @@ import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
-import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/search/search_controller/search_controller.dart';
 import 'package:renti_user/view/screens/search/search_model/search_model.dart';
 import 'package:renti_user/view/screens/search/search_repo/search_repo.dart';
@@ -16,16 +15,14 @@ class SearchesCarSection extends StatelessWidget {
       SearchesCarSection({super.key,required this.searchModel
     });
 
-  @override
-  void initState() {
-
-
-    Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(SearchRepo(apiService: Get.find()));
-    Get.put(SearchScreenController(searchRepo: Get.find()));
-
-  }
-
+  // @override
+  // void initState() {
+  //
+  //   Get.put(ApiService(sharedPreferences: Get.find()));
+  //   Get.put(SearchRepo(apiService: Get.find()));
+  //   Get.put(SearchScreenController(searchRepo: Get.find()));
+  //
+  // }
     SearchModel searchModel;
   @override
   Widget build(BuildContext context) {
@@ -33,8 +30,6 @@ class SearchesCarSection extends StatelessWidget {
       return FutureBuilder<SearchModel>(
         future: controller.searchResult(),
         builder: (context , snapshot) {
-
-
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
                 child:
@@ -43,7 +38,7 @@ class SearchesCarSection extends StatelessWidget {
             return Text(
                 "Error: ${snapshot.error}"); // Show an error message if data fetch fails
           } else if (!snapshot.hasData) {
-            return const Text(
+              return const Text(
                 "No data available"); // Handle case where no data is available
           }
 
@@ -53,7 +48,7 @@ class SearchesCarSection extends StatelessWidget {
 
           return Column(
             children: List.generate(
-              searchModel.totalCar!.toInt(),
+              searchModel.cars!.length,
                   (index) => Container(
                 margin: const EdgeInsetsDirectional.only(top: 8),
                 decoration: BoxDecoration(
@@ -131,9 +126,10 @@ class SearchesCarSection extends StatelessWidget {
                     Container(
                       width: 120,
                       height: 80,
-                      decoration:  const ShapeDecoration(
+                      decoration:   ShapeDecoration(
                         image: DecorationImage(
-                          image: AssetImage(AppImages.carImage),
+                          image: NetworkImage(searchModel.cars![index].image[0]),
+                          // image: AssetImage(AppImages.carBg),
                           fit: BoxFit.cover,
                         ),
                         shape: RoundedRectangleBorder(

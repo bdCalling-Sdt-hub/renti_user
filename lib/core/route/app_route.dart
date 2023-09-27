@@ -7,7 +7,8 @@ import 'package:renti_user/view/screens/auth/select_photo/select_photo_screen.da
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:renti_user/view/screens/auth/signup_continue/sign_up_continue_screen.dart';
-import 'package:renti_user/view/screens/car_list/luxury_cars/luxury_cars_screen.dart';
+import 'package:renti_user/view/screens/car_list/all_cars/all_cars_screen.dart';
+import 'package:renti_user/view/screens/car_list/popular_car/popular-car_screen.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_screen.dart';
 import 'package:renti_user/view/screens/home/home_screen.dart';
 import 'package:renti_user/view/screens/intro/intro_screen.dart';
@@ -32,7 +33,6 @@ import 'package:renti_user/view/screens/settings/change_password/change_password
 import 'package:renti_user/view/screens/settings/settings/settings_screen.dart';
 import 'package:renti_user/view/screens/trip/end_trip/end_trip_screen.dart';
 import 'package:renti_user/view/screens/trip/star_trip/start_trip_screen.dart';
-import '../../view/screens/car_list/offer_car/offer-car_screen.dart';
 
 class AppRoute {
 
@@ -41,8 +41,8 @@ class AppRoute {
   static  String searchScreen = "/search_screen";
   static  String startTrip = "/start_trip_screen";
   static  String endTrip = "/end_trip_screen";
-  static  String offerCarScreen = "/offer_car_screen";
-  static  String luxuryCars= "/luxury_cars";
+  static  String popularCarScreen = "/popular_car_screen";
+  static  String allCarScreen= "/all_cars_screen";
   static  String inboxScreen= "/inbox_screen";
   static const String messageScreen = "/message_screen";
   static const String cancelShowDialog = "/cancel_show_dialog";
@@ -75,10 +75,10 @@ class AppRoute {
     GetPage(name: rentRequest, page: ()=> const RentRequestScreen()),
     GetPage(name: startTrip, page: ()=> const StartTripScreen()),
     GetPage(name: endTrip, page: ()=> const EndTripScreen()),
-    GetPage(name: offerCarScreen, page: ()=> const OfferCarScreen()),
+    GetPage(name: popularCarScreen, page: ()=>  const PopularCarScreen()),
     GetPage(name: inboxScreen, page: ()=> const InboxScreen()),
     GetPage(name: messageScreen, page: ()=> const MessageScreen()),
-    GetPage(name:luxuryCars , page: ()=>const LuxuryCarsScreen()),
+    GetPage(name:allCarScreen , page: ()=>const AllCarScreen()),
     GetPage(name: introScreen, page: ()=> const IntroScreen()),
     GetPage(name: selectLanguageScreen, page: ()=>const SelectLanguageScreen()),
     GetPage(name: signInScreen, page: ()=>const SignInScreen()),
@@ -95,7 +95,7 @@ class AppRoute {
     GetPage(name: support, page: ()=>const SupportScreen()),
     GetPage(name: aboutUs, page: ()=>const AboutUsScreen()),
     GetPage(name: termsConditions, page: ()=>const TermsConditionsScreen()),
-    GetPage(name: privacyPolicy, page: ()=> PrivatePolicyScreen()),
+    GetPage(name: privacyPolicy, page: ()=> const PrivatePolicyScreen()),
     GetPage(name: settings, page: ()=>const SettingsScreen()),
     GetPage(name: changeLanguage, page: ()=>const ChangeLanguageScreen()),
     GetPage(name: changePassword, page: ()=>const ChangePasswordScreen()),
