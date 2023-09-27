@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -70,32 +69,33 @@ class _SearchCarScetionState extends State<PopularCarSection> {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        const Row(
+                         Row(
                           children: [
-                            CustomImage(imageSrc: AppIcons.lucidFuel, size: 16),
+                            const CustomImage(imageSrc: AppIcons.lucidFuel, size: 16),
                             Row(
                               children: [
                                 CustomText(
-                                  text: "10",
+                                  text: popularCarModel.cars![index].totalRun.toString(),
                                   color: AppColors.whiteDarkActive,
                                   left: 8,
                                   textAlign: TextAlign.start,
                                 ),
-                                CustomText(
-                                    text: "km/L",
+                                const CustomText(
+                                    text: "/L",
                                     color: AppColors.whiteDarkActive),
-                                SizedBox(width: 8),
-                                CustomText(
-                                  text: "\$12",
-                                  color: AppColors.primaryColor,
+                                const SizedBox(width: 16),
+                                 CustomText(
+                                  text: "${"\$"}${ popularCarModel.cars![index].hourlyRate.toString()}",
+
                                 ),
-                                SizedBox(width: 8),
-                                CustomText(
-                                  text: "\$25",
-                                  textDecoration: TextDecoration.lineThrough,
-                                ),
-                                CustomText(
-                                  text: "/hr",
+                                const SizedBox(width: 8),
+                                // const CustomText(
+                                //   text: "\$25",
+                                //   textDecoration: TextDecoration.lineThrough,
+                                // ),
+                                const CustomText(
+                                  text:"/hr",
+                                    color: AppColors.primaryColor
                                 )
 
                               ],
@@ -116,11 +116,15 @@ class _SearchCarScetionState extends State<PopularCarSection> {
                       ],
                     ),
                   ),
-                  const Expanded(
-                    child: CustomImage(
-                      imageSrc: AppImages.carImage,
-                      imageType: ImageType.png,
-                    ),
+                   Expanded(
+                    child: Container(
+                       height: 60,
+                       width: 120,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(image: NetworkImage(popularCarModel.cars![index].image[0].toString()),
+                        fit: BoxFit.fill),
+                      ),
+                    )
                   ),
                 ],
               ),

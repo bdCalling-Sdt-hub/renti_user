@@ -41,12 +41,12 @@ class _PopularCarScreenState extends State<PopularCarScreen> {
                 )
               ],
             )),
-        body:  Padding(
-          padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
+        body:  const Padding(
+          padding: EdgeInsets.symmetric(vertical: 24,horizontal: 20),
           child: Column(
             children: [
-              const SearchFilter(),
-              const SizedBox(height: 24),
+              SearchFilter(),
+              SizedBox(height: 24),
              Expanded(
                child: SingleChildScrollView(
                  child: PopularCarSection()
