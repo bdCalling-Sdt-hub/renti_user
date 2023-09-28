@@ -6,19 +6,21 @@ import 'package:renti_user/view/screens/car_list/offer_car/offer_model/offer_mod
 import 'package:renti_user/view/screens/car_list/offer_car/offer_repo/offer_repo.dart';
 
 class OfferCarController extends GetxController{
-    OfferRepo offerRepo;
+  OfferRepo offerRepo;
   OfferCarController({required this.offerRepo});
+
 
   Future<OfferModel> offerCarResponse() async{
     ApiResponseModel responseModel = await offerRepo.OfferRepoResponse();
-    OfferModel offerModel;
+    OfferModel offerModel ;
     print("status code: ${responseModel.statusCode}");
 
     if(responseModel.statusCode == 200){
       offerModel = OfferModel.fromJson(jsonDecode(responseModel.responseJson));
-      print("data: ${offerModel.cars![0].id}");
+      print("data: $offerModel");
     }
     else{
+      print("SomeThing Error..........................");
       return OfferModel();
     }
     return offerModel;

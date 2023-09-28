@@ -53,7 +53,7 @@ class SearchesCarSection extends StatelessWidget {
 
             return Column(
               children: List.generate(
-                searchModel.totalCar!.toInt(),
+                searchModel.cars!.length.toInt(),
                     (index) => Container(
                   margin: const EdgeInsetsDirectional.only(top: 8),
                   decoration: BoxDecoration(

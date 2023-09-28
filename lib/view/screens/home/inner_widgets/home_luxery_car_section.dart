@@ -25,14 +25,14 @@ class _HomeLuxuryCarSectionState extends State<HomeLuxuryCarSection> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const CustomText(
-              text: AppStrings.luxuryCars,
+              text: 'popular Car',
               color: AppColors.blackNormal,
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
             InkWell(
               onTap: (){
-                Get.toNamed(AppRoute.luxuryCars);
+                Get.toNamed(AppRoute.allCars);
               },
               child:  const CustomText(
                 text: AppStrings.seeAll,

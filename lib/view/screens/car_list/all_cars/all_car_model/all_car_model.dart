@@ -1,28 +1,36 @@
 import 'dart:convert';
 
-class OfferModel {
-  String? message;
+class AllCarModel {
+  int? totalCar;
+  int? activeCar;
+  int? reservedCar;
   List<Car>? cars;
   Pagination? pagination;
 
-  OfferModel({
-    this.message,
+  AllCarModel({
+    this.totalCar,
+    this.activeCar,
+    this.reservedCar,
     this.cars,
     this.pagination,
   });
 
-  factory OfferModel.fromRawJson(String str) => OfferModel.fromJson(json.decode(str));
+  factory AllCarModel.fromRawJson(String str) => AllCarModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory OfferModel.fromJson(Map<String, dynamic> json) => OfferModel(
-    message: json["message"],
+  factory AllCarModel.fromJson(Map<String, dynamic> json) => AllCarModel(
+    totalCar: json["totalCar"],
+    activeCar: json["activeCar"],
+    reservedCar: json["reservedCar"],
     cars: json["cars"] == null ? [] : List<Car>.from(json["cars"]!.map((x) => Car.fromJson(x))),
     pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "message": message,
+    "totalCar": totalCar,
+    "activeCar": activeCar,
+    "reservedCar": reservedCar,
     "cars": cars == null ? [] : List<dynamic>.from(cars!.map((x) => x.toJson())),
     "pagination": pagination?.toJson(),
   };

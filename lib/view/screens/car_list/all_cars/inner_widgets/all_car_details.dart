@@ -7,35 +7,36 @@ import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
-import 'package:renti_user/view/screens/car_list/offer_car/offer_controller/offer_controller.dart';
-import 'package:renti_user/view/screens/car_list/offer_car/offer_model/offer_model.dart';
-import 'package:renti_user/view/screens/car_list/offer_car/offer_repo/offer_repo.dart';
+import 'package:renti_user/view/screens/car_list/all_cars/all_car_controller/all_car_controller.dart';
+import 'package:renti_user/view/screens/car_list/all_cars/all_car_model/all_car_model.dart';
+import 'package:renti_user/view/screens/car_list/all_cars/all_car_repo/all_car_repo.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-class OfferCarSection extends StatelessWidget {
-  OfferCarSection({super.key, required this.offerModel});
-
+class AllCarDetails extends StatelessWidget {
+   AllCarDetails({super.key,required this.allCarModel});
 
   @override
   void initState() {
     DeviceUtils.authUtils();
 
     Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(OfferRepo(apiService: Get.find()));
-    Get.put(OfferCarController(offerRepo: Get.find()));
+    Get.put(AllCarRepo(apiService: Get.find()));
+    Get.put(AllCarController(allCarRepo: Get.find()));
+
   }
 
-  OfferModel offerModel;
+  AllCarModel allCarModel;
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<OfferCarController>(
-        builder: (controller) {
-      return FutureBuilder<OfferModel>(
-          future: controller.offerCarResponse(),
-          builder: (context, snapshot) {
+    return GetBuilder<AllCarController>(
+      builder: (controller) {
+        return FutureBuilder(
+          future: controller.allCarResponse(),
+          builder:  (context, snapshot){
+
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                   child:
@@ -48,54 +49,50 @@ class OfferCarSection extends StatelessWidget {
               return const Text(
                   "No data available"); // Handle case where no data is available
             }
-            offerModel = snapshot.data!;
-            return Column(
-              children: List.generate(
-                offerModel.cars!.length.toInt(), (index) =>
-                  Stack(
-                      children: [
+            allCarModel = snapshot.data!;
+
+            return Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                    children:  List.generate(
+                      allCarModel.cars!.length.toInt(),
+                       (index) =>
                         Container(
+                          width: MediaQuery.of(context).size.width,
                           margin: const EdgeInsets.only(bottom: 16),
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
                           padding: const EdgeInsetsDirectional.all(16),
                           decoration: BoxDecoration(
-                            border: Border.all(
-                                color: AppColors.whiteNormalActive, width: 1),
+                            border: Border.all(color: AppColors.whiteNormalActive,width: 1),
                             color: AppColors.whiteLight,
                             borderRadius: BorderRadius.circular(4),
-                            boxShadow: const [
+                            boxShadow:  const [
                               BoxShadow(
                                 color: AppColors.whiteNormalActive,
                                 offset: Offset(0, 0),
                               ),
                             ],
                           ),
-                          child: Row(
+                          child:  Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
-                                flex: 2,
+                                flex:2,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
-                                      children: [
+                                      children:  [
                                         CustomText(
-                                          text: offerModel.cars![index]
-                                              .carModelName.toString(),
+                                          text: allCarModel.cars![index].carModelName.toString(),
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,
                                           color: AppColors.darkBlueColor,
                                         ),
                                         SizedBox(width: 8,),
-                                        const CustomImage(
-                                            imageSrc: AppIcons.starIcon),
+                                        CustomImage(imageSrc: AppIcons.starIcon),
                                         SizedBox(width: 8,),
-                                        const CustomText(
+                                        CustomText(
                                           text: "(4.5)",
                                           fontSize: 10,
                                           fontWeight: FontWeight.w400,
@@ -104,11 +101,9 @@ class OfferCarSection extends StatelessWidget {
                                       ],
                                     ),
                                     const SizedBox(height: 10),
-                                    const Row(
+                                     Row(
                                       children: [
-                                        CustomImage(
-                                            imageSrc: AppIcons.lucidFuel,
-                                            size: 16),
+                                        CustomImage(imageSrc: AppIcons.lucidFuel, size: 16),
                                         Row(
                                           children: [
                                             CustomText(
@@ -119,18 +114,12 @@ class OfferCarSection extends StatelessWidget {
                                             ),
                                             CustomText(
                                                 text: "km/L",
-                                                color: AppColors
-                                                    .whiteDarkActive),
+                                                color: AppColors.whiteDarkActive),
                                             SizedBox(width: 8),
-                                            CustomText(
-                                              text: "\$12",
-                                              color: AppColors.primaryColor,
-                                            ),
-                                            SizedBox(width: 8),
+
                                             CustomText(
                                               text: "\$25",
-                                              textDecoration: TextDecoration
-                                                  .lineThrough,
+
                                             ),
                                             CustomText(
                                               text: "/hr",
@@ -141,11 +130,10 @@ class OfferCarSection extends StatelessWidget {
                                       ],
                                     ),
                                     const SizedBox(height: 8),
-                                    CustomElevatedButton(onPressed: () {
+                                    CustomElevatedButton(onPressed: (){
                                       Get.toNamed(AppRoute.carDetails);
                                     }
-                                      ,
-                                      titleText: AppStrings.seeDetails,
+                                      ,titleText: AppStrings.seeDetails,
                                       titleWeight: FontWeight.w400,
                                       titleSize: 10,
                                       buttonRadius: 4,
@@ -155,42 +143,18 @@ class OfferCarSection extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              const Expanded(
-                                child: CustomImage(
-                                  imageSrc: AppImages.carImage,
-                                  imageType: ImageType.png,
-                                ),
+                               Expanded(
+                                child:Image.network(allCarModel.cars![index].image[0].toString())
                               ),
                             ],
                           ),
                         ),
-                        Positioned.fill(
-                          top: 0, right: 0,
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: Container(
-                                padding: const EdgeInsetsDirectional.symmetric(
-                                    vertical: 4, horizontal: 6),
-                                decoration: const BoxDecoration(
-                                    color: AppColors.primaryColor,
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(4),)
-                                ),
-                                child: const CustomText(
-                                  textAlign: TextAlign.center,
-                                  text: '12%Off',
-                                  color: AppColors.whiteLight,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w400,)
-                            ),
-                          ),
-                        ),
-                      ]
-                  ),
+                    )
+                ),
               ),
             );
           }
-      );
-    });
-    }
+        );
+      });
+  }
 }

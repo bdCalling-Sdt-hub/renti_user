@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:renti_user/view/screens/car_list/all_cars/all_car_controller/all_car_controller.dart';
+import 'package:renti_user/view/screens/car_list/all_cars/all_car_repo/all_car_repo.dart';
+import 'package:renti_user/view/screens/car_list/offer_car/offer_model/offer_model.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_from_until_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_luxery_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_offer_car_section.dart';
@@ -22,6 +27,8 @@ class HomeScreen extends StatefulWidget {
 }
 class _HomeScreenState extends State<HomeScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -77,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          body: const SingleChildScrollView(
+          body:  SingleChildScrollView(
             padding: EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
             physics: BouncingScrollPhysics(),
             child: Column(
