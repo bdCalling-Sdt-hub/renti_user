@@ -37,6 +37,8 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return  GetBuilder<SearchScreenController>(
         builder: (controller) {
+
+
           return Scaffold(
             appBar: CustomAppBar(
                 appBarContent: Text(
@@ -52,11 +54,27 @@ class _SearchScreenState extends State<SearchScreen> {
               child: Column(
                 children: [
                   CustomTextField(
+                    textEditingController: controller.searchController,
+
+                    onChanged: (value) {
+                      Future.delayed(
+                        const Duration(seconds: 1),
+                            () {
+                          controller.searchGetResponse(search: "?search=$value");
+                        },
+                      );
+                    },
                     prefixIconSrc: AppIcons.searchIcon,
                     isPrefixIcon: true,
-                    suffixIcon: SvgPicture.asset(
-                      AppIcons.deleteIcon,
-                      color: AppColors.primaryColor,
+                    suffixIcon: GestureDetector(
+                      onTap: (){
+                        controller.searchController.clear();
+                        controller.searchGetResponse(search: "");
+                      },
+                      child: SvgPicture.asset(
+                        AppIcons.deleteIcon,
+                        color: AppColors.primaryColor,
+                      ),
                     ),
                     fieldBorderRadius: 8,
                     hintText: AppStrings.searchCar,

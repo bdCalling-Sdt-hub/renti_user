@@ -8,9 +8,9 @@ class SearchRepo{
   ApiService apiService;
   SearchRepo({required this.apiService});
 
-  Future<ApiResponseModel> searchRepoResponse() async{
+  Future<ApiResponseModel> searchRepoResponse({String search=''}) async{
 
-    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.carAllEndPont}";
+    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.carAllEndPont}$search";
 
     String requestMethod = ApiResponseMethod.getMethod;
 
