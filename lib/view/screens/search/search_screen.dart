@@ -35,6 +35,15 @@ class _SearchScreenState extends State<SearchScreen> {
 
   }
   @override
+  void initState() {
+    DeviceUtils.authUtils();
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(SearchRepo(apiService: Get.find()));
+    Get.put(SearchScreenController(searchRepo: Get.find()));
+    super.initState();
+
+  }
+  @override
   Widget build(BuildContext context) {
     return  GetBuilder<SearchScreenController>(
         builder: (controller) {
