@@ -6,7 +6,6 @@ import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
-import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_controller/home_popular_controller.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_model/home_popular_model.dart';
@@ -22,8 +21,11 @@ class HomePopularSection extends StatelessWidget {
     Get.put(PopularCarRepo(apiService: Get.find()));
     Get.put(PopularCarController(popularCarRepo: Get.find()));
   }
+
+
   @override
   Widget build(BuildContext context) {
+
     return GetBuilder<PopularCarController>(builder: (controller){
      if(controller.isLoading == true
      ){
@@ -31,6 +33,7 @@ class HomePopularSection extends StatelessWidget {
          child: CircularProgressIndicator(),
        );
      }
+     PopularCarModel popularCarModel = controller.popularCarModel;
      return Column(
        crossAxisAlignment: CrossAxisAlignment.start,
        children: [
@@ -45,7 +48,7 @@ class HomePopularSection extends StatelessWidget {
              ),
              InkWell(
                onTap: (){
-                 Get.toNamed(AppRoute.popularCarScreen,);
+                 Get.toNamed(AppRoute.popularCarScreen, arguments: popularCarModel);
                },
                child:  const CustomText(
                  text: AppStrings.seeAll,
@@ -62,7 +65,7 @@ class HomePopularSection extends StatelessWidget {
              physics:  const BouncingScrollPhysics(),
              child: Row(
                children: List.generate(
-                   controller.popularCarModel.cars!.length.toInt(), (index) => Stack(
+                   controller.popularCarModel.cars!.length = 4.toInt(), (index) => Stack(
                  children: [
                    Container(
                      margin: const EdgeInsetsDirectional.only(end: 12),
@@ -111,16 +114,18 @@ class HomePopularSection extends StatelessWidget {
                          ),
 
                          Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                           padding:  EdgeInsets.symmetric(horizontal: 12.0),
                            child: Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                              children: [
                                Row(
                                  children: [
                                    SvgPicture.asset(AppIcons.lucidFuel),
+
                                    CustomText(
                                      left: 8,
-                                     text:"${controller.popularCarModel.cars![index].totalRun.toString()}${"/L"}",
+                                     text: controller.popularCarModel.cars![index].totalRun.toString(),
+                                    // text:"${controller.popularCarModel.cars![index].totalRun.toString()}${"/L"}",
                                      color: AppColors.whiteDark,
                                      fontSize: 10,
                                      fontWeight: FontWeight.w400,
@@ -134,7 +139,7 @@ class HomePopularSection extends StatelessWidget {
                                        text: TextSpan(
                                            children: [
                                              TextSpan(
-                                               text: "${"\$"}${controller.popularCarModel.cars![index].hourlyRate.toString()}",
+                                                text: "${"\$"}${controller.popularCarModel.cars![index].hourlyRate.toString()}",
                                                style: GoogleFonts.poppins(
                                                  color: const Color(0xFF595959),
                                                  fontSize: 10,

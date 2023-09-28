@@ -16,8 +16,8 @@ class PrivacyPolicyController extends GetxController{
     super.onReady();
   }
 
-  late bool isLoading = false;
- late PrivacyPolicyModel privacyPolicyModel;
+  bool isLoading = false;
+  String content = "";
 
   Future<void> privacyPolicyGetResponse() async{
     isLoading = true;
@@ -28,8 +28,9 @@ class PrivacyPolicyController extends GetxController{
     print("status code: ${responseModel.statusCode}");
 
     if(responseModel.statusCode == 200){
-      privacyPolicyModel = PrivacyPolicyModel.fromJson(jsonDecode(responseModel.responseJson));
+     PrivacyPolicyModel  privacyPolicyModel = PrivacyPolicyModel.fromJson(jsonDecode(responseModel.responseJson));
       print("data: ${privacyPolicyModel.privacyPolicy.toString()}");
+      content = privacyPolicyModel.privacyPolicy!.content??"";
       // await gotoNextStep(privacyPolicyModel);
     }
     else{

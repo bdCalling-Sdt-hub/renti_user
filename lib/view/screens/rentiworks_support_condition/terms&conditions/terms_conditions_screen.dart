@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
@@ -63,13 +64,7 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
                           child: CircularProgressIndicator(color: AppColors.primaryColor,),
                         );
                       } else {
-                        return CustomText(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          textAlign: TextAlign.start,
-                          text: controller.termConditionModel.termsCondition!.content.toString(),
-                          maxLines: null,
-                        );
+                        return Html(data: controller.content.toString());
                       }
                     })
 

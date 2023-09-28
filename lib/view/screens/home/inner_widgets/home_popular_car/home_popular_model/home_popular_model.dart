@@ -315,11 +315,13 @@ final totalRunValues = EnumValues({
 });
 
 enum TripStatus {
+  END,
   PENDING,
   START
 }
 
 final tripStatusValues = EnumValues({
+  "End": TripStatus.END,
   "Pending": TripStatus.PENDING,
   "Start": TripStatus.START
 });

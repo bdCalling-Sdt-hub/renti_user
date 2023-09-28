@@ -117,7 +117,7 @@ final AllCarsModel allCarsModel;
                             height: 60,
                             width: 120,
                             decoration: BoxDecoration(
-                                image: DecorationImage(image: NetworkImage(allCarsModel.cars![index].image[0].toString()),
+                                image: DecorationImage(image: NetworkImage(allCarsModel.cars![index].image![0].toString()),
                                     fit: BoxFit.fill
                                 )
                             ),

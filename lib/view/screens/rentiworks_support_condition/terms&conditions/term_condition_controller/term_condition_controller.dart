@@ -20,8 +20,7 @@ class TermConditionController extends GetxController{
   }
 
   bool isLoading = false;
-  late final TermConditionModel termConditionModel;
-
+  String content = "";
   Future<void> aboutUsGetResponse() async{
     isLoading = true;
     update();
@@ -31,8 +30,9 @@ class TermConditionController extends GetxController{
     print("status code: ${responseModel.statusCode}");
 
     if(responseModel.statusCode == 200){
-      termConditionModel = TermConditionModel.fromJson(jsonDecode(responseModel.responseJson));
-      print("data: ${termConditionModel.termsCondition.toString()}");
+     TermConditionModel termConditionModel = TermConditionModel.fromJson(jsonDecode(responseModel.responseJson));
+      content = termConditionModel.termsCondition!.content??"";
+      // print("data: ${termConditionModel.termsCondition.toString()}");
       // await gotoNextStep(privacyPolicyModel);
     }
     else{

@@ -41,7 +41,7 @@ class _PopularCarScreenState extends State<PopularCarScreen> {
                 )
               ],
             )),
-        body:  const Padding(
+        body: Padding(
           padding: EdgeInsets.symmetric(vertical: 24,horizontal: 20),
           child: Column(
             children: [
@@ -49,7 +49,7 @@ class _PopularCarScreenState extends State<PopularCarScreen> {
               SizedBox(height: 24),
              Expanded(
                child: SingleChildScrollView(
-                 child: PopularCarSection()
+                 child: PopularCarSection(popularCarModel:popularCarModel,)
                ),
              )
             ],

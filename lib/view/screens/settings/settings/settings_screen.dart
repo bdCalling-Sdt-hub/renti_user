@@ -32,6 +32,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: const SingleChildScrollView(
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
                 physics: BouncingScrollPhysics(),
                 child: Column(
                   children: [

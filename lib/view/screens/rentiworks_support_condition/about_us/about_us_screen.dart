@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
@@ -22,7 +23,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
   @override
   void initState() {
     Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(AboutUstRepo(apiService: Get.find()));
+    Get.put(AboutUsRepo(apiService: Get.find()));
     Get.put(AboutUstController(aboutUstRepo: Get.find()));
     super.initState();
   }
@@ -63,13 +64,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                           child: CircularProgressIndicator(),
                         );
                       } else {
-                        return CustomText(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          textAlign: TextAlign.start,
-                          text: controller.aboutUsModel.about!.content.toString(),
-                          maxLines: null,
-                        );
+                        return Html(data: controller.content,);
                       }
                     })
 

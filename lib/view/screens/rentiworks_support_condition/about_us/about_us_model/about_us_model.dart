@@ -42,8 +42,8 @@ class About {
 }
 
   About.fromJson(dynamic json) {
-    _id = json['_id'];
-    _content = json['content'];
+    _id = json['_id'].toString();
+    _content = json['content'].toString();
     _createdAt = json['createdAt'];
     _updatedAt = json['updatedAt'];
     _v = json['__v'];

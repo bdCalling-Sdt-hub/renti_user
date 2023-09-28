@@ -23,14 +23,15 @@ class PopularCarController extends GetxController{
   }
   Future<void> popularCarResult({String search = ""}) async{
     ApiResponseModel responseModel = await popularCarRepo.popularCarRepoResponse(search : search);
-     PopularCarModel popularCarModel;
-    print("status code: ${responseModel.responseJson}");
+
+    // print("status code: ${responseModel.responseJson}");
+
 
     if(responseModel.statusCode == 200){
       popularCarModel = PopularCarModel.fromJson(jsonDecode(responseModel.responseJson));
       isLoading = false;
       update();
-      // print("data: ${popularCarModel.cars![0].id}");
+       //print("data: ${popularCarModel.cars![0].carModelName}");
     }
     else{
 

@@ -14,8 +14,10 @@ class AllCarScreen extends StatefulWidget {
   State<AllCarScreen> createState() => _AllCarScreenState();
 }
 class _AllCarScreenState extends State<AllCarScreen> {
+
   @override
   Widget build(BuildContext context) {
+
     AllCarsModel allCarsModel = Get.arguments;
     return SafeArea(
       top: true,
@@ -52,7 +54,7 @@ class _AllCarScreenState extends State<AllCarScreen> {
               //
               //   print(allCarsModel.cars![0].carModelName);
               // }, icon: Icon(Icons.add))
-              AllCarDetaills(allCarsModel: allCarsModel,)
+              AllCarDetaills(allCarsModel: allCarsModel)
             ],
           ),
         ),

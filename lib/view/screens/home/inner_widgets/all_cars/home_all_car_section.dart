@@ -3,36 +3,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/route/app_route.dart';
-import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
-import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_repo/all_cars_repo.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_model/home_popular_model.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class HomeAllCarSection extends StatelessWidget {
 
-  HomeAllCarSection({super.key ,});
-
-  void initState() {
-    Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(AllCarsRepo(apiService: Get.find()));
-    Get.put(AllCarsController(allCarsRepo: Get.find()));
-  }
+  const HomeAllCarSection({super.key});
 
   @override
   Widget build(BuildContext context) {
 
     return GetBuilder<AllCarsController>(builder: (controller){
-      if(controller.isLoading==true){
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
       AllCarsModel allCarsModel = controller.allCarsModel;
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +33,7 @@ class HomeAllCarSection extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){
-                  Get.toNamed(AppRoute.allCarScreen,arguments:allCarsModel);
+                  Get.toNamed(AppRoute.allCarScreen, arguments: allCarsModel);
 
                 },
                 child:  const CustomText(
@@ -65,8 +50,7 @@ class HomeAllCarSection extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               physics:   const BouncingScrollPhysics(),
               child: Row(
-                children: List.generate(
-                    controller.allCarsModel.cars!.length.toInt(),(index) => Stack(
+                children: List.generate(controller.carList.length,(index) => Stack(
                   children: [
                     Container(
                       margin: const EdgeInsetsDirectional.only(end: 12),
@@ -92,7 +76,7 @@ class HomeAllCarSection extends StatelessWidget {
                             height: 95,
                             decoration:  ShapeDecoration(
                               image: DecorationImage(
-                                image: NetworkImage(controller.allCarsModel.cars![index].image[0]) ,
+                                image: NetworkImage(controller.carList[index].image![0].toString()) ,
                                 // image: AssetImage(AppImages.carImage),
                                 fit: BoxFit.fill,
                               ),
@@ -108,7 +92,7 @@ class HomeAllCarSection extends StatelessWidget {
                             left:12,
                             top:12,
                             bottom: 12,
-                            text: controller.allCarsModel.cars![index].carModelName.toString(),
+                            text: controller.carList[index].carModelName ?? "",
                             color: AppColors.primaryColor,
                             fontSize: 12,
                             fontWeight: FontWeight.w500,

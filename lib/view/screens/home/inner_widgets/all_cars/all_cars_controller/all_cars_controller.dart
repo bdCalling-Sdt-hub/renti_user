@@ -11,7 +11,8 @@ class AllCarsController extends GetxController{
   AllCarsRepo allCarsRepo;
   TextEditingController  searchController = TextEditingController();
   AllCarsModel allCarsModel =  AllCarsModel();
-  bool isLoading = true;
+  bool isLoading = false;
+  List<Cars> carList = [];
 
 
   @override
@@ -21,22 +22,24 @@ class AllCarsController extends GetxController{
   }
 
   Future<void> allCarResult({String search = ""}) async{
+    isLoading = true;
+    update();
 
     ApiResponseModel responseModel = await allCarsRepo.AllCarsRepoResponse(search: search);
-    // print("status code: ${responseModel.statusCode}");
 
     if(responseModel.statusCode == 200){
-        allCarsModel = AllCarsModel.fromJson(jsonDecode(responseModel.responseJson));
-        isLoading = false;
-         update();
-      // print("data: ${allCarsModel.cars![0].id}");
+      allCarsModel = AllCarsModel.fromJson(jsonDecode(responseModel.responseJson));
+      List<Cars>? tempCarList = allCarsModel.cars;
+      if(tempCarList != null && tempCarList.isNotEmpty){
+        carList.addAll(tempCarList);
+      }
     }
     else{
 
     }
-
+    isLoading = false;
+    update();
   }
-
 }
 
 

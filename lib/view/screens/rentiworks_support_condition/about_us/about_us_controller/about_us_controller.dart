@@ -6,19 +6,18 @@ import 'package:renti_user/view/screens/rentiworks_support_condition/about_us/ab
 
 class AboutUstController extends GetxController{
 
-  AboutUstRepo aboutUstRepo;
+  AboutUsRepo aboutUstRepo;
 
   AboutUstController( {required this.aboutUstRepo});
 
   @override
   void onReady() {
-    // TODO: implement onReady
     aboutUsGetResponse();
     super.onReady();
   }
 
-   bool isLoading = false;
-  late final AboutUsModel aboutUsModel;
+  bool isLoading = false;
+  String content = "";
 
   Future<void> aboutUsGetResponse() async{
     isLoading = true;
@@ -29,9 +28,8 @@ class AboutUstController extends GetxController{
     print("status code: ${responseModel.statusCode}");
 
     if(responseModel.statusCode == 200){
-      aboutUsModel = AboutUsModel.fromJson(jsonDecode(responseModel.responseJson));
-      print("data: ${aboutUsModel.about.toString()}");
-      // await gotoNextStep(privacyPolicyModel);
+      AboutUsModel aboutUsModel = AboutUsModel.fromJson(jsonDecode(responseModel.responseJson));
+      content = aboutUsModel.about?.content ?? "";
     }
     else{
       isLoading = false;
