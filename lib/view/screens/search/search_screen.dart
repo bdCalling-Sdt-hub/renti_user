@@ -24,6 +24,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+
   @override
   void initState() {
     DeviceUtils.authUtils();
@@ -34,13 +35,10 @@ class _SearchScreenState extends State<SearchScreen> {
     super.initState();
 
   }
-  @override
-  void initState() {
-    DeviceUtils.authUtils();
-    Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(SearchRepo(apiService: Get.find()));
-    Get.put(SearchScreenController(searchRepo: Get.find()));
-    super.initState();
+
+
+
+
 
   }
   @override
@@ -90,9 +88,7 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
             bottomNavigationBar: const CustomBottomNavBar(currentIndex: 1),
           );
-
-
-        }
-    );
+           }
+  );
   }
 }
