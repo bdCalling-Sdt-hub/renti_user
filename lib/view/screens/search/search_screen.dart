@@ -10,7 +10,6 @@ import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:renti_user/view/screens/search/inner_widgets/searches_car_section.dart';
 import 'package:renti_user/view/screens/search/search_controller/search_controller.dart';
-import 'package:renti_user/view/screens/search/search_model/search_model.dart';
 import 'package:renti_user/view/screens/search/search_repo/search_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
@@ -29,7 +28,6 @@ class _SearchScreenState extends State<SearchScreen> {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(SearchRepo(apiService: Get.find()));
     Get.put(SearchScreenController(searchRepo: Get.find()));
-
     super.initState();
   }
   // final homecontroller = Get.find<SearchScreenController>();
@@ -66,7 +64,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   suffixIcon: GestureDetector(
                     onTap: (){
                        controller.searchController.clear();
-                       controller.searchResult(search: "");
+                        controller.searchResult(search: "");
 
                     },
                     child: SvgPicture.asset(
