@@ -118,6 +118,8 @@ class HomeOfferCarSection extends StatelessWidget {
                                         text: TextSpan(
                                             children: [
                                               TextSpan(
+
+
                                                 text: '\$20  ',
                                                 style: GoogleFonts.poppins(
                                                   color: AppColors.primaryColor,
