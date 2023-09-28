@@ -7,7 +7,6 @@ import 'package:renti_user/view/screens/auth/select_photo/select_photo_screen.da
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:renti_user/view/screens/auth/signup_continue/sign_up_continue_screen.dart';
-import 'package:renti_user/view/screens/car_list/all_cars/all_cars_screen.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_screen.dart';
 import 'package:renti_user/view/screens/home/home_screen.dart';
 import 'package:renti_user/view/screens/intro/intro_screen.dart';
@@ -78,7 +77,6 @@ class AppRoute {
     GetPage(name: offerCarScreen, page: ()=> const OfferCarScreen()),
     GetPage(name: inboxScreen, page: ()=> const InboxScreen()),
     GetPage(name: messageScreen, page: ()=> const MessageScreen()),
-    GetPage(name:allCars , page: ()=>const AllCarsScreen()),
     GetPage(name: introScreen, page: ()=> const IntroScreen()),
     GetPage(name: selectLanguageScreen, page: ()=>const SelectLanguageScreen()),
     GetPage(name: signInScreen, page: ()=>const SignInScreen()),
