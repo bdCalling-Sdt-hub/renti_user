@@ -11,6 +11,7 @@ import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_con
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_repo/all_cars_repo.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_from_until_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/home_all_car_section.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_top_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/drawer/custom_drawer.dart';
@@ -90,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          body:  const SingleChildScrollView(
+          body:   const SingleChildScrollView(
             padding: EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
             physics: BouncingScrollPhysics(),
             child: Column(
@@ -101,9 +102,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 16),
                 HomeFromUntilSection(),
                 SizedBox(height: 24),
-                // HomePopularSection(),
+                //HomePopularSection(),
                 SizedBox(height: 24,),
-                HomeAllCarSection()
+               HomeAllCarSection()
               ],
             ),
           ),

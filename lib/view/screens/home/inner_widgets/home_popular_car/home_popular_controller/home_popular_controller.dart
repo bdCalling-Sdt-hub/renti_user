@@ -10,11 +10,14 @@ class PopularCarController extends GetxController{
 
 
   PopularCarController({required this.popularCarRepo});
-  PopularCarRepo popularCarRepo;
 
+
+  PopularCarRepo popularCarRepo;
   TextEditingController  searchController = TextEditingController();
-  PopularCarModel popularCarModel =  PopularCarModel();
-  bool isLoading = true;
+   PopularCarModel popularCarModel =  PopularCarModel();
+  bool isLoading = false;
+
+  List<Car> popularCarList = [];
 
   @override
   void onInit() {
@@ -23,20 +26,27 @@ class PopularCarController extends GetxController{
   }
   Future<void> popularCarResult({String search = ""}) async{
     ApiResponseModel responseModel = await popularCarRepo.popularCarRepoResponse(search : search);
+    isLoading = true;
+    update();
 
-    // print("status code: ${responseModel.responseJson}");
+    if(responseModel.statusCode == 200) {
 
-
-    if(responseModel.statusCode == 200){
       popularCarModel = PopularCarModel.fromJson(jsonDecode(responseModel.responseJson));
-      isLoading = false;
-      update();
-       //print("data: ${popularCarModel.cars![0].carModelName}");
+
+     List<Car>?tempCarList = popularCarModel.cars;
+
+     if(tempCarList!=null && tempCarList.isNotEmpty){
+       popularCarList.addAll(tempCarList);
+
+     }
+
+
     }
     else{
 
     }
-
+    isLoading = false;
+    update();
   }
 
 }

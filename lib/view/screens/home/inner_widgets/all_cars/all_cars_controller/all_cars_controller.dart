@@ -12,7 +12,7 @@ class AllCarsController extends GetxController{
   TextEditingController  searchController = TextEditingController();
   AllCarsModel allCarsModel =  AllCarsModel();
   bool isLoading = false;
-  List<Cars> carList = [];
+  List<Car> carList = [];
 
 
   @override
@@ -29,7 +29,7 @@ class AllCarsController extends GetxController{
 
     if(responseModel.statusCode == 200){
       allCarsModel = AllCarsModel.fromJson(jsonDecode(responseModel.responseJson));
-      List<Cars>? tempCarList = allCarsModel.cars;
+      List<Car>? tempCarList = allCarsModel.cars;
       if(tempCarList != null && tempCarList.isNotEmpty){
         carList.addAll(tempCarList);
       }

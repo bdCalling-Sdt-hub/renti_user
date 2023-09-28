@@ -65,7 +65,7 @@ class HomePopularSection extends StatelessWidget {
              physics:  const BouncingScrollPhysics(),
              child: Row(
                children: List.generate(
-                   controller.popularCarModel.cars!.length = 4.toInt(), (index) => Stack(
+                   controller.popularCarList.length, (index) => Stack(
                  children: [
                    Container(
                      margin: const EdgeInsetsDirectional.only(end: 12),
@@ -91,7 +91,7 @@ class HomePopularSection extends StatelessWidget {
                            height: 95,
                            decoration:  ShapeDecoration(
                              image: DecorationImage(
-                               image: NetworkImage(controller.popularCarModel.cars?[index].image[0]??""),
+                               image: NetworkImage(controller.popularCarList[index].image[0]??""),
                                // image: AssetImage(AppImages.carBg),
                                fit: BoxFit.fill,
                              ),
@@ -107,7 +107,7 @@ class HomePopularSection extends StatelessWidget {
                            left:12,
                            top:12,
                            bottom: 12,
-                           text: controller.popularCarModel.cars![index].carModelName.toString(),
+                           text: controller.popularCarList[index].carModelName??"",
                            color: AppColors.primaryColor,
                            fontSize: 12,
                            fontWeight: FontWeight.w500,
@@ -124,7 +124,7 @@ class HomePopularSection extends StatelessWidget {
 
                                    CustomText(
                                      left: 8,
-                                     text: controller.popularCarModel.cars![index].totalRun.toString(),
+                                     text: controller.popularCarList[index].totalRun.toString()??"",
                                     // text:"${controller.popularCarModel.cars![index].totalRun.toString()}${"/L"}",
                                      color: AppColors.whiteDark,
                                      fontSize: 10,
@@ -139,7 +139,7 @@ class HomePopularSection extends StatelessWidget {
                                        text: TextSpan(
                                            children: [
                                              TextSpan(
-                                                text: "${"\$"}${controller.popularCarModel.cars![index].hourlyRate.toString()}",
+                                                text: "${"\$"}${controller.popularCarList[index].hourlyRate.toString()?? ""}",
                                                style: GoogleFonts.poppins(
                                                  color: const Color(0xFF595959),
                                                  fontSize: 10,
