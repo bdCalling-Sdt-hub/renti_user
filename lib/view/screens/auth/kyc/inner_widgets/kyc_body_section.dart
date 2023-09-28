@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
-
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
 import '../../../../widgets/buttons/custom_elevated_button.dart';
@@ -174,9 +173,14 @@ class _KycBodySectionState extends State<KycBodySection> {
           const SizedBox(height: 190),
           CustomElevatedButton(
               buttonWidth: MediaQuery.of(context).size.width,
-              onPressed: () => setDataToLocalStore(controller, controller.drivingLicenseFileName, controller.passportFileName, controller.ineNumberController.text),
+              onPressed: () => setDataToLocalStore(
+                  controller,
+                  controller.drivingLicenseFileName,
+                  controller.passportFileName,
+                  controller.ineNumberController.text,
+              ),
               titleText: "Continue"
-          )
+          ),
         ],
       )
     );
@@ -187,6 +191,14 @@ class _KycBodySectionState extends State<KycBodySection> {
     await controller.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.drivingLicense, drivingLicenseFileName);
     await controller.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.passport, passportFileName);
     await controller.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.ineNumber, ineNumber);
+
+    final drivingLicenseFile = await controller.signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.drivingLicense);
+    final passportFile = await controller.signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.passport);
+    final ineNumberText = await controller.signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.ineNumber);
+
+    print(drivingLicenseFile);
+    print(passportFile);
+    print(ineNumberText);
 
     Get.toNamed(AppRoute.selectPhoto);
   }

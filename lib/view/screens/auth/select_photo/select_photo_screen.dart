@@ -67,23 +67,49 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                     physics: const BouncingScrollPhysics(),
                     child: Column(
                       children: [
-                        Container(
-                          width: 150,
-                          height: 150,
-                          alignment: Alignment.center,
-                          padding: const EdgeInsetsDirectional.symmetric(vertical: 10, horizontal: 10),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.transparent,
-                            border: Border.all(width: 2, color: AppColors.darkBlueColor)
-                          ),
-                          child: Container(
-                            width: 130,
-                            height: 130,
+                        GestureDetector(
+                          onTap: (){
+                            controller.openGallery();
+                          },
+                          child: controller.profileImage == null? Container(
+                            width: 150,
+                            height: 150,
                             alignment: Alignment.center,
                             padding: const EdgeInsetsDirectional.symmetric(vertical: 10, horizontal: 10),
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(image: AssetImage("assets/images/user.png"), fit: BoxFit.fill)
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.transparent,
+                              border: Border.all(width: 2, color: AppColors.darkBlueColor)
+                            ),
+                            child: Container(
+                              width: 130,
+                              height: 130,
+                              alignment: Alignment.center,
+                              padding: const EdgeInsetsDirectional.symmetric(vertical: 10, horizontal: 10),
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(image: AssetImage("assets/images/user.png"), fit: BoxFit.fill)
+                              ),
+                            ),
+                          ):Container(
+                            width: 150,
+                            height: 150,
+                            alignment: Alignment.center,
+                            padding: const EdgeInsetsDirectional.symmetric(vertical: 10, horizontal: 10),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.transparent,
+                                border: Border.all(width: 2, color: AppColors.darkBlueColor)
+                            ),
+                            child: Container(
+                              width: 150,
+                              height: 150,
+                              alignment: Alignment.center,
+                              padding: const EdgeInsetsDirectional.symmetric(vertical: 10, horizontal: 10),
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(image: FileImage(controller.profileImage!), fit: BoxFit.fill),
+                                  shape: BoxShape.circle,
+                                  color: Colors.transparent,
+                              ),
                             ),
                           ),
                         ),

@@ -82,6 +82,13 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: AppColors.whiteNormalActive),
+                    validator: (value){
+                      if (value == null || value.isEmpty) {
+                        return AppStrings.notBeEmpty;
+                      }else {
+                        return null;
+                      }
+                    },
                   ),
                 ),
               ],
@@ -99,6 +106,13 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                   letterSpacing: 1,
                   color: AppColors.whiteNormalActive
               ),
+              validator: (value){
+                if (value == null || value.isEmpty) {
+                  return AppStrings.notBeEmpty;
+                }else {
+                  return null;
+                }
+              },
             ),
             const CustomText(text: AppStrings.creditCardNum, bottom: 12, top: 16),
             CustomTextField(
@@ -138,11 +152,15 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
             const SizedBox(height: 24),
             CustomElevatedButton(
                 buttonWidth: MediaQuery.of(context).size.width,
-                onPressed: () => setDataToLocalStore(
-                  controller,
-                  phoneNumber: "${controller.phoneCode} ${controller.phoneNumberController.text}",
-                  address: controller.addressController.text
-                ),
+                onPressed: (){
+                  if(formKey.currentState!.validate()){
+                    setDataToLocalStore(
+                        controller,
+                        phoneNumber: "${controller.phoneCode} ${controller.phoneNumberController.text}",
+                        address: controller.addressController.text
+                    );
+                  }
+                },
                 titleText: "Continue"
             )
           ],
@@ -156,8 +174,11 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
     await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.phoneNumber, phoneNumber);
     await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.address, address);
 
-    print("phone number: $phoneNumber");
-    print("address: $address");
+    final phonePrint = await signUpController.signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.phoneNumber);
+    final addressPrint = await signUpController.signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.address);
+
+    print("phone number: $phonePrint");
+    print("address: $addressPrint");
 
     Get.toNamed(AppRoute.kycScreen);
   }

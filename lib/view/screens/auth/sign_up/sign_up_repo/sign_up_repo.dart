@@ -18,7 +18,7 @@ class SignUpRepo{
     required String address,
     required String dateOfBirth,
     required String password,
-    required List<File> kycImages,
+    required List<String> kycImages,
     required File profileImage,
     required String ineNumber,
   }) async{
@@ -35,14 +35,18 @@ class SignUpRepo{
       "address" : address,
       "dateOfBirth" : dateOfBirth,
       "password" : password,
-      "image" : profileImage,
+      "image" : profileImage.path.toString(),
       "KYC" : kycImages,
       "ine" : ineNumber,
       "role" : "user"
     };
 
     ApiResponseModel responseModel = await apiService.request(url, responseMethod, params, passHeader: false);
-
+    print("Srabon "+params.toString());
+    print("Srabon "+url);
+    print("Srabon "+responseModel.statusCode.toString());
+    print("Srabon "+responseModel.responseJson);
+    print("Srabon "+responseModel.message);
     return responseModel;
   }
 }

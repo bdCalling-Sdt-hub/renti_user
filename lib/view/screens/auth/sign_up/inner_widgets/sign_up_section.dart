@@ -5,7 +5,6 @@ import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
-
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
 import '../../../../widgets/text/custom_text.dart';
@@ -39,6 +38,13 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
               hintText: "Enter your full name",
               inputTextStyle: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.blackNormal),
               hintStyle: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.whiteNormalActive),
+              validator: (value){
+                if (value == null || value.isEmpty) {
+                  return AppStrings.notBeEmpty;
+                }else {
+                  return null;
+                }
+              },
             ),
             const CustomText(text: AppStrings.email, top: 16, bottom: 12),
             CustomTextField(
@@ -184,7 +190,10 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                   return AppStrings.notBeEmpty;
                 } else if (value.length < 6) {
                   return AppStrings.passwordShouldBe;
-                } else {
+                } else if(!controller.regex.hasMatch(controller.passwordController.text.toString())){
+                  return "Password should contain upper,lower,digit and Special character";
+                }
+                else {
                   return null;
                 }
               },
@@ -207,7 +216,7 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                   letterSpacing: 1,
                   color: AppColors.whiteNormalActive),
               validator: (value) {
-                if (value == null || value.isEmpty) {
+                if (value == null || value.isEmpty || value != controller.passwordController.text) {
                   return AppStrings.notBeEmpty;
                 } else if (value.length < 6) {
                   return AppStrings.passwordShouldBe;
@@ -219,14 +228,18 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
             const SizedBox(height: 24),
             CustomElevatedButton(
               buttonWidth: MediaQuery.of(context).size.width,
-              onPressed: () => setDataToLocalStore(
-                controller,
-                fullName: controller.fullNameController.text,
-                email: controller.emailController.text,
-                gender: controller.genderList[controller.selectedGender].toString(),
-                dob: "${controller.dateController.text}/${controller.monthController.text}/${controller.yearController.text}",
-                password: controller.confirmPasswordController.text
-              ),
+              onPressed: (){
+                if(formKey.currentState!.validate()){
+                  setDataToLocalStore(
+                      controller,
+                      fullName: controller.fullNameController.text,
+                      email: controller.emailController.text,
+                      gender: controller.genderList[controller.selectedGender].toString(),
+                      dob: "${controller.dateController.text}/${controller.monthController.text}/${controller.yearController.text}",
+                      password: controller.confirmPasswordController.text
+                  );
+                }
+              },
               titleText: "Continue"
             )
           ],
@@ -243,11 +256,17 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
     await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.dob, dob);
     await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.password, password);
 
-    print("full name: $fullName");
-    print("email: $email");
-    print("gender: $gender");
-    print("dob: $dob");
-    print("password: $password");
+    final getName = await signUpController.signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.fullName);
+    final getEmail = await signUpController.signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.email);
+    final getGender = await signUpController.signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.gender);
+    final getDob = await signUpController.signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.dob);
+    final getPassword = await signUpController.signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.password);
+
+    print("full name: $getName");
+    print("email: $getEmail");
+    print("gender: $getGender");
+    print("dob: $getDob");
+    print("password: $getPassword");
 
     Get.toNamed(AppRoute.signUpContinueScreen);
   }

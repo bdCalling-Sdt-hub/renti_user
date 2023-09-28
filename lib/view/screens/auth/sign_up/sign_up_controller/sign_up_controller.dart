@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
+import 'package:renti_user/core/global/api_url_container.dart';
+import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_model/sign_up_response_model.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_repo/sign_up_repo.dart';
@@ -31,6 +33,8 @@ class SignUpController extends GetxController{
   TextEditingController cvvController = TextEditingController();
   TextEditingController ineNumberController = TextEditingController();
 
+  final regex = RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])(?=.*[a-zA-Z\d@#$%^&+=!]).{8,}$');
+
   List<String> genderList = ["Male", "Female", "Others"];
   int selectedGender = 0;
   List<File> kycDocFiles = [];
@@ -40,9 +44,7 @@ class SignUpController extends GetxController{
   void initialState(){
     isSubmit = true;
     update();
-
     signUpUser();
-
     isSubmit = false;
     update();
   }
@@ -50,16 +52,16 @@ class SignUpController extends GetxController{
   Future<void> signUpUser() async{
 
     ApiResponseModel responseModel = await signUpRepo.createUser(
-        fullName: fullNameController.text.toString(),
-        email: emailController.text.toString(),
-        phoneNumber: "$phoneCode ${phoneNumberController.text.toString()}",
-        gender: genderList[selectedGender],
-        address: addressController.text.toString(),
-        dateOfBirth: "${dateController.text.toString()}/${monthController.text.toString()}/${yearController.text.toString()}",
-        password: passwordController.text.toString(),
-        kycImages: kycDocFiles,
-        ineNumber: ineNumberController.text.toString(),
-        profileImage: profileImage!
+        fullName: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.fullName) ?? "",
+        email: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.email) ?? "",
+        phoneNumber: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.phoneNumber) ?? "",
+        gender: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.gender) ?? "",
+        address: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.address) ?? "",
+        dateOfBirth: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.dob) ?? "",
+        password: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.password) ?? "",
+        kycImages: [uploadDrivingLicense!.path.toString(),uploadPassport!.path.toString()],
+        ineNumber: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.ineNumber) ?? "",
+        profileImage: profileImage ?? File(" "),
     );
 
     if(responseModel.statusCode == 200){
@@ -89,7 +91,9 @@ class SignUpController extends GetxController{
     FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, allowedExtensions: ["pdf"], type: FileType.custom);
 
     if (result != null && result.files.isNotEmpty) {
-      uploadDrivingLicense = File(result.files.single.name);
+      uploadDrivingLicense = File(result.paths[0]!);;
+      print(uploadDrivingLicense!.path);
+      await signUpRepo.apiService.sharedPreferences.setString("uploadDrivingLicenseFilePath", uploadDrivingLicense!.path);
       drivingLicenseFileName = result.files.single.name;
 
       kycDocFiles.add(uploadDrivingLicense!);
@@ -101,7 +105,9 @@ class SignUpController extends GetxController{
     FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, allowedExtensions: ["pdf"], type: FileType.custom);
 
     if (result != null && result.files.isNotEmpty) {
-      uploadPassport = File(result.files.single.name);
+      uploadPassport = File(result.paths[0]!);
+
+      await signUpRepo.apiService.sharedPreferences.setString("uploadPassportFilePath", uploadPassport!.path);
       passportFileName = result.files.single.name;
       kycDocFiles.add(uploadPassport!);
       update();
@@ -131,6 +137,7 @@ class SignUpController extends GetxController{
 
     if(pickedFile != null){
       imageFile = File(pickedFile.path);
+      profileImage = imageFile;
       update();
     }
   }
@@ -144,6 +151,7 @@ class SignUpController extends GetxController{
 
     if(pickedFile != null) {
       imageFile = File(pickedFile.path);
+      profileImage = imageFile;
       update();
     }
   }

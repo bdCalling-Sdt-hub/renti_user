@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
+import 'package:renti_user/view/screens/car_select/select_car/select_car_controller/select_car_controller.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_strings.dart';
@@ -98,14 +97,19 @@ class _CancelShowDialogueState extends State<CancelShowDialogue> {
           ),
 
           const SizedBox(height: 26,),
-          CustomElevatedButton(
-            buttonWidth: MediaQuery.of(context).size.width,
-            onPressed: () {
+          GetBuilder<SelectCarController>(
+            builder: (controller){
+              return CustomElevatedButton(
+                buttonWidth: MediaQuery.of(context).size.width,
+                onPressed: () {
+                  controller.deleteRentCarRequest();
+                },
+                titleText: "Submit",
+                titleSize: 18,
+                titleWeight: FontWeight.w600,
+              );
             },
-            titleText: "Submit",
-            titleSize: 18,
-            titleWeight: FontWeight.w600,
-          )
+          ),
         ],
       ) ,
     );

@@ -4,7 +4,6 @@ import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
 import 'package:renti_user/view/screens/auth/signup_continue/inner_widgets/sign_up_continue_auth_section.dart';
-
 import '../../../../utils/app_colors.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
 import '../../../widgets/buttons/custom_back_button.dart';

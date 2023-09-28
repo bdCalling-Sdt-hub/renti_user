@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_method.dart';
 import 'package:http/http.dart' as http;
@@ -33,17 +32,25 @@ class ApiService extends GetxService{
               headers: {
                 "Content-Type": "application/json",
                 "Authorization": "$tokenType $token"
-          });
+              });
         }
         else{
           response = await http.post(
             url,
-            body: params
+            body: params,
           );
         }
       }
       else if (method == ApiResponseMethod.deleteMethod) {
-        response = await http.delete(url);
+        if(passHeader){
+          response = await http.delete(url,headers: {
+            "Content-Type": "application/json",
+            "Authorization": "$tokenType $token"
+          });
+        }else{
+          response = await http.delete(url);
+        }
+
       }
       else if (method == ApiResponseMethod.updateMethod) {
         response = await http.patch(url);
@@ -53,7 +60,7 @@ class ApiService extends GetxService{
           initToken();
           response = await http.get(
             url,headers: {
-            "Accept": "application/json",
+            "Content-Type": "application/json",
             "Authorization": "$tokenType $token"
           });
         }
@@ -84,6 +91,8 @@ class ApiService extends GetxService{
         sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, false);
         Get.offAllNamed(AppRoute. signInScreen);
         return ApiResponseModel(401, "Unauthorized".tr, response.body);
+      } else if (response.statusCode == 201) {
+        return ApiResponseModel(200, 'Success', response.body);
       } else if (response.statusCode == 500) {
         return ApiResponseModel(500, "Internal Server Error".tr, response.body);
       } else {
