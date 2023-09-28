@@ -19,7 +19,7 @@ import 'package:renti_user/view/screens/payment_method/payment_method/payment_me
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_screen.dart';
 import 'package:renti_user/view/screens/profile/profile_settings/profile_settings_screen.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_screen.dart';
-import 'package:renti_user/view/screens/rent_request_payment/rent_request_Screen.dart';
+import 'package:renti_user/view/screens/rent_request_payment/rent_request_screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/about_us/about_us_screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/how_renti_works/renti_works_screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/private_policy/private_policy_screen.dart';

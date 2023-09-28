@@ -9,11 +9,9 @@ import 'package:renti_user/view/screens/rent_request_payment/inner_widgets/payme
 import 'package:renti_user/view/screens/rent_request_payment/inner_widgets/host_information.dart';
 import 'package:renti_user/view/screens/rent_request_payment/inner_widgets/rental_info.dart';
 import 'package:renti_user/view/screens/rent_request_payment/inner_widgets/top_upload_scetion.dart';
-import 'package:renti_user/view/screens/rent_request_payment/rent_request_repo/rent_request_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_nav_button.dart';
 import '../../../utils/app_colors.dart';
-import 'rent_request_controller/rent_request_controller.dart';
 
 class RentRequestScreen extends StatefulWidget {
   const RentRequestScreen({super.key});
@@ -28,8 +26,6 @@ class _RentRequestScreenState extends State<RentRequestScreen> {
   void initState() {
     DeviceUtils.authUtils();
     Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(RentRequestRepo(apiService: Get.find()));
-    Get.put(RentRequestController(rentRequestRepo: Get.find()));
     super.initState();
   }
 
