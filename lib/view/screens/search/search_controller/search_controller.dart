@@ -5,7 +5,7 @@ import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/view/screens/search/search_model/search_model.dart';
 import 'package:renti_user/view/screens/search/search_repo/search_repo.dart';
 
-class SearchScreenController extends GetxController{
+class SearchScreenController extends GetxController {
   SearchRepo searchRepo;
   SearchScreenController({required this.searchRepo});
 
@@ -29,8 +29,28 @@ class SearchScreenController extends GetxController{
   Future<void> searchResult({String search=""}) async{
     ApiResponseModel responseModel = await searchRepo.searchRepoResponse(search: search);
 
+  TextEditingController searchController = TextEditingController();
+  bool isLoading = true;
+  @override
+  void onInit() {
+    searchGetResponse();
+    super.onInit();
+  }
+
+  SearchModel searchModel = SearchModel();
+
+  Future<void> searchGetResponse({String search = ''}) async {
+    ApiResponseModel responseModel =
+        await searchRepo.searchRepoResponse(search: search);
+
     print("status code: ${responseModel.statusCode}");
 
+    if (responseModel.statusCode == 200) {
+      searchModel =
+          SearchModel.fromJson(jsonDecode(responseModel.responseJson));
+      bool isLoading = false;
+      update();
+    } else {}
     if(responseModel.statusCode == 200){
       searchModel = SearchModel.fromJson(jsonDecode(responseModel.responseJson));
       print("data: ${searchModel.cars![0].id}");
@@ -48,5 +68,4 @@ class SearchScreenController extends GetxController{
     }
 
   }
-
 }

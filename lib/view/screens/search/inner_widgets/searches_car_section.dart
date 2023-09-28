@@ -113,89 +113,68 @@ class SearchesCarSection extends StatelessWidget {
                           bottomRight: Radius.circular(8)),
                     ),
     return GetBuilder<SearchScreenController>(builder: (controller){
-      return FutureBuilder<SearchModel>(
-          future: controller.searchGetResponse(),
-          builder: (context , snapshot) {
-
-
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                  child:
-                  CircularProgressIndicator()); // Show a loading indicator while waiting for data
-            } else if (snapshot.hasError) {
-              return Text(
-                  "Error: ${snapshot.error}"); // Show an error message if data fetch fails
-            } else if (!snapshot.hasData) {
-              return const Text(
-                  "No data available"); // Handle case where no data is available
-            }
-
-            searchModel = snapshot.data!;
-
-
-
-            return Column(
-              children: List.generate(
-                searchModel.cars!.length.toInt(),
-                    (index) => Container(
-                  margin: const EdgeInsetsDirectional.only(top: 8),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: AppColors.whiteNormalActive, width: 1),
-                      color: AppColors.whiteLight,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+      return Column(
+        children: List.generate(
+          controller.searchModel.cars!.length,
+              (index) => Container(
+            margin: const EdgeInsetsDirectional.only(top: 8),
+            decoration: BoxDecoration(
+                border: Border.all(
+                    color: AppColors.whiteNormalActive, width: 1),
+                color: AppColors.whiteLight,
+                borderRadius: BorderRadius.circular(8)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText(
+                      textAlign: TextAlign.start,
+                      left: 12,
+                      bottom: 12,
+                      text: controller.searchModel.cars![index].carModelName.toString(),
+                      color: AppColors.primaryColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    Padding(
+                      padding:
+                      const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment.spaceBetween,
                         children: [
-                          CustomText(
-                            textAlign: TextAlign.start,
-                            left: 12,
-                            bottom: 12,
-                            text: searchModel.cars![index].carModelName.toString(),
-                            color: AppColors.primaryColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
+                          Row(
+                            children: [
+                              SvgPicture.asset(AppIcons.lucidFuel),
+                              CustomText(
+                                left: 8,
+                                right: 8,
+                                text:'ml',
+                                color: AppColors.whiteDark,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                              )
+                            ],
                           ),
-                          Padding(
-                            padding:
-                            const EdgeInsets.symmetric(horizontal: 12.0),
-                            child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(AppIcons.lucidFuel),
-                                    CustomText(
-                                      left: 8,
-                                      right: 8,
-                                      text:searchModel.cars![index].totalRun.toString(),
-                                      color: AppColors.whiteDark,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w400,
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                Row(
-                                  children: [
-                                    RichText(
-                                        text: TextSpan(children: [
-                                          TextSpan(
-                                            text:
-                                            '\$ ${searchModel.cars![index].hourlyRate.toString() }',
-                                            style: GoogleFonts.poppins(
-                                              color: const Color(0xFF595959),
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.40,
-                                            ),
-                                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              RichText(
+                                  text: TextSpan(children: [
+                                    TextSpan(
+                                      text:
+                                      'll',
+                                      style: GoogleFonts.poppins(
+                                        color: const Color(0xFF595959),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.40,
+                                      ),
+                                    ),
 
                                             TextSpan(
                                               text:searchModel.cars![index]. registrationDate.toString() ,
@@ -239,6 +218,40 @@ class SearchesCarSection extends StatelessWidget {
               ),
             );
           }
+                                    TextSpan(
+                                        text:'pp' ,
+                                        style: TextStyle(
+                                          color: AppColors.primaryColor,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w400,
+                                        ))
+                                  ]))
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  width: 120,
+                  height: 80,
+                  decoration:   ShapeDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(controller.searchModel.cars![index].image[0].toString()),
+                      fit: BoxFit.cover,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(8),
+                          bottomRight: Radius.circular(8)),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       );
     });
   }
