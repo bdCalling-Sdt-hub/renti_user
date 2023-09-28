@@ -13,11 +13,9 @@ class ApiUrlContainer{
 
   static const String userInfoEndPoint = "user/user-info";
   static const String updateUserEndPont = "user/update";
-  static const String aboutEndPont = "about/all";
-  static const String privatePolicyEndPont = "privacyPolicy/all";
-  static const String termsConditionsEndPont = "termsConditionRouter/all";
+  static const String privacyPolicy = "privacyPolicy/all";
+  static const String aboutUsEnd = "about/all";
+  static const String termConditionEndPoint = "termsConditionRouter/all";
   static const String allCarsEndPoint = "car/all";
   static const String popularCarEndPoint = "car/offer-car";
-  static const String carAllEndPont = "car/all";
-  static const String carOfferCarEndPont = "car/offer-car";
 }

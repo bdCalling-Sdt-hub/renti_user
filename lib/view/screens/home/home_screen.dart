@@ -5,14 +5,17 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:renti_user/view/screens/car_list/all_cars/all_car_model/all_car_model.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_from_until_section.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_luxery_car_section.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_offer_car_section.dart';
+
 import 'package:renti_user/view/screens/home/inner_widgets/home_top_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/drawer/custom_drawer.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
+
+import 'inner_widgets/all_cars/home_all_car_section.dart';
+import 'inner_widgets/home_popular_car/home_popular_car_section.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -77,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          body: const SingleChildScrollView(
+          body:  SingleChildScrollView(
             padding: EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
             physics: BouncingScrollPhysics(),
             child: Column(
@@ -88,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 16),
                 HomeFromUntilSection(),
                 SizedBox(height: 24),
-                HomeOfferCarSection(),
+                HomeOfferCarSection(allCarModel: AllCarModel(),),
                 SizedBox(height: 24,),
                 HomeLuxuryCarSection()
               ],

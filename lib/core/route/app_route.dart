@@ -7,6 +7,7 @@ import 'package:renti_user/view/screens/auth/select_photo/select_photo_screen.da
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:renti_user/view/screens/auth/signup_continue/sign_up_continue_screen.dart';
+import 'package:renti_user/view/screens/car_list/all_cars/offer-car_screen.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_screen.dart';
 import 'package:renti_user/view/screens/home/home_screen.dart';
 import 'package:renti_user/view/screens/intro/intro_screen.dart';
@@ -31,7 +32,7 @@ import 'package:renti_user/view/screens/settings/change_password/change_password
 import 'package:renti_user/view/screens/settings/settings/settings_screen.dart';
 import 'package:renti_user/view/screens/trip/end_trip/end_trip_screen.dart';
 import 'package:renti_user/view/screens/trip/star_trip/start_trip_screen.dart';
-import '../../view/screens/car_list/offer_car/offer-car_screen.dart';
+
 
 class AppRoute {
 

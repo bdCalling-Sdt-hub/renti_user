@@ -5,13 +5,16 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/view/screens/car_list/luxury_cars/inner_widgets/luxury_car_details.dart';
+import 'package:renti_user/view/screens/car_list/all_cars/inner_widgets/search_filter.dart';
+
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-import '../offer_car/inner_widgets/search_filter.dart';
+import 'inner_widgets/luxury_car_details.dart';
+
+
 
 class LuxuryCarsScreen extends StatefulWidget {
   const LuxuryCarsScreen({super.key});
