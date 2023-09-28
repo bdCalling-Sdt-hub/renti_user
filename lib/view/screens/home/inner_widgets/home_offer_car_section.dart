@@ -12,9 +12,6 @@ import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 
 class HomeOfferCarSection extends StatelessWidget {
-  const HomeOfferCarSection({super.key});
-
-
     HomeOfferCarSection({super.key,required this.offerCarModel});
   OfferCarModel offerCarModel;
   @override
@@ -151,65 +148,6 @@ class HomeOfferCarSection extends StatelessWidget {
                                                 style: GoogleFonts.poppins(
                                                   color: const Color(0xFF595959),
                                                   fontSize: 10,
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          SvgPicture.asset(AppIcons.lucidFuel),
-                                          const CustomText(
-                                            left: 8,
-                                            text: "10 km/h",
-                                            color: AppColors.whiteDark,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w400,
-                                          )
-                                        ],
-                                      ),
-                                      const SizedBox(height: 8,),
-                                      Row(
-                                        children: [
-                                          RichText(
-                                              text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text: '\$20  ',
-                                                      style: GoogleFonts.poppins(
-                                                        color: AppColors.primaryColor,
-                                                        fontSize: 10,
-                                                        fontWeight: FontWeight.w400,
-                                                      ),
-                                                    ),
-
-                                                    TextSpan(
-
-                                                      text: '\$25',
-                                                      style: GoogleFonts.poppins(
-                                                        color: const Color(0xFF595959),
-                                                        fontSize: 10,
-
-                                                        fontWeight: FontWeight.w400,
-                                                        height: 1.40,
-                                                      ),
-                                                    ),
-                                                    const TextSpan(
-                                                        text: '/hr',
-                                                        style: TextStyle(
-                                                          color: AppColors.primaryColor,
-                                                          fontSize: 10,
-                                                          fontFamily: 'Poppins',
-                                                          fontWeight: FontWeight.w400,
-                                                          height: 1.40,
-                                                        ))
-                                                  ]
-                                              )
-                                          )
-                                        ],
-                                      ),
-                                    ],),
-                                ),
                               ],
                             ),
                           ),
@@ -234,9 +172,9 @@ class HomeOfferCarSection extends StatelessWidget {
                           ),
                         ],
                       )
-                      ),
-                    )
-                )
+
+
+
               ],
             );
           }

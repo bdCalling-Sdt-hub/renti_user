@@ -45,77 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          key: scaffoldKey,
-          drawer: const CustomDrawer(),
-          appBar: CustomAppBar(
-            appBarContent: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () => scaffoldKey.currentState?.openDrawer(),
-                  child: const Icon(Icons.menu,
-                      color: AppColors.primaryColor, size: 40),
-                ),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: ()=>Get.toNamed(AppRoute.searchScreen),
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 16),
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: AppColors.whiteLight,
-                        border: Border.all(color: AppColors.whiteNormalActive),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child:  const Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.search,
-                              size: 20, color: AppColors.whiteNormalActive),
-                          CustomText(
-                              text:AppStrings.searchCar,
-                              color: AppColors.whiteNormalActive,
-                              left: 8),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Get.toNamed(AppRoute.profileDetails);
-                  },
-                  child: const CustomImage(
-                      imageSrc: AppImages.profileImg,
-                      imageType: ImageType.png,
-                      size: 40),
-                ),
-              ],
-            ),
-          ),
-          body:  SingleChildScrollView(
-            padding: EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
-            physics: BouncingScrollPhysics(),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                HomeTopSection(),
-                SizedBox(height: 16),
-                HomeFromUntilSection(),
-                SizedBox(height: 24),
-                HomeOfferCarSection(),
-                SizedBox(height: 24,),
-                HomeLuxuryCarSection()
-              ],
-            ),
-          ),
-    return Scaffold(
-        key: scaffoldKey,
-        drawer: const CustomDrawer(),
         appBar: CustomAppBar(
           appBarContent: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -184,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
 
         bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0),
-
+      ),
     ) ;
   }
 }
