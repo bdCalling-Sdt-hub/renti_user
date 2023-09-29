@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:renti_user/service/api_service.dart';
@@ -62,11 +63,7 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
                           child: CircularProgressIndicator(),
                         );
                       } else {
-                        return CustomText(
-                          textAlign: TextAlign.start,
-                          text: controller.termsConditionsModel.termsCondition!.content.toString(),
-                          maxLines: null,
-                        );
+                        return Html(data: controller.termsConditionsModel.termsCondition!.content.toString());
                       }
                     })
                   ],

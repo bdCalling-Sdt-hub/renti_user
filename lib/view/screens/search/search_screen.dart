@@ -13,7 +13,6 @@ import 'package:renti_user/view/screens/search/search_controller/search_controll
 import 'package:renti_user/view/screens/search/search_model/search_model.dart';
 import 'package:renti_user/view/screens/search/search_repo/search_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
-import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -37,8 +36,6 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return  GetBuilder<SearchScreenController>(
         builder: (controller) {
-
-
           return Scaffold(
             appBar: CustomAppBar(
                 appBarContent: Text(

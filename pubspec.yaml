@@ -50,6 +50,7 @@ dependencies:
   intl: ^0.18.1
   file_picker: ^5.5.0
   open_file: ^3.3.2
+  flutter_html:
 
 
 dev_dependencies:

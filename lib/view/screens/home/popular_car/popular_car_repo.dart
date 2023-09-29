@@ -8,17 +8,15 @@ class PopularCarRepo{
   ApiService apiService;
   PopularCarRepo({required this.apiService});
 
-  Future<ApiResponseModel> PopularCarRepoResponse() async{
+  Future<ApiResponseModel> popularCarRepoResponse({String search = ""}) async{
 
     String uri= "${ApiUrlContainer.baseUrl}${ApiUrlContainer.carOfferCarEndPont}";
 
     String requestMethod  = ApiResponseMethod.getMethod;
 
     Map<String, String> params = {
-
     };
-
-    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, params, passHeader: true);
+    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, null, passHeader: true);
 
     return responseModel;
   }

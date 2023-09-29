@@ -8,13 +8,10 @@ import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:renti_user/view/screens/car_list/offer_car/offer_car_controller/offer_car_controller.dart';
-import 'package:renti_user/view/screens/car_list/offer_car/offer_car_model/offer_car_model.dart';
 import 'package:renti_user/view/screens/car_list/offer_car/offer_car_repo/offer_car_repo.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_from_until_section.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_luxery_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_offer_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_top_section.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/popular_car_model.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/drawer/custom_drawer.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
@@ -32,10 +29,16 @@ class _HomeScreenState extends State<HomeScreen> {
     DeviceUtils.authUtils();
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(OfferCarRepo(apiService: Get.find()));
-    Get.put(OfferCarController(offerCarRepo: Get.find()));
+    final controller = Get.put(OfferCarController(offerCarRepo: Get.find()));
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      controller.initialState();
+    });
     super.initState();
   }
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,21 +93,25 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        body:  SingleChildScrollView(
-          padding: EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              HomeTopSection(),
-              SizedBox(height: 16),
-              HomeFromUntilSection(),
-              SizedBox(height: 24),
-              HomeOfferCarSection(offerCarModel: OfferCarModel(),),
-              SizedBox(height: 24,),
-              HomePopularSection(popularCarModel: PopularCarModel(),)
-            ],
+        body: SingleChildScrollView(
+          padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
+          physics: const BouncingScrollPhysics(),
+          child: GetBuilder<OfferCarController>(
+            builder: (controller) => controller.isLoading ? const Center(
+              child: CircularProgressIndicator(),
+            ) : const Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                HomeTopSection(),
+                SizedBox(height: 16),
+                HomeFromUntilSection(),
+                SizedBox(height: 24),
+                HomeOfferCarSection(),
+                SizedBox(height: 24,),
+                // HomePopularSection( popularCarModel: PopularCarModel(),)
+              ],
+            ),
           ),
         ),
 

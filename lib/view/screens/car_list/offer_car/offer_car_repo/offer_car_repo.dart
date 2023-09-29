@@ -9,17 +9,13 @@ class OfferCarRepo{
   ApiService apiService;
   OfferCarRepo({required this.apiService});
 
-  Future<ApiResponseModel> OfferCarRepoResponse() async{
+  Future<ApiResponseModel> offerCarRepoResponse() async{
 
     String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.carAllEndPont}";
 
     String requestMethod = ApiResponseMethod.getMethod;
 
-    Map<String, String> params = {
-
-    };
-
-    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, params, passHeader: true);
+    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, null, passHeader: true);
 
     return responseModel;
   }

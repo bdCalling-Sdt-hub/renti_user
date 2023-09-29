@@ -18,4 +18,5 @@ class ApiUrlContainer{
   static const String termsConditionsEndPont = "termsConditionRouter/all";
   static const String carAllEndPont = "car/all";
   static const String carOfferCarEndPont = "car/offer-car";
+  static const String carDetailsEndPont = "rent/request/6512cd3e0d62ea37f575fdfd";
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:renti_user/utils/app_strings.dart';
@@ -61,11 +62,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                           child: CircularProgressIndicator(),
                         );
                       } else {
-                        return CustomText(
-                          textAlign: TextAlign.start,
-                          text: controller.aboutModel.about!.content.toString(),
-                          maxLines: null,
-                        );
+                        return Html(data: controller.aboutModel.about!.content.toString());
                       }
                     })
                   ],

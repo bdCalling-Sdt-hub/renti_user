@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:renti_user/service/api_service.dart';
@@ -67,11 +68,7 @@ class _PrivatePolicyScreenState extends State<PrivatePolicyScreen> {
                           child: CircularProgressIndicator(),
                         );
                       } else {
-                        return CustomText(
-                          textAlign: TextAlign.start,
-                          text: controller.privatePolicyModel.privacyPolicy!.content.toString(),
-                          maxLines: null,
-                        );
+                        return Html(data: controller.privatePolicyModel.privacyPolicy!.content.toString());
                       }
                     })
                   ],

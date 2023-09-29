@@ -7,22 +7,37 @@ import 'package:renti_user/view/screens/car_list/offer_car/offer_car_repo/offer_
 import '../offer_car_model/offer_car_model.dart';
 
 class OfferCarController extends GetxController{
+
   OfferCarRepo offerCarRepo;
   OfferCarController({required this.offerCarRepo});
 
-  Future<OfferCarModel> offerCarGetResponse() async{
-    ApiResponseModel responseModel = await offerCarRepo.OfferCarRepoResponse();
-    OfferCarModel offerCarModel;
-    print("status code: ${responseModel.statusCode}");
+  bool isLoading = false;
+  List<Car> carList = [];
 
-    if(responseModel.statusCode == 200){
-      offerCarModel = OfferCarModel.fromJson(jsonDecode(responseModel.responseJson));
-      print("data: ${offerCarModel.cars![0].id}");
-    }
-    else{
-      return OfferCarModel();
-    }
-    return offerCarModel;
+
+  void initialState() async{
+    carList.clear();
+    isLoading = true;
+    update();
+
+    await offerCarGetResponse();
+
+    isLoading = false;
+    update();
   }
 
+  Future<void> offerCarGetResponse() async{
+
+    ApiResponseModel responseModel = await offerCarRepo.offerCarRepoResponse();
+
+    if(responseModel.statusCode == 200){
+
+      OfferCarModel carModel = OfferCarModel.fromJson(jsonDecode(responseModel.responseJson));
+      List<Car>? tempCarList = carModel.cars;
+
+      if(tempCarList != null && tempCarList.isNotEmpty){
+        carList.addAll(tempCarList);
+      }
+    }
+  }
 }

@@ -21,6 +21,9 @@ class SignInRepo{
 
     ApiResponseModel responseModel = await apiService.request(uri, requestMethod, params, passHeader: false);
 
+    print("status code: ${responseModel.statusCode}");
+    print("data: ${responseModel.responseJson}");
+
     return responseModel;
   }
 }
