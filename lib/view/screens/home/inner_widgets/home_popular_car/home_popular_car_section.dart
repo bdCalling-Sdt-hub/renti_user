@@ -7,9 +7,9 @@ import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_controller/home_popular_controller.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_model/home_popular_model.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_repo/home_popular_repo.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_repo/all_cars_repo.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class HomePopularSection extends StatelessWidget {
@@ -18,22 +18,16 @@ class HomePopularSection extends StatelessWidget {
 
   void initState() {
     Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(PopularCarRepo(apiService: Get.find()));
-    Get.put(PopularCarController(popularCarRepo: Get.find()));
-  }
+    Get.put(AllCarsRepo(apiService: Get.find()));
 
+     Get.put(AllCarsController(allCarsRepo: Get.find()));
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    return GetBuilder<PopularCarController>(builder: (controller){
-     if(controller.isLoading == true
-     ){
-       return const Center(
-         child: CircularProgressIndicator(),
-       );
-     }
-     PopularCarModel popularCarModel = controller.popularCarModel;
+    return GetBuilder<AllCarsController>(builder: (controller){
+     AllCarsModel allCarsModel  = controller.allCarsModel;
      return Column(
        crossAxisAlignment: CrossAxisAlignment.start,
        children: [
@@ -48,7 +42,7 @@ class HomePopularSection extends StatelessWidget {
              ),
              InkWell(
                onTap: (){
-                 Get.toNamed(AppRoute.popularCarScreen, arguments: popularCarModel);
+                 Get.toNamed(AppRoute.popularCarScreen, arguments: allCarsModel);
                },
                child:  const CustomText(
                  text: AppStrings.seeAll,
@@ -65,9 +59,9 @@ class HomePopularSection extends StatelessWidget {
              physics:  const BouncingScrollPhysics(),
              child: Row(
                children: List.generate(
-                   controller.popularCarList.length, (index) => Stack(
-                 children: [
-                   Container(
+                   controller.carList.length, (index) =>controller.carList[index].popularity! > 0? Stack(
+                   children: [
+                      Container(
                      margin: const EdgeInsetsDirectional.only(end: 12),
                      width: MediaQuery.of(context).size.width * 0.5,
                      padding: const EdgeInsetsDirectional.only(bottom: 12),
@@ -91,7 +85,7 @@ class HomePopularSection extends StatelessWidget {
                            height: 95,
                            decoration:  ShapeDecoration(
                              image: DecorationImage(
-                               image: NetworkImage(controller.popularCarList[index].image[0]??""),
+                               image: NetworkImage(controller.carList[index].image[0]??""),
                                // image: AssetImage(AppImages.carBg),
                                fit: BoxFit.fill,
                              ),
@@ -107,14 +101,14 @@ class HomePopularSection extends StatelessWidget {
                            left:12,
                            top:12,
                            bottom: 12,
-                           text: controller.popularCarList[index].carModelName??"",
+                           text: controller.carList[index].carModelName??"",
                            color: AppColors.primaryColor,
                            fontSize: 12,
                            fontWeight: FontWeight.w500,
                          ),
 
                          Padding(
-                           padding:  EdgeInsets.symmetric(horizontal: 12.0),
+                           padding: const EdgeInsets.symmetric(horizontal: 12.0),
                            child: Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                              children: [
@@ -124,7 +118,7 @@ class HomePopularSection extends StatelessWidget {
 
                                    CustomText(
                                      left: 8,
-                                     text: controller.popularCarList[index].totalRun.toString()??"",
+                                     text: controller.carList[index].totalRun.toString()??"",
                                     // text:"${controller.popularCarModel.cars![index].totalRun.toString()}${"/L"}",
                                      color: AppColors.whiteDark,
                                      fontSize: 10,
@@ -139,7 +133,7 @@ class HomePopularSection extends StatelessWidget {
                                        text: TextSpan(
                                            children: [
                                              TextSpan(
-                                                text: "${"\$"}${controller.popularCarList[index].hourlyRate.toString()?? ""}",
+                                                text: "${"\$"}${controller.carList[index].hourlyRate.toString()?? ""}",
                                                style: GoogleFonts.poppins(
                                                  color: const Color(0xFF595959),
                                                  fontSize: 10,
@@ -192,7 +186,7 @@ class HomePopularSection extends StatelessWidget {
                      ),
                    ),
                  ],
-               )
+               ) : const SizedBox()
                ),
              )
          )

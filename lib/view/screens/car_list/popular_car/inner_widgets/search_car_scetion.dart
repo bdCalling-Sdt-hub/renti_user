@@ -4,17 +4,17 @@ import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
-import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_controller/home_popular_controller.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_model/home_popular_model.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class PopularCarSection extends StatefulWidget {
-  PopularCarModel popularCarModel;
-   PopularCarSection({super.key, required this.popularCarModel });
+  // PopularCarModel popularCarModel;
+  AllCarsModel allCarsModel;
+   PopularCarSection({super.key, required this.allCarsModel });
 
   @override
   State<PopularCarSection> createState() => _SearchCarScetionState();
@@ -22,13 +22,14 @@ class PopularCarSection extends StatefulWidget {
 
 class _SearchCarScetionState extends State<PopularCarSection> {
 
-  PopularCarModel popularCarModel = Get.arguments;
-
+  // PopularCarModel popularCarModel = Get.arguments;
+    AllCarsModel allCarsModel = Get.arguments;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<PopularCarController>(builder: (controller){
+    return GetBuilder<AllCarsController>(builder: (controller){
       return Column(
-          children: List.generate(controller.popularCarModel.cars!.length, (index) =>  Stack(
+          children: List.generate(
+            controller.carList.length, (index) => controller.carList[index].popularity! > 0 ? Stack(
               children: [
                 Container(
                   margin: const EdgeInsets.only(bottom: 16),
@@ -57,7 +58,7 @@ class _SearchCarScetionState extends State<PopularCarSection> {
                             Row(
                               children: [
                                 CustomText(
-                                  text: controller.popularCarModel.cars![index].carModelName.toString(),
+                                  text: controller.carList[index].carModelName.toString(),
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.darkBlueColor,
@@ -80,7 +81,7 @@ class _SearchCarScetionState extends State<PopularCarSection> {
                                 Row(
                                   children: [
                                     CustomText(
-                                      text: popularCarModel.cars![index].totalRun.toString(),
+                                      text: controller.carList[index].totalRun.toString(),
                                       color: AppColors.whiteDarkActive,
                                       left: 8,
                                       textAlign: TextAlign.start,
@@ -90,7 +91,7 @@ class _SearchCarScetionState extends State<PopularCarSection> {
                                         color: AppColors.whiteDarkActive),
                                     const SizedBox(width: 16),
                                     CustomText(
-                                      text: "${"\$"}${ controller.popularCarModel.cars![index].hourlyRate.toString()}",
+                                      text: "${"\$"}${ controller.carList[index].hourlyRate.toString()}",
 
                                     ),
                                     const SizedBox(width: 8),
@@ -126,7 +127,7 @@ class _SearchCarScetionState extends State<PopularCarSection> {
                             height: 60,
                             width: 120,
                             decoration: BoxDecoration(
-                              image: DecorationImage(image: NetworkImage(controller.popularCarModel.cars![index].image[0].toString()),
+                              image: DecorationImage(image: NetworkImage(controller.carList[index].image[0].toString()),
                                   fit: BoxFit.fill),
                             ),
                           )
@@ -154,7 +155,7 @@ class _SearchCarScetionState extends State<PopularCarSection> {
                   ),
                 ),
               ]
-          ),)
+          ) : const SizedBox())
       );
     });
 

@@ -17,8 +17,7 @@ class AllCarsRepo{
     Map<String, String> params = {
 
     };
-
-    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, params, passHeader: true);
+    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, null, passHeader: true);
     return responseModel;
   }
 }

@@ -33,6 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(AllCarsRepo(apiService: Get.find()));
     Get.put(AllCarsController(allCarsRepo: Get.find()));
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    // Get.put(PopularCarController(popularCarRepo: Get.find()));
+    Get.put(AllCarsController(allCarsRepo: Get.find()));
+
     super.initState();
   }
 
@@ -86,7 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: const CustomImage(
                       imageSrc: AppImages.profileImg,
                       imageType: ImageType.png,
-                      size: 40),
+                      size: 40,
+
+                  ),
                 ),
               ],
             ),
@@ -98,13 +104,13 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                HomeTopSection(),
-                SizedBox(height: 16),
-                HomeFromUntilSection(),
-                SizedBox(height: 24),
-                //HomePopularSection(),
-                SizedBox(height: 24,),
-               HomeAllCarSection()
+                 HomeTopSection(),
+                 SizedBox(height: 16),
+                 HomeFromUntilSection(),
+                 SizedBox(height: 24),
+                 HomePopularSection(),
+                 SizedBox(height: 24,),
+                 HomeAllCarSection()
               ],
             ),
           ),

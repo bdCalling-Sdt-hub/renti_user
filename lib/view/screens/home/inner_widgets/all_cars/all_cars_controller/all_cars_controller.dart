@@ -7,7 +7,6 @@ import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_rep
 
 class AllCarsController extends GetxController{
   AllCarsController({required this.allCarsRepo});
-
   AllCarsRepo allCarsRepo;
   TextEditingController  searchController = TextEditingController();
   AllCarsModel allCarsModel =  AllCarsModel();
@@ -29,6 +28,8 @@ class AllCarsController extends GetxController{
 
     if(responseModel.statusCode == 200){
       allCarsModel = AllCarsModel.fromJson(jsonDecode(responseModel.responseJson));
+
+
       List<Car>? tempCarList = allCarsModel.cars;
       if(tempCarList != null && tempCarList.isNotEmpty){
         carList.addAll(tempCarList);

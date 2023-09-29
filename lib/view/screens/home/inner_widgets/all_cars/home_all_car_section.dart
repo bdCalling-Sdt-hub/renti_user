@@ -18,7 +18,11 @@ class HomeAllCarSection extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return GetBuilder<AllCarsController>(builder: (controller){
+
+
       AllCarsModel allCarsModel = controller.allCarsModel;
+
+
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -50,7 +54,9 @@ class HomeAllCarSection extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               physics:   const BouncingScrollPhysics(),
               child: Row(
-                children: List.generate(controller.carList.length,(index) => Stack(
+                children: List.generate(
+
+                  controller.carList.length,(index) => Stack(
                   children: [
                     Container(
                       margin: const EdgeInsetsDirectional.only(end: 12),
