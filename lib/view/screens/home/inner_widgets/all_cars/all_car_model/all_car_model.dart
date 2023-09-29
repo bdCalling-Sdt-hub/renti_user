@@ -1,16 +1,12 @@
 import 'dart:convert';
 
 class AllCarModel {
-  int? totalCar;
-  int? activeCar;
-  int? reservedCar;
+  String? message;
   List<Car>? cars;
   Pagination? pagination;
 
   AllCarModel({
-    this.totalCar,
-    this.activeCar,
-    this.reservedCar,
+    this.message,
     this.cars,
     this.pagination,
   });
@@ -20,17 +16,13 @@ class AllCarModel {
   String toRawJson() => json.encode(toJson());
 
   factory AllCarModel.fromJson(Map<String, dynamic> json) => AllCarModel(
-    totalCar: json["totalCar"],
-    activeCar: json["activeCar"],
-    reservedCar: json["reservedCar"],
+    message: json["message"],
     cars: json["cars"] == null ? [] : List<Car>.from(json["cars"]!.map((x) => Car.fromJson(x))),
     pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "totalCar": totalCar,
-    "activeCar": activeCar,
-    "reservedCar": reservedCar,
+    "message": message,
     "cars": cars == null ? [] : List<dynamic>.from(cars!.map((x) => x.toJson())),
     "pagination": pagination?.toJson(),
   };
@@ -39,7 +31,7 @@ class AllCarModel {
 class Car {
   String? id;
   String? carModelName;
-  dynamic image;
+  List<String>? image;
   int? year;
   String? carLicenseNumber;
   String? carDescription;
@@ -61,9 +53,6 @@ class Car {
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
-  String? paymentId;
-  List<String>? carImage;
-  String? userId;
 
   Car({
     this.id,
@@ -90,9 +79,6 @@ class Car {
     this.createdAt,
     this.updatedAt,
     this.v,
-    this.paymentId,
-    this.carImage,
-    this.userId,
   });
 
   factory Car.fromRawJson(String str) => Car.fromJson(json.decode(str));
@@ -102,7 +88,7 @@ class Car {
   factory Car.fromJson(Map<String, dynamic> json) => Car(
     id: json["_id"],
     carModelName: json["carModelName"],
-    image: json["image"],
+    image: json["image"] == null ? [] : List<String>.from(json["image"]!.map((x) => x)),
     year: json["year"],
     carLicenseNumber: json["carLicenseNumber"],
     carDescription: json["carDescription"],
@@ -124,15 +110,12 @@ class Car {
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
-    paymentId: json["paymentId"],
-    carImage: json["carImage"] == null ? [] : List<String>.from(json["carImage"]!.map((x) => x)),
-    userId: json["userId"],
   );
 
   Map<String, dynamic> toJson() => {
     "_id": id,
     "carModelName": carModelName,
-    "image": image,
+    "image": image == null ? [] : List<dynamic>.from(image!.map((x) => x)),
     "year": year,
     "carLicenseNumber": carLicenseNumber,
     "carDescription": carDescription,
@@ -154,9 +137,6 @@ class Car {
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
-    "paymentId": paymentId,
-    "carImage": carImage == null ? [] : List<dynamic>.from(carImage!.map((x) => x)),
-    "userId": userId,
   };
 }
 
@@ -169,8 +149,9 @@ class CarOwner {
   String? address;
   String? dateOfBirth;
   String? password;
-  dynamic kyc;
+  List<String>? kyc;
   String? rfc;
+  String? creaditCardNumber;
   String? ine;
   String? image;
   String? role;
@@ -181,7 +162,6 @@ class CarOwner {
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
-  String? creaditCardNumber;
 
   CarOwner({
     this.id,
@@ -194,6 +174,7 @@ class CarOwner {
     this.password,
     this.kyc,
     this.rfc,
+    this.creaditCardNumber,
     this.ine,
     this.image,
     this.role,
@@ -204,7 +185,6 @@ class CarOwner {
     this.createdAt,
     this.updatedAt,
     this.v,
-    this.creaditCardNumber,
   });
 
   factory CarOwner.fromRawJson(String str) => CarOwner.fromJson(json.decode(str));
@@ -220,8 +200,9 @@ class CarOwner {
     address: json["address"],
     dateOfBirth: json["dateOfBirth"],
     password: json["password"],
-    kyc: json["KYC"],
+    kyc: json["KYC"] == null ? [] : List<String>.from(json["KYC"]!.map((x) => x)),
     rfc: json["RFC"],
+    creaditCardNumber: json["creaditCardNumber"],
     ine: json["ine"],
     image: json["image"],
     role: json["role"],
@@ -232,7 +213,6 @@ class CarOwner {
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
-    creaditCardNumber: json["creaditCardNumber"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -244,8 +224,9 @@ class CarOwner {
     "address": address,
     "dateOfBirth": dateOfBirth,
     "password": password,
-    "KYC": kyc,
+    "KYC": kyc == null ? [] : List<dynamic>.from(kyc!.map((x) => x)),
     "RFC": rfc,
+    "creaditCardNumber": creaditCardNumber,
     "ine": ine,
     "image": image,
     "role": role,
@@ -256,7 +237,6 @@ class CarOwner {
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
-    "creaditCardNumber": creaditCardNumber,
   };
 }
 

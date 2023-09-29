@@ -8,6 +8,7 @@ import 'package:renti_user/view/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:renti_user/view/screens/auth/signup_continue/sign_up_continue_screen.dart';
 import 'package:renti_user/view/screens/car_list/all_cars/offer-car_screen.dart';
+import 'package:renti_user/view/screens/car_list/popular_cars/luxury_cars_screen.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_screen.dart';
 import 'package:renti_user/view/screens/home/home_screen.dart';
 import 'package:renti_user/view/screens/intro/intro_screen.dart';
@@ -42,6 +43,7 @@ class AppRoute {
   static  String startTrip = "/start_trip_screen";
   static  String endTrip = "/end_trip_screen";
   static  String offerCarScreen = "/offer_car_screen";
+  static  String luxuryCarScreen = "/luxury_car_screen";
   static  String allCars= "/all_cars";
   static  String inboxScreen= "/inbox_screen";
   static const String messageScreen = "/message_screen";
@@ -105,5 +107,6 @@ class AppRoute {
     GetPage(name: rentiHistory, page: ()=>const RentHistoryScreen()),
     GetPage(name: homeScreen, page: ()=>const HomeScreen()),
     GetPage(name: searchScreen, page: ()=>const SearchScreen()),
+    GetPage(name: luxuryCarScreen, page: ()=>const LuxuryCarsScreen()),
   ];
 }

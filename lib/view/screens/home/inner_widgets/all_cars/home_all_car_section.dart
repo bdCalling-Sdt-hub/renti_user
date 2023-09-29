@@ -7,68 +7,53 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/view/screens/car_list/all_cars/all_car_controller/all_car_controller.dart';
-import 'package:renti_user/view/screens/car_list/all_cars/all_car_model/all_car_model.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_car_controller/all_car_controller.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_car_model/all_car_model.dart';
+
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 
 
 class HomeOfferCarSection extends StatelessWidget {
-   HomeOfferCarSection({super.key,required this.allCarModel});
- AllCarModel allCarModel;
+   HomeOfferCarSection({super.key,});
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AllCarController>(
 
       builder: (controller) {
-        return FutureBuilder(
-            future: controller.allCarGetResponse(),
-            builder:(context, snapshot){
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                    child:
-                    CircularProgressIndicator()); // Show a loading indicator while waiting for data
-              } else if (snapshot.hasError) {
-                return Text(
-                    "Error: ${snapshot.error}"); // Show an error message if data fetch fails
-              } else if (!snapshot.hasData) {
-                return const Text(
-                    "No data available"); // Handle case where no data is available
-              }
-              allCarModel=snapshot.data!;
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomText(
-                        text: AppStrings.offerCars,
-                        color: AppColors.blackNormal,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      InkWell(
-                        onTap: (){
-                          Get.toNamed(AppRoute.offerCarScreen);
-                        },
-                        child:  const CustomText(
-                          text: AppStrings.seeAll,
-                          color: AppColors.primaryColor,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      )
-                    ],
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const CustomText(
+                  text: "All Cars",
+                  color: AppColors.blackNormal,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+                InkWell(
+                  onTap: (){
+                    Get.toNamed(AppRoute.offerCarScreen);
+                  },
+                  child:  const CustomText(
+                    text: AppStrings.seeAll,
+                    color: AppColors.primaryColor,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
                   ),
-                  const SizedBox(height: 16),
-                  SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      child: Row(
-                        children: List.generate(
-                            allCarModel.cars!.length.toInt(),
-                                (index) => Stack(
+                )
+              ],
+            ),
+            const SizedBox(height: 16),
+            SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                child: Row(
+                    children: List.generate(
+                        controller.carList.length,
+                            (index) => Stack(
                           children: [
                             Container(
                               margin: const EdgeInsetsDirectional.only(end: 12),
@@ -92,9 +77,9 @@ class HomeOfferCarSection extends StatelessWidget {
                                   Container(
                                     width: MediaQuery.of(context).size.width * 0.6,
                                     height: 95,
-                                    decoration:  const ShapeDecoration(
+                                    decoration:   ShapeDecoration(
                                       image: DecorationImage(
-                                        image: AssetImage(AppImages.carBg),
+                                        image:NetworkImage(controller.carList[index].image![0]),
                                         fit: BoxFit.fill,
                                       ),
                                       shape: RoundedRectangleBorder(
@@ -105,11 +90,12 @@ class HomeOfferCarSection extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                   CustomText(
+                                  CustomText(
                                     left:12,
                                     top:12,
                                     bottom: 12,
-                                    text: allCarModel.cars![index].carModelName.toString(),
+                                    text: controller.carList[index].carModelName![0],
+                                    // text: allCarModel.cars![index].carModelName.toString(),
                                     color: AppColors.primaryColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500,
@@ -199,10 +185,8 @@ class HomeOfferCarSection extends StatelessWidget {
                           ],
                         )
                     ))
-                  )
-                ],
-              );
-            }
+            )
+          ],
         );
       }
     );

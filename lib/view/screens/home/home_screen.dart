@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
-import 'package:renti_user/view/screens/car_list/all_cars/all_car_model/all_car_model.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_car_repo/all_car_repo.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_from_until_section.dart';
 
 import 'package:renti_user/view/screens/home/inner_widgets/home_top_section.dart';
@@ -14,6 +16,7 @@ import 'package:renti_user/view/widgets/drawer/custom_drawer.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
+import 'inner_widgets/all_cars/all_car_controller/all_car_controller.dart';
 import 'inner_widgets/all_cars/home_all_car_section.dart';
 import 'inner_widgets/home_popular_car/home_popular_car_section.dart';
 
@@ -24,6 +27,24 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 class _HomeScreenState extends State<HomeScreen> {
+
+
+  @override
+  void initState() {
+    DeviceUtils.authUtils();
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(AllCarRepo(apiService: Get.find()));
+
+
+    final controller =Get.put(AllCarController(allCarRepo: Get.find()));
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      controller.initialState();
+    });
+    super.initState();
+  }
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -83,18 +104,22 @@ class _HomeScreenState extends State<HomeScreen> {
           body:  SingleChildScrollView(
             padding: EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
             physics: BouncingScrollPhysics(),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                HomeTopSection(),
-                SizedBox(height: 16),
-                HomeFromUntilSection(),
-                SizedBox(height: 24),
-                HomeOfferCarSection(allCarModel: AllCarModel(),),
-                SizedBox(height: 24,),
-                HomeLuxuryCarSection()
-              ],
+            child: GetBuilder<AllCarController>(
+              builder: (controller) =>controller.isLoading ? const Center(
+                child: CircularProgressIndicator(),
+              ): Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  HomeTopSection(),
+                  SizedBox(height: 16),
+                  HomeFromUntilSection(),
+                  SizedBox(height: 24),
+                  HomeOfferCarSection(),
+                  SizedBox(height: 24,),
+                  HomeLuxuryCarSection()
+                ],
+              ),
             ),
           ),
 
