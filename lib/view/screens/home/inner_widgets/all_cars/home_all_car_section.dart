@@ -13,13 +13,10 @@ import 'package:renti_user/view/widgets/text/custom_text.dart';
 class HomeAllCarSection extends StatelessWidget {
 
   const HomeAllCarSection({super.key});
-
   @override
   Widget build(BuildContext context) {
 
     return GetBuilder<AllCarsController>(builder: (controller){
-
-
       AllCarsModel allCarsModel = controller.allCarsModel;
 
 

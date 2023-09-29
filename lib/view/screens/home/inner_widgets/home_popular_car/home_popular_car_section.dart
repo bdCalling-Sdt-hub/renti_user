@@ -22,7 +22,6 @@ class HomePopularSection extends StatelessWidget {
 
      Get.put(AllCarsController(allCarsRepo: Get.find()));
   }
-
   @override
   Widget build(BuildContext context) {
 
@@ -32,6 +31,8 @@ class HomePopularSection extends StatelessWidget {
        crossAxisAlignment: CrossAxisAlignment.start,
        children: [
          Row(
+
+
            mainAxisAlignment: MainAxisAlignment.spaceBetween,
            children: [
              const CustomText(
@@ -53,6 +54,8 @@ class HomePopularSection extends StatelessWidget {
              )
            ],
          ),
+
+
          const SizedBox(height: 16),
          SingleChildScrollView(
              scrollDirection: Axis.horizontal,
