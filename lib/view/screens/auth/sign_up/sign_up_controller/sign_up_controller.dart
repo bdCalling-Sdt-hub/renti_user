@@ -1,19 +1,21 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:renti_user/core/global/api_response_method.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
+import 'package:renti_user/core/global/api_url_container.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_model/sign_up_response_model.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_repo/sign_up_repo.dart';
 
-class SignUpController extends GetxController{
-
+class SignUpController extends GetxController {
   SignUpRepo signUpRepo;
+
   SignUpController({required this.signUpRepo});
 
   bool isSubmit = false;
@@ -32,7 +34,8 @@ class SignUpController extends GetxController{
   TextEditingController cvvController = TextEditingController();
   TextEditingController ineNumberController = TextEditingController();
 
-  final regex = RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])(?=.*[a-zA-Z\d@#$%^&+=!]).{8,}$');
+  final regex = RegExp(
+      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])(?=.*[a-zA-Z\d@#$%^&+=!]).{8,}$');
 
   List<String> genderList = ["Male", "Female", "Others"];
   int selectedGender = 0;
@@ -40,45 +43,95 @@ class SignUpController extends GetxController{
   File? profileImage;
   String phoneCode = "+52";
 
-  void initialState(){
+  void initialState() {
     isSubmit = true;
     update();
-    signUpUser();
+    // signUpUser();
     isSubmit = false;
     update();
   }
 
-  Future<void> signUpUser() async{
+  Future signUpWithUpload() async {
+    var headers = {"Content-Type": "application/json"};
+    var request = http.MultipartRequest(ApiResponseMethod.postMethod, Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.signUpEndPoint}"));
 
-    ApiResponseModel responseModel = await signUpRepo.createUser(
-        fullName: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.fullName) ?? "",
-        email: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.email) ?? "",
-        phoneNumber: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.phoneNumber) ?? "",
-        gender: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.gender) ?? "",
-        address: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.address) ?? "",
-        dateOfBirth: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.dob) ?? "",
-        password: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.password) ?? "",
-        kycImages: [uploadDrivingLicense!.path.toString(),uploadPassport!.path.toString()],
-        ineNumber: signUpRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.ineNumber) ?? "",
-        profileImage: profileImage ?? File(" "),
-    );
+    request.fields.addAll({
+      'fullName': signUpRepo.apiService.sharedPreferences
+              .getString(SharedPreferenceHelper.fullName) ??
+          "",
+      'email': signUpRepo.apiService.sharedPreferences
+              .getString(SharedPreferenceHelper.email) ??
+          "",
+      'phoneNumber': signUpRepo.apiService.sharedPreferences
+          .getString(SharedPreferenceHelper.phoneNumber) ??
+          "",
+      'gender': signUpRepo.apiService.sharedPreferences
+          .getString(SharedPreferenceHelper.gender) ??
+          "",
+      'address': signUpRepo.apiService.sharedPreferences
+          .getString(SharedPreferenceHelper.address) ??
+          "",
+      'dateOfBirth': signUpRepo.apiService.sharedPreferences
+          .getString(SharedPreferenceHelper.dob) ??
+          "",
+      'password': signUpRepo.apiService.sharedPreferences
+          .getString(SharedPreferenceHelper.password) ??
+          "",
+      'ine': signUpRepo.apiService.sharedPreferences
+          .getString(SharedPreferenceHelper.ineNumber) ??
+          "",
+      'role': "user",
+    });
+    request.files.add(await http.MultipartFile.fromPath('image', profileImage!.path));
 
-    if(responseModel.statusCode == 200){
-      SignUpResponseModel signUpResponseModel = SignUpResponseModel.fromJson(jsonDecode(responseModel.responseJson));
-      gotoNextStep(signUpResponseModel);
-    }
-    else{
+    /*for(var file in kycDocFiles) {
+      final multipartFile = await http.MultipartFile.fromPath('KYC', file.path);
+      request.files.add(multipartFile);
+    }*/
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
 
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      gotoNextStep();
+      return true;
+    } else if (response.statusCode == 201) {
+      print("success Srabon");
+      gotoNextStep();
+      return true;
+    } else {
+      print(response.reasonPhrase);
+      return false;
     }
   }
 
-  void changeGender(int index){
+  Future<void> signUpUser() async {
+    ApiResponseModel responseModel = await signUpRepo.createUser(
+        fullName: fullNameController.text,
+        email: emailController.text,
+        phoneNumber: phoneNumberController.text,
+        gender: genderList[selectedGender],
+        address: addressController.text,
+        dateOfBirth: dateController.text,
+        password: passwordController.text,
+        kycImages: kycDocFiles,
+        profileImage: profileImage,
+        ineNumber: ineNumberController.text
+    );
+
+    if (responseModel.statusCode == 201) {
+      SignUpResponseModel signUpResponseModel = SignUpResponseModel.fromJson(jsonDecode(responseModel.responseJson));
+      gotoNextStep();
+    } else {}
+  }
+
+  void changeGender(int index) {
     selectedGender = index;
     update();
   }
 
-  void gotoNextStep(SignUpResponseModel signUpResponseModel) {
-    Get.offAndToNamed(AppRoute.homeScreen);
+  void gotoNextStep() {
+    Get.offAndToNamed(AppRoute.otpScreen);
   }
 
   File? uploadDrivingLicense;
@@ -88,13 +141,9 @@ class SignUpController extends GetxController{
 
   Future<void> pickDrivingLicenceFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, allowedExtensions: ["pdf"], type: FileType.custom);
-
     if (result != null && result.files.isNotEmpty) {
-      uploadDrivingLicense = File(result.paths[0]!);;
-      print(uploadDrivingLicense!.path);
-      await signUpRepo.apiService.sharedPreferences.setString("uploadDrivingLicenseFilePath", uploadDrivingLicense!.path);
+      uploadDrivingLicense = File(result.files.single.name);
       drivingLicenseFileName = result.files.single.name;
-
       kycDocFiles.add(uploadDrivingLicense!);
       update();
     }
@@ -102,11 +151,8 @@ class SignUpController extends GetxController{
 
   Future<void> pickPassportFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, allowedExtensions: ["pdf"], type: FileType.custom);
-
     if (result != null && result.files.isNotEmpty) {
-      uploadPassport = File(result.paths[0]!);
-
-      await signUpRepo.apiService.sharedPreferences.setString("uploadPassportFilePath", uploadPassport!.path);
+      uploadPassport = File(result.files.single.name);
       passportFileName = result.files.single.name;
       kycDocFiles.add(uploadPassport!);
       update();
@@ -131,24 +177,22 @@ class SignUpController extends GetxController{
   final imagePicker = ImagePicker();
   String? imageUrl;
 
-  void openGallery() async{
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery, maxHeight: 120, maxWidth: 120);
+  void openGallery() async {
+    final pickedFile = await ImagePicker()
+        .pickImage(source: ImageSource.gallery, maxHeight: 120, maxWidth: 120);
 
-    if(pickedFile != null){
+    if (pickedFile != null) {
       imageFile = File(pickedFile.path);
       profileImage = imageFile;
       update();
     }
   }
 
-  void openCamera(BuildContext context)  async{
-    final pickedFile = await ImagePicker().pickImage(
-        source: ImageSource.camera,
-        maxHeight: 120,
-        maxWidth: 120
-    );
+  void openCamera(BuildContext context) async {
+    final pickedFile = await ImagePicker()
+        .pickImage(source: ImageSource.camera, maxHeight: 120, maxWidth: 120);
 
-    if(pickedFile != null) {
+    if (pickedFile != null) {
       imageFile = File(pickedFile.path);
       profileImage = imageFile;
       update();

@@ -15,4 +15,5 @@ class ApiUrlContainer{
   static const String rentHistoryEndPont = "rent/all";
   static const String cancelRentEndPont = "rent/";
   static const String rentRequestEndPont = "payment/";
+  static const String userVerifyEndPont = "user/verify";
 }

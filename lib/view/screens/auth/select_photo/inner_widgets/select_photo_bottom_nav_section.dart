@@ -21,7 +21,7 @@ class _SelectPhotoBottomNavSectionState
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         child: CustomElevatedButton(
             onPressed: () {
-              controller.signUpUser();
+              controller.signUpWithUpload();
             },
             titleText: "Continue"),
       ),

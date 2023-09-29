@@ -18,8 +18,8 @@ class SignUpRepo{
     required String address,
     required String dateOfBirth,
     required String password,
-    required List<String> kycImages,
-    required File profileImage,
+    required List<File> kycImages,
+    required File? profileImage,
     required String ineNumber,
   }) async{
 
@@ -35,7 +35,7 @@ class SignUpRepo{
       "address" : address,
       "dateOfBirth" : dateOfBirth,
       "password" : password,
-      "image" : profileImage.path.toString(),
+      "image" : profileImage,
       "KYC" : kycImages,
       "ine" : ineNumber,
       "role" : "user"

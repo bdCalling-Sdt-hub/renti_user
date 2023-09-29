@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/auth/otp/inner_widgets/otp_bottom_nav_section.dart';
 import 'package:renti_user/view/screens/auth/otp/inner_widgets/otp_top_section.dart';
-
+import 'package:renti_user/view/screens/auth/otp/otp_controller/otp_controller.dart';
+import 'package:renti_user/view/screens/auth/otp/otp_repo/otp_repo.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
 import '../../../widgets/buttons/custom_back_button.dart';
@@ -16,6 +20,23 @@ class ForgotPassOTP extends StatefulWidget {
 }
 
 class _ForgotPassOTPState extends State<ForgotPassOTP> {
+
+
+  @override
+  void initState() {
+    DeviceUtils.authUtils();
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(VerifyOtpRepo(apiService: Get.find()));
+    Get.put(OtpController(verifyOtpRepo: Get.find()));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    DeviceUtils.authUtils();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
