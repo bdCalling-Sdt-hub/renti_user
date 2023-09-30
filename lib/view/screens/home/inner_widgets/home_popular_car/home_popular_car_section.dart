@@ -31,8 +31,6 @@ class HomePopularSection extends StatelessWidget {
        crossAxisAlignment: CrossAxisAlignment.start,
        children: [
          Row(
-
-
            mainAxisAlignment: MainAxisAlignment.spaceBetween,
            children: [
              const CustomText(
@@ -88,7 +86,7 @@ class HomePopularSection extends StatelessWidget {
                            height: 95,
                            decoration:  ShapeDecoration(
                              image: DecorationImage(
-                               image: NetworkImage(controller.carList[index].image[0]??""),
+                               image: NetworkImage(controller.carList[index].image![0]??""),
                                // image: AssetImage(AppImages.carBg),
                                fit: BoxFit.fill,
                              ),

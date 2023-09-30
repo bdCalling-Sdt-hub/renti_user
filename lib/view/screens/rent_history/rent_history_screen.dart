@@ -53,13 +53,22 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
           )
         ],
       )),
-      body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) =>
-            const SingleChildScrollView(
-          padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-          physics: BouncingScrollPhysics(),
-          child: RentHistorySection(),
-        ),
+      body: GetBuilder<RentHistoryController>(
+        builder: (controller) {
+          if(controller.isLoading==true){
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) =>
+                const SingleChildScrollView(
+              padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+              physics: BouncingScrollPhysics(),
+              child: RentHistorySection(),
+            ),
+          );
+        }
       ),
     ));
   }

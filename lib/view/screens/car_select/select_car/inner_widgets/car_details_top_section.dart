@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
@@ -15,6 +16,7 @@ class CarDetailsTopSection extends StatefulWidget {
 }
 
 class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
+
   @override
   Widget build(BuildContext context) {
     return  Container(

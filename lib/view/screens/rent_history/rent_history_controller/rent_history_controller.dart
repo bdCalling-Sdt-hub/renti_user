@@ -9,7 +9,7 @@ class RentHistoryController extends GetxController{
   RentHistoryRepo rentHistoryRepo;
   RentHistoryModel rentHistoryModel = RentHistoryModel();
   bool isLoading = false;
-  List<UserWiseRent> carList = [];
+  List<UserWiseRent> rentUser = [];
 
   @override
   void onInit() {
@@ -28,8 +28,9 @@ class RentHistoryController extends GetxController{
       rentHistoryModel = RentHistoryModel.fromJson(jsonDecode(responseModel.responseJson));
       List<UserWiseRent>? tempCarList = rentHistoryModel.userWiseRent;
       if(tempCarList != null && tempCarList.isNotEmpty){
-        carList.addAll(tempCarList);
+        rentUser.addAll(tempCarList);
       }
+
     }
     else{
 

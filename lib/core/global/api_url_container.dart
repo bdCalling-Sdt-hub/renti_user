@@ -19,4 +19,5 @@ class ApiUrlContainer{
   static const String allCarsEndPoint = "car/all";
   static const String popularCarEndPoint = "car/offer-car";
   static const String rentHistoryEndPoint = "rent/all";
+  static const String carDetailsEndPoint = "car/6515600d1ae339b4d66437fc";
 }

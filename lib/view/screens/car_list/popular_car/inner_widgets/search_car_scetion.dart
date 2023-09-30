@@ -110,7 +110,7 @@ class _SearchCarScetionState extends State<PopularCarSection> {
                             ),
                             const SizedBox(height: 8),
                             CustomElevatedButton(onPressed: (){
-                              Get.toNamed(AppRoute.carDetails);
+                              Get.toNamed(AppRoute.carDetails , arguments: controller.allCarsModel);
                             }
                               , titleText: AppStrings.seeDetails,
                               titleWeight: FontWeight.w400,
@@ -127,7 +127,7 @@ class _SearchCarScetionState extends State<PopularCarSection> {
                             height: 60,
                             width: 120,
                             decoration: BoxDecoration(
-                              image: DecorationImage(image: NetworkImage(controller.carList[index].image[0].toString()),
+                              image: DecorationImage(image: NetworkImage(controller.carList[index].image![0].toString()),
                                   fit: BoxFit.fill),
                             ),
                           )

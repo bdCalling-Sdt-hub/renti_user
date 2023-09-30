@@ -12,7 +12,7 @@ import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class AllCarDetaills extends StatelessWidget {
-  const AllCarDetaills({super.key, required this.allCarsModel});
+  const AllCarDetaills({super.key,required this.allCarsModel});
 final AllCarsModel allCarsModel;
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ final AllCarsModel allCarsModel;
                               ),
                               const SizedBox(height: 8),
                               CustomElevatedButton(onPressed: (){
-                                Get.toNamed(AppRoute.carDetails);
+                                Get.toNamed(AppRoute.carDetails , arguments: [allCarsModel , index]);
                               }
                                 ,titleText: AppStrings.seeDetails,
                                 titleWeight: FontWeight.w400,

@@ -18,9 +18,12 @@ class HomeAllCarSection extends StatelessWidget {
 
     return GetBuilder<AllCarsController>(builder: (controller){
       AllCarsModel allCarsModel = controller.allCarsModel;
-
-
-      return Column(
+      if(controller.isLoading==true){
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+      return  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(

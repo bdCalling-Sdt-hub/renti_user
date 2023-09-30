@@ -7,6 +7,7 @@ import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/canc
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/car_details_map_section.dart';
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/car_details_top_section.dart';
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/from_until_section.dart';
+
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
@@ -15,13 +16,12 @@ import 'inner_widgets/car_details_car_info_section.dart';
 import 'inner_widgets/car_details_host_info_section.dart';
 
 class CarDetailsScreen extends StatefulWidget {
-  const CarDetailsScreen({super.key});
-
+ const  CarDetailsScreen({super.key,});
   @override
   State<CarDetailsScreen> createState() => _CarDetailsScreenState();
 }
-
 class _CarDetailsScreenState extends State<CarDetailsScreen> {
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -59,8 +59,8 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
 
                   children: [
                     const CarDetailsTopSection(),
-                     SizedBox(height: 24,),
-                     FromUntilSection(),
+                     const SizedBox(height: 24,),
+                     const FromUntilSection(),
                     const CarDetailsCarInfoSection(),
                     const CarDetailsHostInfoSection(),
                     const CarDetailsMapSection(),
@@ -79,18 +79,18 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
                     InkWell(
                       onTap: (){
                         showDialog(context: context, builder: (context){
-                          return CancelShowDialogue();
+                          return const CancelShowDialogue();
                         });
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsetsDirectional.symmetric(vertical: 16),
                         padding: const EdgeInsetsDirectional.symmetric(vertical: 16),
-                        child: CustomText(text: AppStrings.cancelRequest,fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.primaryColor,),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(width: 1,color: AppColors.primaryColor)
                         ),
+                        child:  CustomText(text: AppStrings.cancelRequest,fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.primaryColor,),
                       ),
                     )
                   ],
