@@ -1,12 +1,16 @@
 import 'dart:convert';
 
 class AllCarModel {
-  String? message;
+  int? totalCar;
+  int? activeCar;
+  int? reservedCar;
   List<Car>? cars;
   Pagination? pagination;
 
   AllCarModel({
-    this.message,
+    this.totalCar,
+    this.activeCar,
+    this.reservedCar,
     this.cars,
     this.pagination,
   });
@@ -16,13 +20,17 @@ class AllCarModel {
   String toRawJson() => json.encode(toJson());
 
   factory AllCarModel.fromJson(Map<String, dynamic> json) => AllCarModel(
-    message: json["message"],
+    totalCar: json["totalCar"],
+    activeCar: json["activeCar"],
+    reservedCar: json["reservedCar"],
     cars: json["cars"] == null ? [] : List<Car>.from(json["cars"]!.map((x) => Car.fromJson(x))),
     pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "message": message,
+    "totalCar": totalCar,
+    "activeCar": activeCar,
+    "reservedCar": reservedCar,
     "cars": cars == null ? [] : List<dynamic>.from(cars!.map((x) => x.toJson())),
     "pagination": pagination?.toJson(),
   };
@@ -153,7 +161,7 @@ class CarOwner {
   String? rfc;
   String? creaditCardNumber;
   String? ine;
-  String? image;
+  dynamic image;
   String? role;
   bool? emailVerified;
   bool? approved;

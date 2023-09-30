@@ -105,7 +105,7 @@ class SearchesCarSection extends StatelessWidget {
                       height: 80,
                       decoration:  ShapeDecoration(
                         image: DecorationImage(
-                          image: NetworkImage(controller.searchModel.cars![index].image[0]),
+                          image: NetworkImage(controller.searchModel.cars![index].image![0]),
                           fit: BoxFit.cover,
                         ),
                         shape: RoundedRectangleBorder(
