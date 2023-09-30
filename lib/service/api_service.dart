@@ -9,62 +9,50 @@ import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ApiService extends GetxService{
-
+class ApiService extends GetxService {
   SharedPreferences sharedPreferences;
+
   ApiService({required this.sharedPreferences});
 
   Future<ApiResponseModel> request(
-      String uri,
-      String method,
-      Map<String, dynamic>? params, {bool passHeader = false}) async {
-
+      String uri, String method, Map<String, dynamic>? params,
+      {bool passHeader = false}) async {
     Uri url = Uri.parse(uri);
     http.Response response;
 
     try {
       if (method == ApiResponseMethod.postMethod) {
-        if(passHeader){
+        if (passHeader) {
           initToken();
-          response = await http.post(
-              url,
-              body: params,
-              headers: {
-                "Content-Type": "application/json",
-                "Authorization": "$tokenType $token"
-              });
-        }
-        else{
+          response = await http.post(url, body: params, headers: {
+            "Content-Type": "application/json",
+            "Authorization": "$tokenType $token",
+          });
+        } else {
           response = await http.post(
             url,
             body: params,
           );
         }
-      }
-      else if (method == ApiResponseMethod.deleteMethod) {
-        if(passHeader){
-          response = await http.delete(url,headers: {
+      } else if (method == ApiResponseMethod.deleteMethod) {
+        if (passHeader) {
+          response = await http.delete(url, headers: {
             "Content-Type": "application/json",
             "Authorization": "$tokenType $token"
           });
-        }else{
+        } else {
           response = await http.delete(url);
         }
-
-      }
-      else if (method == ApiResponseMethod.updateMethod) {
+      } else if (method == ApiResponseMethod.updateMethod) {
         response = await http.patch(url);
-      }
-      else {
-        if(passHeader){
+      } else {
+        if (passHeader) {
           initToken();
-          response = await http.get(
-            url,headers: {
+          response = await http.get(url, headers: {
             "Content-Type": "application/json",
-            "Authorization": "$tokenType $token"
+            "Authorization": "$tokenType $token",
           });
-        }
-        else{
+        } else {
           response = await http.get(url);
         }
       }
@@ -72,24 +60,24 @@ class ApiService extends GetxService{
       print(url.toString());
       print(response.body);
 
-
       if (response.statusCode == 200) {
-        try{
-          ApiAuthorizationResponseModel authorizationResponseModel = ApiAuthorizationResponseModel.fromJson(jsonDecode(response.body));
-          if(authorizationResponseModel.message == 'Unauthenticated' ){
-            sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, false);
+        try {
+          ApiAuthorizationResponseModel authorizationResponseModel =
+              ApiAuthorizationResponseModel.fromJson(jsonDecode(response.body));
+          if (authorizationResponseModel.message == 'Unauthenticated') {
+            sharedPreferences.setBool(
+                SharedPreferenceHelper.rememberMeKey, false);
             sharedPreferences.remove(SharedPreferenceHelper.token);
             Get.offAllNamed(AppRoute.signInScreen);
           }
-        }catch(e){
+        } catch (e) {
           e.toString();
         }
 
         return ApiResponseModel(200, 'Success', response.body);
-      }
-      else if (response.statusCode == 401) {
+      } else if (response.statusCode == 401) {
         sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, false);
-        Get.offAllNamed(AppRoute. signInScreen);
+        Get.offAllNamed(AppRoute.signInScreen);
         return ApiResponseModel(401, "Unauthorized".tr, response.body);
       } else if (response.statusCode == 201) {
         return ApiResponseModel(201, 'Success', response.body);
@@ -112,8 +100,10 @@ class ApiService extends GetxService{
 
   initToken() {
     if (sharedPreferences.containsKey(SharedPreferenceHelper.accessTokenKey)) {
-      String? t = sharedPreferences.getString(SharedPreferenceHelper.accessTokenKey);
-      String? tType = sharedPreferences.getString(SharedPreferenceHelper.accessTokenType);
+      String? t =
+          sharedPreferences.getString(SharedPreferenceHelper.accessTokenKey);
+      String? tType =
+          sharedPreferences.getString(SharedPreferenceHelper.accessTokenType);
       token = t ?? '';
       tokenType = tType ?? 'Bearer';
     } else {

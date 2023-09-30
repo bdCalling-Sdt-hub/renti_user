@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/intro/inner_widgets/intro_bottom_section.dart';
+import 'package:renti_user/view/screens/intro/intro_controller/intro_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 
 class IntroScreen extends StatefulWidget {
@@ -15,10 +18,10 @@ class _IntroScreenState extends State<IntroScreen> {
 
   @override
   void initState() {
-    DeviceUtils.splashUtils();
+    DeviceUtils.authUtils();
+    Get.put(IntroController());
     super.initState();
   }
-
   @override
   void dispose() {
     DeviceUtils.authUtils();

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:renti_user/view/screens/settings/change_password/change_password_controller/change_password_controller.dart';
 import '../../../../../core/route/app_route.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
@@ -20,96 +19,103 @@ class _ChangePasswordAuthSectionState extends State<ChangePasswordAuthSection> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
+    return GetBuilder<ChangePasswordController>(
+      builder: (controller){
+        return Form(
+          key: _formKey,
 
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //New Password Text and TextField
-          const CustomText(
-              text: AppStrings.currentPassword,
-              top: 24,
-              bottom: 12),
-          CustomTextField(
-            isPassword: true,
-            textInputAction: TextInputAction.done,
-            hintText: 'Old Password',
-            suffixIconColor: AppColors.whiteNormalActive,
-            hintStyle: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: AppColors.whiteNormalActive),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return AppStrings.notBeEmpty;
-              } else if (value.length < 6) {
-                return AppStrings.passwordShouldBe;
-              } else {
-                return null;
-              }
-            },
-          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //New Password Text and TextField
+              const CustomText(
+                  text: AppStrings.currentPassword,
+                  top: 24,
+                  bottom: 12),
+              CustomTextField(
+                textEditingController: controller.oldPassword,
+                isPassword: true,
+                textInputAction: TextInputAction.done,
+                hintText: 'Old Password',
+                suffixIconColor: AppColors.whiteNormalActive,
+                hintStyle: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.whiteNormalActive),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings.notBeEmpty;
+                  } else if (value.length < 6) {
+                    return AppStrings.passwordShouldBe;
+                  } else {
+                    return null;
+                  }
+                },
+              ),
 
-          //Confirm Password Text and TextField
-          const CustomText(
-              text: AppStrings.newPassword,
-              top: 24,
-              bottom: 12),
-          CustomTextField(
-            isPassword: true,
-            textInputAction: TextInputAction.done,
-            hintText: AppStrings.newPassword,
-            suffixIconColor: AppColors.whiteNormalActive,
-            hintStyle: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: AppColors.whiteNormalActive),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return AppStrings.notBeEmpty;
-              } else if (value.length < 6) {
-                return AppStrings.passwordShouldBe;
-              } else {
-                return null;
-              }
-            },
+              //Confirm Password Text and TextField
+              const CustomText(
+                  text: AppStrings.newPassword,
+                  top: 24,
+                  bottom: 12),
+              CustomTextField(
+                textEditingController: controller.newPassword,
+                isPassword: true,
+                textInputAction: TextInputAction.done,
+                hintText: AppStrings.newPassword,
+                suffixIconColor: AppColors.whiteNormalActive,
+                hintStyle: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.whiteNormalActive),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings.notBeEmpty;
+                  } else if (value.length < 6) {
+                    return AppStrings.passwordShouldBe;
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const CustomText(
+                  text: AppStrings.confirmNewPassword,
+                  top: 24,
+                  bottom: 12),
+              CustomTextField(
+                textEditingController: controller.reTypePassword,
+                isPassword: true,
+                textInputAction: TextInputAction.done,
+                hintText: AppStrings.confirmPassword,
+                suffixIconColor: AppColors.whiteNormalActive,
+                hintStyle: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.whiteNormalActive),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings.notBeEmpty;
+                  } else if (value.length < 6) {
+                    return AppStrings.passwordShouldBe;
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              GestureDetector(
+                onTap: (){
+                  Get.toNamed(AppRoute.forgotPasswordScreen);
+                },
+                child: const CustomText(
+                  text: AppStrings.forgetPassword,
+                  color: AppColors.darkBlueColor,
+                  top: 24,
+                ),
+              )
+            ],
           ),
-          const CustomText(
-              text: AppStrings.confirmNewPassword,
-              top: 24,
-              bottom: 12),
-          CustomTextField(
-            isPassword: true,
-            textInputAction: TextInputAction.done,
-            hintText: AppStrings.confirmPassword,
-            suffixIconColor: AppColors.whiteNormalActive,
-            hintStyle: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: AppColors.whiteNormalActive),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return AppStrings.notBeEmpty;
-              } else if (value.length < 6) {
-                return AppStrings.passwordShouldBe;
-              } else {
-                return null;
-              }
-            },
-          ),
-          GestureDetector(
-            onTap: (){
-              Get.toNamed(AppRoute.forgotPasswordScreen);
-            },
-            child: const CustomText(
-              text: AppStrings.forgetPassword,
-              color: AppColors.darkBlueColor,
-              top: 24,
-            ),
-          )
-        ],
-      ),
+        );
+      },
     );
   }
 }

@@ -1,6 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/device_utils.dart';
+import 'package:renti_user/view/screens/auth/forgot_password/forgot_password_controller/forgot_password_controller.dart';
+import 'package:renti_user/view/screens/auth/forgot_password/forgot_password_repo/forgot_password_repo.dart';
 import 'package:renti_user/view/screens/auth/forgot_password/inner_widgets/fogot_password_top_section.dart';
 import 'package:renti_user/view/screens/auth/forgot_password/inner_widgets/forgot_password_bottom_nav-section.dart';
 
@@ -19,6 +24,21 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
+  @override
+  void initState() {
+    DeviceUtils.authUtils();
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(ForgetPasswordRepo(apiService: Get.find()));
+    Get.put(ForgetPasswordController(forgetPasswordRepo: Get.find()));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    DeviceUtils.authUtils();
+    ForgetPasswordController(forgetPasswordRepo: Get.find()).email.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

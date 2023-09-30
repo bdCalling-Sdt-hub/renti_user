@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:renti_user/view/screens/auth/forgot_password/forgot_password_controller/forgot_password_controller.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_strings.dart';
@@ -19,49 +20,54 @@ class _ForgotPasswordTopSectionState extends State<ForgotPasswordTopSection> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const CustomText(
-          text: AppStrings.emailSentTitle,
-          textAlign: TextAlign.start,
-          fontSize: 16,
-          bottom: 24,
-        ),
-        //Image
-        const Align(
-          alignment: Alignment.center,
-          child: CircleAvatar(
-            backgroundColor: AppColors.primaryColor,
-            maxRadius: 50,
-            child: CustomImage(imageSrc: AppIcons.emailLogo,imageType: ImageType.svg,),
-          ),
-        ),
-        // Email and TextField
-        const CustomText(text: AppStrings.email, top: 24, bottom: 12),
-        Form(
-          key: _formKey,
-          autovalidateMode: AutovalidateMode.always,
-          child: CustomTextField(
-            textInputAction: TextInputAction.done,
-
-            hintStyle: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                letterSpacing: 1,
-                color: AppColors.whiteNormalActive),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return AppStrings.notBeEmpty;
-              } else if (!value.contains(RegExp('\@'))) {
-                return AppStrings.enterValidEmail;
-              } else {
-                return null;
-              }
-            },
-          ),
-        ),
-      ],
+    return GetBuilder<ForgetPasswordController>(
+      builder: (controller){
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const CustomText(
+              text: AppStrings.emailSentTitle,
+              textAlign: TextAlign.start,
+              fontSize: 16,
+              bottom: 24,
+            ),
+            //Image
+            const Align(
+              alignment: Alignment.center,
+              child: CircleAvatar(
+                backgroundColor: AppColors.primaryColor,
+                maxRadius: 50,
+                child: CustomImage(imageSrc: AppIcons.emailLogo,imageType: ImageType.svg,),
+              ),
+            ),
+            // Email and TextField
+            const CustomText(text: AppStrings.email, top: 24, bottom: 12),
+            Form(
+              key: _formKey,
+              autovalidateMode: AutovalidateMode.always,
+              child: CustomTextField(
+                textInputAction: TextInputAction.done,
+                focusNode: controller.emailFocusNode,
+                textEditingController: controller.email,
+                hintStyle: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    letterSpacing: 1,
+                    color: AppColors.whiteNormalActive),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings.notBeEmpty;
+                  } else if (!value.contains(RegExp('\@'))) {
+                    return AppStrings.enterValidEmail;
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

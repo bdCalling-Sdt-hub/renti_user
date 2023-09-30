@@ -41,7 +41,7 @@ class _OtpTopSectionState extends State<OtpTopSection> {
             const SizedBox(height: 40),
             PinCodeTextField(
               controller: controller.otpController,
-              length: 6,
+              length: 4,
               obscureText: false,
               keyboardType: TextInputType.number,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -16,4 +16,9 @@ class ApiUrlContainer{
   static const String cancelRentEndPont = "rent/";
   static const String rentRequestEndPont = "payment/";
   static const String userVerifyEndPont = "user/verify";
+  static const String forgetPasswordEndPont = "user/forget-password";
+  static const String oneTimeVerifyEndPont = "user/verify-code";
+  static const String resetPasswordEndPont = "user/update-password";
+  static const String logOutEndPont = "user/logout";
+  static const String userInfoEndPont = "user/user-info";
 }

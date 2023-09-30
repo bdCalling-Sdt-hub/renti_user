@@ -52,6 +52,7 @@ class SignUpController extends GetxController {
   }
 
   Future signUpWithUpload() async {
+
     var headers = {"Content-Type": "application/json"};
     var request = http.MultipartRequest(ApiResponseMethod.postMethod, Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.signUpEndPoint}"));
 
@@ -101,29 +102,31 @@ class SignUpController extends GetxController {
       return true;
     } else {
       print(response.reasonPhrase);
+      print(response.statusCode);
+      print("Error");
       return false;
     }
   }
 
-  Future<void> signUpUser() async {
-    ApiResponseModel responseModel = await signUpRepo.createUser(
-        fullName: fullNameController.text,
-        email: emailController.text,
-        phoneNumber: phoneNumberController.text,
-        gender: genderList[selectedGender],
-        address: addressController.text,
-        dateOfBirth: dateController.text,
-        password: passwordController.text,
-        kycImages: kycDocFiles,
-        profileImage: profileImage,
-        ineNumber: ineNumberController.text
-    );
-
-    if (responseModel.statusCode == 201) {
-      SignUpResponseModel signUpResponseModel = SignUpResponseModel.fromJson(jsonDecode(responseModel.responseJson));
-      gotoNextStep();
-    } else {}
-  }
+  // Future<void> signUpUser() async {
+  //   ApiResponseModel responseModel = await signUpRepo.createUser(
+  //       fullName: fullNameController.text,
+  //       email: emailController.text,
+  //       phoneNumber: phoneNumberController.text,
+  //       gender: genderList[selectedGender],
+  //       address: addressController.text,
+  //       dateOfBirth: dateController.text,
+  //       password: passwordController.text,
+  //       kycImages: kycDocFiles,
+  //       profileImage: profileImage,
+  //       ineNumber: ineNumberController.text
+  //   );
+  //
+  //   if (responseModel.statusCode == 201) {
+  //     SignUpResponseModel signUpResponseModel = SignUpResponseModel.fromJson(jsonDecode(responseModel.responseJson));
+  //     gotoNextStep();
+  //   } else {}
+  // }
 
   void changeGender(int index) {
     selectedGender = index;

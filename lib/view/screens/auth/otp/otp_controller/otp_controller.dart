@@ -12,6 +12,7 @@ class OtpController extends GetxController {
   OtpController({required this.verifyOtpRepo});
 
   bool isSubmit = false;
+  bool signUp = true;
   TextEditingController otpController = TextEditingController();
 
   Future<void> verifyOtpResponse() async {
@@ -33,6 +34,6 @@ class OtpController extends GetxController {
   }
 
   void gotoNextStep(OtpModel otpModel) {
-    Get.offAndToNamed(AppRoute.homeScreen);
+    Get.offAndToNamed(AppRoute.signInScreen);
   }
 }

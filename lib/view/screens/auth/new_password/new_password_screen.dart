@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/auth/new_password/inner_widgets/new_password_auth_section.dart';
 import 'package:renti_user/view/screens/auth/new_password/inner_widgets/new_password_bottom_nav_section.dart';
+import 'package:renti_user/view/screens/auth/new_password/new_password_controller/new_password_controller.dart';
+import 'package:renti_user/view/screens/auth/new_password/new_password_repo/new_password_repo.dart';
 
 import '../../../../core/route/app_route.dart';
 import '../../../../utils/app_colors.dart';
@@ -22,6 +26,22 @@ class NewPasswordScreen extends StatefulWidget {
 
 class NewPasswordScreenState extends State<NewPasswordScreen> {
 
+  @override
+  void initState() {
+    DeviceUtils.authUtils();
+
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(NewPasswordRepo(apiService: Get.find()));
+    Get.put(NewPasswordController(newPasswordRepo: Get.find()));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+
+    DeviceUtils.screenUtils();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/view/screens/auth/otp/otp_controller/otp_controller.dart';
-import '../../../../../core/route/app_route.dart';
 import '../../../../../utils/app_strings.dart';
 import '../../../../widgets/buttons/custom_elevated_button.dart';
 
@@ -21,7 +20,7 @@ class _OtpBottomNavSectionState extends State<OtpBottomNavSection> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: CustomElevatedButton(
               onPressed: () {
-                controller.verifyOtpResponse();
+                  controller.verifyOtpResponse();
               },
               titleText: AppStrings.verify),
         );

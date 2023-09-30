@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:renti_user/view/screens/auth/forgot_password/forgot_password_screen.dart';
 import 'package:renti_user/view/screens/auth/kyc/kyc_screen.dart';
 import 'package:renti_user/view/screens/auth/new_password/new_password_screen.dart';
+import 'package:renti_user/view/screens/auth/one_time_verify_otp/one_time_verify_otp_screen.dart';
 import 'package:renti_user/view/screens/auth/otp/otp_screen.dart';
 import 'package:renti_user/view/screens/auth/select_photo/select_photo_screen.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_screen.dart';
@@ -71,6 +72,7 @@ class AppRoute {
   static const String paymentEditCard = "/payment_edit_card";
   static const String rentiHistory = "/renti_history_screen";
   static const String carDetails = "/car_details_screen";
+  static const String oneTimeVerifyOtpScreen = "/one_time_verify_otp_screen";
   static List<GetPage> routes = [
     GetPage(name: rentRequest, page: ()=> const RentRequestScreen()),
     GetPage(name: startTrip, page: ()=> const StartTripScreen()),
@@ -106,5 +108,6 @@ class AppRoute {
     GetPage(name: rentiHistory, page: ()=>const RentHistoryScreen()),
     GetPage(name: homeScreen, page: ()=>const HomeScreen()),
     GetPage(name: searchScreen, page: ()=>const SearchScreen()),
+    GetPage(name: oneTimeVerifyOtpScreen, page: ()=>const OneTimeVerifyOtpScreen()),
   ];
 }

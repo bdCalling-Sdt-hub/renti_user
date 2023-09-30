@@ -10,6 +10,7 @@ class SharedPreferenceHelper{
   static const String fcmDeviceKey='device-key';
 
   static const String userIdKey = 'user_id';
+  static const String userAlreadyLoginKey = 'user_already_login';
   static const String hasNewNotificationKey = 'new-notification-key';
 
   static const String token = 'token';

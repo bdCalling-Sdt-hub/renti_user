@@ -14,7 +14,6 @@ import '../../../widgets/container/custom_container.dart';
 
 class ForgotPassOTP extends StatefulWidget {
   const ForgotPassOTP({super.key});
-
   @override
   State<ForgotPassOTP> createState() => _ForgotPassOTPState();
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
-import 'package:renti_user/view/screens/home/home_screen.dart';
 import '../../../../widgets/buttons/custom_elevated_button.dart';
 
 class SelectPhotoBottomNavSection extends StatefulWidget {
