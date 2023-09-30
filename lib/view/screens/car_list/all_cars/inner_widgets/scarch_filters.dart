@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_repo/all_cars_repo.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 
@@ -18,6 +20,16 @@ class _SearchFiltersState extends State<SearchFilters> {
 
   List carModel = ["Toyota", "BMW", "Nissan", "Limberghini"];
   int selectedItem = 0;
+
+  // void initState() {
+  //
+  //   Get.put(ApiService(sharedPreferences: Get.find()));
+  //   Get.put(AllCarsRepo(apiService: Get.find()));
+  //   Get.put(AllCarsController(allCarsRepo: Get.find()));
+  //   super.initState();
+  // }
+
+
   // late AllCarsController allCarsController;
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,6 @@ class AllCarsController extends GetxController{
   bool isLoading = false;
   List<Car> carList = [];
 
-
   @override
   void onInit() {
     allCarResult();
@@ -28,7 +27,6 @@ class AllCarsController extends GetxController{
 
     if(responseModel.statusCode == 200){
       allCarsModel = AllCarsModel.fromJson(jsonDecode(responseModel.responseJson));
-
 
       List<Car>? tempCarList = allCarsModel.cars;
       if(tempCarList != null && tempCarList.isNotEmpty){

@@ -13,8 +13,6 @@ import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class SearchesCarSection extends StatelessWidget {
       SearchesCarSection({super.key,});
-
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchScreenController>(builder: (controller){

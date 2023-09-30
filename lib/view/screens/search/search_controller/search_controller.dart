@@ -8,7 +8,6 @@ import 'package:renti_user/view/screens/search/search_repo/search_repo.dart';
 class SearchScreenController extends GetxController{
   SearchRepo searchRepo;
   SearchScreenController({required this.searchRepo});
-
   TextEditingController  searchController = TextEditingController();
   SearchModel searchModel =  SearchModel();
   bool isLoading = true;
