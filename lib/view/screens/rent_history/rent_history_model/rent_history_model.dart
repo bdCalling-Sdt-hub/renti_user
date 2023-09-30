@@ -1,42 +1,142 @@
 import 'dart:convert';
 
-class OfferCarModel {
-  int? totalCar;
-  int? activeCar;
-  int? reservedCar;
-  List<Car>? cars;
+class RentHistoryModel {
+  List<UserWiseRent>? userWiseRent;
   Pagination? pagination;
 
-  OfferCarModel({
-    this.totalCar,
-    this.activeCar,
-    this.reservedCar,
-    this.cars,
+  RentHistoryModel({
+    this.userWiseRent,
     this.pagination,
   });
 
-  factory OfferCarModel.fromRawJson(String str) => OfferCarModel.fromJson(json.decode(str));
+  factory RentHistoryModel.fromRawJson(String str) => RentHistoryModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory OfferCarModel.fromJson(Map<String, dynamic> json) => OfferCarModel(
-    totalCar: json["totalCar"],
-    activeCar: json["activeCar"],
-    reservedCar: json["reservedCar"],
-    cars: json["cars"] == null ? [] : List<Car>.from(json["cars"]!.map((x) => Car.fromJson(x))),
+  factory RentHistoryModel.fromJson(Map<String, dynamic> json) => RentHistoryModel(
+    userWiseRent: json["userWiseRent"] == null ? [] : List<UserWiseRent>.from(json["userWiseRent"]!.map((x) => UserWiseRent.fromJson(x))),
     pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "totalCar": totalCar,
-    "activeCar": activeCar,
-    "reservedCar": reservedCar,
-    "cars": cars == null ? [] : List<dynamic>.from(cars!.map((x) => x.toJson())),
+    "userWiseRent": userWiseRent == null ? [] : List<dynamic>.from(userWiseRent!.map((x) => x.toJson())),
     "pagination": pagination?.toJson(),
   };
 }
 
-class Car {
+class Pagination {
+  int? totalDocuments;
+  int? totalPage;
+  int? currentPage;
+  dynamic previousPage;
+  dynamic nextPage;
+
+  Pagination({
+    this.totalDocuments,
+    this.totalPage,
+    this.currentPage,
+    this.previousPage,
+    this.nextPage,
+  });
+
+  factory Pagination.fromRawJson(String str) => Pagination.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Pagination.fromJson(Map<String, dynamic> json) => Pagination(
+    totalDocuments: json["totalDocuments"],
+    totalPage: json["totalPage"],
+    currentPage: json["currentPage"],
+    previousPage: json["previousPage"],
+    nextPage: json["nextPage"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "totalDocuments": totalDocuments,
+    "totalPage": totalPage,
+    "currentPage": currentPage,
+    "previousPage": previousPage,
+    "nextPage": nextPage,
+  };
+}
+
+class UserWiseRent {
+  String? id;
+  String? rentTripNumber;
+  String? totalAmount;
+  String? totalHours;
+  String? requestStatus;
+  String? sentRequest;
+  DateTime? startDate;
+  DateTime? endDate;
+  String? payment;
+  Id? userId;
+  CarId? carId;
+  Id? hostId;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? v;
+
+  UserWiseRent({
+    this.id,
+    this.rentTripNumber,
+    this.totalAmount,
+    this.totalHours,
+    this.requestStatus,
+    this.sentRequest,
+    this.startDate,
+    this.endDate,
+    this.payment,
+    this.userId,
+    this.carId,
+    this.hostId,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+  });
+
+  factory UserWiseRent.fromRawJson(String str) => UserWiseRent.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory UserWiseRent.fromJson(Map<String, dynamic> json) => UserWiseRent(
+    id: json["_id"],
+    rentTripNumber: json["rentTripNumber"],
+    totalAmount: json["totalAmount"],
+    totalHours: json["totalHours"],
+    requestStatus: json["requestStatus"],
+    sentRequest: json["sentRequest"],
+    startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
+    endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
+    payment: json["payment"],
+    userId: json["userId"] == null ? null : Id.fromJson(json["userId"]),
+    carId: json["carId"] == null ? null : CarId.fromJson(json["carId"]),
+    hostId: json["hostId"] == null ? null : Id.fromJson(json["hostId"]),
+    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+    v: json["__v"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "_id": id,
+    "rentTripNumber": rentTripNumber,
+    "totalAmount": totalAmount,
+    "totalHours": totalHours,
+    "requestStatus": requestStatus,
+    "sentRequest": sentRequest,
+    "startDate": startDate?.toIso8601String(),
+    "endDate": endDate?.toIso8601String(),
+    "payment": payment,
+    "userId": userId?.toJson(),
+    "carId": carId?.toJson(),
+    "hostId": hostId?.toJson(),
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
+    "__v": v,
+  };
+}
+
+class CarId {
   String? id;
   String? carModelName;
   List<String>? image;
@@ -57,12 +157,12 @@ class Car {
   String? specialCharacteristics;
   bool? activeReserve;
   String? tripStatus;
-  CarOwner? carOwner;
+  String? carOwner;
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
 
-  Car({
+  CarId({
     this.id,
     this.carModelName,
     this.image,
@@ -89,11 +189,11 @@ class Car {
     this.v,
   });
 
-  factory Car.fromRawJson(String str) => Car.fromJson(json.decode(str));
+  factory CarId.fromRawJson(String str) => CarId.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Car.fromJson(Map<String, dynamic> json) => Car(
+  factory CarId.fromJson(Map<String, dynamic> json) => CarId(
     id: json["_id"],
     carModelName: json["carModelName"],
     image: json["image"] == null ? [] : List<String>.from(json["image"]!.map((x) => x)),
@@ -114,7 +214,7 @@ class Car {
     specialCharacteristics: json["specialCharacteristics"],
     activeReserve: json["activeReserve"],
     tripStatus: json["tripStatus"],
-    carOwner: json["carOwner"] == null ? null : CarOwner.fromJson(json["carOwner"]),
+    carOwner: json["carOwner"],
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
@@ -141,14 +241,14 @@ class Car {
     "specialCharacteristics": specialCharacteristics,
     "activeReserve": activeReserve,
     "tripStatus": tripStatus,
-    "carOwner": carOwner?.toJson(),
+    "carOwner": carOwner,
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
   };
 }
 
-class CarOwner {
+class Id {
   String? id;
   String? fullName;
   String? email;
@@ -171,7 +271,7 @@ class CarOwner {
   DateTime? updatedAt;
   int? v;
 
-  CarOwner({
+  Id({
     this.id,
     this.fullName,
     this.email,
@@ -195,11 +295,11 @@ class CarOwner {
     this.v,
   });
 
-  factory CarOwner.fromRawJson(String str) => CarOwner.fromJson(json.decode(str));
+  factory Id.fromRawJson(String str) => Id.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory CarOwner.fromJson(Map<String, dynamic> json) => CarOwner(
+  factory Id.fromJson(Map<String, dynamic> json) => Id(
     id: json["_id"],
     fullName: json["fullName"],
     email: json["email"],
@@ -245,41 +345,5 @@ class CarOwner {
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
-  };
-}
-
-class Pagination {
-  int? totalDocuments;
-  int? totalPage;
-  int? currentPage;
-  dynamic previousPage;
-  dynamic nextPage;
-
-  Pagination({
-    this.totalDocuments,
-    this.totalPage,
-    this.currentPage,
-    this.previousPage,
-    this.nextPage,
-  });
-
-  factory Pagination.fromRawJson(String str) => Pagination.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory Pagination.fromJson(Map<String, dynamic> json) => Pagination(
-    totalDocuments: json["totalDocuments"],
-    totalPage: json["totalPage"],
-    currentPage: json["currentPage"],
-    previousPage: json["previousPage"],
-    nextPage: json["nextPage"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "totalDocuments": totalDocuments,
-    "totalPage": totalPage,
-    "currentPage": currentPage,
-    "previousPage": previousPage,
-    "nextPage": nextPage,
   };
 }

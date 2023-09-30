@@ -39,7 +39,7 @@ class User {
   String? password;
   List<dynamic>? kyc;
   String? ine;
-  String? image;
+  List<dynamic>? image;
   String? role;
   bool? emailVerified;
   bool? approved;
@@ -48,6 +48,8 @@ class User {
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
+  String? rfc;
+  String? creaditCardNumber;
 
   User({
     this.id,
@@ -69,6 +71,8 @@ class User {
     this.createdAt,
     this.updatedAt,
     this.v,
+    this.rfc,
+    this.creaditCardNumber,
   });
 
   factory User.fromRawJson(String str) => User.fromJson(json.decode(str));
@@ -86,7 +90,7 @@ class User {
     password: json["password"],
     kyc: json["KYC"] == null ? [] : List<dynamic>.from(json["KYC"]!.map((x) => x)),
     ine: json["ine"],
-    image: json["image"],
+    image: json["image"] == null ? [] : List<dynamic>.from(json["image"]!.map((x) => x)),
     role: json["role"],
     emailVerified: json["emailVerified"],
     approved: json["approved"],
@@ -95,6 +99,8 @@ class User {
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
+    rfc: json["RFC"],
+    creaditCardNumber: json["creaditCardNumber"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -108,7 +114,7 @@ class User {
     "password": password,
     "KYC": kyc == null ? [] : List<dynamic>.from(kyc!.map((x) => x)),
     "ine": ine,
-    "image": image,
+    "image": image == null ? [] : List<dynamic>.from(image!.map((x) => x)),
     "role": role,
     "emailVerified": emailVerified,
     "approved": approved,
@@ -117,5 +123,7 @@ class User {
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
+    "RFC": rfc,
+    "creaditCardNumber": creaditCardNumber,
   };
 }

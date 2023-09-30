@@ -22,14 +22,18 @@ class LuxuryCarsScreen extends StatefulWidget {
   State<LuxuryCarsScreen> createState() => _LuxuryCarsScreenState();
 }
 class _LuxuryCarsScreenState extends State<LuxuryCarsScreen> {
-  @override
   void initState() {
     DeviceUtils.authUtils();
+
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(OfferCarRepo(apiService: Get.find()));
-    Get.put(OfferCarController(offerCarRepo: Get.find()));
-    super.initState();
+    final controller= Get.put(OfferCarController(offerCarRepo: Get.find()));
 
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      controller.initialState();
+    });
+
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {
@@ -58,13 +62,15 @@ class _LuxuryCarsScreenState extends State<LuxuryCarsScreen> {
                   )
                 ],
               )),
-          body:   Padding(
+          body: const Padding(
             padding: EdgeInsets.symmetric(vertical: 24,horizontal: 20),
             child: Column(
               children: [
                 SearchFilter(),
                 SizedBox(height: 24),
-                LuxuryCarDetails(offerCarModel: OfferCarModel(),)
+                Flexible(
+                  child: LuxuryCarDetails(),
+                )
               ],
             ),
           ),

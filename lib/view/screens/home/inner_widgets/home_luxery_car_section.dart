@@ -3,32 +3,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/route/app_route.dart';
-import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
-import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/view/screens/home/popular_car/popular_car_model.dart';
+import 'package:renti_user/view/screens/car_list/offer_car/offer_car_controller/offer_car_controller.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-import '../popular_car/popular_car_controller.dart';
-import '../popular_car/popular_car_repo.dart';
+
 
 class HomePopularSection extends StatelessWidget {
 
-   HomePopularSection({super.key, required this.popularCarModel});
-
-  void initState() {
-    Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(PopularCarRepo(apiService: Get.find()));
-    Get.put(PopularCarController(popularCarRepo: Get.find()));
-  }
-
-  PopularCarModel popularCarModel;
+  const HomePopularSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<PopularCarController>(builder: (controller){
+    return GetBuilder<OfferCarController>(builder: (controller){
       if(controller.isLoading == true
       ){
         return const Center(
@@ -66,7 +55,7 @@ class HomePopularSection extends StatelessWidget {
               physics:  const BouncingScrollPhysics(),
               child: Row(
                 children: List.generate(
-                    controller.popularCarModel.cars!.length.toInt(), (index) => Stack(
+                    controller.carList.length, (index) => Stack(
                   children: [
                     Container(
                       margin: const EdgeInsetsDirectional.only(end: 12),
@@ -92,7 +81,7 @@ class HomePopularSection extends StatelessWidget {
                             height: 95,
                             decoration:  ShapeDecoration(
                               image: DecorationImage(
-                                image: NetworkImage(controller.popularCarModel.cars?[index].image![0]??""),
+                                image: NetworkImage(controller.carList[index].image![0]),
                                 // image: AssetImage(AppImages.carBg),
                                 fit: BoxFit.fill,
                               ),
@@ -108,7 +97,7 @@ class HomePopularSection extends StatelessWidget {
                             left:12,
                             top:12,
                             bottom: 12,
-                            text: controller.popularCarModel.cars![index].carModelName.toString(),
+                            text: controller.carList[index].carModelName ?? '',
                             color: AppColors.primaryColor,
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -124,7 +113,7 @@ class HomePopularSection extends StatelessWidget {
                                     SvgPicture.asset(AppIcons.lucidFuel),
                                     CustomText(
                                       left: 8,
-                                      text:"${controller.popularCarModel.cars![index].totalRun.toString()}${"/L"}",
+                                      text:"${controller.carList[index].hourlyRate ?? ''}${"/L"}",
                                       color: AppColors.whiteDark,
                                       fontSize: 10,
                                       fontWeight: FontWeight.w400,
@@ -138,7 +127,7 @@ class HomePopularSection extends StatelessWidget {
                                         text: TextSpan(
                                             children: [
                                               TextSpan(
-                                                text: "${"\$"}${controller.popularCarModel.cars![index].hourlyRate.toString()}",
+                                                text: "${"\$"}${controller.carList[index].hourlyRate ?? ''}",
                                                 style: GoogleFonts.poppins(
                                                   color: const Color(0xFF595959),
                                                   fontSize: 10,

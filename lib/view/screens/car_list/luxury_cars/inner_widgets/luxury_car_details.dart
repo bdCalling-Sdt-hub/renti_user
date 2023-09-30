@@ -5,24 +5,23 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/car_list/offer_car/offer_car_controller/offer_car_controller.dart';
-import 'package:renti_user/view/screens/car_list/offer_car/offer_car_model/offer_car_model.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class LuxuryCarDetails extends StatelessWidget {
-   LuxuryCarDetails({super.key,required this.offerCarModel});
-  OfferCarModel offerCarModel;
+   const LuxuryCarDetails({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OfferCarController>(builder: (controller) => SingleChildScrollView(
       child: Column(
           children:  List.generate(
-            offerCarModel.cars!.length.toInt(), (index) =>
+            controller.carList.length, (index) =>
               Container(
                 width: MediaQuery.of(context).size.width,
-                margin:  EdgeInsets.only(bottom: 16),
-                padding:  EdgeInsetsDirectional.all(16),
+                margin:  const EdgeInsets.only(bottom: 16),
+                padding:  const EdgeInsetsDirectional.all(16),
                 decoration: BoxDecoration(
                   border: Border.all(color: AppColors.whiteNormalActive,width: 1),
                   color: AppColors.whiteLight,
@@ -46,15 +45,15 @@ class LuxuryCarDetails extends StatelessWidget {
                           Row(
                             children:  [
                               CustomText(
-                                text: offerCarModel.cars![index].carModelName.toString(),
+                                text: controller.carList[index].carModelName ?? '',
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.darkBlueColor,
                               ),
-                              SizedBox(width: 8,),
-                              CustomImage(imageSrc: AppIcons.starIcon),
-                              SizedBox(width: 8,),
-                              CustomText(
+                              const SizedBox(width: 8,),
+                              const CustomImage(imageSrc: AppIcons.starIcon),
+                              const SizedBox(width: 8,),
+                              const CustomText(
                                 text: "(4.5)",
                                 fontSize: 10,
                                 fontWeight: FontWeight.w400,
@@ -63,7 +62,7 @@ class LuxuryCarDetails extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 10),
-                          Row(
+                          const Row(
                             children: [
                               CustomImage(imageSrc: AppIcons.lucidFuel, size: 16),
                               Row(
@@ -106,7 +105,7 @@ class LuxuryCarDetails extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child:Image.network(offerCarModel.cars![index].image![0]),
+                      child:Image.network(controller.carList[index].image![0]),
                     ),
                   ],
                 ),

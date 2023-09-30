@@ -17,6 +17,8 @@ import 'package:renti_user/view/widgets/drawer/custom_drawer.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
+import 'inner_widgets/home_luxery_car_section.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -99,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: GetBuilder<OfferCarController>(
             builder: (controller) => controller.isLoading ? const Center(
               child: CircularProgressIndicator(),
-            ) : const Column(
+            ) :  const Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -107,9 +109,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 16),
                 HomeFromUntilSection(),
                 SizedBox(height: 24),
-                HomeOfferCarSection(),
+                HomePopularSection(),
                 SizedBox(height: 24,),
-                // HomePopularSection( popularCarModel: PopularCarModel(),)
+                HomeOfferCarSection(),
+
+
               ],
             ),
           ),
