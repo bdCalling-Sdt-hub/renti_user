@@ -10,28 +10,26 @@ class SearchScreenController extends GetxController{
   SearchScreenController({required this.searchRepo});
   TextEditingController  searchController = TextEditingController();
   SearchModel searchModel =  SearchModel();
-  bool isLoading = true;
+  bool isLoading = false;
+  List<Car> carList = [];
 
-  @override
-  void onInit() {
-    searchResult();
-    super.onInit();
-  }
+  Future<void> searchResult() async{
+    carList.clear();
+    isLoading = true;
+    update();
 
-  Future<void> searchResult({String search = ""}) async{
-    ApiResponseModel responseModel = await searchRepo.searchRepoResponse(search: search);
-
-    // print("status code: ${responseModel.statusCode}");
+    ApiResponseModel responseModel = await searchRepo.searchRepoResponse(search: searchController.text);
 
     if(responseModel.statusCode == 200){
       searchModel = SearchModel.fromJson(jsonDecode(responseModel.responseJson));
-      isLoading = false;
-      update();
+      List<Car>? temCarList = searchModel.cars;
+      if(temCarList != null && temCarList.isNotEmpty){
+        carList.addAll(temCarList);
+      }
     }
-    else{
 
-    }
-
+    isLoading = false;
+    update();
   }
 
 }
