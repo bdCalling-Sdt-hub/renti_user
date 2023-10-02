@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_model/rent_history_model.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
 
 class RentalInfo extends StatelessWidget {
-  const RentalInfo({super.key});
+  const RentalInfo({super.key, required this.rentHistoryModel});
+  final UserWiseRent rentHistoryModel;
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomText(
@@ -27,7 +29,7 @@ class RentalInfo extends StatelessWidget {
              color: AppColors.whiteDarkHover,
            ),
 
-            Text("Toyota Corolla",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+            Text(rentHistoryModel.carId?.carModelName.toString()?? "",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
         SizedBox(height: 8,),
@@ -41,7 +43,7 @@ class RentalInfo extends StatelessWidget {
              color: AppColors.whiteDarkHover,
            ),
             SizedBox(),
-            Text("Blue",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+            Text(rentHistoryModel.carId?.carColor.toString()?? "",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
         SizedBox(height: 8,),
@@ -55,7 +57,7 @@ class RentalInfo extends StatelessWidget {
              color: AppColors.whiteDarkHover,
            ),
             SizedBox(),
-            Text("61-10-TMD",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+            Text(rentHistoryModel.carId?.carLicenseNumber.toString()?? "",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
         SizedBox(height: 8,),
@@ -69,7 +71,7 @@ class RentalInfo extends StatelessWidget {
           color: AppColors.whiteDarkHover,
         ),
             SizedBox(),
-            Text("48 Hr",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+            Text(rentHistoryModel.totalHours?? " ",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
         SizedBox(height: 8,),
@@ -83,7 +85,7 @@ class RentalInfo extends StatelessWidget {
              color: AppColors.whiteDarkHover,
            ),
             SizedBox(),
-            Text('08 Aug 2023',style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+            Text(rentHistoryModel.startDate?? "",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
       ],

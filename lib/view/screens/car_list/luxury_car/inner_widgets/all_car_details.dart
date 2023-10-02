@@ -5,6 +5,7 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/car_list/luxury_car/luxury_car_controller/luxury_car_controller.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
@@ -12,17 +13,17 @@ import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class AllCarDetaills extends StatelessWidget {
-  const AllCarDetaills({super.key,required this.allCarsModel});
-final AllCarsModel allCarsModel;
+  const AllCarDetaills({super.key,});
+
   @override
   Widget build(BuildContext context) {
 
-    return  GetBuilder<AllCarsController>(builder: (controller){
+    return  GetBuilder<LuxuryCarController>(builder: (controller){
       return Expanded(
         child: SingleChildScrollView(
           child: Column(
               children:  List.generate(
-                allCarsModel.cars!.length, (index) =>
+                controller.luxuryCarList.length, (index) =>
                   Container(
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.only(bottom: 16),
@@ -50,7 +51,7 @@ final AllCarsModel allCarsModel;
                               Row(
                                 children: [
                                   CustomText(
-                                    text: allCarsModel.cars![index].carModelName.toString(),
+                                    text: controller.luxuryCarList[index].carModelName ?? "",
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
                                     color: AppColors.darkBlueColor,
@@ -73,7 +74,7 @@ final AllCarsModel allCarsModel;
                                   Row(
                                     children: [
                                       CustomText(
-                                        text: allCarsModel.cars![index].totalRun.toString(),
+                                        text: controller.luxuryCarList[index].totalRun ?? "",
                                         color: AppColors.whiteDarkActive,
                                         left: 8,
                                         textAlign: TextAlign.start,
@@ -83,7 +84,7 @@ final AllCarsModel allCarsModel;
                                           color: AppColors.whiteDarkActive),
                                       const SizedBox(width: 16),
                                       CustomText(
-                                        text: "${"\$"}${ allCarsModel.cars![index].hourlyRate.toString()}",
+                                        text: "${"\$"}${ controller.luxuryCarList[index].hourlyRate}",
                                       ),
 
                                       // CustomText(
@@ -100,7 +101,7 @@ final AllCarsModel allCarsModel;
                               ),
                               const SizedBox(height: 8),
                               CustomElevatedButton(onPressed: (){
-                                Get.toNamed(AppRoute.carDetails , arguments: [allCarsModel , index]);
+                                Get.toNamed(AppRoute.carDetails , arguments: [index]);
                               }
                                 ,titleText: AppStrings.seeDetails,
                                 titleWeight: FontWeight.w400,
@@ -117,7 +118,7 @@ final AllCarsModel allCarsModel;
                             height: 60,
                             width: 120,
                             decoration: BoxDecoration(
-                                image: DecorationImage(image: NetworkImage(allCarsModel.cars![index].image![0].toString()),
+                                image: DecorationImage(image: NetworkImage("allCarsModel.cars![index].image![0].toString()"),
                                     fit: BoxFit.fill
                                 )
                             ),

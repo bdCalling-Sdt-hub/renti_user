@@ -1,42 +1,34 @@
 import 'dart:convert';
 
-SearchModel searchModelFromJson(String str) => SearchModel.fromJson(json.decode(str));
+OfferCarModel offerCarModelFromJson(String str) => OfferCarModel.fromJson(json.decode(str));
 
-String searchModelToJson(SearchModel data) => json.encode(data.toJson());
+String offerCarModelToJson(OfferCarModel data) => json.encode(data.toJson());
 
-class SearchModel {
-  int? totalCar;
-  int? activeCar;
-  int? reservedCar;
-  List<Car>? cars;
+class OfferCarModel {
+  String? message;
+  List<OfferCar>? offerCars;
   Pagination? pagination;
 
-  SearchModel({
-    this.totalCar,
-    this.activeCar,
-    this.reservedCar,
-    this.cars,
+  OfferCarModel({
+    this.message,
+    this.offerCars,
     this.pagination,
   });
 
-  factory SearchModel.fromJson(Map<String, dynamic> json) => SearchModel(
-    totalCar: json["totalCar"],
-    activeCar: json["activeCar"],
-    reservedCar: json["reservedCar"],
-    cars: json["cars"] == null ? [] : List<Car>.from(json["cars"]!.map((x) => Car.fromJson(x))),
+  factory OfferCarModel.fromJson(Map<String, dynamic> json) => OfferCarModel(
+    message: json["message"],
+    offerCars: json["offerCars"] == null ? [] : List<OfferCar>.from(json["offerCars"]!.map((x) => OfferCar.fromJson(x))),
     pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "totalCar": totalCar,
-    "activeCar": activeCar,
-    "reservedCar": reservedCar,
-    "cars": cars == null ? [] : List<dynamic>.from(cars!.map((x) => x.toJson())),
+    "message": message,
+    "offerCars": offerCars == null ? [] : List<dynamic>.from(offerCars!.map((x) => x.toJson())),
     "pagination": pagination?.toJson(),
   };
 }
 
-class Car {
+class OfferCar {
   String? id;
   String? carModelName;
   List<String>? image;
@@ -51,9 +43,11 @@ class Car {
   String? carSeats;
   String? totalRun;
   String? hourlyRate;
+  String? offerHourlyRate;
   String? registrationDate;
   int? popularity;
   String? gearType;
+  String? carType;
   String? specialCharacteristics;
   bool? activeReserve;
   String? tripStatus;
@@ -61,10 +55,8 @@ class Car {
   String? createdAt;
   String? updatedAt;
   int? v;
-  String? carType;
-  double? averageRatings;
 
-  Car({
+  OfferCar({
     this.id,
     this.carModelName,
     this.image,
@@ -79,9 +71,11 @@ class Car {
     this.carSeats,
     this.totalRun,
     this.hourlyRate,
+    this.offerHourlyRate,
     this.registrationDate,
     this.popularity,
     this.gearType,
+    this.carType,
     this.specialCharacteristics,
     this.activeReserve,
     this.tripStatus,
@@ -89,11 +83,9 @@ class Car {
     this.createdAt,
     this.updatedAt,
     this.v,
-    this.carType,
-    this.averageRatings,
   });
 
-  factory Car.fromJson(Map<String, dynamic> json) => Car(
+  factory OfferCar.fromJson(Map<String, dynamic> json) => OfferCar(
     id: json["_id"],
     carModelName: json["carModelName"],
     image: json["image"] == null ? [] : List<String>.from(json["image"]!.map((x) => x)),
@@ -108,9 +100,11 @@ class Car {
     carSeats: json["carSeats"],
     totalRun: json["totalRun"],
     hourlyRate: json["hourlyRate"],
+    offerHourlyRate: json["offerHourlyRate"],
     registrationDate: json["registrationDate"],
     popularity: json["popularity"],
     gearType: json["gearType"],
+    carType: json["carType"],
     specialCharacteristics: json["specialCharacteristics"],
     activeReserve: json["activeReserve"],
     tripStatus: json["tripStatus"],
@@ -118,8 +112,6 @@ class Car {
     createdAt: json["createdAt"],
     updatedAt: json["updatedAt"],
     v: json["__v"],
-    carType: json["carType"],
-    averageRatings: json["averageRatings"]?.toDouble(),
   );
 
   Map<String, dynamic> toJson() => {
@@ -137,9 +129,11 @@ class Car {
     "carSeats": carSeats,
     "totalRun": totalRun,
     "hourlyRate": hourlyRate,
+    "offerHourlyRate": offerHourlyRate,
     "registrationDate": registrationDate,
     "popularity": popularity,
     "gearType": gearType,
+    "carType": carType,
     "specialCharacteristics": specialCharacteristics,
     "activeReserve": activeReserve,
     "tripStatus": tripStatus,
@@ -147,8 +141,6 @@ class Car {
     "createdAt": createdAt,
     "updatedAt": updatedAt,
     "__v": v,
-    "carType": carType,
-    "averageRatings": averageRatings,
   };
 }
 
@@ -161,9 +153,8 @@ class CarOwner {
   String? address;
   String? dateOfBirth;
   String? password;
-  List<String>? kyc;
+  List<dynamic>? kyc;
   String? rfc;
-  String? ine;
   String? image;
   String? role;
   bool? emailVerified;
@@ -186,7 +177,6 @@ class CarOwner {
     this.password,
     this.kyc,
     this.rfc,
-    this.ine,
     this.image,
     this.role,
     this.emailVerified,
@@ -208,9 +198,8 @@ class CarOwner {
     address: json["address"],
     dateOfBirth: json["dateOfBirth"],
     password: json["password"],
-    kyc: json["KYC"] == null ? [] : List<String>.from(json["KYC"]!.map((x) => x)),
+    kyc: json["KYC"] == null ? [] : List<dynamic>.from(json["KYC"]!.map((x) => x)),
     rfc: json["RFC"],
-    ine: json["ine"],
     image: json["image"],
     role: json["role"],
     emailVerified: json["emailVerified"],
@@ -234,7 +223,6 @@ class CarOwner {
     "password": password,
     "KYC": kyc == null ? [] : List<dynamic>.from(kyc!.map((x) => x)),
     "RFC": rfc,
-    "ine": ine,
     "image": image,
     "role": role,
     "emailVerified": emailVerified,

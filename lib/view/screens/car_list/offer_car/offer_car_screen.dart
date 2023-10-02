@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
-import 'package:renti_user/view/screens/car_list/popular_car/inner_widgets/search_car_scetion.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
+import 'package:renti_user/view/screens/car_list/offer_car/inner_widgets/offer_car_scetion.dart';
+import 'package:renti_user/view/screens/car_list/offer_car/offer_car_controller/offer_car_controller.dart';
+import 'package:renti_user/view/screens/car_list/offer_car/offer_car_repo/offer_car_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'inner_widgets/search_filter.dart';
+
 class PopularCarScreen extends StatefulWidget {
+
   const PopularCarScreen({super.key});
   @override
   State<PopularCarScreen> createState() => _PopularCarScreenState();
 }
 class _PopularCarScreenState extends State<PopularCarScreen> {
-// PopularCarModel popularCarModel = Get.arguments;
-AllCarsModel allCarsModel = Get.arguments;
+
+  @override
+  void initState() {
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(OfferCarRepo(apiService: Get.find()));
+    final controller = Get.put(OfferCarController(offerCarRepo: Get.find()));
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      controller.initialState();
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,7 +49,7 @@ AllCarsModel allCarsModel = Get.arguments;
                       color: AppColors.blackNormal,
                     )),
                 const CustomText(
-                  text: "Popular Cars",
+                  text: "Offer Cars",
                   color: AppColors.blackNormal,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -41,18 +57,20 @@ AllCarsModel allCarsModel = Get.arguments;
                 )
               ],
             )),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
-          child: Column(
-            children: [
-              SearchFilter(),
-              SizedBox(height: 24),
-             Expanded(
-               child: SingleChildScrollView(
-                 child: PopularCarSection(allCarsModel: allCarsModel,)
-               ),
-             )
-            ],
+        body: GetBuilder<OfferCarController>(
+          builder: (controller) => Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
+            child: Column(
+              children: [
+                const SearchFilter(),
+                const SizedBox(height: 24),
+                Expanded(
+                  child: SingleChildScrollView(
+                      child: OfferCarSection()
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

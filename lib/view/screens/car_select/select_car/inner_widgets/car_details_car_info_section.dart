@@ -18,7 +18,6 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AllCarsController>(builder: (controller){
-      AllCarsModel allCarsModel = controller.allCarsModel;
       return   Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

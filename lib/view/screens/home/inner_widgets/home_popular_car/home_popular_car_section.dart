@@ -14,14 +14,8 @@ import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class HomePopularSection extends StatelessWidget {
 
-   const HomePopularSection({super.key,});
+  const HomePopularSection({super.key});
 
-  void initState() {
-    Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(AllCarsRepo(apiService: Get.find()));
-
-     Get.put(AllCarsController(allCarsRepo: Get.find()));
-  }
   @override
   Widget build(BuildContext context) {
 
@@ -34,7 +28,7 @@ class HomePopularSection extends StatelessWidget {
            mainAxisAlignment: MainAxisAlignment.spaceBetween,
            children: [
              const CustomText(
-               text: "Popular Cars",
+               text: "Offer Cars",
                color: AppColors.blackNormal,
                fontSize: 14,
                fontWeight: FontWeight.w500,
@@ -55,12 +49,12 @@ class HomePopularSection extends StatelessWidget {
 
 
          const SizedBox(height: 16),
-         SingleChildScrollView(
+         controller.carList.isNotEmpty ? SingleChildScrollView(
              scrollDirection: Axis.horizontal,
              physics:  const BouncingScrollPhysics(),
              child: Row(
                children: List.generate(
-                   controller.carList.length, (index) =>controller.carList[index].popularity! > 0? Stack(
+                   controller.carList.length, (index) =>controller.carList[index].popularity! > 0 ? Stack(
                    children: [
                       Container(
                      margin: const EdgeInsetsDirectional.only(end: 12),
@@ -190,7 +184,7 @@ class HomePopularSection extends StatelessWidget {
                ) : const SizedBox()
                ),
              )
-         )
+         ) : const SizedBox()
        ],
      );
     });

@@ -1,42 +1,35 @@
+
 import 'dart:convert';
 
-SearchModel searchModelFromJson(String str) => SearchModel.fromJson(json.decode(str));
+LuxuryCarModel luxuryCarModelFromJson(String str) => LuxuryCarModel.fromJson(json.decode(str));
 
-String searchModelToJson(SearchModel data) => json.encode(data.toJson());
+String luxuryCarModelToJson(LuxuryCarModel data) => json.encode(data.toJson());
 
-class SearchModel {
-  int? totalCar;
-  int? activeCar;
-  int? reservedCar;
-  List<Car>? cars;
+class LuxuryCarModel {
+  String? message;
+  List<LuxuryCar>? luxuryCars;
   Pagination? pagination;
 
-  SearchModel({
-    this.totalCar,
-    this.activeCar,
-    this.reservedCar,
-    this.cars,
+  LuxuryCarModel({
+    this.message,
+    this.luxuryCars,
     this.pagination,
   });
 
-  factory SearchModel.fromJson(Map<String, dynamic> json) => SearchModel(
-    totalCar: json["totalCar"],
-    activeCar: json["activeCar"],
-    reservedCar: json["reservedCar"],
-    cars: json["cars"] == null ? [] : List<Car>.from(json["cars"]!.map((x) => Car.fromJson(x))),
+  factory LuxuryCarModel.fromJson(Map<String, dynamic> json) => LuxuryCarModel(
+    message: json["message"],
+    luxuryCars: json["luxuryCars"] == null ? [] : List<LuxuryCar>.from(json["luxuryCars"]!.map((x) => LuxuryCar.fromJson(x))),
     pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "totalCar": totalCar,
-    "activeCar": activeCar,
-    "reservedCar": reservedCar,
-    "cars": cars == null ? [] : List<dynamic>.from(cars!.map((x) => x.toJson())),
+    "message": message,
+    "luxuryCars": luxuryCars == null ? [] : List<dynamic>.from(luxuryCars!.map((x) => x.toJson())),
     "pagination": pagination?.toJson(),
   };
 }
 
-class Car {
+class LuxuryCar {
   String? id;
   String? carModelName;
   List<String>? image;
@@ -62,9 +55,13 @@ class Car {
   String? updatedAt;
   int? v;
   String? carType;
-  double? averageRatings;
+  String? paymentId;
+  List<dynamic>? carImage;
+  String? userId;
+  int? averageRatings;
+  String? offerHourlyRate;
 
-  Car({
+  LuxuryCar({
     this.id,
     this.carModelName,
     this.image,
@@ -90,10 +87,14 @@ class Car {
     this.updatedAt,
     this.v,
     this.carType,
+    this.paymentId,
+    this.carImage,
+    this.userId,
     this.averageRatings,
+    this.offerHourlyRate,
   });
 
-  factory Car.fromJson(Map<String, dynamic> json) => Car(
+  factory LuxuryCar.fromJson(Map<String, dynamic> json) => LuxuryCar(
     id: json["_id"],
     carModelName: json["carModelName"],
     image: json["image"] == null ? [] : List<String>.from(json["image"]!.map((x) => x)),
@@ -119,7 +120,11 @@ class Car {
     updatedAt: json["updatedAt"],
     v: json["__v"],
     carType: json["carType"],
-    averageRatings: json["averageRatings"]?.toDouble(),
+    paymentId: json["paymentId"],
+    carImage: json["carImage"] == null ? [] : List<dynamic>.from(json["carImage"]!.map((x) => x)),
+    userId: json["userId"],
+    averageRatings: json["averageRatings"],
+    offerHourlyRate: json["offerHourlyRate"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -148,7 +153,11 @@ class Car {
     "updatedAt": updatedAt,
     "__v": v,
     "carType": carType,
+    "paymentId": paymentId,
+    "carImage": carImage == null ? [] : List<dynamic>.from(carImage!.map((x) => x)),
+    "userId": userId,
     "averageRatings": averageRatings,
+    "offerHourlyRate": offerHourlyRate,
   };
 }
 

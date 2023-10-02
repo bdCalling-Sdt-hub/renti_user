@@ -3,22 +3,19 @@ import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/core/global/api_url_container.dart';
 import 'package:renti_user/service/api_service.dart';
 
-class AllCarsRepo{
+class OfferCarRepo{
 
   ApiService apiService;
-  AllCarsRepo({required this.apiService});
 
-  Future<ApiResponseModel> AllCarsRepoResponse() async{
+  OfferCarRepo({required this.apiService});
 
-    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.carDetailsEndPoint}";
+  fetchOfferCar() async{
 
+    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.offerCarEndPoint}";
     String requestMethod = ApiResponseMethod.getMethod;
 
-    Map<String, String> params = {
+    ApiResponseModel responseModel = await apiService.request(url, requestMethod, null, passHeader: true);
 
-    };
-    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, null, passHeader: true);
     return responseModel;
   }
 }
-

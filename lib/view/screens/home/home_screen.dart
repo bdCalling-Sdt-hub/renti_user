@@ -33,9 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(AllCarsRepo(apiService: Get.find()));
     Get.put(AllCarsController(allCarsRepo: Get.find()));
-    Get.put(ApiService(sharedPreferences: Get.find()));
-    // Get.put(PopularCarController(popularCarRepo: Get.find()));
-    Get.put(AllCarsController(allCarsRepo: Get.find()));
 
     super.initState();
   }

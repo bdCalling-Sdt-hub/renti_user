@@ -7,8 +7,8 @@ import 'package:renti_user/view/screens/auth/select_photo/select_photo_screen.da
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:renti_user/view/screens/auth/signup_continue/sign_up_continue_screen.dart';
-import 'package:renti_user/view/screens/car_list/all_cars/all_cars_screen.dart';
-import 'package:renti_user/view/screens/car_list/popular_car/popular-car_screen.dart';
+import 'package:renti_user/view/screens/car_list/luxury_car/luxury_car_screen.dart';
+import 'package:renti_user/view/screens/car_list/offer_car/offer_car_screen.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_screen.dart';
 import 'package:renti_user/view/screens/home/home_screen.dart';
 import 'package:renti_user/view/screens/intro/intro_screen.dart';
@@ -71,6 +71,7 @@ class AppRoute {
   static const String paymentEditCard = "/payment_edit_card";
   static const String rentiHistory = "/renti_history_screen";
   static const String carDetails = "/car_details_screen";
+
   static List<GetPage> routes = [
     GetPage(name: rentRequest, page: ()=> const RentRequestScreen()),
     GetPage(name: startTrip, page: ()=> const StartTripScreen()),

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_model/rent_history_model.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
 
 class HostInfo extends StatefulWidget {
-  const HostInfo({super.key});
+  const HostInfo({super.key, required this.rentHistoryModel});
+  final UserWiseRent rentHistoryModel;
   @override
   State<HostInfo> createState() => _HostInfoState();
 }
 class _HostInfoState extends State<HostInfo> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomText(
@@ -33,7 +35,7 @@ class _HostInfoState extends State<HostInfo> {
               color: AppColors.whiteDarkHover,
             ),
             SizedBox(),
-            Text("Md Jubayed",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+            Text(widget.rentHistoryModel.hostId?.fullName.toString()?? "",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
         SizedBox(height: 8,),
@@ -47,7 +49,7 @@ class _HostInfoState extends State<HostInfo> {
               color: AppColors.whiteDarkHover,
     ),
             SizedBox(),
-            Text("12345678964",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+            Text(widget.rentHistoryModel.hostId?.ine.toString()?? "",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
         SizedBox(height: 8,),
@@ -75,7 +77,7 @@ class _HostInfoState extends State<HostInfo> {
                 color: AppColors.whiteDarkHover,
                 ),
             SizedBox(),
-            Text("Mexico",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+            Text(widget.rentHistoryModel.hostId?.address.toString()?? "",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
           ],
         ),
       ],

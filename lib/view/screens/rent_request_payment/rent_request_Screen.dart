@@ -1,20 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/device_utils.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_model/rent_history_model.dart';
 import 'package:renti_user/view/screens/rent_request_payment/inner_widgets/payment_section.dart';
 import 'package:renti_user/view/screens/rent_request_payment/inner_widgets/host_information.dart';
 import 'package:renti_user/view/screens/rent_request_payment/inner_widgets/rental_info.dart';
 import 'package:renti_user/view/screens/rent_request_payment/inner_widgets/top_upload_scetion.dart';
+import 'package:renti_user/view/screens/rent_request_payment/rent_request_payment_controller/rent_request_payment_controller.dart';
+import 'package:renti_user/view/screens/rent_request_payment/rent_request_payment_repo/rent_request_payment_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_nav_button.dart';
 import '../../../utils/app_colors.dart';
 
-class RentRequestScreen extends StatelessWidget {
+class RentRequestScreen extends StatefulWidget {
   const RentRequestScreen({super.key});
   @override
+  State<RentRequestScreen> createState() => _RentRequestScreenState();
+}
+
+class _RentRequestScreenState extends State<RentRequestScreen> {
+  @override
+  void initState() {
+    DeviceUtils.authUtils();
+
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(RentRequestPaymentRepo(apiService: Get.find()));
+    Get.put(RentRequestPaymentController(rentRequestPaymentRepo: Get.find()));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+
+    DeviceUtils.screenUtils();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
+
+    final UserWiseRent wiseRent = Get.arguments;
     final ScrollController scrollController = ScrollController();
     return  SafeArea(
       child: Scaffold(
@@ -27,7 +54,7 @@ class RentRequestScreen extends StatelessWidget {
               children: [
                 Icon(Icons.arrow_back_ios_new,color: AppColors.blackNormal,size: 18,),
                 SizedBox(width: 8,),
-                Text("Rent Request",
+                Text("Trip Details",
                   style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -46,20 +73,24 @@ class RentRequestScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // top Section with upload button
-                  const TopUploadSection(),
+                  TopUploadSection(rentHistoryModel: wiseRent,),
                   const SizedBox(height: 16),
-                  const RentalInfo(),
+                  RentalInfo(rentHistoryModel: wiseRent),
                   const SizedBox(height: 24,),
-                  const HostInfo(),
+                  HostInfo(rentHistoryModel: wiseRent,),
                   const SizedBox(height: 32,),
-                  PaymentSection(scrollController: scrollController,)
+                  PaymentSection(scrollController: scrollController, rentHistoryModel: wiseRent,)
                 ],
               ),
             );}
           ),
-        bottomNavigationBar: BottomNavButton(onTap: (){
-          Get.toNamed(AppRoute.startTrip);
-        }, buttonName: AppStrings.makePayment, buttonColor: AppColors.primaryColor),
+        bottomNavigationBar: GetBuilder<RentRequestPaymentController>(
+          builder: (controller){
+            return BottomNavButton(onTap: (){
+              controller.rentRequestPaymentResult(wiseRent.id??"", wiseRent.totalAmount??"100", wiseRent.carId?.carModelName??"");
+            }, buttonName: AppStrings.makePayment, buttonColor: AppColors.primaryColor);
+          },
+        ),
       )
     );
   }

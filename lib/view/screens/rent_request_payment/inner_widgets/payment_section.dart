@@ -12,12 +12,14 @@ import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_strings.dart';
 
 
+import '../../rent_history/rent_history_model/rent_history_model.dart';
 import 'hsbc_méxico_card.dart';
 
 class PaymentSection extends StatefulWidget {
-     PaymentSection({
-       super.key, required this.scrollController
+     const PaymentSection({
+       super.key, required this.scrollController, required this.rentHistoryModel
      });
+     final UserWiseRent rentHistoryModel;
   final ScrollController scrollController;
   @override
   State<PaymentSection> createState() => _PaymentSectionState();
@@ -45,7 +47,7 @@ class _PaymentSectionState extends State<PaymentSection> {
     return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
@@ -55,7 +57,7 @@ class _PaymentSectionState extends State<PaymentSection> {
               color: AppColors.primaryColor ,
             ),
             Text(
-              "\$ 250",
+              "\$ ${widget.rentHistoryModel.totalAmount??"0"}",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
