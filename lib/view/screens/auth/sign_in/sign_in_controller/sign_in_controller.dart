@@ -54,7 +54,7 @@ class SignInController extends GetxController{
     }
 
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userIdKey, signInResponseModel.user?.id ?? "");
-    await signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.userAlreadyLoginKey, true);
+    // await signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.userAlreadyLoginKey, true);
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.accessTokenKey, signInResponseModel.accessToken ?? "");
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.accessTokenType, "Bearer");
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userEmailKey, signInResponseModel.user?.email.toString() ?? "");

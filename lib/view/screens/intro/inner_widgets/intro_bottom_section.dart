@@ -41,7 +41,7 @@ class IntroBottomSection extends StatelessWidget {
             const SizedBox(height: 24),
             CustomElevatedButton(
               onPressed: () {
-                controller.userAlreadySignIn();
+                Get.offNamed(AppRoute.signInScreen);
               },
               titleText: AppStrings.getStarted,
               buttonWidth: double.maxFinite,

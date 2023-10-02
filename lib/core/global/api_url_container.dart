@@ -10,7 +10,7 @@ class ApiUrlContainer{
   static const String logoutEndPoint = "user/logout";
   static const String changePasswordEndPoint = "user/change-password";
   static const String userInfoEndPoint = "user/user-info";
-  static const String updateUserEndPont = "user/update";
+  static const String updateUserEndPont = "user/update/";
   static const String sendRentRequestEndPont = "rent/request/";
   static const String rentHistoryEndPont = "rent/all";
   static const String cancelRentEndPont = "rent/";

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_body_section.dart';
 import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_bottom_nav_section.dart';
+import 'package:renti_user/view/screens/profile/profile_settings/profile_settings_controller/profile_settings_controller.dart';
+import 'package:renti_user/view/screens/profile/profile_settings/profile_settings_repo/profile_settings_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import '../../../../utils/app_strings.dart';
@@ -17,6 +20,23 @@ class ProfileSettingsScreen extends StatefulWidget {
 }
 
 class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
+
+  @override
+  void initState() {
+    DeviceUtils.authUtils();
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(ProfileSettingsRepo(apiService: Get.find()));
+    Get.put(ProfileSettingsController(profileSettingsRepo: Get.find()));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    DeviceUtils.screenUtils();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
