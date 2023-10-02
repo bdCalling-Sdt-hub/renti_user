@@ -12,7 +12,7 @@ class ApiUrlContainer{
   static const String changePasswordEndPoint = "user/change-password";
 
   static const String profileDetailsEndPoint = "user/user-info";
-  static const String updateUserEndPont = "user/update";
+  static const String profileUpdateEndPoint = "user/update";
   static const String privacyPolicy = "privacyPolicy/all";
   static const String aboutUsEnd = "about/all";
   static const String termConditionEndPoint = "termsConditionRouter/all";
