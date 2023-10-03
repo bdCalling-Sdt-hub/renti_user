@@ -22,7 +22,7 @@ import 'package:renti_user/view/screens/profile/profile_settings/profile_setting
 import 'package:renti_user/view/screens/rent_history/rent_history_screen.dart';
 import 'package:renti_user/view/screens/rent_request_payment/rent_request_Screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/about_us/about_us_screen.dart';
-import 'package:renti_user/view/screens/rentiworks_support_condition/how_renti_works/renti_works_screen.dart';
+import 'package:renti_user/view/screens/rentiworks_support_condition/how_renti_works/how_renti_works_screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/private_policy/private_policy_screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/support/support_screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/terms&conditions/terms_conditions_screen.dart';
@@ -92,7 +92,7 @@ class AppRoute {
     GetPage(name: newPassword, page: ()=>const NewPasswordScreen()),
     GetPage(name: profileDetails, page: ()=>const ProfileDetailsScreen()),
     GetPage(name: profileSettingsScreen, page: ()=>const ProfileSettingsScreen()),
-    GetPage(name: rentiWorks, page: ()=>const RentiWorksScreen()),
+    GetPage(name: rentiWorks, page: ()=>const HowRentiWorksScreen()),
     GetPage(name: support, page: ()=>const SupportScreen()),
     GetPage(name: aboutUs, page: ()=>const AboutUsScreen()),
     GetPage(name: termsConditions, page: ()=>const TermsConditionsScreen()),

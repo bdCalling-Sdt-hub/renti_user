@@ -40,18 +40,4 @@ class AboutUstController extends GetxController{
     update();
   }
 
-/*gotoNextStep(SignInResponseModel signInResponseModel) async{
-
-    if(signInResponseModel.user == null){
-      Get.toNamed(AppRoute.signInScreen);
-    }
-    else if(signInResponseModel.user?.emailVerified == false){
-      Get.toNamed(AppRoute.otpScreen);
-    }
-    else{
-      Get.offAndToNamed(AppRoute.homeScreen);
-    }*/
-
-
-
 }

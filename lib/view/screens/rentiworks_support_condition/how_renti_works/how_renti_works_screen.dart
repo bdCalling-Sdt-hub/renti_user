@@ -2,33 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/service/api_service.dart';
+import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
-import 'package:renti_user/view/screens/rentiworks_support_condition/support/support_controller/support_controller.dart';
-import 'package:renti_user/view/screens/rentiworks_support_condition/support/support_repo/support_repo.dart';
+import 'package:renti_user/view/screens/rentiworks_support_condition/how_renti_works/how_renti_work_repo/how_renti_works_repo.dart';
+import 'package:renti_user/view/screens/rentiworks_support_condition/how_renti_works/how_renti_works_controller/how_renti_works_controller.dart';
+import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_strings.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
 import '../../../widgets/buttons/custom_back_button.dart';
 import '../../../widgets/container/custom_container.dart';
-import '../../../widgets/text/custom_text.dart';
 
-class SupportScreen extends StatefulWidget {
-  const SupportScreen({super.key});
+class HowRentiWorksScreen extends StatefulWidget {
+
+  const HowRentiWorksScreen({super.key});
 
   @override
-  State<SupportScreen> createState() => _SupportScreenState();
+  State<HowRentiWorksScreen> createState() => _HowRentiWorksScreenState();
 }
 
-class _SupportScreenState extends State<SupportScreen> {
+class _HowRentiWorksScreenState extends State<HowRentiWorksScreen> {
 
   @override
   void initState() {
     DeviceUtils.authUtils();
-
     Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(SupportRepo(apiService: Get.find()));
-    final controller = Get.put(SupportController(supportRepo: Get.find()));
+    Get.put(HowRentiWorksRepo(apiService: Get.find()));
+    final controller = Get.put(HowRentiWorksController(howRentiWorksRepo: Get.find()));
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.loadData();
@@ -38,31 +38,31 @@ class _SupportScreenState extends State<SupportScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
+    return SafeArea(
       top: false,
       bottom: false,
       child: Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: const CustomAppBar(
         appBarContent: CustomBack(
-          text:AppStrings.support,
+          text: AppStrings.rentiWorks,
         ),
       ),
       body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) => GetBuilder<SupportController>(
+        builder: (BuildContext context, BoxConstraints constraints) => GetBuilder<HowRentiWorksController>(
           builder: (controller) => CustomContainer(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            child: controller.isLoading ? const Center(
+            child:  controller.isLoading ? const Center(
               child: CircularProgressIndicator(),
             ) : SingleChildScrollView(
-                padding: const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
-                physics: const BouncingScrollPhysics(),
-                child: Html(data: controller.content)
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
+              child: Html(data: controller.content),
             ),
           ),
         ),
-      ),
+      )
     ));
   }
 }
