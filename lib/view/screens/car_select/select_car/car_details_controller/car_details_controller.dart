@@ -38,27 +38,23 @@ class CarDetailsController extends GetxController{
 
   bool isSubmit = false;
 
-  sentRentRequest({required String carId}) async{
+  sentRentRequest({required String carId, required String startDate, required String endDate}) async{
 
     isSubmit = true;
     update();
 
-    print("Car id: $carId");
-    print("from: ${startTripDateController.text}");
-    print("until: ${endTripDateController.text}");
-
     ApiResponseModel responseModel = await carDetailsRepo.sentRentRequest(
-        startDate: startTripDateController.text.toString(),
-        endDate: endTripDateController.text.toString(),
-        carId: carId
+      startDate: startDate,
+      endDate: endDate,
+      carId: carId
     );
 
     if(responseModel.statusCode == 200){
       sentRentRequestModel = SentRentRequestModel.fromJson(jsonDecode(responseModel.responseJson));
-      Map<String, dynamic> rentRequestData = jsonDecode(sentRentRequestModelToJson(sentRentRequestModel));
+      /*Map<String, dynamic> rentRequestData = jsonDecode(sentRentRequestModelToJson(sentRentRequestModel));
       final rentRequestDataEncode = jsonEncode(rentRequestData);
 
-      await carDetailsRepo.apiService.sharedPreferences.setString("rent_request_data", rentRequestDataEncode);
+      await carDetailsRepo.apiService.sharedPreferences.setString("rent_request_data", rentRequestDataEncode);*/
       print("Request sent successfully");
     }
 
