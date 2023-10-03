@@ -7,9 +7,11 @@ import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/home/home_controller/home_controller.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_repo/all_cars_repo.dart';
+import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class HomePopularSection extends StatelessWidget {
@@ -19,10 +21,10 @@ class HomePopularSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return GetBuilder<AllCarsController>(builder: (controller){
-     AllCarsModel allCarsModel  = controller.allCarsModel;
-     return Column(
+    return GetBuilder<HomeController>(
+    builder: (controller) => Column(
        crossAxisAlignment: CrossAxisAlignment.start,
+       mainAxisAlignment: MainAxisAlignment.center,
        children: [
          Row(
            mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,7 +37,7 @@ class HomePopularSection extends StatelessWidget {
              ),
              InkWell(
                onTap: (){
-                 Get.toNamed(AppRoute.popularCarScreen, arguments: allCarsModel);
+                 Get.toNamed(AppRoute.popularCarScreen, arguments: "");
                },
                child:  const CustomText(
                  text: AppStrings.seeAll,
@@ -46,15 +48,16 @@ class HomePopularSection extends StatelessWidget {
              )
            ],
          ),
-
-
          const SizedBox(height: 16),
-         controller.carList.isNotEmpty ? SingleChildScrollView(
+         controller.offerCarList.isEmpty ? const CustomImage(
+           imageSrc: "assets/images/no_car.svg",
+           size: 200,
+         ) : SingleChildScrollView(
              scrollDirection: Axis.horizontal,
              physics:  const BouncingScrollPhysics(),
              child: Row(
                children: List.generate(
-                   controller.carList.length, (index) =>controller.carList[index].popularity! > 0 ? Stack(
+                   controller.offerCarList.length, (index) => Stack(
                    children: [
                       Container(
                      margin: const EdgeInsetsDirectional.only(end: 12),
@@ -80,8 +83,7 @@ class HomePopularSection extends StatelessWidget {
                            height: 95,
                            decoration:  ShapeDecoration(
                              image: DecorationImage(
-                               image: NetworkImage(controller.carList[index].image![0]??""),
-                               // image: AssetImage(AppImages.carBg),
+                               image: NetworkImage(controller.offerCarList[index].image![0]??""),
                                fit: BoxFit.fill,
                              ),
                              shape: const RoundedRectangleBorder(
@@ -96,7 +98,7 @@ class HomePopularSection extends StatelessWidget {
                            left:12,
                            top:12,
                            bottom: 12,
-                           text: controller.carList[index].carModelName??"",
+                           text: controller.offerCarList[index].carModelName ?? "",
                            color: AppColors.primaryColor,
                            fontSize: 12,
                            fontWeight: FontWeight.w500,
@@ -113,8 +115,7 @@ class HomePopularSection extends StatelessWidget {
 
                                    CustomText(
                                      left: 8,
-                                     text: controller.carList[index].totalRun.toString()??"",
-                                    // text:"${controller.popularCarModel.cars![index].totalRun.toString()}${"/L"}",
+                                     text: controller.offerCarList[index].totalRun.toString()??"",
                                      color: AppColors.whiteDark,
                                      fontSize: 10,
                                      fontWeight: FontWeight.w400,
@@ -128,29 +129,21 @@ class HomePopularSection extends StatelessWidget {
                                        text: TextSpan(
                                            children: [
                                              TextSpan(
-                                                text: "${"\$"}${controller.carList[index].hourlyRate.toString()?? ""}",
+                                                text: "${"\$"}${controller.offerCarList[index].hourlyRate.toString()?? ""}",
                                                style: GoogleFonts.poppins(
                                                  color: const Color(0xFF595959),
                                                  fontSize: 10,
                                                  fontWeight: FontWeight.w400,
                                                ),
                                              ),
-
-                                             // TextSpan(
-                                             //   text: popularCarModel.cars![index].hourlyRate,
-                                             //   style: GoogleFonts.poppins(
-                                             //     color: const Color(0xFF595959),
-                                             //     fontSize: 10,
-                                             //     fontWeight: FontWeight.w400,
-                                             //     height: 1.4),
-                                             // ),
                                              TextSpan(
                                                  text: '/hr',
                                                  style: GoogleFonts.openSans(
                                                    color: AppColors.primaryColor,
                                                    fontSize: 10,
                                                    fontWeight: FontWeight.w400,
-                                                 ))
+                                                 )
+                                             )
                                            ]
                                        )
                                    )
@@ -181,12 +174,10 @@ class HomePopularSection extends StatelessWidget {
                      ),
                    ),
                  ],
-               ) : const SizedBox()
-               ),
+               )),
              )
-         ) : const SizedBox()
+         )
        ],
-     );
-    });
+     ));
   }
 }
