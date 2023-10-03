@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
+import 'package:renti_user/view/screens/profile/profile_details/profile_details_repo/profile_details_repo.dart';
 import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_body_section.dart';
 import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_bottom_nav_section.dart';
-import 'package:renti_user/view/screens/profile/profile_settings/profile_settings_controller/profile_settings_controller.dart';
-import 'package:renti_user/view/screens/profile/profile_settings/profile_settings_repo/profile_settings_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import '../../../../utils/app_strings.dart';
@@ -23,8 +23,8 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   @override
   void initState() {
     Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(ProfileSettingsRepo(apiService: Get.find()));
-    final controller = Get.put(ProfileSettingsController(profileSettingsRepo: Get.find()));
+    Get.put(ProfileDetailsRepo(apiService: Get.find()));
+    final controller = Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.loadData();
@@ -60,7 +60,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
           )
         ],
       )),
-      body: GetBuilder<ProfileSettingsController>(
+      body: GetBuilder<ProfileDetailsController>(
         builder: (controller) => LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) => SingleChildScrollView(
               physics: const BouncingScrollPhysics(),

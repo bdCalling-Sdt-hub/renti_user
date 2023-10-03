@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:renti_user/view/screens/profile/profile_settings/profile_settings_controller/profile_settings_controller.dart';
+import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
+import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_image_section.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
-import '../../../../../utils/app_images.dart';
 import '../../../../../utils/app_strings.dart';
 import '../../../../widgets/image/custom_image.dart';
 import '../../../../widgets/text/custom_text.dart';
@@ -16,30 +16,10 @@ class ProfileSettingsBodySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProfileSettingsController>(
+    return GetBuilder<ProfileDetailsController>(
       builder: (controller) => Column(
         children: [
-          const CustomImage(
-            imageSrc: AppImages.profileImg,
-            imageType: ImageType.png,
-            size: 100,
-          ),
-          const SizedBox(height: 16),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomImage(
-                imageSrc: AppIcons.selectCamera,
-                size: 18,
-                imageColor: AppColors.primaryColor,
-              ),
-              CustomText(
-                text: AppStrings.changePhoto,
-                color: AppColors.primaryColor,
-                left: 10,
-              )
-            ],
-          ),
+          ProfileImageSection(imagePath: controller.profileImage, isEdit: true),
           const SizedBox(height: 16),
           Form(
             child: Column(
