@@ -4,7 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:renti_user/utils/app_colors.dart';
-import 'package:renti_user/view/screens/car_list/luxury_car/inner_widgets/all_car_details.dart';
+import 'package:renti_user/view/screens/car_list/luxury_car/inner_widgets/luxury_car_details.dart';
 import 'package:renti_user/view/screens/car_list/luxury_car/luxury_car_controller/luxury_car_controller.dart';
 import 'package:renti_user/view/screens/car_list/luxury_car/luxury_car_repo/luxury_car_repo.dart';
 import 'package:renti_user/view/screens/car_list/offer_car/inner_widgets/search_filter.dart';
@@ -26,7 +26,6 @@ class _AllCarScreenState extends State<AllCarScreen> {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(LuxuryCarRepo(apiService: Get.find()));
     final controller = Get.put(LuxuryCarController(luxuryCarRepo: Get.find()));
-
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.initialState();
     });
@@ -56,7 +55,7 @@ class _AllCarScreenState extends State<AllCarScreen> {
                       color: AppColors.blackNormal,
                     )),
                 const CustomText(
-                  text: "All Cars",
+                  text: "Luxury Cars",
                   color: AppColors.blackNormal,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -71,8 +70,7 @@ class _AllCarScreenState extends State<AllCarScreen> {
               children: [
                 SearchFilter(),
                 SizedBox(height: 24),
-
-                AllCarDetaills()
+                LuxuryCarDetails()
               ],
             ),
           );

@@ -33,9 +33,9 @@ class CarDetailsTopSection extends StatelessWidget {
           children: [
             Container(
                 padding: const EdgeInsets.symmetric(vertical: 44,horizontal: 44),
-                color: AppColors.whiteDArkHover,
                 width: MediaQuery.of(context).size.width,
                 decoration: controller.carDetailsModel.cars?.image != null ? BoxDecoration(
+                    color: AppColors.whiteDArkHover,
                   image: DecorationImage(
                     image: NetworkImage(
                       controller.carDetailsModel.cars?.image![0] ?? ""
@@ -54,13 +54,13 @@ class CarDetailsTopSection extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(left: 12,bottom: 12,top: 8),
               color: AppColors.whiteLight,
-              child:   const Column(
+              child:    Column(
                 children: [
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomText(
-                        text: 'Toyota Harrier',
+                        text: controller.carDetailsModel.cars?.carModelName ?? "",
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: AppColors.darkBlueColor,
@@ -71,7 +71,7 @@ class CarDetailsTopSection extends StatelessWidget {
                         imageSrc: AppIcons.starIcon,
                         size: 12,),
                       CustomText(
-                        text: '(4.5)',
+                        text: "5",
                         fontSize: 10,
                         color: AppColors.blackNormal,
                         bottom: 8,
@@ -84,14 +84,14 @@ class CarDetailsTopSection extends StatelessWidget {
                     children: [
                       CustomImage(imageSrc: AppIcons.lucidFuel,size: 12,),
                       CustomText(
-                        text: '10 km/L',
+                        text: "${controller.carDetailsModel.cars!.totalRun.toString()}/L",
                         fontSize: 12,
                         color: AppColors.whiteDarkActive,
                         right: 8,
                         left: 6,
                       ),
                       CustomText(
-                        text: '\$25/hour',
+                        text: "\$${controller.carDetailsModel.cars!.hourlyRate}/hour",
                         fontSize: 12,
                         color: AppColors.whiteDarkActive,
                         left: 8,

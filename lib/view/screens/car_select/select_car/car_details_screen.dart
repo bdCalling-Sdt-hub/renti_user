@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_controller/car_details_controller.dart';
@@ -10,7 +9,6 @@ import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/canc
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/car_details_map_section.dart';
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/car_details_top_section.dart';
 import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/from_until_section.dart';
-
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
@@ -32,7 +30,6 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
   @override
   void initState() {
     carId = Get.arguments;
-
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(CarDetailsRepo(apiService: Get.find()));
     final controller = Get.put(CarDetailsController(carDetailsRepo: Get.find()));
@@ -117,7 +114,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
               ),
         )
       ),
-      bottomNavigationBar: const BottomNavSection(),
+      bottomNavigationBar: BottomNavSection(id: carId,),
     ));
   }
 }

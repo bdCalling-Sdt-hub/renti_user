@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/view/screens/car_select/select_car/car_details_controller/car_details_controller.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
 
@@ -17,8 +18,8 @@ class CarDetailsCarInfoSection extends StatefulWidget {
 class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AllCarsController>(builder: (controller){
-      return   Column(
+    return GetBuilder<CarDetailsController>(builder: (controller){
+      return controller.isLoading? const Center(child: CircularProgressIndicator(),) : Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomText(
@@ -40,7 +41,7 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
                 bottom: 12,
               ),
               CustomText(
-                text: "",
+                text: controller.carDetailsModel.cars!.totalRun ?? "",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -57,7 +58,7 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
                 bottom: 12,
               ),
               CustomText(
-                text: 'Black',
+                text: controller.carDetailsModel.cars!.carColor.toString(),
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -74,7 +75,7 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
                 bottom: 12,
               ),
               CustomText(
-                text: '5 Person',
+                text: controller.carDetailsModel.cars!.carSeats.toString(),
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -91,7 +92,7 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
                 bottom: 12,
               ),
               CustomText(
-                text: 'Mannual',
+                text: controller.carDetailsModel.cars!.gearType.toString(),
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -107,7 +108,8 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
                 color: AppColors.whiteDarkActive,
               ),
               CustomText(
-                text: '70 L',
+                text: "80/L",
+                // text: controller.carDetailsModel.cars!..toString(),
                 color: AppColors.blackNormal,
               ),
             ],

@@ -1,31 +1,106 @@
+// To parse this JSON data, do
+//
+//     final sendRentRequestModel = sendRentRequestModelFromJson(jsonString);
 
 import 'dart:convert';
 
-CarDetailsModel carDetailsModelFromJson(String str) => CarDetailsModel.fromJson(json.decode(str));
+SendRentRequestModel sendRentRequestModelFromJson(String str) => SendRentRequestModel.fromJson(json.decode(str));
 
-String carDetailsModelToJson(CarDetailsModel data) => json.encode(data.toJson());
+String sendRentRequestModelToJson(SendRentRequestModel data) => json.encode(data.toJson());
 
-class CarDetailsModel {
+class SendRentRequestModel {
   String? message;
-  Cars? cars;
+  Rents? rents;
 
-  CarDetailsModel({
+  SendRentRequestModel({
     this.message,
-    this.cars,
+    this.rents,
   });
 
-  factory CarDetailsModel.fromJson(Map<String, dynamic> json) => CarDetailsModel(
+  factory SendRentRequestModel.fromJson(Map<String, dynamic> json) => SendRentRequestModel(
     message: json["message"],
-    cars: json["cars"] == null ? null : Cars.fromJson(json["cars"]),
+    rents: json["rents"] == null ? null : Rents.fromJson(json["rents"]),
   );
 
   Map<String, dynamic> toJson() => {
     "message": message,
-    "cars": cars?.toJson(),
+    "rents": rents?.toJson(),
   };
 }
 
-class Cars {
+class Rents {
+  String? rentTripNumber;
+  String? totalAmount;
+  String? totalHours;
+  String? requestStatus;
+  String? sentRequest;
+  DateTime? startDate;
+  DateTime? endDate;
+  String? payment;
+  Id? userId;
+  CarId? carId;
+  Id? hostId;
+  String? id;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? v;
+
+  Rents({
+    this.rentTripNumber,
+    this.totalAmount,
+    this.totalHours,
+    this.requestStatus,
+    this.sentRequest,
+    this.startDate,
+    this.endDate,
+    this.payment,
+    this.userId,
+    this.carId,
+    this.hostId,
+    this.id,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+  });
+
+  factory Rents.fromJson(Map<String, dynamic> json) => Rents(
+    rentTripNumber: json["rentTripNumber"],
+    totalAmount: json["totalAmount"],
+    totalHours: json["totalHours"],
+    requestStatus: json["requestStatus"],
+    sentRequest: json["sentRequest"],
+    startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
+    endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
+    payment: json["payment"],
+    userId: json["userId"] == null ? null : Id.fromJson(json["userId"]),
+    carId: json["carId"] == null ? null : CarId.fromJson(json["carId"]),
+    hostId: json["hostId"] == null ? null : Id.fromJson(json["hostId"]),
+    id: json["_id"],
+    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+    v: json["__v"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "rentTripNumber": rentTripNumber,
+    "totalAmount": totalAmount,
+    "totalHours": totalHours,
+    "requestStatus": requestStatus,
+    "sentRequest": sentRequest,
+    "startDate": startDate?.toIso8601String(),
+    "endDate": endDate?.toIso8601String(),
+    "payment": payment,
+    "userId": userId?.toJson(),
+    "carId": carId?.toJson(),
+    "hostId": hostId?.toJson(),
+    "_id": id,
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
+    "__v": v,
+  };
+}
+
+class CarId {
   String? id;
   String? carModelName;
   List<String>? image;
@@ -40,22 +115,19 @@ class Cars {
   String? carSeats;
   String? totalRun;
   String? hourlyRate;
-  String? offerHourlyRate;
   String? registrationDate;
   int? popularity;
   String? gearType;
-  String? carType;
   String? specialCharacteristics;
   bool? activeReserve;
   String? tripStatus;
-  CarOwner? carOwner;
+  String? carOwner;
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
-  List<dynamic>? carImage;
-  String? userId;
+  String? carType;
 
-  Cars({
+  CarId({
     this.id,
     this.carModelName,
     this.image,
@@ -70,11 +142,9 @@ class Cars {
     this.carSeats,
     this.totalRun,
     this.hourlyRate,
-    this.offerHourlyRate,
     this.registrationDate,
     this.popularity,
     this.gearType,
-    this.carType,
     this.specialCharacteristics,
     this.activeReserve,
     this.tripStatus,
@@ -82,11 +152,10 @@ class Cars {
     this.createdAt,
     this.updatedAt,
     this.v,
-    this.carImage,
-    this.userId,
+    this.carType,
   });
 
-  factory Cars.fromJson(Map<String, dynamic> json) => Cars(
+  factory CarId.fromJson(Map<String, dynamic> json) => CarId(
     id: json["_id"],
     carModelName: json["carModelName"],
     image: json["image"] == null ? [] : List<String>.from(json["image"]!.map((x) => x)),
@@ -101,20 +170,17 @@ class Cars {
     carSeats: json["carSeats"],
     totalRun: json["totalRun"],
     hourlyRate: json["hourlyRate"],
-    offerHourlyRate: json["offerHourlyRate"],
     registrationDate: json["registrationDate"],
     popularity: json["popularity"],
     gearType: json["gearType"],
-    carType: json["carType"],
     specialCharacteristics: json["specialCharacteristics"],
     activeReserve: json["activeReserve"],
     tripStatus: json["tripStatus"],
-    carOwner: json["carOwner"] == null ? null : CarOwner.fromJson(json["carOwner"]),
+    carOwner: json["carOwner"],
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
-    carImage: json["carImage"] == null ? [] : List<dynamic>.from(json["carImage"]!.map((x) => x)),
-    userId: json["userId"],
+    carType: json["carType"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -132,24 +198,21 @@ class Cars {
     "carSeats": carSeats,
     "totalRun": totalRun,
     "hourlyRate": hourlyRate,
-    "offerHourlyRate": offerHourlyRate,
     "registrationDate": registrationDate,
     "popularity": popularity,
     "gearType": gearType,
-    "carType": carType,
     "specialCharacteristics": specialCharacteristics,
     "activeReserve": activeReserve,
     "tripStatus": tripStatus,
-    "carOwner": carOwner?.toJson(),
+    "carOwner": carOwner,
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
-    "carImage": carImage == null ? [] : List<dynamic>.from(carImage!.map((x) => x)),
-    "userId": userId,
+    "carType": carType,
   };
 }
 
-class CarOwner {
+class Id {
   String? id;
   String? fullName;
   String? email;
@@ -172,7 +235,7 @@ class CarOwner {
   String? creaditCardNumber;
   String? ine;
 
-  CarOwner({
+  Id({
     this.id,
     this.fullName,
     this.email,
@@ -196,7 +259,7 @@ class CarOwner {
     this.ine,
   });
 
-  factory CarOwner.fromJson(Map<String, dynamic> json) => CarOwner(
+  factory Id.fromJson(Map<String, dynamic> json) => Id(
     id: json["_id"],
     fullName: json["fullName"],
     email: json["email"],

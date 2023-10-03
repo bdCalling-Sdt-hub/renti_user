@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_model/car_details_model.dart';
+import 'package:renti_user/view/screens/car_select/select_car/car_details_model/send_rent_request_response_model.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_repo/car_details_repo.dart';
 
 class CarDetailsController extends GetxController{
@@ -12,7 +13,7 @@ class CarDetailsController extends GetxController{
   bool isLoading = false;
 
   CarDetailsModel carDetailsModel = CarDetailsModel();
-
+  SendRentRequestModel sendRentRequestModel = SendRentRequestModel();
   Future<void> loadCarDetailsData(String carId) async{
     isLoading = true;
     update();
@@ -24,8 +25,19 @@ class CarDetailsController extends GetxController{
     else{
       print("Error");
     }
-
     isLoading = false;
     update();
+  }
+
+  Future<void> sendRentRequestResult(String carId) async{
+
+    ApiResponseModel responseModel = await carDetailsRepo.sendRentRequest(id: carId);
+    if(responseModel.statusCode == 200){
+      sendRentRequestModel = SendRentRequestModel.fromJson(jsonDecode(responseModel.responseJson));
+      Get.snackbar("Success", "Request Send Successfully");
+    }
+    else{
+      print("Error");
+    }
   }
 }
