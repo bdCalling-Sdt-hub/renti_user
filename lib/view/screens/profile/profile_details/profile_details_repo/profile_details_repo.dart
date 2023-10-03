@@ -25,7 +25,7 @@ class ProfileDetailsRepo{
   }
 
 
-  Future<ProfileDetailsModel> updateUser(UserPostModel userPostModel) async{
+  updateUser(UserPostModel userPostModel) async{
 
     String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.profileUpdateEndPoint}/${apiService.sharedPreferences.getString(SharedPreferenceHelper.userIdKey)}";
 
@@ -40,14 +40,13 @@ class ProfileDetailsRepo{
       "dateOfBirth" : userPostModel.dob
     };
 
-    request.headers.addAll({'Authorization' : 'Bearer ${apiService.token}'});
+    request.headers.addAll({'Content-Type' : 'multipart/form-data' ,'Authorization' : 'Bearer ${apiService.token}'});
     if(userPostModel.image != null){
-      request.files.add(http.MultipartFile(
-          'image',
-          userPostModel.image!.readAsBytes().asStream(),
-          userPostModel.image!.lengthSync(),
-          filename: userPostModel.image!.path.split("/").last
-      ));
+      var image = await http.MultipartFile.fromPath(
+        'image',
+        userPostModel.image!.path,
+      );
+      request.files.add(image);
     }
     request.fields.addAll(params);
 

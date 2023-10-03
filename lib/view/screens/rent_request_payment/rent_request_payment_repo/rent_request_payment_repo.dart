@@ -20,7 +20,7 @@ class RentRequestPaymentRepo{
         "price": int.parse(productPrice)
       },
       "token": {
-        "email": apiService.sharedPreferences.getString(SharedPreferenceHelper.userEmailKey),
+        "email": apiService.sharedPreferences.getString(SharedPreferenceHelper.email),
         "id": "tok_visa"
       }
     };

@@ -12,7 +12,7 @@ import 'package:renti_user/view/screens/home/home_repo/home_repo.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_repo/all_cars_repo.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_from_until_section.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/home_all_car_section.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/home_luxury_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_top_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
@@ -127,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 24),
                 HomePopularSection(),
                 SizedBox(height: 24,),
-                HomeAllCarSection()
+                HomeLuxuryCarSection()
               ],
             ),
           ),

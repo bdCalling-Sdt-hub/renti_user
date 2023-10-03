@@ -10,9 +10,9 @@ import 'package:renti_user/view/screens/home/home_controller/home_controller.dar
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-class HomeAllCarSection extends StatelessWidget {
+class HomeLuxuryCarSection extends StatelessWidget {
 
-  const HomeAllCarSection({super.key});
+  const HomeLuxuryCarSection({super.key});
   @override
   Widget build(BuildContext context) {
 

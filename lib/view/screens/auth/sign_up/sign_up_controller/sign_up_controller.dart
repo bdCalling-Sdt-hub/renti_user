@@ -1,13 +1,13 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:renti_user/core/global/api_response_model.dart';
+import 'package:renti_user/core/global/api_url_container.dart';
 import 'package:renti_user/core/route/app_route.dart';
-import 'package:renti_user/view/screens/auth/sign_up/sign_up_model/sign_up_response_model.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_repo/sign_up_repo.dart';
 
 class SignUpController extends GetxController{
@@ -47,37 +47,13 @@ class SignUpController extends GetxController{
     update();
   }
 
-  Future<void> signUpUser() async{
-
-    ApiResponseModel responseModel = await signUpRepo.createUser(
-        fullName: fullNameController.text.toString(),
-        email: emailController.text.toString(),
-        phoneNumber: "$phoneCode ${phoneNumberController.text.toString()}",
-        gender: genderList[selectedGender],
-        address: addressController.text.toString(),
-        dateOfBirth: "${dateController.text.toString()}/${monthController.text.toString()}/${yearController.text.toString()}",
-        password: passwordController.text.toString(),
-        kycImages: kycDocFiles,
-        ineNumber: ineNumberController.text.toString(),
-        profileImage: profileImage!
-    );
-
-    if(responseModel.statusCode == 200){
-      SignUpResponseModel signUpResponseModel = SignUpResponseModel.fromJson(jsonDecode(responseModel.responseJson));
-      gotoNextStep(signUpResponseModel);
-    }
-    else{
-
-    }
-  }
-
   void changeGender(int index){
     selectedGender = index;
     update();
   }
 
-  void gotoNextStep(SignUpResponseModel signUpResponseModel) {
-    Get.offAndToNamed(AppRoute.homeScreen);
+  void gotoNextStep() {
+    Get.offAndToNamed(AppRoute.otpScreen);
   }
 
   File? uploadDrivingLicense;
@@ -89,8 +65,8 @@ class SignUpController extends GetxController{
     FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, allowedExtensions: ["pdf"], type: FileType.custom);
 
     if (result != null && result.files.isNotEmpty) {
-      uploadDrivingLicense = File(result.files.single.name);
-      drivingLicenseFileName = result.files.single.name;
+      uploadDrivingLicense = File(result.files.single.path.toString());
+      //drivingLicenseFileName = result.files.single.name;
 
       kycDocFiles.add(uploadDrivingLicense!);
       update();
@@ -101,8 +77,8 @@ class SignUpController extends GetxController{
     FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, allowedExtensions: ["pdf"], type: FileType.custom);
 
     if (result != null && result.files.isNotEmpty) {
-      uploadPassport = File(result.files.single.name);
-      passportFileName = result.files.single.name;
+      uploadPassport = File(result.files.single.path.toString());
+      //passportFileName = result.files.single.name;
       kycDocFiles.add(uploadPassport!);
       update();
     }
@@ -145,6 +121,76 @@ class SignUpController extends GetxController{
     if(pickedFile != null) {
       imageFile = File(pickedFile.path);
       update();
+    }
+  }
+
+  Future<void> signUpUser() async {
+
+    try {
+      var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(
+            "${ApiUrlContainer.baseUrl}${ApiUrlContainer.signUpEndPoint}"),
+      );
+
+      // Add the KYC files to the request
+      for (var file in kycDocFiles) {
+        if (file.existsSync()) {
+          try {
+            var multipartFile = await http.MultipartFile.fromPath(
+                'KYC', file.path,
+                contentType: MediaType('application', 'pdf'));
+            request.files.add(multipartFile);
+          } on Exception catch (e) {
+            print("Error is :${e.toString()}");
+          }
+        } else {
+          print('File does not exist: ${file.path}');
+        }
+      }
+
+      if (imageFile != null && imageFile!.existsSync()) {
+        try {
+          var img = await http.MultipartFile.fromPath('image', imageFile!.path, contentType: MediaType('image', 'jpeg'));
+
+          request.files.add(img);
+        } on Exception catch (e) {
+          print('Error adding image file to request: $e');
+          // Handle the error gracefully, e.g., show an error message to the user.
+        }
+      }
+
+      // Add the parameters to the request
+      Map<String, String> params = {
+        "fullName": fullNameController.text,
+        "email": emailController.text,
+        "phoneNumber": "$phoneCode ${phoneNumberController.text}",
+        "gender": genderList[selectedGender],
+        "address": addressController.text,
+        "dateOfBirth": "${dateController.text}/${monthController.text}/${yearController.text}",
+        "password": passwordController.text,
+        "ine": ineNumberController.text,
+        "role": "user"
+      };
+
+      params.forEach((key, value) {
+        request.fields[key] = value;
+      });
+
+      request.headers['Content-Type'] = 'multipart/form-data';
+
+      var response = await request.send();
+
+      if (response.statusCode == 201) {
+        gotoNextStep();
+        print('Files uploaded successfully');
+      } else {
+        print('File upload failed with status code: ${response.statusCode}');
+        print('Response body: ${response.stream.bytesToString()}');
+      }
+    } catch (e, s) {
+      print('Error sending request: $e');
+      print('Error s: $s');
     }
   }
 }

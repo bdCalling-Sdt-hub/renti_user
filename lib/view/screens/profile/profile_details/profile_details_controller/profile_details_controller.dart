@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_model/profile_details_model.dart';
@@ -88,9 +86,9 @@ class ProfileDetailsController extends GetxController{
     isLoading = true;
     update();
 
-    fullNameController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.userNameKey) ?? "";
-    emailController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.userEmailKey) ?? "";
-    phoneNumberController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.userPhoneNumberKey) ?? "";
+    fullNameController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.fullName) ?? "";
+    emailController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.email) ?? "";
+    phoneNumberController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.phoneNumber) ?? "";
     addressController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.address) ?? "";
 
     isLoading = false;

@@ -56,9 +56,9 @@ class SignInController extends GetxController{
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userIdKey, signInResponseModel.user?.id.toString() ?? "");
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.accessTokenKey, signInResponseModel.accessToken ?? "");
     await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.accessTokenType, "Bearer");
-    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userEmailKey, signInResponseModel.user?.email.toString() ?? "");
-    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userPhoneNumberKey, signInResponseModel.user?.phoneNumber.toString() ?? "");
-    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userNameKey, signInResponseModel.user?.fullName.toString() ?? "");
+    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.email, signInResponseModel.user?.email.toString() ?? "");
+    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.phoneNumber, signInResponseModel.user?.phoneNumber.toString() ?? "");
+    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.fullName, signInResponseModel.user?.fullName.toString() ?? "");
 
     if(signInResponseModel.user == null){
       Get.toNamed(AppRoute.signInScreen);
