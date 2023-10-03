@@ -47,7 +47,7 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                       textEditingController: controller.startTripDateController,
                       textAlign: TextAlign.start,
                       fieldBorderRadius: 4,
-                      hintText: "Enter trip start date",
+                      hintText: "YYYY-MM-DD",
                       hintStyle: GoogleFonts.poppins(
                         color: AppColors.whiteDarkActive,
                         fontSize: 10,
@@ -76,7 +76,7 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                     CustomTextField(
                       textEditingController: controller.endTripDateController,
                       fieldBorderRadius: 4,
-                      hintText: "Enter trip end date",
+                      hintText: "YYYY-MM-DD",
                       hintStyle: GoogleFonts.poppins(
                         color: AppColors.whiteDarkActive,
                         fontSize: 10,
