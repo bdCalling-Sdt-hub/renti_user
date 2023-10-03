@@ -9,7 +9,7 @@ class OfferCarRepo{
 
   OfferCarRepo({required this.apiService});
 
-  fetchOfferCar() async{
+ Future<ApiResponseModel> fetchOfferCar() async{
 
     String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.offerCarEndPoint}";
     String requestMethod = ApiResponseMethod.getMethod;

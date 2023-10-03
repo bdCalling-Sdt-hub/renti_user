@@ -28,12 +28,12 @@ class _SearchScreenState extends State<SearchScreen> {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(SearchRepo(apiService: Get.find()));
     final controller = Get.put(SearchScreenController(searchRepo: Get.find()));
-
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.searchResult();
     });
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                 ),
-              )),
+              )
+          ),
           body: Padding(
             padding:  const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
             child: Column(
@@ -56,15 +57,15 @@ class _SearchScreenState extends State<SearchScreen> {
                 CustomTextField(
                   textEditingController: controller.searchController,
                   onChanged: (value) {
-                    setState(() {
-                      controller.searchController.text = value;
-                    });
-                  },
+                     controller.searchResult(search: value.toString());
+                     },
+
                   prefixIconSrc: AppIcons.searchIcon,
                   isPrefixIcon: true,
                   suffixIcon: GestureDetector(
                     onTap: (){
-                      controller.searchController.text = "";
+                      controller.searchController.clear();
+                      controller.searchResult();
                     },
                     child: SvgPicture.asset(
                       AppIcons.deleteIcon,

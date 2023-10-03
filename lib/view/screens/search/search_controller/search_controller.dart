@@ -13,12 +13,13 @@ class SearchScreenController extends GetxController{
   bool isLoading = false;
   List<Car> carList = [];
 
-  Future<void> searchResult() async{
+  Future<void> searchResult({ String search = ""}) async{
     carList.clear();
     isLoading = true;
     update();
 
-    ApiResponseModel responseModel = await searchRepo.searchRepoResponse(search: searchController.text);
+
+    ApiResponseModel responseModel = await searchRepo.searchRepoResponse( search: search! );
 
     if(responseModel.statusCode == 200){
       searchModel = SearchModel.fromJson(jsonDecode(responseModel.responseJson));
