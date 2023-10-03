@@ -31,6 +31,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
 
   @override
   void initState() {
+
     carId = Get.arguments;
 
     Get.put(ApiService(sharedPreferences: Get.find()));
@@ -70,52 +71,27 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
           )
         ],
       )),
-      body: GetBuilder<CarDetailsController>(
-        builder: (controller) => LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) =>
-              SingleChildScrollView(
-                  padding:
-                  const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-                  physics: const BouncingScrollPhysics(),
-                  child: controller.isLoading ? const Center(
-                    child: CircularProgressIndicator(),
-                  ) : Column(
-                    children: [
-                      const CarDetailsTopSection(),
-                      const SizedBox(height: 24,),
-                      const FromUntilSection(),
-                      const CarDetailsCarInfoSection(),
-                      const CarDetailsHostInfoSection(),
-                      const CarDetailsMapSection(),
-                      const SizedBox(height: 16,),
-                      CustomElevatedButton(
-                          titleSize: 14,
-                          buttonWidth: MediaQuery.of(context).size.width,
-                          buttonColor: AppColors.lightBlueColor,
-                          titleColor: AppColors.primaryColor,
-                          onPressed: (){},
-                          titleText: AppStrings.waitApprovalTitle),
-                      InkWell(
-                        onTap: (){
-                          showDialog(context: context, builder: (context){
-                            return const CancelShowDialogue();
-                          });
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsetsDirectional.symmetric(vertical: 16),
-                          padding: const EdgeInsetsDirectional.symmetric(vertical: 16),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(width: 1,color: AppColors.primaryColor)
-                          ),
-                          child:  const CustomText(text: AppStrings.cancelRequest,fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.primaryColor,),
-                        ),
-                      )
-                    ],
-                  )
-              ),
-        )
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) => GetBuilder<CarDetailsController>(
+          builder: (controller) {
+            return controller.isLoading ? const Center(
+              child: CircularProgressIndicator(),
+            ) : const SingleChildScrollView(
+                    padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        CarDetailsTopSection(),
+                        SizedBox(height: 24,),
+                        FromUntilSection(),
+                        CarDetailsCarInfoSection(),
+                        CarDetailsHostInfoSection(),
+                        CarDetailsMapSection(),
+                      ],
+                    )
+                );
+          }
+        ),
       ),
       bottomNavigationBar: const BottomNavSection(),
     ));

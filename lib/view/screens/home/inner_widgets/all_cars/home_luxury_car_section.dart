@@ -52,106 +52,109 @@ class HomeLuxuryCarSection extends StatelessWidget {
               physics:   const BouncingScrollPhysics(),
               child: Row(
                 children: List.generate(
-                  controller.luxuryCarList.length, (index) => Stack(
-                  children: [
-                    Container(
-                      margin: const EdgeInsetsDirectional.only(end: 12),
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      padding: const EdgeInsetsDirectional.only(bottom: 12),
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                        shadows: const [
-                          BoxShadow(
-                            color: Color(0x33000000),
-                            blurRadius: 2,
-                            offset: Offset(0, 0),
-                            spreadRadius: 0,
-                          )
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.6,
-                            height: 95,
-                            decoration:  ShapeDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(controller.luxuryCarList[index].image![0].toString()) ,
-                                // image: AssetImage(AppImages.carImage),
-                                fit: BoxFit.fill,
-                              ),
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(4),
-                                  topRight: Radius.circular(4),
+                  controller.luxuryCarList.length, (index) => GestureDetector(
+                    onTap: () => Get.toNamed(AppRoute.carDetails, arguments: controller.offerCarList[index].id.toString()),
+                    child: Stack(
+                    children: [
+                      Container(
+                        margin: const EdgeInsetsDirectional.only(end: 12),
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        padding: const EdgeInsetsDirectional.only(bottom: 12),
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                          shadows: const [
+                            BoxShadow(
+                              color: Color(0x33000000),
+                              blurRadius: 2,
+                              offset: Offset(0, 0),
+                              spreadRadius: 0,
+                            )
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              height: 95,
+                              decoration:  ShapeDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(controller.luxuryCarList[index].image![0].toString()) ,
+                                  // image: AssetImage(AppImages.carImage),
+                                  fit: BoxFit.fill,
+                                ),
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(4),
+                                    topRight: Radius.circular(4),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          CustomText(
-                            left:12,
-                            top:12,
-                            bottom: 12,
-                            text: controller.luxuryCarList[index].carModelName ?? "",
-                            color: AppColors.primaryColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
+                            CustomText(
+                              left:12,
+                              top:12,
+                              bottom: 12,
+                              text: controller.luxuryCarList[index].carModelName ?? "",
+                              color: AppColors.primaryColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
 
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(AppIcons.lucidFuel),
-                                    CustomText(
-                                      left: 8,
-                                      text:"${controller.luxuryCarList[index].totalRun.toString()}${"/L"}",
-                                      color: AppColors.whiteDark,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w400,
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(height: 8,),
-                                Row(
-                                  children: [
-                                    RichText(
-                                        text: TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: "${"\$"}${controller.luxuryCarList[index].hourlyRate.toString()}",
-                                                style: GoogleFonts.poppins(
-                                                  color: const Color(0xFF595959),
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                  text: '/hr',
-                                                  style: GoogleFonts.openSans(
-                                                    color: AppColors.primaryColor,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(AppIcons.lucidFuel),
+                                      CustomText(
+                                        left: 8,
+                                        text:"${controller.luxuryCarList[index].totalRun.toString()}${"/L"}",
+                                        color: AppColors.whiteDark,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w400,
+                                      )
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8,),
+                                  Row(
+                                    children: [
+                                      RichText(
+                                          text: TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text: "${"\$"}${controller.luxuryCarList[index].hourlyRate.toString()}",
+                                                  style: GoogleFonts.poppins(
+                                                    color: const Color(0xFF595959),
                                                     fontSize: 10,
                                                     fontWeight: FontWeight.w400,
-                                                  )
-                                              )
-                                            ]
-                                        )
-                                    )
-                                  ],
-                                ),
-                              ],),
-                          ),
-                        ],
+                                                  ),
+                                                ),
+                                                TextSpan(
+                                                    text: '/hr',
+                                                    style: GoogleFonts.openSans(
+                                                      color: AppColors.primaryColor,
+                                                      fontSize: 10,
+                                                      fontWeight: FontWeight.w400,
+                                                    )
+                                                )
+                                              ]
+                                          )
+                                      )
+                                    ],
+                                  ),
+                                ],),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
 
-                  ],
-                )
+                    ],
+                ),
+                  )
                 ),
               )
           )

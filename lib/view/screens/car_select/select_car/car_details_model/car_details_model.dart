@@ -48,8 +48,8 @@ class Cars {
   bool? activeReserve;
   String? tripStatus;
   CarOwner? carOwner;
-  String? createdAt;
-  String? updatedAt;
+  DateTime? createdAt;
+  DateTime? updatedAt;
   int? v;
 
   Cars({
@@ -105,8 +105,8 @@ class Cars {
     activeReserve: json["activeReserve"],
     tripStatus: json["tripStatus"],
     carOwner: json["carOwner"] == null ? null : CarOwner.fromJson(json["carOwner"]),
-    createdAt: json["createdAt"],
-    updatedAt: json["updatedAt"],
+    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
   );
 
@@ -134,8 +134,8 @@ class Cars {
     "activeReserve": activeReserve,
     "tripStatus": tripStatus,
     "carOwner": carOwner?.toJson(),
-    "createdAt": createdAt,
-    "updatedAt": updatedAt,
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
   };
 }
@@ -149,7 +149,7 @@ class CarOwner {
   String? address;
   String? dateOfBirth;
   String? password;
-  List<dynamic>? kyc;
+  List<String>? kyc;
   String? rfc;
   String? image;
   String? role;
@@ -157,10 +157,11 @@ class CarOwner {
   bool? approved;
   String? isBanned;
   dynamic oneTimeCode;
-  String? createdAt;
-  String? updatedAt;
+  DateTime? createdAt;
+  DateTime? updatedAt;
   int? v;
   String? creaditCardNumber;
+  String? ine;
 
   CarOwner({
     this.id,
@@ -183,6 +184,7 @@ class CarOwner {
     this.updatedAt,
     this.v,
     this.creaditCardNumber,
+    this.ine,
   });
 
   factory CarOwner.fromJson(Map<String, dynamic> json) => CarOwner(
@@ -194,7 +196,7 @@ class CarOwner {
     address: json["address"],
     dateOfBirth: json["dateOfBirth"],
     password: json["password"],
-    kyc: json["KYC"] == null ? [] : List<dynamic>.from(json["KYC"]!.map((x) => x)),
+    kyc: json["KYC"] == null ? [] : List<String>.from(json["KYC"]!.map((x) => x)),
     rfc: json["RFC"],
     image: json["image"],
     role: json["role"],
@@ -202,10 +204,11 @@ class CarOwner {
     approved: json["approved"],
     isBanned: json["isBanned"],
     oneTimeCode: json["oneTimeCode"],
-    createdAt: json["createdAt"],
-    updatedAt: json["updatedAt"],
+    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
     creaditCardNumber: json["creaditCardNumber"],
+    ine: json["ine"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -225,9 +228,10 @@ class CarOwner {
     "approved": approved,
     "isBanned": isBanned,
     "oneTimeCode": oneTimeCode,
-    "createdAt": createdAt,
-    "updatedAt": updatedAt,
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
     "creaditCardNumber": creaditCardNumber,
+    "ine": ine,
   };
 }

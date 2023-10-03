@@ -10,7 +10,6 @@ class CarDetailsController extends GetxController{
   CarDetailsController({required this.carDetailsRepo});
 
   bool isLoading = false;
-
   CarDetailsModel carDetailsModel = CarDetailsModel();
 
   Future<void> loadCarDetailsData(String carId) async{
