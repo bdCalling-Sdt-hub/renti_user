@@ -27,10 +27,14 @@ class _SearchScreenState extends State<SearchScreen> {
     DeviceUtils.authUtils();
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(SearchRepo(apiService: Get.find()));
-    Get.put(SearchScreenController(searchRepo: Get.find()));
+    final controller = Get.put(SearchScreenController(searchRepo: Get.find()));
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      controller.searchResult();
+    });
     super.initState();
   }
-  // final homecontroller = Get.find<SearchScreenController>();
+
+
   @override
   Widget build(BuildContext context) {
     return  GetBuilder<SearchScreenController>(
@@ -44,28 +48,24 @@ class _SearchScreenState extends State<SearchScreen> {
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                 ),
-              )),
+              )
+          ),
           body: Padding(
             padding:  const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
             child: Column(
               children: [
                 CustomTextField(
-                    textEditingController: controller.searchController,
+                  textEditingController: controller.searchController,
                   onChanged: (value) {
-                    Future.delayed(
-                          const Duration(seconds: 1),
-                          () {
-                            controller.searchResult(search: "?search=$value");
-                      },
-                    );
-                  },
+                     controller.searchResult(search: value.toString());
+                     },
+
                   prefixIconSrc: AppIcons.searchIcon,
                   isPrefixIcon: true,
                   suffixIcon: GestureDetector(
                     onTap: (){
-                       controller.searchController.clear();
-                        controller.searchResult(search: "");
-
+                      controller.searchController.clear();
+                      controller.searchResult();
                     },
                     child: SvgPicture.asset(
                       AppIcons.deleteIcon,
@@ -83,11 +83,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 const SizedBox(
                   height: 16,
                 ),
-                 Expanded(
+                 const Expanded(
                   child: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
+                      physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
-                      child: SearchesCarSection()),
+                      child: SearchesCarSection()
+                  ),
                 ),
               ],
             ),

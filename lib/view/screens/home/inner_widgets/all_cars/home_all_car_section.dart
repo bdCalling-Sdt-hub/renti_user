@@ -19,7 +19,7 @@ class HomeAllCarSection extends StatelessWidget {
     return GetBuilder<AllCarsController>(builder: (controller){
       AllCarsModel allCarsModel = controller.allCarsModel;
       if(controller.isLoading==true){
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       }
@@ -30,7 +30,7 @@ class HomeAllCarSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const CustomText(
-                text: "All Cars",
+                text: "Luxury Cars",
                 color: AppColors.blackNormal,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -38,7 +38,6 @@ class HomeAllCarSection extends StatelessWidget {
               InkWell(
                 onTap: (){
                   Get.toNamed(AppRoute.allCarScreen, arguments: allCarsModel);
-
                 },
                 child:  const CustomText(
                   text: AppStrings.seeAll,

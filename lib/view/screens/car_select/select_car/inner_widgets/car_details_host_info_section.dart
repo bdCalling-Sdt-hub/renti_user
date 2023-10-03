@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:renti_user/view/screens/car_select/select_car/car_details_controller/car_details_controller.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_strings.dart';
@@ -16,10 +17,10 @@ class CarDetailsHostInfoSection extends StatefulWidget {
 class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
   @override
   Widget build(BuildContext context) {
-    return  const Column(
+    return  GetBuilder<CarDetailsController>(builder: (controller)=> controller.isLoading? const Center(child: CircularProgressIndicator(),): Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomText(
+        const CustomText(
           text: AppStrings.hostInformation,
           fontWeight: FontWeight.w600,
           fontSize: 18,
@@ -30,7 +31,7 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomText(
+            const CustomText(
               text: AppStrings.name,
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -41,16 +42,16 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(
-                  text: 'Robert Fox',
+                  text: controller.carDetailsModel.cars!.carOwner!.fullName ?? "",
                   color: AppColors.blackNormal,
                   bottom: 12,
                   right: 8,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(top: 3),
                   child: CustomImage(imageSrc: AppIcons.starIcon,size: 12,),
                 ),
-                CustomText(
+                const CustomText(
                   text: '(4.5)',
                   color: AppColors.blackNormal,
                   bottom: 12,
@@ -63,7 +64,7 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomText(
+            const CustomText(
               text: AppStrings.contact,
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -71,7 +72,7 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
               bottom: 12,
             ),
             CustomText(
-              text: '0929 555 2726',
+              text: controller.carDetailsModel.cars!.carOwner!.phoneNumber ?? "",
               color: AppColors.blackNormal,
               bottom: 12,
             ),
@@ -80,7 +81,7 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomText(
+            const CustomText(
               text: AppStrings.email,
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -88,7 +89,7 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
               bottom: 12,
             ),
             CustomText(
-              text: 'bill.sanders@email.com',
+              text: controller.carDetailsModel.cars!.carOwner!.email ?? "",
               color: AppColors.blackNormal,
               bottom: 12,
             ),
@@ -97,7 +98,7 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomText(
+            const CustomText(
               text: AppStrings.address,
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -105,15 +106,15 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
               bottom: 24,
             ),
             CustomText(
-              text:'''6391 Elgin St. Celina,
-      Delaware 10299''',
+              text:controller.carDetailsModel.cars!.carOwner!.address ?? "" ,
               color: AppColors.blackNormal,
               bottom: 24,
+              maxLines: 2,
             ),
           ],
         ),
 
       ],
-    );
+    )) ;
   }
 }

@@ -47,7 +47,6 @@ class HomePopularSection extends StatelessWidget {
            ],
          ),
 
-
          const SizedBox(height: 16),
          controller.carList.isNotEmpty ? SingleChildScrollView(
              scrollDirection: Axis.horizontal,

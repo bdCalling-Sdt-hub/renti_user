@@ -3,17 +3,14 @@ import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
-import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/car_list/luxury_car/luxury_car_controller/luxury_car_controller.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-class AllCarDetaills extends StatelessWidget {
-  const AllCarDetaills({super.key,});
+class LuxuryCarDetails extends StatelessWidget {
+  const LuxuryCarDetails({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +98,7 @@ class AllCarDetaills extends StatelessWidget {
                               ),
                               const SizedBox(height: 8),
                               CustomElevatedButton(onPressed: (){
-                                Get.toNamed(AppRoute.carDetails , arguments: [index]);
+                                Get.toNamed(AppRoute.carDetails , arguments: controller.luxuryCarList[index].id.toString());
                               }
                                 ,titleText: AppStrings.seeDetails,
                                 titleWeight: FontWeight.w400,
@@ -118,7 +115,7 @@ class AllCarDetaills extends StatelessWidget {
                             height: 60,
                             width: 120,
                             decoration: BoxDecoration(
-                                image: DecorationImage(image: NetworkImage("allCarsModel.cars![index].image![0].toString()"),
+                                image: DecorationImage(image: NetworkImage(controller.luxuryCarList[index].image![0].toString() ?? ""),
                                     fit: BoxFit.fill
                                 )
                             ),

@@ -11,14 +11,15 @@ class ApiUrlContainer{
 
   static const String changePasswordEndPoint = "user/change-password";
 
-  static const String userInfoEndPoint = "user/user-info";
-  static const String updateUserEndPont = "user/update";
+  static const String profileDetailsEndPoint = "user/user-info";
+  static const String profileUpdateEndPoint = "user/update";
   static const String privacyPolicy = "privacyPolicy/all";
   static const String aboutUsEnd = "about/all";
   static const String termConditionEndPoint = "termsConditionRouter/all";
   static const String allCarsEndPoint = "car/all";
   static const String rentHistoryEndPoint = "rent/all";
-  static const String carDetailsEndPoint = "car";
+  static const String carDetailsEndPoint = "car/";
+  static const String sendRentRequestEndPoint = "rent/request/";
   static const String offerCarEndPoint = "car/offer";
   static const String rentRequestPaymentEndPoint = "payment/";
   static const String luxuryCarEndPoint = "car/luxury";

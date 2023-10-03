@@ -10,12 +10,28 @@ class CarDetailsRepo{
 
   Future<ApiResponseModel> fetchCarDetails({required String id}) async{
 
-    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.carDetailsEndPoint}/$id";
+    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.carDetailsEndPoint}$id";
 
     String requestMethod = ApiResponseMethod.getMethod;
     
     ApiResponseModel responseModel = await apiService.request(uri, requestMethod, null, passHeader: true);
-    
+    print(responseModel.message);
+    print(responseModel.responseJson);
+    print(responseModel.statusCode);
+    return responseModel;
+  }
+
+  Future<ApiResponseModel> sendRentRequest({required String id}) async{
+
+    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.sendRentRequestEndPoint}$id";
+
+    String requestMethod = ApiResponseMethod.postMethod;
+
+
+    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, null, passHeader: true);
+    print(responseModel.message);
+    print(responseModel.responseJson);
+    print(responseModel.statusCode);
     return responseModel;
   }
 }
