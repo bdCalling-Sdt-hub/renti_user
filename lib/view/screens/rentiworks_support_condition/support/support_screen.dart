@@ -11,7 +11,6 @@ import '../../../../utils/app_strings.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
 import '../../../widgets/buttons/custom_back_button.dart';
 import '../../../widgets/container/custom_container.dart';
-import '../../../widgets/text/custom_text.dart';
 
 class SupportScreen extends StatefulWidget {
   const SupportScreen({super.key});
