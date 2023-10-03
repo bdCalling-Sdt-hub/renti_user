@@ -18,5 +18,25 @@ class CarDetailsRepo{
     
     return responseModel;
   }
+
+  Future<ApiResponseModel> sentRentRequest({required String startDate, required String endDate, required String carId}) async{
+
+    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.sentRentRequestEndPoint}/$carId";
+    print("Url: $uri");
+
+    String requestMethod = ApiResponseMethod.postMethod;
+
+    Map<String, String> params = {
+      "startDate": startDate,
+      "endDate": endDate
+    };
+
+    print("params : ${params.toString()}");
+
+    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, params, passHeader: true);
+    print("status: ${responseModel.statusCode}");
+
+    return responseModel;
+  }
 }
 

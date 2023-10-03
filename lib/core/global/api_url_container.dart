@@ -25,4 +25,6 @@ class ApiUrlContainer{
   static const String luxuryCarEndPoint = "car/luxury";
 
   static const String supportEndPoint = "support";
+
+  static const String sentRentRequestEndPoint = "rent/request";
 }

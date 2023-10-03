@@ -93,7 +93,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
           }
         ),
       ),
-      bottomNavigationBar: const BottomNavSection(),
+      bottomNavigationBar: BottomNavSection(carId: carId),
     ));
   }
 }
