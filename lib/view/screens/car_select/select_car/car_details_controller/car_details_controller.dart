@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_model/car_details_model.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_repo/car_details_repo.dart';
 import 'package:renti_user/view/screens/car_select/sent_rent_request_model/sent_rent_request_model.dart';
@@ -29,6 +30,8 @@ class CarDetailsController extends GetxController{
       print("Error");
     }
 
+    await carDetailsRepo.apiService.sharedPreferences.setString("car_id_key", carDetailsModel.cars?.id ?? "");
+
     isLoading = false;
     update();
   }
@@ -46,20 +49,26 @@ class CarDetailsController extends GetxController{
     update();
 
     ApiResponseModel responseModel = await carDetailsRepo.sentRentRequest(
-      startDate: startDate,
-      endDate: endDate,
-      carId: carId
+          startDate: startDate,
+          endDate: endDate,
+          carId: carId
     );
-
     if(responseModel.statusCode == 200){
-      sentRentRequestModel = SentRentRequestModel.fromJson(jsonDecode(responseModel.responseJson));
-      requestStatus = sentRentRequestModel.rents?.requestStatus ?? "";
+        sentRentRequestModel = SentRentRequestModel.fromJson(jsonDecode(responseModel.responseJson));
+        requestStatus = sentRentRequestModel.rents?.requestStatus ?? "";
 
-      await carDetailsRepo.apiService.sharedPreferences.setString("request_status_key", requestStatus);
-      print("Request: ${carDetailsRepo.apiService.sharedPreferences.getString("request_status_key")}");
+        await carDetailsRepo.apiService.sharedPreferences.setString("request_status_key", requestStatus);
+        print("Request: ${carDetailsRepo.apiService.sharedPreferences.getString("request_status_key")}");
     }
 
-    clearData();
+    if(carId == carDetailsRepo.apiService.sharedPreferences.getString("car_id_key")){
+      clearData();
+      AppUtils.errorToastMessage("Already sent rent request");
+    }else{
+      clearData();
+      gotoNextStep();
+    }
+
     isSubmit = false;
     update();
   }
@@ -67,7 +76,6 @@ class CarDetailsController extends GetxController{
   clearData() {
     startTripDateController.text = "";
     endTripDateController.text = "";
-    gotoNextStep();
   }
 
   gotoNextStep() {
