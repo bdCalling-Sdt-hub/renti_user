@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/rent_history/inner_widgets/rent_history_section.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_repo/rent_history_repo.dart';
+import 'package:renti_user/view/widgets/image/custom_image.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../widgets/appbar/custom_app_bar.dart';
@@ -61,16 +63,31 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
         ],
       )),
       body: GetBuilder<RentHistoryController>(
-        builder: (controller) => controller .isLoading ? const Center(
-          child: CircularProgressIndicator(),
-        ) : LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) => const SingleChildScrollView(
-            padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-            physics: BouncingScrollPhysics(),
-            child: RentHistorySection(),
-          ),
-        )
-      ),
+        builder: (controller) {
+          return SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+            physics: const BouncingScrollPhysics(),
+            child: controller .isLoading ? const Center(
+              child: CircularProgressIndicator(),
+            ) : controller.rentUser.isEmpty ? Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CustomImage(imageSrc: "assets/images/no_car.svg", size: 150),
+                  const SizedBox(height: 12),
+                  Text(
+                    "No Data Found", textAlign: TextAlign.center, style: GoogleFonts.poppins(
+                    color: AppColors.blackNormal,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500
+                  ))
+                ],
+              ),
+            ) : const RentHistorySection(),
+          );
+        }
+      )
     ));
   }
 }

@@ -60,7 +60,7 @@ class _PopularCarScreenState extends State<PopularCarScreen> {
         body: GetBuilder<OfferCarController>(
           builder: (controller) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
-            child: Column(
+            child:controller.isLoading ?const Center(child: CircularProgressIndicator(),): Column(
               children: [
                 const SearchFilter(),
                 const SizedBox(height: 24),

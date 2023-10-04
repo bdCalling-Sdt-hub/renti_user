@@ -4,7 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:renti_user/utils/app_colors.dart';
-import 'package:renti_user/view/screens/car_list/luxury_car/inner_widgets/all_car_details.dart';
+import 'package:renti_user/view/screens/car_list/luxury_car/inner_widgets/luxury_car_details.dart';
 import 'package:renti_user/view/screens/car_list/luxury_car/luxury_car_controller/luxury_car_controller.dart';
 import 'package:renti_user/view/screens/car_list/luxury_car/luxury_car_repo/luxury_car_repo.dart';
 import 'package:renti_user/view/screens/car_list/offer_car/inner_widgets/search_filter.dart';
@@ -37,7 +37,6 @@ class _AllCarScreenState extends State<AllCarScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     AllCarsModel allCarsModel = Get.arguments;
     return SafeArea(
       top: true,

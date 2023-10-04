@@ -1,22 +1,16 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:renti_user/view/screens/car_select/select_car/car_details_controller/car_details_controller.dart';
+import 'package:renti_user/view/screens/cancel_request/cancel_request_controller/cancel_request_controller.dart';
 
+import 'package:renti_user/view/widgets/text/custom_text.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
-import '../../../../widgets/text/custom_text.dart';
 
-class CarDetailsCarInfoSection extends StatefulWidget {
-  const CarDetailsCarInfoSection({super.key});
-
-  @override
-  State<CarDetailsCarInfoSection> createState() => _CarDetailsCarInfoSectionState();
-}
-
-class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
+class CancelRequestCarInfoSection extends StatelessWidget {
+  const CancelRequestCarInfoSection({super.key});
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CarDetailsController>(builder: (controller){
+    return GetBuilder<CancelRequestController>(builder: (controller){
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -25,7 +19,6 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
             fontWeight: FontWeight.w600,
             fontSize: 18,
             color: AppColors.blackNormal,
-            top: 24,
             bottom: 16,
           ),
           Row(
@@ -39,7 +32,7 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
                 bottom: 12,
               ),
               CustomText(
-                text: controller.carDetailsModel.cars?.totalRun ?? "",
+                text: controller.model.rents?.carId?.totalRun ?? "---",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -56,7 +49,7 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
                 bottom: 12,
               ),
               CustomText(
-                text: controller.carDetailsModel.cars?.carColor ?? "",
+                text: controller.model.rents?.carId?.carColor ?? "---",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -73,7 +66,7 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
                 bottom: 12,
               ),
               CustomText(
-                text: controller.carDetailsModel.cars?.carSeats ?? "",
+                text: controller.model.rents?.carId?.carSeats ?? "---",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -90,7 +83,7 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
                 bottom: 12,
               ),
               CustomText(
-                text: controller.carDetailsModel.cars?.gearType ?? "",
+                text: controller.model.rents?.carId?.gearType ?? "---",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -106,7 +99,7 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
                 color: AppColors.whiteDarkActive,
               ),
               CustomText(
-                text: '70 L',
+                text: '---',
                 color: AppColors.blackNormal,
               ),
             ],

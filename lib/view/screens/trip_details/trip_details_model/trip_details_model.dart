@@ -1,86 +1,34 @@
-class RentHistoryModel {
-  RentHistoryModel({
-      List<UserWiseRent>? userWiseRent, 
-      Pagination? pagination,}){
-    _userWiseRent = userWiseRent;
-    _pagination = pagination;
+class TripDetailsModel {
+  TripDetailsModel({
+      String? message, 
+      Rents? rents,}){
+    _message = message;
+    _rents = rents;
 }
 
-  RentHistoryModel.fromJson(dynamic json) {
-    if (json['userWiseRent'] != null) {
-      _userWiseRent = [];
-      json['userWiseRent'].forEach((v) {
-        _userWiseRent?.add(UserWiseRent.fromJson(v));
-      });
-    }
-    _pagination = json['pagination'] != null ? Pagination.fromJson(json['pagination']) : null;
+  TripDetailsModel.fromJson(dynamic json) {
+    _message = json['message'];
+    _rents = json['rents'] != null ? Rents.fromJson(json['rents']) : null;
   }
-  List<UserWiseRent>? _userWiseRent;
-  Pagination? _pagination;
+  String? _message;
+  Rents? _rents;
 
-  List<UserWiseRent>? get userWiseRent => _userWiseRent;
-  Pagination? get pagination => _pagination;
+  String? get message => _message;
+  Rents? get rents => _rents;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (_userWiseRent != null) {
-      map['userWiseRent'] = _userWiseRent?.map((v) => v.toJson()).toList();
-    }
-    if (_pagination != null) {
-      map['pagination'] = _pagination?.toJson();
+    map['message'] = _message;
+    if (_rents != null) {
+      map['rents'] = _rents?.toJson();
     }
     return map;
   }
 
 }
 
-class Pagination {
-  Pagination({
-      int? totalDocuments, 
-      int? totalPage, 
-      int? currentPage, 
-      dynamic previousPage, 
-      int? nextPage,}){
-    _totalDocuments = totalDocuments;
-    _totalPage = totalPage;
-    _currentPage = currentPage;
-    _previousPage = previousPage;
-    _nextPage = nextPage;
-}
-
-  Pagination.fromJson(dynamic json) {
-    _totalDocuments = json['totalDocuments'];
-    _totalPage = json['totalPage'];
-    _currentPage = json['currentPage'];
-    _previousPage = json['previousPage'];
-    _nextPage = json['nextPage'];
-  }
-  int? _totalDocuments;
-  int? _totalPage;
-  int? _currentPage;
-  dynamic _previousPage;
-  int? _nextPage;
-
-  int? get totalDocuments => _totalDocuments;
-  int? get totalPage => _totalPage;
-  int? get currentPage => _currentPage;
-  dynamic get previousPage => _previousPage;
-  int? get nextPage => _nextPage;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['totalDocuments'] = _totalDocuments;
-    map['totalPage'] = _totalPage;
-    map['currentPage'] = _currentPage;
-    map['previousPage'] = _previousPage;
-    map['nextPage'] = _nextPage;
-    return map;
-  }
-
-}
-
-class UserWiseRent {
-  UserWiseRent({
+class Rents {
+  Rents({
       String? id, 
       String? rentTripNumber, 
       String? totalAmount, 
@@ -90,7 +38,7 @@ class UserWiseRent {
       String? startDate, 
       String? endDate, 
       String? payment, 
-      UserId? userId, 
+      String? userId, 
       CarId? carId, 
       HostId? hostId, 
       String? createdAt, 
@@ -113,7 +61,7 @@ class UserWiseRent {
     _v = v;
 }
 
-  UserWiseRent.fromJson(dynamic json) {
+  Rents.fromJson(dynamic json) {
     _id = json['_id'];
     _rentTripNumber = json['rentTripNumber'];
     _totalAmount = json['totalAmount'];
@@ -123,7 +71,7 @@ class UserWiseRent {
     _startDate = json['startDate'];
     _endDate = json['endDate'];
     _payment = json['payment'];
-    _userId = json['userId'] != null ? UserId.fromJson(json['userId']) : null;
+    _userId = json['userId'];
     _carId = json['carId'] != null ? CarId.fromJson(json['carId']) : null;
     _hostId = json['hostId'] != null ? HostId.fromJson(json['hostId']) : null;
     _createdAt = json['createdAt'];
@@ -139,7 +87,7 @@ class UserWiseRent {
   String? _startDate;
   String? _endDate;
   String? _payment;
-  UserId? _userId;
+  String? _userId;
   CarId? _carId;
   HostId? _hostId;
   String? _createdAt;
@@ -155,7 +103,7 @@ class UserWiseRent {
   String? get startDate => _startDate;
   String? get endDate => _endDate;
   String? get payment => _payment;
-  UserId? get userId => _userId;
+  String? get userId => _userId;
   CarId? get carId => _carId;
   HostId? get hostId => _hostId;
   String? get createdAt => _createdAt;
@@ -173,9 +121,7 @@ class UserWiseRent {
     map['startDate'] = _startDate;
     map['endDate'] = _endDate;
     map['payment'] = _payment;
-    if (_userId != null) {
-      map['userId'] = _userId?.toJson();
-    }
+    map['userId'] = _userId;
     if (_carId != null) {
       map['carId'] = _carId?.toJson();
     }
@@ -202,7 +148,6 @@ class HostId {
       String? password, 
       List<String>? kyc, 
       String? rfc, 
-      String? ine, 
       String? image, 
       String? role, 
       bool? emailVerified, 
@@ -212,7 +157,8 @@ class HostId {
       String? createdAt, 
       String? updatedAt, 
       int? v, 
-      String? creaditCardNumber,}){
+      String? creaditCardNumber, 
+      String? ine,}){
     _id = id;
     _fullName = fullName;
     _email = email;
@@ -223,7 +169,6 @@ class HostId {
     _password = password;
     _kyc = kyc;
     _rfc = rfc;
-    _ine = ine;
     _image = image;
     _role = role;
     _emailVerified = emailVerified;
@@ -234,6 +179,7 @@ class HostId {
     _updatedAt = updatedAt;
     _v = v;
     _creaditCardNumber = creaditCardNumber;
+    _ine = ine;
 }
 
   HostId.fromJson(dynamic json) {
@@ -247,7 +193,6 @@ class HostId {
     _password = json['password'];
     _kyc = json['KYC'] != null ? json['KYC'].cast<String>() : [];
     _rfc = json['RFC'];
-    _ine = json['ine'];
     _image = json['image'];
     _role = json['role'];
     _emailVerified = json['emailVerified'];
@@ -258,6 +203,7 @@ class HostId {
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
     _creaditCardNumber = json['creaditCardNumber'];
+    _ine = json['ine'];
   }
   String? _id;
   String? _fullName;
@@ -269,7 +215,6 @@ class HostId {
   String? _password;
   List<String>? _kyc;
   String? _rfc;
-  String? _ine;
   String? _image;
   String? _role;
   bool? _emailVerified;
@@ -280,6 +225,7 @@ class HostId {
   String? _updatedAt;
   int? _v;
   String? _creaditCardNumber;
+  String? _ine;
 
   String? get id => _id;
   String? get fullName => _fullName;
@@ -291,7 +237,6 @@ class HostId {
   String? get password => _password;
   List<String>? get kyc => _kyc;
   String? get rfc => _rfc;
-  String? get ine => _ine;
   String? get image => _image;
   String? get role => _role;
   bool? get emailVerified => _emailVerified;
@@ -302,6 +247,7 @@ class HostId {
   String? get updatedAt => _updatedAt;
   int? get v => _v;
   String? get creaditCardNumber => _creaditCardNumber;
+  String? get ine => _ine;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -315,7 +261,6 @@ class HostId {
     map['password'] = _password;
     map['KYC'] = _kyc;
     map['RFC'] = _rfc;
-    map['ine'] = _ine;
     map['image'] = _image;
     map['role'] = _role;
     map['emailVerified'] = _emailVerified;
@@ -326,6 +271,7 @@ class HostId {
     map['updatedAt'] = _updatedAt;
     map['__v'] = _v;
     map['creaditCardNumber'] = _creaditCardNumber;
+    map['ine'] = _ine;
     return map;
   }
 
@@ -488,135 +434,6 @@ class CarId {
     map['activeReserve'] = _activeReserve;
     map['tripStatus'] = _tripStatus;
     map['carOwner'] = _carOwner;
-    map['createdAt'] = _createdAt;
-    map['updatedAt'] = _updatedAt;
-    map['__v'] = _v;
-    return map;
-  }
-
-}
-
-class UserId {
-  UserId({
-      String? id, 
-      String? fullName, 
-      String? email, 
-      String? phoneNumber, 
-      String? gender, 
-      String? address, 
-      String? dateOfBirth, 
-      String? password, 
-      List<String>? kyc, 
-      String? ine, 
-      String? image, 
-      String? role, 
-      bool? emailVerified, 
-      bool? approved, 
-      String? isBanned, 
-      dynamic oneTimeCode, 
-      String? createdAt, 
-      String? updatedAt, 
-      int? v,}){
-    _id = id;
-    _fullName = fullName;
-    _email = email;
-    _phoneNumber = phoneNumber;
-    _gender = gender;
-    _address = address;
-    _dateOfBirth = dateOfBirth;
-    _password = password;
-    _kyc = kyc;
-    _ine = ine;
-    _image = image;
-    _role = role;
-    _emailVerified = emailVerified;
-    _approved = approved;
-    _isBanned = isBanned;
-    _oneTimeCode = oneTimeCode;
-    _createdAt = createdAt;
-    _updatedAt = updatedAt;
-    _v = v;
-}
-
-  UserId.fromJson(dynamic json) {
-    _id = json['_id'];
-    _fullName = json['fullName'];
-    _email = json['email'];
-    _phoneNumber = json['phoneNumber'];
-    _gender = json['gender'];
-    _address = json['address'];
-    _dateOfBirth = json['dateOfBirth'];
-    _password = json['password'];
-    _kyc = json['KYC'] != null ? json['KYC'].cast<String>() : [];
-    _ine = json['ine'];
-    _image = json['image'];
-    _role = json['role'];
-    _emailVerified = json['emailVerified'];
-    _approved = json['approved'];
-    _isBanned = json['isBanned'];
-    _oneTimeCode = json['oneTimeCode'];
-    _createdAt = json['createdAt'];
-    _updatedAt = json['updatedAt'];
-    _v = json['__v'];
-  }
-  String? _id;
-  String? _fullName;
-  String? _email;
-  String? _phoneNumber;
-  String? _gender;
-  String? _address;
-  String? _dateOfBirth;
-  String? _password;
-  List<String>? _kyc;
-  String? _ine;
-  String? _image;
-  String? _role;
-  bool? _emailVerified;
-  bool? _approved;
-  String? _isBanned;
-  dynamic _oneTimeCode;
-  String? _createdAt;
-  String? _updatedAt;
-  int? _v;
-
-  String? get id => _id;
-  String? get fullName => _fullName;
-  String? get email => _email;
-  String? get phoneNumber => _phoneNumber;
-  String? get gender => _gender;
-  String? get address => _address;
-  String? get dateOfBirth => _dateOfBirth;
-  String? get password => _password;
-  List<String>? get kyc => _kyc;
-  String? get ine => _ine;
-  String? get image => _image;
-  String? get role => _role;
-  bool? get emailVerified => _emailVerified;
-  bool? get approved => _approved;
-  String? get isBanned => _isBanned;
-  dynamic get oneTimeCode => _oneTimeCode;
-  String? get createdAt => _createdAt;
-  String? get updatedAt => _updatedAt;
-  int? get v => _v;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['_id'] = _id;
-    map['fullName'] = _fullName;
-    map['email'] = _email;
-    map['phoneNumber'] = _phoneNumber;
-    map['gender'] = _gender;
-    map['address'] = _address;
-    map['dateOfBirth'] = _dateOfBirth;
-    map['password'] = _password;
-    map['KYC'] = _kyc;
-    map['ine'] = _ine;
-    map['image'] = _image;
-    map['role'] = _role;
-    map['emailVerified'] = _emailVerified;
-    map['approved'] = _approved;
-    map['isBanned'] = _isBanned;
-    map['oneTimeCode'] = _oneTimeCode;
     map['createdAt'] = _createdAt;
     map['updatedAt'] = _updatedAt;
     map['__v'] = _v;

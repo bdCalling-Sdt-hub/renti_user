@@ -25,11 +25,11 @@ class RentHistorySection extends StatelessWidget {
             return  GestureDetector(
               onTap: (){
                 if(controller.rentUser[index].requestStatus == "Accepted"){
-                  Get.toNamed(AppRoute.rentRequest, arguments: controller.rentHistoryModel.userWiseRent![index]);
+                  Get.toNamed(AppRoute.rentRequest, arguments: controller.rentUser[index]);
                 }else if(controller.rentUser[index].requestStatus == "Reserved"){
-                  Get.toNamed(AppRoute.startTrip, arguments: controller.rentHistoryModel.userWiseRent![index]);
-                }else{
-                  Get.toNamed(AppRoute.carDetails, arguments: controller.rentHistoryModel.userWiseRent![index].carId?.id.toString());
+                  Get.toNamed(AppRoute.startTrip, arguments: controller.rentUser[index]);
+                }else if(controller.rentUser[index].requestStatus == "Pending"){
+                  Get.toNamed(AppRoute.cancelRequestScreen, arguments: controller.rentUser[index].id.toString());
                 }
               },
               child: Container(
@@ -53,7 +53,7 @@ class RentHistorySection extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomText(
-                                text: '\$ ${controller.rentUser[index].payment}',
+                                text: '\$${controller.rentUser[index].totalAmount ?? "---"}',
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.primaryColor,
@@ -61,66 +61,69 @@ class RentHistorySection extends StatelessWidget {
                                 bottom: 8,
                               ),
                               CustomText(
-                                text: controller.rentUser[index].rentTripNumber.toString(),
+                                text: "Trip no: ${controller.rentUser[index].rentTripNumber ?? "---"}",
                                 fontSize: 12,
                                 color: AppColors.whiteDarkActive,
                                 bottom: 8,
                               ),
                               Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const CustomImage(imageSrc: AppIcons.calenderIcon,size: 12,imageColor: AppColors.whiteDarkActive,),
+                                  const CustomImage(imageSrc: AppIcons.calenderIcon,size: 14,imageColor: AppColors.whiteDarkActive,),
                                   CustomText(
                                     text: DateConverter.isoStringToLocalFormattedDateOnly(controller.rentUser[index].startDate.toString()),
                                     fontSize: 12,
                                     color: AppColors.whiteDarkActive,
-                                    bottom: 8,
-                                    left: 10,
+                                    left: 8,
                                   )
                                 ],
                               ),
+                              const SizedBox(height: 8),
                               Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const CustomImage(imageSrc: AppIcons.location,size: 12,imageColor: AppColors.whiteDarkActive),
+                                  const CustomImage(imageSrc: AppIcons.location,size: 14, imageColor: AppColors.whiteDarkActive),
                                   CustomText(
                                     text: controller.rentUser[index].hostId!.address.toString(),
                                     fontSize: 12,
                                     color: AppColors.whiteDarkActive,
-                                    left: 10,
+                                    left: 8,
                                   )
                                 ],
                               ),
-                              const SizedBox(height: 4,),
-
+                              const SizedBox(height: 8),
                               Container(
-                                padding: const EdgeInsets.symmetric(vertical: 4),
-                                width: 80,
+                                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFE6F6F4),
+                                  color: controller.rentUser[index].requestStatus == "Pending" ? 
+                                  const Color(0xffFFEED0) : 
+                                  controller.rentUser[index].requestStatus == "Reserved" ? const Color(0xFFFBE9EC) : const Color(0xffE6F6F4),
                                   borderRadius: BorderRadius.circular(4),
 
                                 ),
-                                child: CustomText(text: controller.rentUser[index].requestStatus ?? "",
-                                  color: const Color(0xFF00A991),
+                                child: CustomText(
+                                  text: controller.rentUser[index].requestStatus ?? "",
+                                  color: controller.rentUser[index].requestStatus == "Pending" ?
+                                  const Color(0xffFBA91D) :
+                                  controller.rentUser[index].requestStatus == "Reserved" ? const Color(0xffD7263D) : const Color(0xff00A991),
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400,
                                 ),
                               )
                             ],
                           ),
-                        )),
+                        )
+                    ),
                     Expanded(
                         flex: 1,
                         child: Container(
-                          height: 130,
+                          height: 160,
                           decoration:  BoxDecoration(
                             image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(controller.rentUser[index].carId!.image![0])
+                              fit: BoxFit.fill,
+                              image: NetworkImage(controller.rentUser[index].carId!.image![0])
                             ),
                             borderRadius: const BorderRadius.only(
-                                topRight: Radius.circular(8),bottomRight: Radius.circular(8)
+                              topRight: Radius.circular(8),
+                              bottomRight: Radius.circular(8)
                             ),
                           ),
 

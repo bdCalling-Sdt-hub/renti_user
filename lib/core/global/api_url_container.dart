@@ -27,4 +27,6 @@ class ApiUrlContainer{
   static const String supportEndPoint = "support";
 
   static const String sentRentRequestEndPoint = "rent/request";
+  static const String rentDetailsEndPont = "rent";
+  static const String cancelRentRequestEndPoint = "rent/cancel/request";
 }
