@@ -24,7 +24,6 @@ class _BottomNavSectionState extends State<BottomNavSection> {
           child: CustomElevatedButton(
               onPressed: () {
                 controller.sendRentRequestResult(widget.id);
-                print("buttonCall");
               },
               titleText: AppStrings.sentRentRequest),
         );

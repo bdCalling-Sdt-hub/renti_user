@@ -23,7 +23,6 @@ class CarDetailsController extends GetxController{
       carDetailsModel = CarDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
     }
     else{
-      print("Error");
     }
     isLoading = false;
     update();

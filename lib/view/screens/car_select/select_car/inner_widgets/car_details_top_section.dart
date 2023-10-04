@@ -14,6 +14,7 @@ class CarDetailsTopSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CarDetailsController>(
       builder: (controller) => Container(
+
         width: MediaQuery.of(context).size.width,
         decoration: ShapeDecoration(
           color: AppColors.whiteLight,
@@ -32,6 +33,7 @@ class CarDetailsTopSection extends StatelessWidget {
         child: Column(
           children: [
             Container(
+                height: 200,
                 padding: const EdgeInsets.symmetric(vertical: 44,horizontal: 44),
                 width: MediaQuery.of(context).size.width,
                 decoration: controller.carDetailsModel.cars?.image != null ? BoxDecoration(
@@ -67,10 +69,10 @@ class CarDetailsTopSection extends StatelessWidget {
                         right: 8,
                         bottom: 8,
                       ),
-                      CustomImage(
+                      const CustomImage(
                         imageSrc: AppIcons.starIcon,
                         size: 12,),
-                      CustomText(
+                      const CustomText(
                         text: "5",
                         fontSize: 10,
                         color: AppColors.blackNormal,
@@ -82,7 +84,7 @@ class CarDetailsTopSection extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomImage(imageSrc: AppIcons.lucidFuel,size: 12,),
+                      const CustomImage(imageSrc: AppIcons.lucidFuel,size: 12,),
                       CustomText(
                         text: "${controller.carDetailsModel.cars!.totalRun.toString()}/L",
                         fontSize: 12,
