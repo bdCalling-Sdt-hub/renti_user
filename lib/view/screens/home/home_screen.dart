@@ -3,21 +3,16 @@ import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
-import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:renti_user/view/screens/home/home_controller/home_controller.dart';
 import 'package:renti_user/view/screens/home/home_repo/home_repo.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_repo/all_cars_repo.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_from_until_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/home_luxury_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_top_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/drawer/custom_drawer.dart';
-import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -122,8 +117,6 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 HomeTopSection(),
-                SizedBox(height: 16),
-                HomeFromUntilSection(),
                 SizedBox(height: 24),
                 HomePopularSection(),
                 SizedBox(height: 24,),

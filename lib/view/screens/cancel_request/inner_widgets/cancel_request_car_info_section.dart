@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:renti_user/view/screens/cancel_request/cancel_request_controller/cancel_request_controller.dart';
-
+import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
+
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
 
 class CancelRequestCarInfoSection extends StatelessWidget {
-  const CancelRequestCarInfoSection({super.key});
+  final int index;
+  const CancelRequestCarInfoSection({required this.index, super.key});
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CancelRequestController>(builder: (controller){
+    return GetBuilder<RentHistoryController>(builder: (controller){
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -32,7 +33,7 @@ class CancelRequestCarInfoSection extends StatelessWidget {
                 bottom: 12,
               ),
               CustomText(
-                text: controller.model.rents?.carId?.totalRun ?? "---",
+                text: controller.rentUser[index].carId?.totalRun ?? "---",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -49,7 +50,7 @@ class CancelRequestCarInfoSection extends StatelessWidget {
                 bottom: 12,
               ),
               CustomText(
-                text: controller.model.rents?.carId?.carColor ?? "---",
+                text: controller.rentUser[index].carId?.carColor ?? "---",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -66,7 +67,7 @@ class CancelRequestCarInfoSection extends StatelessWidget {
                 bottom: 12,
               ),
               CustomText(
-                text: controller.model.rents?.carId?.carSeats ?? "---",
+                text: controller.rentUser[index].carId?.carSeats ?? "---",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -83,7 +84,7 @@ class CancelRequestCarInfoSection extends StatelessWidget {
                 bottom: 12,
               ),
               CustomText(
-                text: controller.model.rents?.carId?.gearType ?? "---",
+                text: controller.rentUser[index].carId?.gearType ?? "---",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),

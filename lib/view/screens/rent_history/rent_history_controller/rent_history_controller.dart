@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
+import 'package:renti_user/utils/app_utils.dart';
+import 'package:renti_user/view/screens/cancel_request/cancel_request_model/request_cancel_response_model.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_model/rent_history_model.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_repo/rent_history_repo.dart';
 
@@ -36,6 +38,26 @@ class RentHistoryController extends GetxController{
         rentUser.addAll(tempCarList);
       }
     }
+  }
+
+  bool isSubmit = false;
+
+  cancelRequest(String rentId) async{
+
+    isSubmit = true;
+    update();
+
+    ApiResponseModel responseModel = await rentHistoryRepo.cancelRentRequest(rentId: rentId);
+    if(responseModel.statusCode == 200){
+      RequestCancelResponseModel requestCancelResponseModel = RequestCancelResponseModel.fromJson(jsonDecode(responseModel.responseJson));
+      AppUtils.successToastMessage("Rent request cancel successfully");
+    }
+    else{
+
+    }
+
+    isSubmit = false;
+    update();
   }
 }
 

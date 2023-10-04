@@ -3,13 +3,15 @@ import 'package:get/get.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/view/screens/cancel_request/cancel_request_controller/cancel_request_controller.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 import '../../../../../utils/app_icons.dart';
 
 class CancelRequestTopSection extends StatefulWidget {
-  const CancelRequestTopSection({super.key});
+  final int index;
+  const CancelRequestTopSection({required this.index, super.key});
   
   @override
   State<CancelRequestTopSection> createState() => _CancelRequestTopSectionState();
@@ -19,7 +21,7 @@ class _CancelRequestTopSectionState extends State<CancelRequestTopSection> {
   @override
   Widget build(BuildContext context) {
 
-    return GetBuilder<CancelRequestController>(
+    return GetBuilder<RentHistoryController>(
       builder: (controller) => Container(
         width: MediaQuery.of(context).size.width,
         decoration: ShapeDecoration(
@@ -43,8 +45,8 @@ class _CancelRequestTopSectionState extends State<CancelRequestTopSection> {
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: AppColors.whiteDArkHover,
-                    image:  controller.model.rents?.carId?.image != null ? DecorationImage(
-                        image: NetworkImage(controller.model.rents?.carId?.image![0] ?? ""),
+                    image:  controller.rentUser[widget.index].carId?.image != null ? DecorationImage(
+                        image: NetworkImage(controller.rentUser[widget.index].carId?.image![0] ?? ""),
                         fit: BoxFit.fill
                     ) : const DecorationImage(
                         image: AssetImage(AppImages.carImage),
@@ -59,7 +61,7 @@ class _CancelRequestTopSectionState extends State<CancelRequestTopSection> {
                   Row(
                     children: [
                       CustomText(
-                        text: controller.model.rents?.carId?.carModelName ?? "---",
+                        text: controller.rentUser[widget.index].carId?.carModelName ?? "---",
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: AppColors.darkBlueColor,
@@ -88,7 +90,7 @@ class _CancelRequestTopSectionState extends State<CancelRequestTopSection> {
                         children: [
                           const CustomImage(imageSrc: AppIcons.lucidFuel, size: 14),
                           CustomText(
-                            text: '${controller.model.rents?.carId?.totalRun ?? "---"}/L',
+                            text: '${controller.rentUser[widget.index].carId?.totalRun ?? "---"}/L',
                             fontSize: 14,
                             color: AppColors.whiteDarkActive,
                             right: 12,
@@ -97,7 +99,7 @@ class _CancelRequestTopSectionState extends State<CancelRequestTopSection> {
                         ],
                       ),
                       CustomText(
-                        text: '\$${controller.model.rents?.carId?.hourlyRate ?? "---"} /hour',
+                        text: '\$${controller.rentUser[widget.index].carId?.hourlyRate ?? "---"} /hour',
                         fontSize: 14,
                         color: AppColors.whiteDarkActive,
                         left: 8,

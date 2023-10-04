@@ -109,6 +109,6 @@ class AppRoute {
     GetPage(name: rentiHistory, page: ()=>const RentHistoryScreen()),
     GetPage(name: homeScreen, page: ()=>const HomeScreen()),
     GetPage(name: searchScreen, page: ()=>const SearchScreen()),
-    GetPage(name: cancelRequestScreen, page: ()=> const CancelRequestScreen()),
+    GetPage(name: cancelRequestScreen, page: ()=> CancelRequestScreen(index: Get.arguments)),
   ];
 }

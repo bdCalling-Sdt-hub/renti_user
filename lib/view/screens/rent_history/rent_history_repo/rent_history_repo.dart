@@ -19,5 +19,16 @@ class RentHistoryRepo{
 
     return responseModel;
   }
+
+  Future<ApiResponseModel> cancelRentRequest({required String rentId}) async{
+
+    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.cancelRentRequestEndPoint}/$rentId";
+
+    String requestMethod = ApiResponseMethod.postMethod;
+
+    ApiResponseModel responseModel = await apiService.request(url, requestMethod, null, passHeader: true);
+
+    return responseModel;
+  }
 }
 

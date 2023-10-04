@@ -3,15 +3,17 @@ import 'package:get/get.dart';
 import 'package:renti_user/core/helper/date_converter_helper.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/view/screens/cancel_request/cancel_request_controller/cancel_request_controller.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class CancelRequestTimeDateSection extends StatelessWidget {
 
-  const CancelRequestTimeDateSection({super.key});
+  final int index;
+  const CancelRequestTimeDateSection({required this.index, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CancelRequestController>(
+    return GetBuilder<RentHistoryController>(
       builder: (controller) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,7 +35,7 @@ class CancelRequestTimeDateSection extends StatelessWidget {
                 bottom: 12,
               ),
               CustomText(
-                text: DateConverter.isoStringToLocalDateOnly(controller.model.rents?.startDate ?? "---"),
+                text: DateConverter.isoStringToLocalDateOnly(controller.rentUser[index].startDate ?? "---"),
                 color: AppColors.blackNormal,
                 bottom: 12,
                 right: 8,
@@ -51,7 +53,7 @@ class CancelRequestTimeDateSection extends StatelessWidget {
                 bottom: 12,
               ),
               CustomText(
-                text: DateConverter.isoStringToLocalDateOnly(controller.model.rents?.endDate ?? "---"),
+                text: DateConverter.isoStringToLocalDateOnly(controller.rentUser[index].endDate ?? "---"),
                 color: AppColors.blackNormal,
                 bottom: 12,
                 right: 8,

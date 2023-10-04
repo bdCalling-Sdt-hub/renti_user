@@ -25,11 +25,11 @@ class RentHistorySection extends StatelessWidget {
             return  GestureDetector(
               onTap: (){
                 if(controller.rentUser[index].requestStatus == "Accepted"){
-                  Get.toNamed(AppRoute.rentRequest, arguments: controller.rentUser[index]);
+                  Get.toNamed(AppRoute.rentRequest);
                 }else if(controller.rentUser[index].requestStatus == "Reserved"){
                   Get.toNamed(AppRoute.startTrip, arguments: controller.rentUser[index]);
                 }else if(controller.rentUser[index].requestStatus == "Pending"){
-                  Get.toNamed(AppRoute.cancelRequestScreen, arguments: controller.rentUser[index].id.toString());
+                  Get.toNamed(AppRoute.cancelRequestScreen, arguments: index);
                 }
               },
               child: Container(

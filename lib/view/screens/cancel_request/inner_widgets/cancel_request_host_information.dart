@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/utils/app_icons.dart';
-import 'package:renti_user/view/screens/cancel_request/cancel_request_controller/cancel_request_controller.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
 
-class CancelRequestHostInfo extends StatefulWidget {
-  const CancelRequestHostInfo({super.key});
-  @override
-  State<CancelRequestHostInfo> createState() => _CancelRequestHostInfoState();
-}
-class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
+class CancelRequestHostInfo extends StatelessWidget {
+  
+  final int index;
+  const CancelRequestHostInfo({required this.index, super.key});
+  
   @override
   Widget build(BuildContext context) {
 
-    return GetBuilder<CancelRequestController>(
+    return GetBuilder<RentHistoryController>(
         builder: (controller) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -41,7 +40,7 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: controller.model.rents?.hostId?.fullName ?? "---",
+                      text: controller.rentUser[index].hostId?.fullName ?? "---",
                       color: AppColors.blackNormal,
                       bottom: 12,
                       right: 8,
@@ -71,7 +70,7 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
                   bottom: 12,
                 ),
                 CustomText(
-                  text: controller.model.rents?.hostId?.phoneNumber ?? "---",
+                  text: controller.rentUser[index].hostId?.phoneNumber ?? "---",
                   color: AppColors.blackNormal,
                   bottom: 12,
                 ),
@@ -88,7 +87,7 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
                   bottom: 12,
                 ),
                 CustomText(
-                  text: controller.model.rents?.hostId?.email ?? "---",
+                  text: controller.rentUser[index].hostId?.email ?? "---",
                   color: AppColors.blackNormal,
                   bottom: 12,
                 ),
@@ -105,7 +104,7 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
                   bottom: 24,
                 ),
                 CustomText(
-                  text: controller.model.rents?.hostId?.address ?? "---",
+                  text: controller.rentUser[index].hostId?.address ?? "---",
                   color: AppColors.blackNormal,
                   bottom: 24,
                 ),

@@ -15,6 +15,7 @@ import 'package:renti_user/view/widgets/text/custom_text.dart';
 import '../../../../service/api_service.dart';
 
 class AllCarScreen extends StatefulWidget {
+
   const AllCarScreen({super.key});
   @override
   State<AllCarScreen> createState() => _AllCarScreenState();
@@ -37,7 +38,7 @@ class _AllCarScreenState extends State<AllCarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    AllCarsModel allCarsModel = Get.arguments;
+
     return SafeArea(
       top: true,
       child: Scaffold(
@@ -70,7 +71,6 @@ class _AllCarScreenState extends State<AllCarScreen> {
               children: [
                 SearchFilter(),
                 SizedBox(height: 24),
-
                 AllCarDetaills()
               ],
             ),

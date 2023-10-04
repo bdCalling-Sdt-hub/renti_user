@@ -113,16 +113,6 @@ class OfferCarSection extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Expanded(
-                          child: Container(
-                            height: 60,
-                            width: 120,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(image: NetworkImage(controller.offerCarList[index].image![0].toString()),
-                                  fit: BoxFit.fill),
-                            ),
-                          )
-                      ),
                     ],
                   ),
                 ),
