@@ -5,21 +5,26 @@ import 'package:renti_user/view/screens/rent_history/rent_history_model/rent_his
 import 'package:renti_user/view/screens/rent_history/rent_history_repo/rent_history_repo.dart';
 
 class RentHistoryController extends GetxController{
-  RentHistoryController({required this.rentHistoryRepo});
+
   RentHistoryRepo rentHistoryRepo;
+  RentHistoryController({required this.rentHistoryRepo});
+
   RentHistoryModel rentHistoryModel = RentHistoryModel();
   bool isLoading = false;
   List<UserWiseRent> rentUser = [];
 
-  @override
-  void onInit() {
-    rentHistoryResult();
-    super.onInit();
+  void initialState() async{
+    rentUser.clear();
+    isLoading = true;
+    update();
+
+    await rentHistoryResult();
+
+    isLoading = false;
+    update();
   }
 
   Future<void> rentHistoryResult() async{
-    isLoading = true;
-    update();
 
     ApiResponseModel responseModel = await rentHistoryRepo.rentHistoryRepoResponse();
 
@@ -30,13 +35,7 @@ class RentHistoryController extends GetxController{
       if(tempCarList != null && tempCarList.isNotEmpty){
         rentUser.addAll(tempCarList);
       }
-
     }
-    else{
-
-    }
-    isLoading = false;
-    update();
   }
 }
 

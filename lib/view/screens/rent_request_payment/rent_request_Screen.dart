@@ -22,10 +22,13 @@ class RentRequestScreen extends StatefulWidget {
 }
 
 class _RentRequestScreenState extends State<RentRequestScreen> {
+
+  late UserWiseRent wiseRent;
+
   @override
   void initState() {
     DeviceUtils.authUtils();
-
+    wiseRent = Get.arguments;
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(RentRequestPaymentRepo(apiService: Get.find()));
     Get.put(RentRequestPaymentController(rentRequestPaymentRepo: Get.find()));
@@ -41,7 +44,6 @@ class _RentRequestScreenState extends State<RentRequestScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final UserWiseRent wiseRent = Get.arguments;
     final ScrollController scrollController = ScrollController();
     return  SafeArea(
       child: Scaffold(
@@ -52,8 +54,8 @@ class _RentRequestScreenState extends State<RentRequestScreen> {
             },
             child:  Row(
               children: [
-                Icon(Icons.arrow_back_ios_new,color: AppColors.blackNormal,size: 18,),
-                SizedBox(width: 8,),
+                const Icon(Icons.arrow_back_ios_new,color: AppColors.blackNormal,size: 18,),
+                const SizedBox(width: 8,),
                 Text("Trip Details",
                   style: GoogleFonts.poppins(
                   fontSize: 18,
@@ -79,7 +81,7 @@ class _RentRequestScreenState extends State<RentRequestScreen> {
                   const SizedBox(height: 24,),
                   HostInfo(rentHistoryModel: wiseRent,),
                   const SizedBox(height: 32,),
-                  PaymentSection(scrollController: scrollController, rentHistoryModel: wiseRent,)
+                  PaymentSection(scrollController: scrollController, rentHistoryModel: wiseRent)
                 ],
               ),
             );}

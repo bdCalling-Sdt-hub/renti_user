@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/rent_history/inner_widgets/rent_history_section.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_repo/rent_history_repo.dart';
+
 import '../../../utils/app_colors.dart';
 import '../../widgets/appbar/custom_app_bar.dart';
 import '../../widgets/text/custom_text.dart';
 
 class RentHistoryScreen extends StatefulWidget {
+
   const RentHistoryScreen({super.key});
 
   @override
@@ -20,20 +22,25 @@ class RentHistoryScreen extends StatefulWidget {
 class _RentHistoryScreenState extends State<RentHistoryScreen> {
   @override
   void initState() {
-    super.initState();
+
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(RentHistoryRepo(apiService: Get.find()));
-    Get.put(RentHistoryController(rentHistoryRepo: Get.find()));
+    final controller = Get.put(RentHistoryController(rentHistoryRepo: Get.find()));
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      controller.initialState();
+    });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       top: true,
-        child: Scaffold(
+      child: Scaffold(
       backgroundColor: AppColors.whiteLight,
       appBar: CustomAppBar(
-          appBarContent: Row(
+        appBarContent: Row(
         children: [
           GestureDetector(
               onTap: () {
@@ -54,21 +61,15 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
         ],
       )),
       body: GetBuilder<RentHistoryController>(
-        builder: (controller) {
-          if(controller.isLoading==true){
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) =>
-                const SingleChildScrollView(
-              padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-              physics: BouncingScrollPhysics(),
-              child: RentHistorySection(),
-            ),
-          );
-        }
+        builder: (controller) => controller .isLoading ? const Center(
+          child: CircularProgressIndicator(),
+        ) : LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) => const SingleChildScrollView(
+            padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+            physics: BouncingScrollPhysics(),
+            child: RentHistorySection(),
+          ),
+        )
       ),
     ));
   }

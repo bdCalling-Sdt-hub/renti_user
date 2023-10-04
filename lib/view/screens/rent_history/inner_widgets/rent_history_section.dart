@@ -11,41 +11,25 @@ import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 
-class RentHistorySection extends StatefulWidget {
+class RentHistorySection extends StatelessWidget {
+
   const RentHistorySection({super.key});
 
   @override
-  State<RentHistorySection> createState() => _RentHistorySectionState();
-}
-@override
-void initState() {
-
-  Get.put(ApiService(sharedPreferences: Get.find()));
-  Get.put(RentHistoryRepo(apiService: Get.find()));
-  Get.put(RentHistoryController(rentHistoryRepo: Get.find()));
-}
-
-
-class _RentHistorySectionState extends State<RentHistorySection> {
-  @override
   Widget build(BuildContext context) {
-    return  GetBuilder<RentHistoryController>(builder: (controller){
-      if(controller.isLoading==true){
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-      return Column(
+
+    return GetBuilder<RentHistoryController>(
+      builder: (controller) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:List.generate(controller.rentUser.length, (index) {
+          children: List.generate(controller.rentUser.length, (index) {
             return  GestureDetector(
               onTap: (){
-                if(controller.rentUser[index].requestStatus == "Pending"){
-                  Get.toNamed(AppRoute.rentRequest,arguments: controller.rentHistoryModel.userWiseRent![index]);
+                if(controller.rentUser[index].requestStatus == "Accepted"){
+                  Get.toNamed(AppRoute.rentRequest, arguments: controller.rentHistoryModel.userWiseRent![index]);
                 }else if(controller.rentUser[index].requestStatus == "Reserved"){
-                  Get.toNamed(AppRoute.startTrip,arguments: controller.rentHistoryModel.userWiseRent![index]);
+                  Get.toNamed(AppRoute.startTrip, arguments: controller.rentHistoryModel.userWiseRent![index]);
                 }else{
-
+                  Get.toNamed(AppRoute.carDetails, arguments: controller.rentHistoryModel.userWiseRent![index].carId?.id.toString());
                 }
               },
               child: Container(
@@ -61,7 +45,7 @@ class _RentHistorySectionState extends State<RentHistorySection> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                      Expanded(
+                    Expanded(
                         flex: 1,
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
@@ -148,7 +132,7 @@ class _RentHistorySectionState extends State<RentHistorySection> {
             );
           }
           )
-      );
-    });
+      )
+    );
   }
 }

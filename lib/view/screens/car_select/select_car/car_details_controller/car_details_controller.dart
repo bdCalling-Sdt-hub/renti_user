@@ -30,8 +30,6 @@ class CarDetailsController extends GetxController{
       print("Error");
     }
 
-    await carDetailsRepo.apiService.sharedPreferences.setString("car_id_key", carDetailsModel.cars?.id ?? "");
-
     isLoading = false;
     update();
   }
@@ -54,21 +52,15 @@ class CarDetailsController extends GetxController{
           carId: carId
     );
     if(responseModel.statusCode == 200){
-        sentRentRequestModel = SentRentRequestModel.fromJson(jsonDecode(responseModel.responseJson));
-        requestStatus = sentRentRequestModel.rents?.requestStatus ?? "";
+      sentRentRequestModel = SentRentRequestModel.fromJson(jsonDecode(responseModel.responseJson));
+      requestStatus = sentRentRequestModel.rents?.requestStatus ?? "";
 
-        await carDetailsRepo.apiService.sharedPreferences.setString("request_status_key", requestStatus);
-        print("Request: ${carDetailsRepo.apiService.sharedPreferences.getString("request_status_key")}");
+      await carDetailsRepo.apiService.sharedPreferences.setString("request_status_key", requestStatus);
+      print("Request: ${carDetailsRepo.apiService.sharedPreferences.getString("request_status_key")}");
     }
 
-    if(carId == carDetailsRepo.apiService.sharedPreferences.getString("car_id_key")){
-      clearData();
-      AppUtils.errorToastMessage("Already sent rent request");
-    }else{
-      clearData();
-      gotoNextStep();
-    }
-
+    clearData();
+    gotoNextStep();
     isSubmit = false;
     update();
   }

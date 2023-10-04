@@ -14,10 +14,9 @@ class RentHistoryRepo{
 
     String requestMethod = ApiResponseMethod.getMethod;
 
-    Map<String, String> params = {
-    };
 
     ApiResponseModel responseModel = await apiService.request(uri, requestMethod, null, passHeader: true);
+
     return responseModel;
   }
 }
