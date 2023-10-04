@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:renti_user/core/global/api_response_method.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/core/global/api_url_container.dart';
@@ -19,22 +21,25 @@ class CarDetailsRepo{
     return responseModel;
   }
 
-  Future<ApiResponseModel> sentRentRequest({required String startDate, required String endDate, required String carId}) async{
+  Future<ApiResponseModel> sentRentRequest({required String carId, required String startDate, required String endDate}) async{
 
     String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.sentRentRequestEndPoint}/$carId";
     print("Url: $uri");
 
     String requestMethod = ApiResponseMethod.postMethod;
 
-    Map<String, String> params = {
+    Map<String, dynamic> params = {
       "startDate": startDate,
       "endDate": endDate
     };
 
     print("params : ${params.toString()}");
 
+
     ApiResponseModel responseModel = await apiService.request(uri, requestMethod, params, passHeader: true);
+    print("data: ${responseModel.responseJson.toString()}");
     print("status: ${responseModel.statusCode}");
+    print("success: ${responseModel.message}");
 
     return responseModel;
   }

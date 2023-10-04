@@ -53,7 +53,7 @@ class HomeLuxuryCarSection extends StatelessWidget {
               child: Row(
                 children: List.generate(
                   controller.luxuryCarList.length, (index) => GestureDetector(
-                    onTap: () => Get.toNamed(AppRoute.carDetails, arguments: controller.offerCarList[index].id.toString()),
+                    onTap: () => Get.toNamed(AppRoute.carDetails, arguments: controller.luxuryCarList[index].id.toString()),
                     child: Stack(
                     children: [
                       Container(

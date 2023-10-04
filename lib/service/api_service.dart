@@ -18,7 +18,7 @@ class ApiService extends GetxService{
   Future<ApiResponseModel> request(
       String uri,
       String method,
-      Map<String, dynamic>? params, {bool passHeader = false}) async {
+      Map<String, dynamic>? params, {bool passHeader = false, isRawData = true}) async {
 
     Uri url = Uri.parse(uri);
     http.Response response;
@@ -29,11 +29,12 @@ class ApiService extends GetxService{
           initToken();
           response = await http.post(
               url,
-              body: params,
               headers: {
-                "Content-Type": "application/json",
-                "Authorization": "$tokenType $token"
-          });
+              "Content-Type": "application/json",
+              "Authorization": "$tokenType $token"
+              },
+              body: isRawData ? jsonEncode(params) : params,
+          );
         }
         else{
           response = await http.post(
@@ -53,7 +54,7 @@ class ApiService extends GetxService{
           initToken();
           response = await http.get(
             url,headers: {
-            "Accept": "application/json",
+            "Content-Type": "application/json",
             "Authorization": "$tokenType $token"
           });
         }
@@ -84,17 +85,13 @@ class ApiService extends GetxService{
         sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, false);
         Get.offAllNamed(AppRoute. signInScreen);
         return ApiResponseModel(401, "Unauthorized".tr, response.body);
-      } else if (response.statusCode == 500) {
-        return ApiResponseModel(500, "Internal Server Error".tr, response.body);
       } else {
-        return ApiResponseModel(499, "Something went wrong".tr, response.body);
+        return ApiResponseModel(500, "Internal Server Error".tr, response.body);
       }
     } on SocketException {
       return ApiResponseModel(503, "No internet connection".tr, '');
     } on FormatException {
       return ApiResponseModel(400, "Bad Response Request".tr, '');
-    } catch (e) {
-      return ApiResponseModel(499, "Client Closed Request".tr, '');
     }
   }
 

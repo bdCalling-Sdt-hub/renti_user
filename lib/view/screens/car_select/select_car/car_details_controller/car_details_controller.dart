@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_model/car_details_model.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_repo/car_details_repo.dart';
 import 'package:renti_user/view/screens/car_select/sent_rent_request_model/sent_rent_request_model.dart';
@@ -37,6 +38,7 @@ class CarDetailsController extends GetxController{
   TextEditingController endTripDateController = TextEditingController();
 
   bool isSubmit = false;
+  String requestStatus = "";
 
   sentRentRequest({required String carId, required String startDate, required String endDate}) async{
 
@@ -51,14 +53,24 @@ class CarDetailsController extends GetxController{
 
     if(responseModel.statusCode == 200){
       sentRentRequestModel = SentRentRequestModel.fromJson(jsonDecode(responseModel.responseJson));
-      /*Map<String, dynamic> rentRequestData = jsonDecode(sentRentRequestModelToJson(sentRentRequestModel));
-      final rentRequestDataEncode = jsonEncode(rentRequestData);
+      requestStatus = sentRentRequestModel.rents?.requestStatus ?? "";
 
-      await carDetailsRepo.apiService.sharedPreferences.setString("rent_request_data", rentRequestDataEncode);*/
-      print("Request sent successfully");
+      await carDetailsRepo.apiService.sharedPreferences.setString("request_status_key", requestStatus);
+      print("Request: ${carDetailsRepo.apiService.sharedPreferences.getString("request_status_key")}");
     }
 
+    clearData();
     isSubmit = false;
     update();
+  }
+
+  clearData() {
+    startTripDateController.text = "";
+    endTripDateController.text = "";
+    gotoNextStep();
+  }
+
+  gotoNextStep() {
+    Get.offAndToNamed(AppRoute.rentiHistory);
   }
 }
