@@ -85,7 +85,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         filled: true,
         prefixIcon: widget.isPrefixIcon ? Padding(
           padding:  const EdgeInsetsDirectional.only(start: 0, top: 10, bottom: 10, end: 0),
-          child: SvgPicture.asset(widget.prefixIconSrc ?? ""),
+          child: SvgPicture.asset(widget.prefixIconSrc ?? "", color: widget.prefixIconColor),
         ) : null,
         prefixIconColor: widget.prefixIconColor,
         suffixIcon: widget.isPassword ? GestureDetector(

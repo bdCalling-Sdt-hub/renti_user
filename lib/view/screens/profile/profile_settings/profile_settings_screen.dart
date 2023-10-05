@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
+import 'package:renti_user/view/screens/profile/profile_details/profile_details_repo/profile_details_repo.dart';
 import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_body_section.dart';
 import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_bottom_nav_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
@@ -17,11 +19,25 @@ class ProfileSettingsScreen extends StatefulWidget {
 }
 
 class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
+
+  @override
+  void initState() {
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(ProfileDetailsRepo(apiService: Get.find()));
+    final controller = Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      controller.loadData();
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       top: true,
-        child: Scaffold(
+      child: Scaffold(
       backgroundColor: AppColors.whiteLight,
       appBar: CustomAppBar(
           appBarContent: Row(
@@ -44,15 +60,18 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
           )
         ],
       )),
-      body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) =>
-              const SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                padding:
-                    EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-                child: ProfileSettingsBodySection(),
-              )),
-      bottomNavigationBar:const ProfileSettingsBottomNavSection(),
+      body: GetBuilder<ProfileDetailsController>(
+        builder: (controller) => LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) => SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+              child: controller.isLoading ? const Center(
+                child: CircularProgressIndicator(),
+              ) : const ProfileSettingsBodySection(),
+            )
+        ),
+      ),
+      bottomNavigationBar: const ProfileSettingsBottomNavSection(),
     ));
   }
 }

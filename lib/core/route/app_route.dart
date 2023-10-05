@@ -7,7 +7,9 @@ import 'package:renti_user/view/screens/auth/select_photo/select_photo_screen.da
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:renti_user/view/screens/auth/signup_continue/sign_up_continue_screen.dart';
-import 'package:renti_user/view/screens/car_list/luxury_cars/luxury_cars_screen.dart';
+import 'package:renti_user/view/screens/cancel_request/cancel_request_screen.dart';
+import 'package:renti_user/view/screens/car_list/luxury_car/luxury_car_screen.dart';
+import 'package:renti_user/view/screens/car_list/offer_car/offer_car_screen.dart';
 import 'package:renti_user/view/screens/car_select/select_car/car_details_screen.dart';
 import 'package:renti_user/view/screens/home/home_screen.dart';
 import 'package:renti_user/view/screens/intro/intro_screen.dart';
@@ -19,9 +21,8 @@ import 'package:renti_user/view/screens/payment_method/payment_method/payment_me
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_screen.dart';
 import 'package:renti_user/view/screens/profile/profile_settings/profile_settings_screen.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_screen.dart';
-import 'package:renti_user/view/screens/rent_request_payment/rent_request_Screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/about_us/about_us_screen.dart';
-import 'package:renti_user/view/screens/rentiworks_support_condition/how_renti_works/renti_works_screen.dart';
+import 'package:renti_user/view/screens/rentiworks_support_condition/how_renti_works/how_renti_works_screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/private_policy/private_policy_screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/support/support_screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/terms&conditions/terms_conditions_screen.dart';
@@ -32,7 +33,7 @@ import 'package:renti_user/view/screens/settings/change_password/change_password
 import 'package:renti_user/view/screens/settings/settings/settings_screen.dart';
 import 'package:renti_user/view/screens/trip/end_trip/end_trip_screen.dart';
 import 'package:renti_user/view/screens/trip/star_trip/start_trip_screen.dart';
-import '../../view/screens/car_list/offer_car/offer-car_screen.dart';
+import 'package:renti_user/view/screens/trip_details/trip_details_screen.dart';
 
 class AppRoute {
 
@@ -41,12 +42,12 @@ class AppRoute {
   static  String searchScreen = "/search_screen";
   static  String startTrip = "/start_trip_screen";
   static  String endTrip = "/end_trip_screen";
-  static  String offerCarScreen = "/offer_car_screen";
-  static  String luxuryCars= "/luxury_cars";
+  static  String popularCarScreen = "/popular_car_screen";
+  static  String allCarScreen= "/all_cars_screen";
   static  String inboxScreen= "/inbox_screen";
   static const String messageScreen = "/message_screen";
   static const String cancelShowDialog = "/cancel_show_dialog";
-  static const String splashScreen = "/splash_screen";
+  static const String introScreen = "/splash_screen";
   static const String selectLanguageScreen = "/select_language_screen";
   static const String signInScreen = "/signin_screen";
   static const String signUpScreen = "/sign_up_screen";
@@ -71,15 +72,17 @@ class AppRoute {
   static const String paymentEditCard = "/payment_edit_card";
   static const String rentiHistory = "/renti_history_screen";
   static const String carDetails = "/car_details_screen";
+  static const String cancelRequestScreen = "/cancel_request_screen";
+
   static List<GetPage> routes = [
-    GetPage(name: rentRequest, page: ()=> const RentRequestScreen()),
+    GetPage(name: rentRequest, page: ()=> const TripDetailsScreen()),
     GetPage(name: startTrip, page: ()=> const StartTripScreen()),
     GetPage(name: endTrip, page: ()=> const EndTripScreen()),
-    GetPage(name: offerCarScreen, page: ()=> const OfferCarScreen()),
+    GetPage(name: popularCarScreen, page: ()=>  const PopularCarScreen()),
     GetPage(name: inboxScreen, page: ()=> const InboxScreen()),
     GetPage(name: messageScreen, page: ()=> const MessageScreen()),
-    GetPage(name:luxuryCars , page: ()=>const LuxuryCarsScreen()),
-    GetPage(name: splashScreen, page: ()=> const IntroScreen()),
+    GetPage(name:allCarScreen , page: ()=>const AllCarScreen()),
+    GetPage(name: introScreen, page: ()=> const IntroScreen()),
     GetPage(name: selectLanguageScreen, page: ()=>const SelectLanguageScreen()),
     GetPage(name: signInScreen, page: ()=>const SignInScreen()),
     GetPage(name: signUpScreen, page: ()=>const SignUpScreen()),
@@ -91,11 +94,11 @@ class AppRoute {
     GetPage(name: newPassword, page: ()=>const NewPasswordScreen()),
     GetPage(name: profileDetails, page: ()=>const ProfileDetailsScreen()),
     GetPage(name: profileSettingsScreen, page: ()=>const ProfileSettingsScreen()),
-    GetPage(name: rentiWorks, page: ()=>const RentiWorksScreen()),
+    GetPage(name: rentiWorks, page: ()=>const HowRentiWorksScreen()),
     GetPage(name: support, page: ()=>const SupportScreen()),
     GetPage(name: aboutUs, page: ()=>const AboutUsScreen()),
     GetPage(name: termsConditions, page: ()=>const TermsConditionsScreen()),
-    GetPage(name: privacyPolicy, page: ()=>const PrivatePolicyScreen()),
+    GetPage(name: privacyPolicy, page: ()=> const PrivatePolicyScreen()),
     GetPage(name: settings, page: ()=>const SettingsScreen()),
     GetPage(name: changeLanguage, page: ()=>const ChangeLanguageScreen()),
     GetPage(name: changePassword, page: ()=>const ChangePasswordScreen()),
@@ -106,5 +109,6 @@ class AppRoute {
     GetPage(name: rentiHistory, page: ()=>const RentHistoryScreen()),
     GetPage(name: homeScreen, page: ()=>const HomeScreen()),
     GetPage(name: searchScreen, page: ()=>const SearchScreen()),
+    GetPage(name: cancelRequestScreen, page: ()=> CancelRequestScreen(index: Get.arguments)),
   ];
 }

@@ -31,7 +31,7 @@ class _HomeFromUntilSectionState extends State<HomeFromUntilSection> {
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               SizedBox(
                 height: 40,
                 child: CustomTextField(
@@ -63,7 +63,7 @@ class _HomeFromUntilSectionState extends State<HomeFromUntilSection> {
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               SizedBox(
                 height: 40,
                 child: CustomTextField(

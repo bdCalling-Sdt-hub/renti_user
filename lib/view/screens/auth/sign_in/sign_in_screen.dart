@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/service/api_service.dart';
+import 'package:renti_user/utils/app_colors.dart';
 
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/device_utils.dart';
+import 'package:renti_user/view/screens/auth/sign_in/sign_in_controller/sign_in_controller.dart';
+import 'package:renti_user/view/screens/auth/sign_in/sign_in_repo/sign_in_repo.dart';
+import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
+import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
+import 'package:renti_user/view/widgets/container/custom_container.dart';
+import 'package:renti_user/view/widgets/custom_will_pop/custom_will_pop_widget.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-import '../../../../utils/app_colors.dart';
-import '../../../widgets/appbar/custom_app_bar.dart';
-import '../../../widgets/buttons/custom_back_button.dart';
-import '../../../widgets/container/custom_container.dart';
 import 'inner_widget/sign_in_auth.dart';
 
 class SignInScreen extends StatefulWidget {
+
   const SignInScreen({super.key});
 
   @override
@@ -20,58 +25,85 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+
+  @override
+  void initState() {
+    DeviceUtils.authUtils();
+
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(SignInRepo(apiService: Get.find()));
+    Get.put(SignInController(signInRepo: Get.find()));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+
+    DeviceUtils.screenUtils();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: true,
-      child: Scaffold(
-          backgroundColor: AppColors.primaryColor,
-          appBar: const CustomAppBar(
-            appBarContent: CustomBack(text: AppStrings.signIn),
-          ),
-          body: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) =>
-                CustomContainer(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SignInAuth(),
-                    //Don't have an Account? Sign Up Text button
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const CustomText(
-                          top: 24,
-                          text: AppStrings.anAcount,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          left: 4,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Get.toNamed(AppRoute.signUpScreen);
-                          },
-                          child: const CustomText(
-                            top: 24,
-                            text: AppStrings.signUp,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            left: 4,
-                            color: AppColors.primaryColor,
+
+    return CustomWillPopWidget(
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: SafeArea(
+          top: false,
+          bottom: false,
+          child: Scaffold(
+              backgroundColor: AppColors.primaryColor,
+              appBar: const CustomAppBar(
+                appBarContent: CustomBack(text: AppStrings.signIn),
+              ),
+              body: GetBuilder<SignInController>(
+                builder: (controller) => LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) =>
+                      CustomContainer(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        child: SingleChildScrollView(
+                          padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
+                          physics: const BouncingScrollPhysics(),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const SignInAuth(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const CustomText(
+                                    top: 24,
+                                    text: AppStrings.anAcount,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    left: 4,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(AppRoute.signUpScreen);
+                                    },
+                                    child: const CustomText(
+                                      top: 24,
+                                      text: AppStrings.signUp,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      left: 4,
+                                      color: AppColors.primaryColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
                 ),
-              ),
-            ),
-          )),
+              )),
+        ),
+      ),
     );
   }
 }
