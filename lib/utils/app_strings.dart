@@ -107,7 +107,7 @@ class AppStrings{
   static const String setNewPassword= "Set New Password";
   static const String newPassword= "New Password";
   static const String forgetPassword= "Forget Password?";
-  static const String newPasswordRange = "Your password must have 8-10 characters.";
+  static const String newPasswordRange = "Your password must have 6 characters.";
   static const String  optCodeTitle= "Please enter the OTP code.";
   static const String  otp= "OTP";
   static const String  verify= "Verify";
@@ -115,12 +115,11 @@ class AppStrings{
   static const String  update= "Update";
   static const String  getVerificationCode= "Get Verification Code";
   static const String  notGetOtp= "Did not get the OTP?";
-  static const String  DontHaveAccount= "Don’t have an account?";
+  static const String  doNotHaveAnAccount = "Don’t have an account?";
   static const String  emailSentTitle= "Please enter your email address for recover your password.";
   static const String  emailError= "Please enter a valid email";
   static const String  passwordError= "Password should be more than 6 characters";
   static const String  enterMail= "Enter your email";
-  static const String  enterpassword= "Enter your email";
 
 
   // drawer all strings

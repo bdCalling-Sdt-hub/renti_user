@@ -9,7 +9,9 @@ import '../../../../../utils/app_strings.dart';
 import '../../../../widgets/buttons/custom_elevated_button.dart';
 
 class OtpBottomNavSection extends StatefulWidget {
-  const OtpBottomNavSection({super.key});
+  final String email;
+  final bool fromForgetScreen;
+  const OtpBottomNavSection({required this.email, required this.fromForgetScreen,super.key});
 
   @override
   State<OtpBottomNavSection> createState() => _OtpBottomNavSectionState();
@@ -23,7 +25,7 @@ class _OtpBottomNavSectionState extends State<OtpBottomNavSection> {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: controller.isSubmit ? const CustomElevatedLoadingButton() : CustomElevatedButton(
-            onPressed: () => controller.verifyOtpResponse(),
+            onPressed: () => controller.verifyOtpResponse(widget.email, widget.fromForgetScreen),
             titleText: AppStrings.verify
           ),
         );

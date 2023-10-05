@@ -22,9 +22,14 @@ class ForgotPassOTP extends StatefulWidget {
 
 class _ForgotPassOTPState extends State<ForgotPassOTP> {
 
+  late String email;
+  late bool fromForgetScreen;
+
   @override
   void initState() {
     DeviceUtils.authUtils();
+    email = Get.arguments[0];
+    fromForgetScreen = Get.arguments[1];
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(OTPRepo(apiService: Get.find()));
     Get.put(OtpController(otpRepo: Get.find()));
@@ -64,7 +69,7 @@ class _ForgotPassOTPState extends State<ForgotPassOTP> {
             }
           ),
         ),
-        bottomNavigationBar: const OtpBottomNavSection(),
+        bottomNavigationBar: OtpBottomNavSection(email: email, fromForgetScreen: fromForgetScreen),
       ),
     );
   }

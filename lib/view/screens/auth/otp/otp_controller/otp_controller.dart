@@ -15,24 +15,23 @@ class OtpController extends GetxController {
   bool isSubmit = false;
   bool signUp = true;
 
+  OtpModel otpModel = OtpModel();
+
   TextEditingController otpController = TextEditingController();
 
-  Future<void> verifyOtpResponse() async {
+  Future<void> verifyOtpResponse(String email, bool fromForgetScreen) async {
     isSubmit = true;
     update();
 
-    ApiResponseModel responseModel = await otpRepo.verifyEmail(otpCode: otpController.text.trim());
+    ApiResponseModel responseModel = await otpRepo.verifyEmail(email: email, otpCode: otpController.text.trim());
 
     if (responseModel.statusCode == 200) {
-      OtpModel otpModel = OtpModel.fromJson(jsonDecode(responseModel.responseJson));
-      gotoNextStep(otpModel);
+      otpModel = OtpModel.fromJson(jsonDecode(responseModel.responseJson));
+
+      fromForgetScreen ? Get.offAndToNamed(AppRoute.newPassword) : Get.offAndToNamed(AppRoute.signInScreen);
     } else {}
 
     isSubmit = false;
     update();
-  }
-
-  void gotoNextStep(OtpModel otpModel) {
-    Get.offAndToNamed(AppRoute.signInScreen);
   }
 }

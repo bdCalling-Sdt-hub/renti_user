@@ -13,6 +13,7 @@ import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home
 import 'package:renti_user/view/screens/home/inner_widgets/home_top_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/drawer/custom_drawer.dart';
+import 'package:renti_user/view/widgets/error_widget/no_data_found_widget.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -109,18 +110,26 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          body: const SingleChildScrollView(
-            padding: EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
-            physics: BouncingScrollPhysics(),
+          body: controller.offerCarList.isEmpty && controller.luxuryCarList.isEmpty ? const NoDataFoundWidget() : SingleChildScrollView(
+            padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                HomeTopSection(),
-                SizedBox(height: 24),
-                HomePopularSection(),
-                SizedBox(height: 24,),
-                HomeLuxuryCarSection()
+                const HomeTopSection(),
+                controller.offerCarList.isNotEmpty ? const Column(
+                  children: [
+                    SizedBox(height: 24),
+                    HomePopularSection(),
+                  ],
+                ) : const SizedBox(),
+                controller.luxuryCarList.isNotEmpty ? const Column(
+                  children: [
+                    SizedBox(height: 24),
+                    HomeLuxuryCarSection(),
+                  ],
+                ) : const SizedBox()
               ],
             ),
           ),

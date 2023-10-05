@@ -53,7 +53,7 @@ class SignUpController extends GetxController{
   }
 
   void gotoNextStep() {
-    Get.offAndToNamed(AppRoute.otpScreen);
+    Get.offAndToNamed(AppRoute.otpScreen, arguments: [emailController.text.toString(), false]);
   }
 
   File? uploadDrivingLicense;

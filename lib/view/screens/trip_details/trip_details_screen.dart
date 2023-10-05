@@ -36,6 +36,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.initialState();
     });
+
     super.initState();
   }
 
@@ -44,7 +45,6 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
     DeviceUtils.screenUtils();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {

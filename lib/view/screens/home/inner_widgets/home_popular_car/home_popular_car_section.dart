@@ -49,10 +49,7 @@ class HomePopularSection extends StatelessWidget {
            ],
          ),
          const SizedBox(height: 16),
-         controller.offerCarList.isEmpty ? const CustomImage(
-           imageSrc: "assets/images/no_car.svg",
-           size: 200,
-         ) : SingleChildScrollView(
+         SingleChildScrollView(
              scrollDirection: Axis.horizontal,
              physics:  const BouncingScrollPhysics(),
              child: Row(
