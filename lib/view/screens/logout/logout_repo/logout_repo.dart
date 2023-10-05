@@ -14,7 +14,9 @@ class LogoutRepo{
 
     String requestMethod = ApiResponseMethod.postMethod;
 
-    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, null, passHeader: false);
+    Map<String, String> params = {};
+
+    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, params, passHeader: true);
 
     return responseModel;
   }

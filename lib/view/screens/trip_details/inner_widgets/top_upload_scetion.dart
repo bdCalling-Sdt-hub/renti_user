@@ -1,21 +1,23 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_images.dart';
-import 'package:renti_user/view/screens/trip_details/trip_detasils_controller/trip_details_controller.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 import '../../../../../utils/app_icons.dart';
 
 class TopUploadSection extends StatelessWidget {
-
-  const TopUploadSection({super.key});
+  
+  final int index;
+  const TopUploadSection({required this.index,super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<TripDetailsController>(
+    
+    return GetBuilder<RentHistoryController>(
+      
       builder: (controller) => Container(
         width: MediaQuery.of(context).size.width,
         decoration: ShapeDecoration(
@@ -40,9 +42,9 @@ class TopUploadSection extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: AppColors.whiteDArkHover,
-                    image:  controller.tripDetailsModel.rents?.carId?.image != null ? DecorationImage(
+                    image:  controller.rentUser[index].carId?.image != null ? DecorationImage(
                         image: NetworkImage(
-                          controller.tripDetailsModel.rents?.carId?.image![0] ?? ""
+                          controller.rentUser[index].carId?.image![0] ?? ""
                         ),
                         fit: BoxFit.fill
                     ) : const DecorationImage(
@@ -58,7 +60,7 @@ class TopUploadSection extends StatelessWidget {
                   Row(
                     children: [
                       CustomText(
-                        text: controller.tripDetailsModel.rents?.carId?.carModelName ?? "---",
+                        text: controller.rentUser[index].carId?.carModelName ?? "---",
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: AppColors.darkBlueColor,
@@ -87,7 +89,7 @@ class TopUploadSection extends StatelessWidget {
                         children: [
                           const CustomImage(imageSrc: AppIcons.lucidFuel, size: 14),
                           CustomText(
-                            text: '${controller.tripDetailsModel.rents?.carId?.totalRun ?? "---"}/L',
+                            text: '${controller.rentUser[index].carId?.totalRun ?? "---"}/L',
                             fontSize: 14,
                             color: AppColors.whiteDarkActive,
                             right: 12,
@@ -96,7 +98,7 @@ class TopUploadSection extends StatelessWidget {
                         ],
                       ),
                       CustomText(
-                        text: '\$${controller.tripDetailsModel.rents?.carId?.hourlyRate ?? "---"} /hour',
+                        text: '\$${controller.rentUser[index].carId?.hourlyRate ?? "---"} /hour',
                         fontSize: 14,
                         color: AppColors.whiteDarkActive,
                         left: 8,

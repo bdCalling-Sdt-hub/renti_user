@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/utils/app_utils.dart';
@@ -14,6 +15,7 @@ class RentHistoryController extends GetxController{
   RentHistoryModel rentHistoryModel = RentHistoryModel();
   bool isLoading = false;
   List<UserWiseRent> rentUser = [];
+  RequestCancelResponseModel requestCancelResponseModel = RequestCancelResponseModel();
 
   void initialState() async{
     rentUser.clear();
@@ -49,7 +51,7 @@ class RentHistoryController extends GetxController{
 
     ApiResponseModel responseModel = await rentHistoryRepo.cancelRentRequest(rentId: rentId);
     if(responseModel.statusCode == 200){
-      RequestCancelResponseModel requestCancelResponseModel = RequestCancelResponseModel.fromJson(jsonDecode(responseModel.responseJson));
+      requestCancelResponseModel = RequestCancelResponseModel.fromJson(jsonDecode(responseModel.responseJson));
       AppUtils.successToastMessage("Rent request cancel successfully");
     }
     else{

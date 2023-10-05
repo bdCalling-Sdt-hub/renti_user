@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/utils/app_colors.dart';
-import 'package:renti_user/view/screens/trip_details/trip_detasils_controller/trip_details_controller.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
@@ -11,8 +11,10 @@ import '../../../../../utils/app_strings.dart';
 import 'hsbc_méxico_card.dart';
 
 class PaymentSection extends StatefulWidget {
-  
-  const PaymentSection({super.key});
+
+  final int index;
+  const PaymentSection({required this.index, super.key});
+
   @override
   State<PaymentSection> createState() => _PaymentSectionState();
 }
@@ -23,7 +25,6 @@ class _PaymentSectionState extends State<PaymentSection> {
  final ScrollController scrollController = ScrollController();
  
  void scrollToBottomExtentBefore() {
-   
    scrollController.animateTo(
      scrollController.position.extentBefore,
      duration: const Duration(milliseconds: 50),
@@ -32,7 +33,6 @@ class _PaymentSectionState extends State<PaymentSection> {
  }
 
  void scrollToBottomExtentTotal() {
-   
    scrollController.animateTo(
      scrollController.position.extentTotal,
      duration: const Duration(milliseconds: 1200),
@@ -42,7 +42,7 @@ class _PaymentSectionState extends State<PaymentSection> {
   @override
   Widget build(BuildContext context) {
 
-    return GetBuilder<TripDetailsController>(
+    return GetBuilder<RentHistoryController>(
       builder: (controller) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -56,7 +56,7 @@ class _PaymentSectionState extends State<PaymentSection> {
                 color: AppColors.primaryColor ,
               ),
               Text(
-                "\$ ${controller.tripDetailsModel.rents?.totalAmount ?? "0"}",
+                "\$ ${controller.rentUser[widget.index].totalAmount ?? "0"}",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
@@ -83,9 +83,7 @@ class _PaymentSectionState extends State<PaymentSection> {
                 children: [
                   const Row(
                     children: [
-                      CustomImage(
-                        imageSrc: AppIcons.paymentIcon,
-                      ),
+                      CustomImage(imageSrc: AppIcons.paymentIcon),
                       SizedBox(width: 16),
                       CustomText(
                         text: AppStrings.bankMexico,
@@ -99,24 +97,22 @@ class _PaymentSectionState extends State<PaymentSection> {
                     onTap: (){
                       setState(() {
                         isArrowUp  =! isArrowUp;
-                        isArrowUp?  scrollToBottomExtentTotal(): scrollToBottomExtentBefore();
+                        isArrowUp?  scrollToBottomExtentTotal() : scrollToBottomExtentBefore();
                       });
                     },
                     child:isArrowUp? const Icon(Icons.keyboard_arrow_up,
                       size: 20,
                       color: AppColors.primaryColor,
 
-                    ):const Icon(Icons.keyboard_arrow_down,
+                    ) : const Icon(Icons.keyboard_arrow_down,
                       size: 20,
-                      color: AppColors.primaryColor ,
+                      color: AppColors.primaryColor,
                     ),
                   )
                 ],
               )
           ),
           isArrowUp ? const HsbcMexicoCard() : const SizedBox(),
-
-
         ],
       ),
     );
