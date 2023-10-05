@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/device_utils.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
+import 'package:renti_user/view/screens/trip/star_trip/star_trip_controller/star_trip_controller.dart';
+import 'package:renti_user/view/screens/trip/star_trip/star_trip_repo/star_trip_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_nav_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
@@ -12,12 +15,30 @@ import 'inner_widgets/top_upload_scetions.dart';
 
 class StartTripScreen extends StatefulWidget {
   const StartTripScreen({super.key});
+
   @override
   State<StartTripScreen> createState() => _StartTripScreenState();
 }
 class _StartTripScreenState extends State<StartTripScreen> {
+
+  @override
+  void initState() {
+    DeviceUtils.authUtils();
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    // Get.put(StarTripRepo(apiService: Get.find()));
+    Get.put(StarTripController());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    DeviceUtils.screenUtils();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final id = Get.arguments;
     return SafeArea(
         child: Scaffold(
             appBar: CustomAppBar(
@@ -46,24 +67,32 @@ class _StartTripScreenState extends State<StartTripScreen> {
                 )),
             body: LayoutBuilder(
               builder: (context, constraint) {
-                return const SingleChildScrollView(
-                  padding: EdgeInsetsDirectional.symmetric(
-                      vertical: 20, horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // top Section with upload button
-                      TopUploadSections(),
-                      SizedBox(height: 24),
-                      BottomScetions()
-                    ],
-                  ),
+                return GetBuilder<RentHistoryController>(
+                  builder: (controller) {
+                    return const SingleChildScrollView(
+                      padding: EdgeInsetsDirectional.symmetric(
+                          vertical: 20, horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AddCarImage(),
+                          SizedBox(height: 24),
+                          BottomScetions()
+                        ],
+                      ),
+                    );
+                  }
                 );
               },
             ),
-          bottomNavigationBar: BottomNavButton(onTap: (){
-            Get.toNamed(AppRoute.endTrip);
-          }, buttonName: AppStrings.startTrip, buttonColor: AppColors.primaryColor),
+          bottomNavigationBar: GetBuilder<StarTripController>(
+            builder: (controller) {
+              return BottomNavButton(onTap: (){
+                controller.addCarMultipleFilesAndParams(id);
+                print("okay");
+              }, buttonName: AppStrings.startTrip, buttonColor: AppColors.primaryColor);
+            }
+          ),
         )
     );
   }

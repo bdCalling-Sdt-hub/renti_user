@@ -19,4 +19,26 @@ class TripDetailsRepo{
 
     return responseModel;
   }
+
+/*  Future<ApiResponseModel> makePaymentRepo({required String rentID,required String productPrice,required String productName}) async{
+
+    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.rentRequestPaymentEndPoint}/$rentID";
+    print("Url: $url");
+    String requestMethod = ApiResponseMethod.postMethod;
+    Map<String, dynamic> params = {
+      "product": {
+        "name": productName,
+        "price": productPrice
+      },
+      "token": {
+        "email": apiService.sharedPreferences.getString(SharedPreferenceHelper.email),
+        "id": "tok_visa"
+      }
+    };
+
+
+    ApiResponseModel responseModel = await apiService.request(url, requestMethod, params, passHeader: true);
+
+    return responseModel;
+  }*/
 }

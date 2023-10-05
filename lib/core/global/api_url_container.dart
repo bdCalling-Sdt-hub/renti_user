@@ -21,7 +21,7 @@ class ApiUrlContainer{
   static const String rentHistoryEndPoint = "rent/all";
   static const String carDetailsEndPoint = "car";
   static const String offerCarEndPoint = "car/offer";
-  static const String rentRequestPaymentEndPoint = "payment/";
+  static const String rentRequestPaymentEndPoint = "payment";
   static const String luxuryCarEndPoint = "car/luxury";
 
   static const String supportEndPoint = "support";
@@ -29,4 +29,5 @@ class ApiUrlContainer{
   static const String sentRentRequestEndPoint = "rent/request";
   static const String rentDetailsEndPont = "rent";
   static const String cancelRentRequestEndPoint = "rent/cancel/request";
+  static const String starTripEndPoint = "rent/trip";
 }

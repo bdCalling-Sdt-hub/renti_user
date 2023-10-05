@@ -1,130 +1,150 @@
-import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:renti_user/utils/app_images.dart';
-import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_icons.dart';
-import '../../../../../utils/app_strings.dart';
-import '../../../../widgets/buttons/custom_elevated_button.dart';
-import '../../../../widgets/image/custom_image.dart';
-import '../../../../widgets/text/custom_text.dart';
-class TopUploadSections extends StatefulWidget {
-  const TopUploadSections({super.key});
-  @override
-  State<TopUploadSections> createState() => _TopUploadSectionsState();
-}
-class _TopUploadSectionsState extends State<TopUploadSections> {
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/view/screens/trip/star_trip/star_trip_controller/star_trip_controller.dart';
+
+class AddCarImage extends StatelessWidget {
+  const AddCarImage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const CustomText(
-          text: AppStrings.uploadecarphoto,
-          color: AppColors.blackNormal,
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-        ),
-        const SizedBox(height: 16),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return GetBuilder<StarTripController>(builder: (controller) {
+      return SizedBox(
+        height: 150,
+        child: Row(
           children: [
-            Expanded(
-              flex: 1,
-              child: DottedBorder(
-                  padding: const EdgeInsets.all(0),
-                  dashPattern: const [
-                    8,
-                    8,
-                  ],
-                  color: const Color(0xffB0B3DD),
-                  strokeWidth: 1,
-                  borderType: BorderType.RRect,
-                  radius: const Radius.circular(12),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 150,
-                    decoration: BoxDecoration(
+            //First Image
+
+            controller.firstImg == null
+                ? Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  controller.openGallery(index: 0);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  height: 150,
+                  width: double.infinity - 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: AppColors.whiteDark),
+                  ),
+                  child: const Icon(Icons.image),
+                ),
+              ),
+            )
+                : Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  controller.openGallery(index: 0);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  height: 150,
+                  width: double.infinity - 40,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.whiteDark),
                       borderRadius: BorderRadius.circular(8),
-                      color: const Color(0xffE6E7F4),
-                    ),
-                    child: const Center(
-                        child: CustomImage(
-                          imageSrc: AppIcons.imageIcons,
-                          size: 40,
-                        )),
-                  )),
+                      image: DecorationImage(
+                          image:
+                          FileImage(File(controller.firstImg!.path)),
+                          fit: BoxFit.cover)),
+                ),
+              ),
             ),
             const SizedBox(width: 8),
             Expanded(
-              flex: 1,
               child: Column(
                 children: [
-                  DottedBorder(
-                      padding: const EdgeInsets.all(0),
-                      dashPattern: const [
-                        8,
-                        8,
-                      ],
-                      color: const Color(0xffB0B3DD),
-                      strokeWidth: 1,
-                      borderType: BorderType.RRect,
-                      radius: const Radius.circular(12),
+                  //Second Image
+
+                  controller.secondImg == null
+                      ? Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        controller.openGallery(index: 1);
+                      },
                       child: Container(
-                        height: 71,
-                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.all(16),
+                        height: 150,
+                        width: double.infinity - 40,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: const Color(0xffE6E7F4),
+                          border: Border.all(color: AppColors.whiteDark),
                         ),
-                        child: const Center(
-                            child: CustomImage(
-                              imageSrc: AppIcons.imageIcons,
-                              size: 40,
-                            )),
-                      )),
-                  const SizedBox(
-                    height: 8,
+                        child: const Icon(Icons.image),
+                      ),
+                    ),
+                  )
+                      : Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        controller.openGallery(index: 1);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        height: 150,
+                        width: double.infinity - 40,
+                        decoration: BoxDecoration(
+                            border:
+                            Border.all(color: AppColors.whiteDark),
+                            borderRadius: BorderRadius.circular(8),
+                            image: DecorationImage(
+                                image: FileImage(
+                                    File(controller.secondImg!.path)),
+                                fit: BoxFit.cover)),
+                      ),
+                    ),
                   ),
-                  DottedBorder(
-                      padding: const EdgeInsets.all(0),
-                      dashPattern: const [
-                        8,
-                        8,
-                      ],
-                      color: const Color(0xffB0B3DD),
-                      strokeWidth: 1,
-                      borderType: BorderType.RRect,
-                      radius: const Radius.circular(12),
+                  const SizedBox(height: 8),
+
+                  //Third Image
+
+                  controller.thirdImg == null
+                      ? Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        controller.openGallery(index: 2);
+                      },
                       child: Container(
-                        height: 71,
-                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.all(16),
+                        height: 150,
+                        width: double.infinity - 40,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: const Color(0xffE6E7F4),
+                          border: Border.all(color: AppColors.whiteDark),
                         ),
-                        child: const Center(
-                            child: CustomImage(
-                              imageSrc: AppIcons.imageIcons,
-                              size: 40,
-                            )),
-                      ))
+                        child: const Icon(Icons.image),
+                      ),
+                    ),
+                  )
+                      : Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        controller.openGallery(index: 2);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        height: 150,
+                        width: double.infinity - 40,
+                        decoration: BoxDecoration(
+                            border:
+                            Border.all(color: AppColors.whiteDark),
+                            borderRadius: BorderRadius.circular(8),
+                            image: DecorationImage(
+                                image: FileImage(
+                                    File(controller.thirdImg!.path)),
+                                fit: BoxFit.cover)),
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
-        const SizedBox(height: 16,),
-        CustomElevatedButton(
-          buttonWidth: MediaQuery.of(context).size.width,
-          onPressed: () {
-
-          },
-          titleText: AppStrings.capture,
-          titleSize: 18,
-          titleWeight: FontWeight.w600,
-        ),
-      ],
-    );
+      );
+    });
   }
 }
