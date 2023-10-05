@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/utils/app_icons.dart';
-import 'package:renti_user/view/screens/rent_history/rent_history_model/rent_history_model.dart';
-import 'package:renti_user/view/screens/trip_details/trip_detasils_controller/trip_details_controller.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
+
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
 
 class HostInfo extends StatelessWidget {
-  const HostInfo({super.key});
+  
+  final int index;
+  const HostInfo({required this.index, super.key});
   
   @override
   Widget build(BuildContext context) {
 
-    return GetBuilder<TripDetailsController>(
+    return GetBuilder<RentHistoryController>(
         builder: (controller) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -39,7 +41,7 @@ class HostInfo extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: controller.tripDetailsModel.rents?.hostId?.fullName ?? "---",
+                      text: controller.rentUser[index].hostId?.fullName ?? "---",
                       color: AppColors.blackNormal,
                       bottom: 12,
                       right: 8,
@@ -69,7 +71,7 @@ class HostInfo extends StatelessWidget {
                   bottom: 12,
                 ),
                 CustomText(
-                  text: controller.tripDetailsModel.rents?.hostId?.phoneNumber ?? "---",
+                  text: controller.rentUser[index].hostId?.phoneNumber ?? "---",
                   color: AppColors.blackNormal,
                   bottom: 12,
                 ),
@@ -86,7 +88,7 @@ class HostInfo extends StatelessWidget {
                   bottom: 12,
                 ),
                 CustomText(
-                  text: controller.tripDetailsModel.rents?.hostId?.email ?? "---",
+                  text: controller.rentUser[index].hostId?.email ?? "---",
                   color: AppColors.blackNormal,
                   bottom: 12,
                 ),
@@ -103,7 +105,7 @@ class HostInfo extends StatelessWidget {
                   bottom: 24,
                 ),
                 CustomText(
-                  text: controller.tripDetailsModel.rents?.hostId?.address ?? "---",
+                  text: controller.rentUser[index].hostId?.address ?? "---",
                   color: AppColors.blackNormal,
                   bottom: 24,
                 ),

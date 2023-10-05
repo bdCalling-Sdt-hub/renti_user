@@ -5,8 +5,6 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/car_list/offer_car/offer_car_controller/offer_car_controller.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
@@ -74,7 +72,7 @@ class OfferCarSection extends StatelessWidget {
                                 Row(
                                   children: [
                                     CustomText(
-                                      text: controller.offerCarList[index].totalRun.toString(),
+                                      text: controller.offerCarList[index].totalRun ?? "---",
                                       color: AppColors.whiteDarkActive,
                                       left: 8,
                                       textAlign: TextAlign.start,
@@ -83,15 +81,7 @@ class OfferCarSection extends StatelessWidget {
                                         text: "/L",
                                         color: AppColors.whiteDarkActive),
                                     const SizedBox(width: 16),
-                                    CustomText(
-                                      text: "${"\$"}${ controller.offerCarList[index].hourlyRate.toString()}",
-
-                                    ),
-                                    const SizedBox(width: 8),
-                                    // const CustomText(
-                                    //   text: "\$25",
-                                    //   textDecoration: TextDecoration.lineThrough,
-                                    // ),
+                                    CustomText(text: "\$${ controller.offerCarList[index].hourlyRate ?? "---"}"),
                                     const CustomText(
                                         text:"/hr",
                                         color: AppColors.primaryColor
@@ -112,6 +102,18 @@ class OfferCarSection extends StatelessWidget {
                             ),
                           ],
                         ),
+                      ),
+                      Expanded(
+                          child: Container(
+                            height: 60,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(controller.offerCarList[index].image![0].toString()),
+                                  fit: BoxFit.fill
+                              ),
+                            ),
+                          )
                       ),
                     ],
                   ),

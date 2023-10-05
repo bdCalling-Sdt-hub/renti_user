@@ -1,18 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:renti_user/view/screens/trip_details/trip_detasils_controller/trip_details_controller.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
 
 class RentalInfo extends StatelessWidget {
-  const RentalInfo({super.key});
+
+  final int index;
+  const RentalInfo({required this.index, super.key});
   
   @override
   Widget build(BuildContext context) {
     
-    return GetBuilder<TripDetailsController>(builder: (controller){
+    return GetBuilder<RentHistoryController>(builder: (controller){
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,7 +37,7 @@ class RentalInfo extends StatelessWidget {
                 bottom: 12,
               ),
               CustomText(
-                text: controller.tripDetailsModel.rents?.carId?.totalRun ?? "---",
+                text: controller.rentUser[index].carId?.totalRun ?? "---",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -52,7 +54,7 @@ class RentalInfo extends StatelessWidget {
                 bottom: 12,
               ),
               CustomText(
-                text: controller.tripDetailsModel.rents?.carId?.carColor ?? "---",
+                text: controller.rentUser[index].carId?.carColor ?? "---",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -69,7 +71,7 @@ class RentalInfo extends StatelessWidget {
                 bottom: 12,
               ),
               CustomText(
-                text: controller.tripDetailsModel.rents?.carId?.carSeats ?? "---",
+                text: controller.rentUser[index].carId?.carSeats ?? "---",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
@@ -86,7 +88,7 @@ class RentalInfo extends StatelessWidget {
                 bottom: 12,
               ),
               CustomText(
-                text: controller.tripDetailsModel.rents?.carId?.gearType ?? "---",
+                text: controller.rentUser[index].carId?.gearType ?? "---",
                 color: AppColors.blackNormal,
                 bottom: 12,
               ),
