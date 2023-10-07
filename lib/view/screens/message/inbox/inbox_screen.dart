@@ -6,10 +6,10 @@ import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
-import 'package:renti_user/view/widgets/container/custom_container.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class InboxScreen extends StatefulWidget {
   const InboxScreen({super.key});
@@ -19,34 +19,52 @@ class InboxScreen extends StatefulWidget {
 }
 
 class _InboxScreenState extends State<InboxScreen> {
-  List<ChatMessage> messages = [
-    ChatMessage(
-        messageContent: "Lorem ipsum dolor sit amet consectetur. Fringilla vitae dolor.",
-        messageType: "sender"),
-    ChatMessage(
-        messageContent: "Lorem ipsum dolor sit amet\nconsectetur. Enim posuere aenean enim malesuada diam donec augue facilisi.",
-        messageType: "receiver"),
-    ChatMessage(messageContent: "Hello", messageType: "receiver"),
-    ChatMessage(
-        messageContent: "Lorem ipsum dolor sit amet consectetur. Fringilla vitae dolor.",
-        messageType: "sender"),
-    ChatMessage(
-        messageContent: "Lorem ipsum dolor sit amet\nconsectetur. Enim posuere aenean enim malesuada diam donec augue facilisi.",
-        messageType: "receiver"),
-    ChatMessage(messageContent: "Hello", messageType: "receiver"),
-    ChatMessage(
-        messageContent: "Lorem ipsum dolor sit amet consectetur. Fringilla vitae dolor.",
-        messageType: "sender"),
-    ChatMessage(
-        messageContent: "Lorem ipsum dolor sit amet\nconsectetur. Enim posuere aenean enim malesuada diam donec augue facilisi.",
-        messageType: "receiver"),
-  ];
+
+  late IO.Socket socket;
+
+  TextEditingController messageController = TextEditingController();
+  List<Message> messages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    connectToServer();
+  }
+
+  void connectToServer() {
+    socket = IO.io('mongodb://127.0.0.1/chat_app', <String, dynamic>{
+      'transports': ['websocket'],
+      'autoConnect': false,
+    });
+    socket.connect();
+    socket.on('chat_message', (data) {
+      setState(() {
+        messages.add(Message(messageContent: data, messageType: "receiver"));
+      });
+    });
+  }
+
+  void sendMessage() {
+    String message = messageController.text.trim();
+    if (message.isNotEmpty) {
+      socket.emit('chat_message', message);
+      messageController.clear();
+      messages.add(Message(messageContent: message, messageType: "sender"));
+      setState(() {});
+    }
+  }
+
+  @override
+  void dispose() {
+    socket.dispose(); // Close the socket when disposing of the screen
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      top: true,
-      bottom: true,
+      top: false,
+      bottom: false,
       child: Scaffold(
         appBar: CustomAppBar(
           appBarBgColor: AppColors.primaryColor,
@@ -89,39 +107,38 @@ class _InboxScreenState extends State<InboxScreen> {
           padding: const EdgeInsets.only(top: 24, bottom: 24),
           child: Column(
             children: List.generate(
-              messages.length,
-                  (index) => Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4)
-                ),
-                padding: const EdgeInsets.only(
-                  left: 16,
-                  right: 16,
-                  top: 16,
-                ),
-                child: Align(
-                  alignment: (messages[index].messageType == "sender"
-                      ? Alignment.topRight
-                      : Alignment.topLeft),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    width: MediaQuery.of(context).size.width / 1.5,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: (messages[index].messageType == "sender"
-                          ? AppColors.primaryColor
-                          : AppColors.whiteNormalhover),
-                    ),
-                    child: CustomText(
-                        textAlign: TextAlign.start,
-                        text: messages[index].messageContent,
-                        color: messages[index].messageType == "sender"
-                            ? AppColors.whiteLight
-                            : AppColors.blackNormal),
+              messages.length, (index) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+              ),
+              padding: const EdgeInsets.only(
+                left: 16,
+                right: 16,
+                top: 16,
+              ),
+              child: Align(
+                alignment: (messages[index].messageType == "sender"
+                    ? Alignment.topRight
+                    : Alignment.topLeft),
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  width: MediaQuery.of(context).size.width / 1.5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: (messages[index].messageType == "sender"
+                        ? AppColors.primaryColor
+                        : AppColors.whiteNormalhover),
+                  ),
+                  child: CustomText(
+                    textAlign: TextAlign.start,
+                    text: messages[index].messageContent,
+                    color: messages[index].messageType == "sender"
+                        ? AppColors.whiteLight
+                        : AppColors.blackNormal,
                   ),
                 ),
               ),
-            ),
+            )),
           ),
         ),
         bottomNavigationBar: AnimatedPadding(
@@ -154,6 +171,7 @@ class _InboxScreenState extends State<InboxScreen> {
                           strokeAlign: 1),
                     ),
                     child: CustomTextField(
+                      textEditingController: messageController,
                       textInputAction: TextInputAction.done,
                       fieldBorderColor: AppColors.whiteLight,
                       hintText: AppStrings.enterAddress,
@@ -166,9 +184,8 @@ class _InboxScreenState extends State<InboxScreen> {
                 ),
                 const SizedBox(width: 16),
                 GestureDetector(
-                  onTap: () {},
-                  child:
-                  const CustomImage(imageSrc: AppIcons.sendSms, size: 24),
+                  onTap: () => sendMessage(),
+                  child: const CustomImage(imageSrc: AppIcons.sendSms, size: 24),
                 ),
               ],
             ),
@@ -179,9 +196,9 @@ class _InboxScreenState extends State<InboxScreen> {
   }
 }
 
-class ChatMessage {
-  String messageContent;
-  String messageType;
+class Message {
+  final String messageContent;
+  final String messageType; // "sender" or "receiver"
 
-  ChatMessage({required this.messageContent, required this.messageType});
+  Message({required this.messageContent, required this.messageType});
 }
