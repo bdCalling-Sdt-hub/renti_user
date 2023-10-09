@@ -20,36 +20,44 @@ class InboxScreen extends StatefulWidget {
 
 class _InboxScreenState extends State<InboxScreen> {
 
-  late IO.Socket socket;
-
   TextEditingController messageController = TextEditingController();
   List<Message> messages = [];
 
-  @override
-  void initState() {
-    super.initState();
-    connectToServer();
+  final IO.Socket socket = IO.io(
+      'http://192.168.10.14:9000',
+      IO.OptionBuilder().setTransports(['websocket']).build()
+  );
+
+  connectSocket() {
+    socket.onConnect((data) => print("Connection established"));
+    socket.onConnectError((data) => print("Connection Error: $data"));
+    socket.on('admin-notification', (data) => print("data: $data"));
   }
 
-  void connectToServer() {
-    socket = IO.io('mongodb://127.0.0.1/chat_app', <String, dynamic>{
-      'transports': ['websocket'],
-      'autoConnect': false,
-    });
-    socket.connect();
-    socket.on('chat_message', (data) {
-      setState(() {
-        messages.add(Message(messageContent: data, messageType: "receiver"));
-      });
-    });
+  @override
+  void initState() {
+    connectSocket();
+    super.initState();
   }
 
   void sendMessage() {
     String message = messageController.text.trim();
     if (message.isNotEmpty) {
-      socket.emit('chat_message', message);
+      /*socket.emit('join-check', {"chatID": 11223});
       messageController.clear();
       messages.add(Message(messageContent: message, messageType: "sender"));
+      setState(() {});*/
+      socket.emit('add-new-chat', {
+        "chatInfo" : {
+          "participants": ["652268230cbb1643391e3563", "651c1438254d5546b335bd43"],
+        },
+        "messageInfo" : {
+          "message": messageController.text,
+          "sender": "651c1438254d5546b335bd43"
+        }
+      });
+      messageController.clear();
+      socket.on("all-messages", (data) => print("messages: $data"));
       setState(() {});
     }
   }
@@ -185,6 +193,7 @@ class _InboxScreenState extends State<InboxScreen> {
                 const SizedBox(width: 16),
                 GestureDetector(
                   onTap: () => sendMessage(),
+                  //onTap: (){},
                   child: const CustomImage(imageSrc: AppIcons.sendSms, size: 24),
                 ),
               ],
