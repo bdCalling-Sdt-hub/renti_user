@@ -8,16 +8,13 @@ import 'package:renti_user/view/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:renti_user/view/screens/auth/signup_continue/sign_up_continue_screen.dart';
 import 'package:renti_user/view/screens/cancel_request/cancel_request_screen.dart';
+import 'package:renti_user/view/screens/car_details/car_details_screen.dart';
 import 'package:renti_user/view/screens/car_list/luxury_car/luxury_car_screen.dart';
 import 'package:renti_user/view/screens/car_list/offer_car/offer_car_screen.dart';
-import 'package:renti_user/view/screens/car_select/select_car/car_details_screen.dart';
 import 'package:renti_user/view/screens/home/home_screen.dart';
 import 'package:renti_user/view/screens/intro/intro_screen.dart';
 import 'package:renti_user/view/screens/message/inbox/inbox_screen.dart';
 import 'package:renti_user/view/screens/message/messages/messages_screen.dart';
-import 'package:renti_user/view/screens/payment_method/add_card/add_card_screen.dart';
-import 'package:renti_user/view/screens/payment_method/payment_edit_card/payment_edit_card_screen.dart';
-import 'package:renti_user/view/screens/payment_method/payment_method/payment_method_screen.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_screen.dart';
 import 'package:renti_user/view/screens/profile/profile_settings/profile_settings_screen.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_screen.dart';
@@ -67,9 +64,6 @@ class AppRoute {
   static const String settings = "/settings_screen";
   static const String changeLanguage = "/change_language_screen";
   static const String changePassword = "/change_password_screen";
-  static const String paymentMethod = "/payment_method_screen";
-  static const String addCard = "/add_card_screen";
-  static const String paymentEditCard = "/payment_edit_card";
   static const String rentiHistory = "/renti_history_screen";
   static const String carDetails = "/car_details_screen";
   static const String cancelRequestScreen = "/cancel_request_screen";
@@ -102,9 +96,6 @@ class AppRoute {
     GetPage(name: settings, page: ()=>const SettingsScreen()),
     GetPage(name: changeLanguage, page: ()=>const ChangeLanguageScreen()),
     GetPage(name: changePassword, page: ()=>const ChangePasswordScreen()),
-    GetPage(name: paymentMethod, page: ()=>const PaymentMethodScreen()),
-    GetPage(name: addCard, page: ()=>const AddCardScreen()),
-    GetPage(name: paymentEditCard, page: ()=>const PaymentEditCardScreen()),
     GetPage(name: carDetails, page: ()=>const CarDetailsScreen()),
     GetPage(name: rentiHistory, page: ()=>const RentHistoryScreen()),
     GetPage(name: homeScreen, page: ()=>const HomeScreen()),

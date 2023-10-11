@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:renti_user/view/screens/car_select/select_car/car_details_controller/car_details_controller.dart';
-import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_icons.dart';
-import '../../../../../utils/app_images.dart';
-import '../../../../widgets/image/custom_image.dart';
-import '../../../../widgets/text/custom_text.dart';
+import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/utils/app_images.dart';
+import 'package:renti_user/view/screens/car_details/car_details_controller/car_details_controller.dart';
+import 'package:renti_user/view/widgets/image/custom_image.dart';
+import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class CarDetailsTopSection extends StatelessWidget {
   const CarDetailsTopSection({super.key});

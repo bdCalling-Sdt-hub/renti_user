@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/cancel_request/cancel_request_model/request_cancel_response_model.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_model/rent_history_model.dart';
@@ -53,6 +54,7 @@ class RentHistoryController extends GetxController{
     if(responseModel.statusCode == 200){
       requestCancelResponseModel = RequestCancelResponseModel.fromJson(jsonDecode(responseModel.responseJson));
       AppUtils.successToastMessage("Rent request cancel successfully");
+      Get.offAndToNamed(AppRoute.rentiHistory);
     }
     else{
 

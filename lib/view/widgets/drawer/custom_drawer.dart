@@ -71,25 +71,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                 ),
               ),
-              // paymentMethod
-              InkWell(
-                onTap: () => Get.toNamed(AppRoute.paymentMethod),
-                child: Container(
-                  width: double.maxFinite,
-                  padding: const EdgeInsets.all(8),
-                  margin: const EdgeInsets.only(top: 8),
-                  decoration: BoxDecoration(
-                      color: AppColors.whiteLight,
-                      borderRadius: BorderRadius.circular(4)
-                  ),
-                  child: const Row(
-                    children: [
-                      CustomImage(imageSrc: AppIcons.paymentIcon,size: 18,),
-                      CustomText(text: AppStrings.paymentMethod,color: AppColors.whiteDarkHover,left: 8)
-                    ],
-                  ),
-                ),
-              ),
               InkWell(
                 onTap: () => Get.toNamed(AppRoute.rentiWorks),
                 child: Container(

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/view/screens/car_select/select_car/car_details_controller/car_details_controller.dart';
-import 'package:renti_user/view/screens/car_select/select_car/car_details_repo/car_details_repo.dart';
-import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/car_details_top_section.dart';
-import 'package:renti_user/view/screens/car_select/select_car/inner_widgets/from_until_section.dart';
+import 'package:renti_user/view/screens/car_details/car_details_controller/car_details_controller.dart';
+import 'package:renti_user/view/screens/car_details/car_details_repo/car_details_repo.dart';
+import 'package:renti_user/view/screens/car_details/inner_widgets/car_details_top_section.dart';
+import 'package:renti_user/view/screens/car_details/inner_widgets/from_until_section.dart';
 
-import '../../../../utils/app_colors.dart';
-import '../../../widgets/appbar/custom_app_bar.dart';
-import '../../../widgets/text/custom_text.dart';
+import '../../../utils/app_colors.dart';
+import '../../widgets/appbar/custom_app_bar.dart';
+import '../../widgets/text/custom_text.dart';
 
 class CarDetailsScreen extends StatefulWidget {
 

@@ -1,7 +1,8 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
+
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
     this.textEditingController,
@@ -27,8 +28,8 @@ class CustomTextField extends StatefulWidget {
     this.prefixIconColor,
     this.prefixIconSrc,
     this.readOnly = false,
-    super.key
-     }
+    this.onTap,
+    super.key}
   );
 
   final TextEditingController? textEditingController;
@@ -54,6 +55,7 @@ class CustomTextField extends StatefulWidget {
   final String ?prefixIconSrc;
   final Color ? prefixIconColor;
   final bool readOnly;
+  final VoidCallback? onTap;
 
 
   @override
@@ -114,6 +116,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             borderSide: BorderSide(color: widget.fieldBorderColor, width: 1),
             gapPadding: 0),
       ),
+      onTap: widget.onTap,
     );
   }
 

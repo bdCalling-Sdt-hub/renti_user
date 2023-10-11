@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_images.dart';
-import '../../../../widgets/image/custom_image.dart';
+import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_images.dart';
+import 'package:renti_user/view/widgets/image/custom_image.dart';
 
 class CarDetailsMapSection extends StatefulWidget {
   const CarDetailsMapSection({super.key});

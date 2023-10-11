@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
-import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_icons.dart';
-import '../../../../../utils/app_strings.dart';
-import '../../../../widgets/buttons/custom_elevated_button.dart';
-import '../../../../widgets/image/custom_image.dart';
-import '../../../../widgets/text/custom_text.dart';
+import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
+import 'package:renti_user/view/widgets/image/custom_image.dart';
+import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class CancelShowDialogue extends StatefulWidget {
   const CancelShowDialogue({super.key});

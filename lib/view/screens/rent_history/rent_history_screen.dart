@@ -22,6 +22,7 @@ class RentHistoryScreen extends StatefulWidget {
 }
 
 class _RentHistoryScreenState extends State<RentHistoryScreen> {
+
   @override
   void initState() {
 
@@ -35,8 +36,11 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
     super.initState();
   }
 
+  String requestCancel = "";
+
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       top: true,
       child: Scaffold(
@@ -64,27 +68,27 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
       )),
       body: GetBuilder<RentHistoryController>(
         builder: (controller) {
-          return SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-            physics: const BouncingScrollPhysics(),
-            child: controller .isLoading ? const Center(
-              child: CircularProgressIndicator(),
-            ) : controller.rentUser.isEmpty ? Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CustomImage(imageSrc: "assets/images/no_car.svg", size: 150),
-                  const SizedBox(height: 12),
-                  Text(
+          return  controller .isLoading ? const Center(
+            child: CircularProgressIndicator(),
+          ) : controller.rentUser.isEmpty ? Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const CustomImage(imageSrc: "assets/images/no_car.svg", size: 150),
+                const SizedBox(height: 12),
+                Text(
                     "No Data Found", textAlign: TextAlign.center, style: GoogleFonts.poppins(
                     color: AppColors.blackNormal,
                     fontSize: 14,
                     fontWeight: FontWeight.w500
-                  ))
-                ],
-              ),
-            ) : const RentHistorySection(),
+                ))
+              ],
+            ),
+          ) : const SingleChildScrollView(
+            padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+            physics: BouncingScrollPhysics(),
+            child: RentHistorySection(),
           );
         }
       )
