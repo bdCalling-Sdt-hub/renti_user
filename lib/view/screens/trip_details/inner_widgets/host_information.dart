@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
@@ -20,13 +21,29 @@ class HostInfo extends StatelessWidget {
         builder: (controller) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CustomText(
-              text: AppStrings.hostInformation,
-              fontWeight: FontWeight.w600,
-              fontSize: 18,
-              color: AppColors.blackNormal,
-              bottom: 16,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const CustomText(
+                  text: AppStrings.hostInformation,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                  color: AppColors.blackNormal,
+                ),
+                GestureDetector(
+                  onTap: () => Get.toNamed(AppRoute.inboxScreen),
+                  child: Container(
+                    padding: const EdgeInsetsDirectional.symmetric(horizontal: 6, vertical: 6),
+                    decoration: const BoxDecoration(
+                        color: Color(0xffE6E7F4),
+                        shape: BoxShape.circle
+                    ),
+                    child: const Icon(Icons.chat_sharp, size: 18, color: AppColors.primaryColor),
+                  ),
+                )
+              ],
             ),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

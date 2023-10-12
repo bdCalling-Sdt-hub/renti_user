@@ -18,7 +18,7 @@ class ApiUrlContainer{
   static const String termConditionEndPoint = "termsConditionRouter/all";
   static const String howRentiWorksEndPoint = "howRentiWork";
   static const String allCarsEndPoint = "car/all";
-  static const String rentHistoryEndPoint = "rent/all";
+  static const String rentHistoryEndPoint = "rent/rent-history";
   static const String carDetailsEndPoint = "car";
   static const String offerCarEndPoint = "car/offer";
   static const String rentRequestPaymentEndPoint = "payment/";
