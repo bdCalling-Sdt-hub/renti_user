@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/service/api_service.dart';
+import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/cancel_request/inner_widgets/cancel_request_car_info_section.dart';
 import 'package:renti_user/view/screens/cancel_request/inner_widgets/cancel_request_host_information.dart';
@@ -14,6 +15,7 @@ import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 
 import '../../../utils/app_colors.dart';
 
+
 class CancelRequestScreen extends StatefulWidget {
 
   final int index;
@@ -23,21 +25,6 @@ class CancelRequestScreen extends StatefulWidget {
 }
 
 class _CancelRequestScreenState extends State<CancelRequestScreen> {
-
-  /*@override
-  void initState() {
-    DeviceUtils.authUtils();
-
-    rentId = Get.arguments;
-    Get.put(ApiService(sharedPreferences: Get.find()));
-    Get.put(CancelRequestRepo(apiService: Get.find()));
-    final controller = Get.put(CancelRequestController(cancelRequestRepo: Get.find()));
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      controller.loadData(rentId.toString());
-    });
-    super.initState();
-  }*/
 
  @override
  void initState() {
@@ -50,6 +37,8 @@ class _CancelRequestScreenState extends State<CancelRequestScreen> {
    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
      controller.initialState();
    });
+
+    
    super.initState();
  }
 
@@ -61,8 +50,8 @@ class _CancelRequestScreenState extends State<CancelRequestScreen> {
   }
   @override
   Widget build(BuildContext context) {
-
     final ScrollController scrollController = ScrollController();
+    
     return  SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(

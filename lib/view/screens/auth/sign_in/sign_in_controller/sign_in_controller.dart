@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_model/sign_in_response_model.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_repo/sign_in_repo.dart';
@@ -22,6 +23,8 @@ class SignInController extends GetxController{
   bool remember = false;
   bool isSubmit = false;
 
+  SocketService socketService = SocketService();
+
   Future<void> signInUser() async{
     isSubmit = true;
     update();
@@ -34,6 +37,11 @@ class SignInController extends GetxController{
       SignInResponseModel signInResponseModel = SignInResponseModel.fromJson(jsonDecode(responseModel.responseJson));
       print("data: ${signInResponseModel.user.toString()}");
       AppUtils.successToastMessage("Sign In Successfully");
+
+      socketService.emit("join-room", {"uid": "123"});
+
+      signInRepo.apiService.sharedPreferences.setString("room_id", "123");
+
       await gotoNextStep(signInResponseModel);
     }
     else{
