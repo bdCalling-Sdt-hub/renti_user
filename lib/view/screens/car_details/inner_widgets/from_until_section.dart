@@ -108,6 +108,8 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                 startDate: controller.startTripDateController.text.toString(),
                 endDate: controller.endTripDateController.text.toString()
               );
+
+
             },
             titleText: AppStrings.sentRentRequest
           ),

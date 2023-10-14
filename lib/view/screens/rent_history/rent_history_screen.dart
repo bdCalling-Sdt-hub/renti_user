@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:renti_user/service/api_service.dart';
+import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/rent_history/inner_widgets/rent_history_section.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
@@ -23,12 +24,15 @@ class RentHistoryScreen extends StatefulWidget {
 
 class _RentHistoryScreenState extends State<RentHistoryScreen> {
 
+  final SocketService socketService = SocketService();
+
   @override
   void initState() {
 
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(RentHistoryRepo(apiService: Get.find()));
     final controller = Get.put(RentHistoryController(rentHistoryRepo: Get.find()));
+    socketService.connectToSocket();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.initialState();

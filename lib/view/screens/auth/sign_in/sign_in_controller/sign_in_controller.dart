@@ -23,7 +23,7 @@ class SignInController extends GetxController{
   bool remember = false;
   bool isSubmit = false;
 
-  SocketService socketService = SocketService();
+  //SocketService socketService = SocketService();
 
   Future<void> signInUser() async{
     isSubmit = true;
@@ -38,7 +38,7 @@ class SignInController extends GetxController{
       print("data: ${signInResponseModel.user.toString()}");
       AppUtils.successToastMessage("Sign In Successfully");
 
-      socketService.emit("join-room", {"uid": "123"});
+      //socketService.emit("join-room", {"uid": "123"});
 
       signInRepo.apiService.sharedPreferences.setString("room_id", "123");
 

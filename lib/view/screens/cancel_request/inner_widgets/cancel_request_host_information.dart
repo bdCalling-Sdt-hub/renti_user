@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
-import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
+
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
 
 class CancelRequestHostInfo extends StatefulWidget {
   
   final int index;
-
   const CancelRequestHostInfo({required this.index, super.key});
 
   @override
@@ -20,8 +19,6 @@ class CancelRequestHostInfo extends StatefulWidget {
 }
 
 class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
-  
-  SocketService socketService = SocketService();
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +37,8 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
                   color: AppColors.blackNormal,
                 ),
                 GestureDetector(
-                  onTap: () async{
-                    setState(() {
-
-                      socketService.emit("add-new-chat", {
-                        "chatInfo" : {
-                          "participants": ["651c1438254d5546b335bd43", "65156b821ae339b4d6643ac7"]
-                        },
-                        "uid" : "651c1438254d5546b335bd43"
-                      });
-                      socketService.socket.on("new-chat", (data) => print("$data"));
-                    });
-
-                    await Get.toNamed(AppRoute.inboxScreen);
+                  onTap: () {
+                    Get.toNamed(AppRoute.inboxScreen);
                   },
                   child: Container(
                     padding: const EdgeInsetsDirectional.symmetric(horizontal: 6, vertical: 6),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
@@ -9,9 +10,9 @@ import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class InboxScreen extends StatefulWidget {
+
   const InboxScreen({super.key});
 
   @override
@@ -23,48 +24,13 @@ class _InboxScreenState extends State<InboxScreen> {
   TextEditingController messageController = TextEditingController();
   List<Message> messages = [];
 
-  final IO.Socket socket = IO.io(
-      'http://192.168.10.14:9000',
-      IO.OptionBuilder().setTransports(['websocket']).build()
-  );
-
-  connectSocket() {
-    socket.onConnect((data) => print("Connection established"));
-    socket.onConnectError((data) => print("Connection Error: $data"));
-    socket.on('admin-notification', (data) => print("data: $data"));
-  }
-
   @override
   void initState() {
-    connectSocket();
     super.initState();
-  }
-
-  void sendMessage() {
-    String message = messageController.text.trim();
-    if (message.isNotEmpty) {
-      /*socket.emit('join-check', {"chatID": 11223});
-      messageController.clear();
-      messages.add(Message(messageContent: message, messageType: "sender"));
-      setState(() {});*/
-      socket.emit('add-new-chat', {
-        "chatInfo" : {
-          "participants": ["652268230cbb1643391e3563", "651c1438254d5546b335bd43"],
-        },
-        "messageInfo" : {
-          "message": messageController.text,
-          "sender": "651c1438254d5546b335bd43"
-        }
-      });
-      messageController.clear();
-      socket.on("all-messages", (data) => print("messages: $data"));
-      setState(() {});
-    }
   }
 
   @override
   void dispose() {
-    socket.dispose(); // Close the socket when disposing of the screen
     super.dispose();
   }
 
@@ -192,8 +158,7 @@ class _InboxScreenState extends State<InboxScreen> {
                 ),
                 const SizedBox(width: 16),
                 GestureDetector(
-                  onTap: () => sendMessage(),
-                  //onTap: (){},
+                  onTap: () {},
                   child: const CustomImage(imageSrc: AppIcons.sendSms, size: 24),
                 ),
               ],

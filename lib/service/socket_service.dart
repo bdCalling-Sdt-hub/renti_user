@@ -1,25 +1,29 @@
-import 'package:socket_io_client/socket_io_client.dart';
+import 'package:socket_io_client/socket_io_client.dart' as io;
 
-class SocketService{
+class SocketService {
+  late io.Socket socket;
 
-  static SocketService? instance;
-  late Socket socket;
-
-  factory SocketService() {
-    instance ??= SocketService.internal();
-    return instance!;
-  }
-
-  SocketService.internal() {
-
-    socket = io('http://192.168.10.14:9000',
-        OptionBuilder().setTransports(['websocket']).build()
+  void connectToSocket() {
+    socket = io.io(
+        "http://192.168.10.14:9000",
+        io.OptionBuilder().setTransports(['websocket']).enableAutoConnect().build()
     );
+    socket.onConnect((data) => print("Connection Established"));
+    socket.onConnectError((data) => print("Connection Error"));
+
     socket.connect();
   }
 
-  void emit(String event, dynamic data) {
+  void joinRoom(String chatId) {
+    socketEmit('join-room', {'chatId': chatId});
+  }
+
+  void socketEmit(String event, dynamic data) {
     socket.emit(event, data);
+  }
+
+  void socketOn(String event, dynamic Function(dynamic) handler) {
+    socket.on(event, handler);
   }
 
   void disconnect() {
