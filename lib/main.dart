@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -12,7 +13,7 @@ import 'core/di_service/dependency_injection.dart' as di;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await di.initDependency();
-
+  Stripe.publishableKey = "pk_test_51JT7jkCTAUDjRNFVfafy4Gskx1KzUNk8nPj8T51zzCPE18fA17DOFO6MqSZVTCxhVCSWGwouDSe0yjcObAznHLW600VBoGyDcg";
   final socketService = SocketService();
   socketService.connectToSocket();
 

@@ -1,4 +1,7 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/service/api_service.dart';
@@ -14,7 +17,6 @@ import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 
 class TripDetailsScreen extends StatefulWidget {
-
   const TripDetailsScreen({super.key});
 
   @override
@@ -22,9 +24,7 @@ class TripDetailsScreen extends StatefulWidget {
 }
 
 class _TripDetailsScreenState extends State<TripDetailsScreen> {
-
   late int index;
-
   @override
   void initState() {
     DeviceUtils.authUtils();
@@ -95,7 +95,9 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
             builder: (controller) => Padding(
               padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
               child: CustomElevatedButton(
-                onPressed: (){},
+                onPressed: (){
+                  controller.initPaymentSheet(context,email: 'srabonmoung@gmail.com', amount: 200);
+                },
                 titleText: "Make Payment",
                 buttonWidth: MediaQuery.of(context).size.width,
               ),
