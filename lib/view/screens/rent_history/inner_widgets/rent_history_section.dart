@@ -27,10 +27,12 @@ class RentHistorySection extends StatelessWidget {
                   if(controller.rentUser[index].requestStatus == "Accepted"){
                     Get.toNamed(AppRoute.rentRequest, arguments: index);
                   }else if(controller.rentUser[index].requestStatus == "Reserved"){
-                    Get.toNamed(AppRoute.startTrip, arguments: controller.rentUser[index]);
+                    Get.toNamed(AppRoute.endTrip, arguments: controller.rentUser[index]);
                   }else if(controller.rentUser[index].requestStatus == "Pending"){
                     Get.toNamed(AppRoute.cancelRequestScreen, arguments: index);
                   }
+
+                  // payment complete hole start trip e jabe
                 },
                 child: Container(
                   margin:const EdgeInsets.only(bottom: 8),
