@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
@@ -12,7 +13,9 @@ import '../../../../../utils/app_strings.dart';
 class CancelRequestHostInfo extends StatefulWidget {
   
   final int index;
-  const CancelRequestHostInfo({required this.index, super.key});
+  final SocketService socketService;
+
+  const CancelRequestHostInfo({required this.index, required this.socketService, super.key});
 
   @override
   State<CancelRequestHostInfo> createState() => _CancelRequestHostInfoState();
@@ -38,7 +41,7 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(AppRoute.inboxScreen);
+                    Get.toNamed(AppRoute.inboxScreen, arguments: widget.socketService);
                   },
                   child: Container(
                     padding: const EdgeInsetsDirectional.symmetric(horizontal: 6, vertical: 6),

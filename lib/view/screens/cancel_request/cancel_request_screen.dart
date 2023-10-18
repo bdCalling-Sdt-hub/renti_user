@@ -26,6 +26,8 @@ class CancelRequestScreen extends StatefulWidget {
 
 class _CancelRequestScreenState extends State<CancelRequestScreen> {
 
+  final socketService = SocketService();
+
  @override
  void initState() {
    DeviceUtils.authUtils();
@@ -35,6 +37,8 @@ class _CancelRequestScreenState extends State<CancelRequestScreen> {
    final controller = Get.put(RentHistoryController(rentHistoryRepo: Get.find()));
 
    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+
+     socketService.connectToSocket();
      controller.initialState();
    });
 
@@ -91,7 +95,7 @@ class _CancelRequestScreenState extends State<CancelRequestScreen> {
                       const SizedBox(height: 24),
                       CancelRequestCarInfoSection(index: widget.index),
                       const SizedBox(height: 24),
-                      CancelRequestHostInfo(index: widget.index),
+                      CancelRequestHostInfo(index: widget.index, socketService: socketService),
                     ],
                   ),
                 );

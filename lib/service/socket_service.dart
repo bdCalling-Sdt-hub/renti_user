@@ -14,16 +14,44 @@ class SocketService {
     socket.connect();
   }
 
-  void joinRoom(String chatId) {
-    socketEmit('join-room', {'chatId': chatId});
+  void joinRoom(String uid) {
+    socket.emit('join-room', {'uid': uid});
+
+    socket.on('join-check', (data) {
+      print(data);
+    });
   }
 
-  void socketEmit(String event, dynamic data) {
-    socket.emit(event, data);
+  void addNewChat(Map chatInfo, String uid) {
+    socket.emit('add-new-chat', {'chatInfo': chatInfo, "uid" : uid});
+
+    socket.on('new-chat', (chat) {
+      print('New chat created: $chat');
+    });
   }
 
-  void socketOn(String event, dynamic Function(dynamic) handler) {
-    socket.on(event, handler);
+  joinChat(String uid) {
+    socket.emit('join-chat', {'uid': uid});
+
+    socket.on('all-messages', (messages) {
+      print('All messages in the chat: $messages');
+    });
+  }
+
+  addNewMessage(Map data) {
+    socket.emit('add-new-message', data);
+
+    socket.on('all-messages', (messages) {
+      print('All messages in the chat: $messages');
+    });
+  }
+
+  getAllChats(String uid) {
+    socket.emit('get-all-chats', {'uid': uid});
+
+    socket.on('all-chats', (chats) {
+      print('All chats: $chats');
+    });
   }
 
   void disconnect() {

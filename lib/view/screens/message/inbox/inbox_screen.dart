@@ -23,9 +23,24 @@ class _InboxScreenState extends State<InboxScreen> {
 
   TextEditingController messageController = TextEditingController();
   List<Message> messages = [];
+  SocketService socketService = SocketService();
 
   @override
   void initState() {
+    socketService.connectToSocket();
+
+    //TODO-
+    socketService.joinRoom("651c1438254d5546b335bd43");
+    socketService.addNewChat(
+        {
+          "participants": [
+            "651c1438254d5546b335bd43",
+            "652268230cbb1643391e3563"
+          ]
+        },
+       "651c1438254d5546b335bd43"
+    );
+    socketService.joinChat("651c1438254d5546b335bd43");
     super.initState();
   }
 
@@ -158,7 +173,15 @@ class _InboxScreenState extends State<InboxScreen> {
                 ),
                 const SizedBox(width: 16),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    socketService.addNewMessage({
+                      "data" : {
+                        "message" : messageController.text,
+                        "sender" : "651c1438254d5546b335bd43",
+                        "chat" : "651c1438254d5546b335bd43"
+                      }
+                    });
+                  },
                   child: const CustomImage(imageSrc: AppIcons.sendSms, size: 24),
                 ),
               ],
