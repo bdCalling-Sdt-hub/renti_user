@@ -40,7 +40,7 @@ class _InboxScreenState extends State<InboxScreen> {
         },
        "651c1438254d5546b335bd43"
     );
-    socketService.joinChat("651c1438254d5546b335bd43");
+    socketService.joinChat("652fa06617dfc17c83bb5f63");
     super.initState();
   }
 
@@ -174,13 +174,7 @@ class _InboxScreenState extends State<InboxScreen> {
                 const SizedBox(width: 16),
                 GestureDetector(
                   onTap: () {
-                    socketService.addNewMessage({
-                      "data" : {
-                        "message" : messageController.text,
-                        "sender" : "651c1438254d5546b335bd43",
-                        "chat" : "651c1438254d5546b335bd43"
-                      }
-                    });
+                    socketService.addNewMessage(messageController.text.toString(), "651c1438254d5546b335bd43", "652fa06617dfc17c83bb5f63");
                   },
                   child: const CustomImage(imageSrc: AppIcons.sendSms, size: 24),
                 ),

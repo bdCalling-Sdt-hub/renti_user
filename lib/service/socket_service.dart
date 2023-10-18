@@ -38,8 +38,10 @@ class SocketService {
     });
   }
 
-  addNewMessage(Map data) {
-    socket.emit('add-new-message', data);
+  addNewMessage(String message, String sender, String chat) {
+    socket.emit('add-new-message', {
+      "message": message, "sender" : sender, "chat" : chat
+    });
 
     socket.on('all-messages', (messages) {
       print('All messages in the chat: $messages');
