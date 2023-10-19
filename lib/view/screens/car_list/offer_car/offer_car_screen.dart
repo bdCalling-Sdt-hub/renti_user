@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/car_list/offer_car/inner_widgets/offer_car_scetion.dart';
 import 'package:renti_user/view/screens/car_list/offer_car/offer_car_controller/offer_car_controller.dart';
 import 'package:renti_user/view/screens/car_list/offer_car/offer_car_repo/offer_car_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
-import 'inner_widgets/search_filter.dart';
 
 class PopularCarScreen extends StatefulWidget {
 
@@ -60,13 +61,48 @@ class _PopularCarScreenState extends State<PopularCarScreen> {
         body: GetBuilder<OfferCarController>(
           builder: (controller) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
-            child: Column(
+            child:controller.isLoading ? const Center(
+                child: CircularProgressIndicator()
+            ) : Column(
               children: [
-                const SearchFilter(),
+                TextFormField(
+                  cursorColor: AppColors.blackNormal,
+                  showCursor: true,
+                  style: GoogleFonts.poppins(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.blackNormal),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search_outlined,size: 20,color: AppColors.whiteNormalActive),
+                    hintText: AppStrings.searchCar,
+                    hintStyle: const TextStyle(
+                        color: AppColors.whiteNormalActive,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14
+                    ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8)
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(color: AppColors.whiteNormalActive,width: 1)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: const BorderSide(color: AppColors.whiteNormalActive,width: 1),
+                    ),
+                  ),
+                ),
                 const SizedBox(height: 24),
                 Expanded(
                   child: SingleChildScrollView(
-                      child: OfferCarSection()
+                    physics: const BouncingScrollPhysics(),
+                    child: controller.offerCarList.isEmpty ? Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                        ],
+                      ),
+                    ) : const OfferCarSection()
                   ),
                 )
               ],

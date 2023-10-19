@@ -38,7 +38,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
           text: AppStrings.aboutUs,
         ),
       ),
-      body:LayoutBuilder(
+      body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) =>
             CustomContainer(
               height: MediaQuery.of(context).size.height,
@@ -49,14 +49,6 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   /* FittedBox(*/
-                   /*   child: CustomText(text: AppStrings.rentiTitle,fontSize: 16,fontWeight: FontWeight.w500,bottom: 12,),
-                    ),
-                    CustomText(text: AppStrings.rentiDescription,textAlign: TextAlign.start,),
-                    FittedBox(child: CustomText(text: AppStrings.rentiTitle,fontSize: 16,fontWeight: FontWeight.w500,bottom: 12,top: 16,)),
-                    CustomText(text: AppStrings.rentiDescription,textAlign: TextAlign.start,),
-                    FittedBox(child: CustomText(text: AppStrings.rentiTitle,fontSize: 16,fontWeight: FontWeight.w500,bottom: 12,top: 16,)),
-                    CustomText(text: AppStrings.rentiDescription,textAlign: TextAlign.start,),*/
 
                     GetBuilder<AboutUstController>(builder: (controller) {
                       if (controller.isLoading){

@@ -83,11 +83,6 @@ class LuxuryCarDetails extends StatelessWidget {
                                       CustomText(
                                         text: "${"\$"}${ controller.luxuryCarList[index].hourlyRate}",
                                       ),
-
-                                      // CustomText(
-                                      //   text: "\$25",
-                                      //
-                                      // ),
                                       const CustomText(
                                         text: "/hr",
                                       )
@@ -101,6 +96,9 @@ class LuxuryCarDetails extends StatelessWidget {
                                 Get.toNamed(AppRoute.carDetails , arguments: controller.luxuryCarList[index].id.toString());
                               }
                                 ,titleText: AppStrings.seeDetails,
+                              CustomElevatedButton(
+                                onPressed: () => Get.toNamed(AppRoute.carDetails , arguments: controller.luxuryCarList[index].id.toString()),
+                                titleText: AppStrings.seeDetails,
                                 titleWeight: FontWeight.w400,
                                 titleSize: 10,
                                 buttonRadius: 4,
@@ -120,6 +118,14 @@ class LuxuryCarDetails extends StatelessWidget {
                                 )
                             ),
                           ),
+                            child: Container(
+                              height: 60,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(image: NetworkImage(controller.luxuryCarList[index].image![0].toString()),
+                                    fit: BoxFit.fill),
+                              ),
+                            )
                         ),
                       ],
                     ),

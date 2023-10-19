@@ -16,11 +16,21 @@ class ApiUrlContainer{
   static const String privacyPolicy = "privacyPolicy/all";
   static const String aboutUsEnd = "about/all";
   static const String termConditionEndPoint = "termsConditionRouter/all";
+  static const String howRentiWorksEndPoint = "howRentiWork";
   static const String allCarsEndPoint = "car/all";
   static const String rentHistoryEndPoint = "rent/all";
   static const String carDetailsEndPoint = "car/";
   static const String sendRentRequestEndPoint = "rent/request/";
+  static const String rentHistoryEndPoint = "rent/rent-history";
+  static const String carDetailsEndPoint = "car";
   static const String offerCarEndPoint = "car/offer";
   static const String rentRequestPaymentEndPoint = "payment/";
   static const String luxuryCarEndPoint = "car/luxury";
+
+  static const String supportEndPoint = "support";
+
+  static const String sentRentRequestEndPoint = "rent/request";
+  static const String rentDetailsEndPont = "rent";
+  static const String cancelRentRequestEndPoint = "rent/cancel/request";
+
 }

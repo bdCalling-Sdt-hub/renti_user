@@ -14,10 +14,22 @@ class RentHistoryRepo{
 
     String requestMethod = ApiResponseMethod.getMethod;
 
-    Map<String, String> params = {
-    };
 
     ApiResponseModel responseModel = await apiService.request(uri, requestMethod, null, passHeader: true);
+
+    return responseModel;
+  }
+
+  Future<ApiResponseModel> cancelRentRequest({required String rentId}) async{
+
+    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.cancelRentRequestEndPoint}/$rentId";
+
+    String requestMethod = ApiResponseMethod.postMethod;
+
+    Map<String, String> params = {};
+
+    ApiResponseModel responseModel = await apiService.request(url, requestMethod, params, passHeader: true);
+
     return responseModel;
   }
 }

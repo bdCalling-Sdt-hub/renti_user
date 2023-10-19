@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/view/screens/auth/forgot_password/forget_password_controller/forget_password_controller.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
@@ -16,10 +18,12 @@ class ForgotPasswordTopSection extends StatefulWidget {
 }
 
 class _ForgotPasswordTopSectionState extends State<ForgotPasswordTopSection> {
-  final _formKey = GlobalKey<FormState>();
+
+
   @override
   Widget build(BuildContext context) {
-    return Column(
+
+    return GetBuilder<ForgetPasswordController>(builder: (controller) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const CustomText(
@@ -28,7 +32,6 @@ class _ForgotPasswordTopSectionState extends State<ForgotPasswordTopSection> {
           fontSize: 16,
           bottom: 24,
         ),
-        //Image
         const Align(
           alignment: Alignment.center,
           child: CircleAvatar(
@@ -37,23 +40,22 @@ class _ForgotPasswordTopSectionState extends State<ForgotPasswordTopSection> {
             child: CustomImage(imageSrc: AppIcons.emailLogo,imageType: ImageType.svg,),
           ),
         ),
-        // Email and TextField
         const CustomText(text: AppStrings.email, top: 24, bottom: 12),
         Form(
-          key: _formKey,
-          autovalidateMode: AutovalidateMode.always,
+          key: controller.formKey,
           child: CustomTextField(
+            textEditingController: controller.emailController,
             textInputAction: TextInputAction.done,
-
             hintStyle: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                letterSpacing: 1,
-                color: AppColors.whiteNormalActive),
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              letterSpacing: 1,
+              color: AppColors.whiteNormalActive
+            ),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return AppStrings.notBeEmpty;
-              } else if (!value.contains(RegExp('\@'))) {
+              } else if (!value.contains(RegExp('@'))) {
                 return AppStrings.enterValidEmail;
               } else {
                 return null;
@@ -62,6 +64,6 @@ class _ForgotPasswordTopSectionState extends State<ForgotPasswordTopSection> {
           ),
         ),
       ],
-    );
+    ));
   }
 }

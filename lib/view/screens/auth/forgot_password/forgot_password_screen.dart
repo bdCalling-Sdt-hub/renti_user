@@ -1,8 +1,13 @@
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/device_utils.dart';
+import 'package:renti_user/view/screens/auth/forgot_password/forget_password_controller/forget_password_controller.dart';
+import 'package:renti_user/view/screens/auth/forgot_password/forget_password_repo/forget_password_repo.dart';
 import 'package:renti_user/view/screens/auth/forgot_password/inner_widgets/fogot_password_top_section.dart';
-import 'package:renti_user/view/screens/auth/forgot_password/inner_widgets/forgot_password_bottom_nav-section.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_loading_button.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
@@ -19,11 +24,27 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
+  @override
+  void initState() {
+
+    DeviceUtils.authUtils();
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(ForgetPasswordRepo(apiService: Get.find()));
+    Get.put(ForgetPasswordController(forgetPasswordRepo: Get.find()));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    DeviceUtils.authUtils();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
-      top: true,
+      top: false,
       child: Scaffold(
         extendBody: true,
         backgroundColor: AppColors.primaryColor,
@@ -33,20 +54,32 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           ),
         ),
         body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) =>
-              CustomContainer(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: const SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: ForgotPasswordTopSection(),
-                ),
-              ),
+          builder: (BuildContext context, BoxConstraints constraints) => GetBuilder<ForgetPasswordController>(
+            builder: (controller) {
+              return CustomContainer(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    child: const SingleChildScrollView(
+                      padding: EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
+                      physics: BouncingScrollPhysics(),
+                      child: ForgotPasswordTopSection(),
+                    ),
+                  );
+            }
+          ),
         ),
-        bottomNavigationBar: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-          child: ForgotPasswordBottomNavSection(),
-      ),
+        bottomNavigationBar: GetBuilder<ForgetPasswordController>(
+          builder: (controller) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+              child: controller.isSubmit ? const CustomElevatedLoadingButton() : CustomElevatedButton(
+                  buttonWidth: MediaQuery.of(context).size.width,
+                  onPressed: () => controller.verifyEmail(),
+                  titleText: "Verify Email"
+              )
+            );
+          }
+        ),
     ));
   }
 }

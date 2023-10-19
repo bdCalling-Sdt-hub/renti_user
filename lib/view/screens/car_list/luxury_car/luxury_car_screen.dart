@@ -55,7 +55,7 @@ class _AllCarScreenState extends State<AllCarScreen> {
                       color: AppColors.blackNormal,
                     )),
                 const CustomText(
-                  text: "Luxury Cars",
+                  text: "All Cars",
                   color: AppColors.blackNormal,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
