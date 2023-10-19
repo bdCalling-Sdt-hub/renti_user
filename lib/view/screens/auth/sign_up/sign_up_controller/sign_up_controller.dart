@@ -97,7 +97,7 @@ class SignUpController extends GetxController{
     kycDocFiles.removeAt(1);
     update();
   }
-
+   
   File? imageFile;
   final imagePicker = ImagePicker();
   String? imageUrl;

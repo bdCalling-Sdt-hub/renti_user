@@ -14,6 +14,7 @@ class ChangePasswordController extends GetxController{
   TextEditingController currentPasswordController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
 
 
