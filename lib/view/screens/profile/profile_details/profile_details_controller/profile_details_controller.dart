@@ -35,6 +35,7 @@ class ProfileDetailsController extends GetxController{
     update();
   }
 
+
   Future<void> loadProfileData() async{
 
     ApiResponseModel responseModel = await profileDetailsRepo.fetchProfileData();
@@ -93,5 +94,13 @@ class ProfileDetailsController extends GetxController{
 
     isLoading = false;
     update();
+  }
+
+  clearData (){
+    fullNameController.text = "";
+    phoneNumberController.text = "";
+    addressController.text = "";
+    update();
+
   }
 }

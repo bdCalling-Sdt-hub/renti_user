@@ -17,6 +17,7 @@ class ProfileDetails extends StatefulWidget {
 }
 
 class _ProfileDetailsState extends State<ProfileDetails> {
+
   @override
   Widget build(BuildContext context) {
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/service/stripe_api.dart';
 import 'package:renti_user/utils/app_colors.dart';
@@ -96,8 +97,9 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
             builder: (controller) => Padding(
               padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
               child: CustomElevatedButton(
-                onPressed: (){
-                  StripeApi().makePayment(amount: "10", currency: "INR");
+                onPressed: () async {
+                 await StripeApi().makePayment(amount: "10", currency: "INR");
+                  Get.toNamed(AppRoute.startTrip);
                 },
                 titleText: "Make Payment",
                 buttonWidth: MediaQuery.of(context).size.width,
