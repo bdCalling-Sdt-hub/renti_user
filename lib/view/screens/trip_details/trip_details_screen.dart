@@ -1,7 +1,4 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/service/api_service.dart';
@@ -9,11 +6,14 @@ import 'package:renti_user/service/stripe_api.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_model/rent_history_model.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_repo/rent_history_repo.dart';
 import 'package:renti_user/view/screens/trip_details/inner_widgets/host_information.dart';
 import 'package:renti_user/view/screens/trip_details/inner_widgets/payment_section.dart';
 import 'package:renti_user/view/screens/trip_details/inner_widgets/rental_info.dart';
 import 'package:renti_user/view/screens/trip_details/inner_widgets/top_upload_scetion.dart';
+import 'package:renti_user/view/screens/trip_details/trip_details_repo/trip_details_repo.dart';
+import 'package:renti_user/view/screens/trip_details/trip_detasils_controller/trip_details_controller.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 
@@ -36,6 +36,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.initialState();
+      print(index);
     });
 
     super.initState();
@@ -92,18 +93,16 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
               ),
             ),
           )),
-          bottomNavigationBar: GetBuilder<RentHistoryController>(
-            builder: (controller) => Padding(
+          bottomNavigationBar: Padding(
               padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
               child: CustomElevatedButton(
-                onPressed: (){
-                  StripeApi().makePayment(amount: "10", currency: "INR");
+                onPressed: () async{
+                  await StripeApi().makePayment(amount: "1000", currency: "INR", index: index);
                 },
                 titleText: "Make Payment",
                 buttonWidth: MediaQuery.of(context).size.width,
               ),
             )
-          ),
         )
     );
   }
