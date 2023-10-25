@@ -37,16 +37,6 @@ class SignUpController extends GetxController{
   File? profileImage;
   String phoneCode = "+52";
 
-  void initialState(){
-    isSubmit = true;
-    update();
-
-    signUpUser();
-
-    isSubmit = false;
-    update();
-  }
-
   void changeGender(int index){
     selectedGender = index;
     update();
@@ -124,7 +114,11 @@ class SignUpController extends GetxController{
     }
   }
 
+
   Future<void> signUpUser() async {
+
+    isSubmit = true;
+    update();
 
     try {
       var request = http.MultipartRequest(
@@ -192,5 +186,8 @@ class SignUpController extends GetxController{
       print('Error sending request: $e');
       print('Error s: $s');
     }
+
+    isSubmit = false;
+    update();
   }
 }

@@ -25,22 +25,25 @@ class _InboxScreenState extends State<InboxScreen> {
   List<Message> messages = [];
   SocketService socketService = SocketService();
 
+  String userId = "651c1438254d5546b335bd43";
+  String hostId = "65156b821ae339b4d6643ac7";
+
   @override
   void initState() {
     socketService.connectToSocket();
 
     //TODO-
-    socketService.joinRoom("651c1438254d5546b335bd43");
+    socketService.joinRoom(userId); // room id -> user id
     socketService.addNewChat(
         {
           "participants": [
-            "651c1438254d5546b335bd43",
-            "652268230cbb1643391e3563"
+            userId,
+            hostId
           ]
         },
-       "651c1438254d5546b335bd43"
+       userId
     );
-    socketService.joinChat("652fa06617dfc17c83bb5f63");
+    socketService.joinChat("6538fb41f7db461561d4dee4");
     super.initState();
   }
 
@@ -173,8 +176,10 @@ class _InboxScreenState extends State<InboxScreen> {
                 ),
                 const SizedBox(width: 16),
                 GestureDetector(
-                  onTap: () {
-                    socketService.addNewMessage(messageController.text.toString(), "651c1438254d5546b335bd43", "652fa06617dfc17c83bb5f63");
+                  onTap: () async{
+                    await socketService.addNewMessage(messageController.text.toString(), "651c1438254d5546b335bd43", "65156b821ae339b4d6643ac7");
+                    await socketService.joinChat("6538fb41f7db461561d4dee4");
+                    messageController.text = "";
                   },
                   child: const CustomImage(imageSrc: AppIcons.sendSms, size: 24),
                 ),

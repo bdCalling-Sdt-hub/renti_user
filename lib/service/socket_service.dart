@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:socket_io_client/socket_io_client.dart' as io;
+
+import '../view/screens/message/inbox/inbox_model/Inbox_model.dart';
+import '../view/screens/message/inbox/inbox_screen.dart';
 
 class SocketService {
   late io.Socket socket;
@@ -30,13 +35,28 @@ class SocketService {
     });
   }
 
-  joinChat(String uid) {
+
+
+
+// Define your Sender and Message classes here
+
+   joinChat(String uid) {
     socket.emit('join-chat', {'uid': uid});
 
     socket.on('all-messages', (messages) {
-      print('All messages in the chat: $messages');
+      final jsonData = messages;
+
+      final List<InboxMessage> parsedMessages = jsonData.map((messageData) => InboxMessage.fromJson(messageData)).toList();
+
+      // Now you have a List of parsed Message objects
+      for (InboxMessage message in parsedMessages) {
+        print('Message ID: ${message}');
+        print('Message Content: ${message.message}');
+        // Access other message properties as needed
+      }
     });
   }
+
 
   addNewMessage(String message, String sender, String chat) {
     socket.emit('add-new-message', {
