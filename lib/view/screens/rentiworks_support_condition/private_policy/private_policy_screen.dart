@@ -10,6 +10,7 @@ import 'package:renti_user/view/screens/rentiworks_support_condition/private_pol
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
 import 'package:renti_user/view/widgets/container/custom_container.dart';
+import 'package:renti_user/view/widgets/error_widget/no_data_found_widget.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class PrivatePolicyScreen extends StatefulWidget {
@@ -44,34 +45,27 @@ class _PrivatePolicyScreenState extends State<PrivatePolicyScreen> {
             CustomContainer(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 20,vertical: 24),
-            physics: BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                /*FittedBox(
-                      child: CustomText(text: AppStrings.rentiTitle,fontSize: 16,fontWeight: FontWeight.w500,bottom: 12,),
-                    ),
-                    CustomText(text: AppStrings.rentiDescription,textAlign: TextAlign.start,),
-                    FittedBox(child: CustomText(text: AppStrings.rentiTitle,fontSize: 16,fontWeight: FontWeight.w500,bottom: 12,top: 16,)),
-                    CustomText(text: AppStrings.rentiDescription,textAlign: TextAlign.start,),
-                    FittedBox(child: CustomText(text: AppStrings.rentiTitle,fontSize: 16,fontWeight: FontWeight.w500,bottom: 12,top: 16,)),
-                    CustomText(text: AppStrings.rentiDescription,textAlign: TextAlign.start,),*/
+          child:  GetBuilder<PrivacyPolicyController>(
+            builder: (controller) {
+              if(controller.isLoading){
+                const Center(
+                  child:  CircularProgressIndicator(),
+                );
+              }
+              return controller.content!=null&&controller.content.isNotEmpty? SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-                GetBuilder<PrivacyPolicyController>(builder: (controller) {
-                  if (controller.isLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(color: AppColors.primaryColor,),
-                    );
-                  } else {
-                    return Html(
-                      data: controller.content.toString(),
-                    );
-                  }
-                })
-              ],
-            ),
+                Html(
+                data: controller.content.toString(),
+                 )
+                  ],
+                ),
+              ):const NoDataFoundWidget();
+            }
           ),
         ),
       ),

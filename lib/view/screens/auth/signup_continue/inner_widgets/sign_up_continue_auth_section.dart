@@ -33,19 +33,19 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
     return GetBuilder<SignUpController>(
       builder: (controller) => Form(
         key: formKey,
-        autovalidateMode: AutovalidateMode.always,
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CustomText(text: AppStrings.phoneNumber, bottom: 12),
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   flex: 1,
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: AppColors.whiteLight,
@@ -74,6 +74,16 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                 Expanded(
                   flex: 2,
                   child: CustomTextField(
+
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return AppStrings.notBeEmpty;
+                      } else if (value.length < 11) {
+                        return "Enter your valid phone number";
+                      } else {
+                        return null;
+                      }
+                    },
                     textEditingController: controller.phoneNumberController,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.phone,
@@ -90,6 +100,13 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
             //Address Text and TextField
             const CustomText(text: AppStrings.address, top: 16, bottom: 12),
             CustomTextField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return AppStrings.notBeEmpty;
+                }  else {
+                  return null;
+                }
+              },
               textEditingController: controller.addressController,
               hintText: AppStrings.enterAddress,
               maxLines: 4,
@@ -102,6 +119,14 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
             ),
             const CustomText(text: AppStrings.creditCardNum, bottom: 12, top: 16),
             CustomTextField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return AppStrings.notBeEmpty;
+                }  else {
+                  return null;
+                }
+              },
+              keyboardType: TextInputType.number,
               hintText: AppStrings.enterCreditCardNum,
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,
@@ -116,6 +141,14 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                 bottom: 12,
                 top: 16),
             CustomTextField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return AppStrings.notBeEmpty;
+                }  else {
+                  return null;
+                }
+              },
+              keyboardType: TextInputType.number,
               hintText: AppStrings.mm_yy,
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,
@@ -128,6 +161,14 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                 bottom: 12,
                 top: 16),
             CustomTextField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return AppStrings.notBeEmpty;
+                }  else {
+                  return null;
+                }
+              },
+              keyboardType: TextInputType.number,
               hintText: AppStrings.enterCVV,
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,
@@ -143,7 +184,7 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                   phoneNumber: "${controller.phoneCode} ${controller.phoneNumberController.text}",
                   address: controller.addressController.text
                 ),
-                titleText: "Continue"
+                titleText: "Continue".tr
             )
           ],
         ),
@@ -151,14 +192,17 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
     );
   }
 
-  setDataToLocalStore(SignUpController signUpController, {required String phoneNumber, required String address}) async{
+  setDataToLocalStore(SignUpController signUpController,
+      {required String phoneNumber, required String address}) async{
 
     await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.phoneNumber, phoneNumber);
     await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.address, address);
 
     print("phone number: $phoneNumber");
     print("address: $address");
+     if(formKey.currentState!.validate()){
+       Get.toNamed(AppRoute.kycScreen);
+     }
 
-    Get.toNamed(AppRoute.kycScreen);
   }
 }
