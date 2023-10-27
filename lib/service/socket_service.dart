@@ -1,23 +1,9 @@
-import 'dart:convert';
-
+import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
-import '../view/screens/message/inbox/inbox_model/Inbox_model.dart';
-import '../view/screens/message/inbox/inbox_screen.dart';
+class SocketService extends GetxController{
 
-class SocketService {
   late io.Socket socket;
-
-  void connectToSocket() {
-    socket = io.io(
-        "http://192.168.10.14:9000",
-        io.OptionBuilder().setTransports(['websocket']).enableAutoConnect().build()
-    );
-    socket.onConnect((data) => print("Connection Established"));
-    socket.onConnectError((data) => print("Connection Error"));
-
-    socket.connect();
-  }
 
   void joinRoom(String uid) {
     socket.emit('join-room', {'uid': uid});
@@ -35,37 +21,15 @@ class SocketService {
     });
   }
 
-
-
-
-// Define your Sender and Message classes here
-
-   joinChat(String uid) {
+  joinChat(String uid) {
     socket.emit('join-chat', {'uid': uid});
-
-    socket.on('all-messages', (messages) {
-      final jsonData = messages;
-
-      final List<InboxMessage> parsedMessages = jsonData.map((messageData) => InboxMessage.fromJson(messageData)).toList();
-
-      // Now you have a List of parsed Message objects
-      for (InboxMessage message in parsedMessages) {
-        print('Message ID: ${message}');
-        print('Message Content: ${message.message}');
-        // Access other message properties as needed
-      }
-    });
+    socket.on('all-messages', (messages) {});
   }
 
-
   addNewMessage(String message, String sender, String chat) {
-    socket.emit('add-new-message', {
-      "message": message, "sender" : sender, "chat" : chat
-    });
-
-    socket.on('all-messages', (messages) {
-      print('All messages in the chat: $messages');
-    });
+    if(message.isNotEmpty){
+      socket.emit('add-new-message', {"message": message, "sender" : sender, "chat" : chat});
+    }
   }
 
   getAllChats(String uid) {
