@@ -36,7 +36,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       extendBody: true,
-      appBar:  const CustomAppBar(appBarContent: CustomBack(text:AppStrings.changePassword,),),
+      appBar:   CustomAppBar(appBarContent: CustomBack(text:AppStrings.changePassword.tr,),),
       backgroundColor: AppColors.primaryColor,
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) => GetBuilder<ChangePasswordController>(
@@ -49,9 +49,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     padding: const EdgeInsets.only(top: 24,left: 20,bottom: 100,right: 20),
                     child: Column(
                       children: [
-                        const CustomText(
+                         CustomText(
                           textAlign: TextAlign.start,
-                          text: AppStrings.changePasswordTitle,
+                          text: AppStrings.changePasswordTitle.tr,
                           fontSize: 16,
                           color: AppColors.blackNormal,
                         ),
@@ -70,7 +70,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                 isPassword: true,
                                 textEditingController: controller.currentPasswordController,
                                 textInputAction: TextInputAction.done,
-                                hintText: "Enter current password",
+                                hintText: "Enter current password".tr,
                                 suffixIconColor: AppColors.whiteNormalActive,
                                 hintStyle: GoogleFonts.poppins(
                                     fontSize: 14,
@@ -95,7 +95,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                 isPassword: true,
                                 textEditingController: controller.newPasswordController,
                                 textInputAction: TextInputAction.done,
-                                hintText: "Enter new password",
+                                hintText: "Enter new password".tr,
                                 suffixIconColor: AppColors.whiteNormalActive,
                                 hintStyle: GoogleFonts.poppins(
                                     fontSize: 14,
@@ -119,7 +119,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                 isPassword: true,
                                 textEditingController: controller.confirmPasswordController,
                                 textInputAction: TextInputAction.done,
-                                hintText: "Retype new password",
+                                hintText: "Retype new password".tr,
                                 suffixIconColor: AppColors.whiteNormalActive,
                                 hintStyle: GoogleFonts.poppins(
                                     fontSize: 14,
@@ -131,7 +131,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                   } else if (value.length < 6) {
                                     return AppStrings.passwordShouldBe;
                                   } else if(controller.newPasswordController.text != controller.confirmPasswordController.text){
-                                    return "Password doesn't match";
+                                    return "Password doesn't match".tr;
                                   }
                                   else{
                                     return null;

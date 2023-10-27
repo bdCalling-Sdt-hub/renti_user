@@ -6,8 +6,10 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_repo/profile_details_repo.dart';
 import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_body_section.dart';
-import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_bottom_nav_section.dart';
+//import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_bottom_nav_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_loading_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import '../../../../utils/app_strings.dart';
 
@@ -71,7 +73,15 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             )
         ),
       ),
-      bottomNavigationBar: const ProfileSettingsBottomNavSection(),
+      bottomNavigationBar: GetBuilder<ProfileDetailsController>(
+        builder: (controller) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+          child: controller.isSubmit ? const CustomElevatedLoadingButton() : CustomElevatedButton(
+              onPressed: () => controller.updateProfile(),
+              titleText: AppStrings.updateprofile
+          ),
+        ),
+      )
     ));
   }
 }

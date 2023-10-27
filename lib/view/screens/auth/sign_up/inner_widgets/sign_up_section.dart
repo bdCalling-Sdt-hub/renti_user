@@ -12,7 +12,6 @@ import '../../../../widgets/text/custom_text.dart';
 import '../../../../widgets/text_field/custom_text_field.dart';
 
 class SignUpAuthSection extends StatefulWidget {
-
   const SignUpAuthSection({super.key});
 
   @override
@@ -21,6 +20,7 @@ class SignUpAuthSection extends StatefulWidget {
 
 class _SignUpAuthSectionState extends State<SignUpAuthSection> {
   final formKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,22 +31,40 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //Full name And TextField
-            const CustomText(text: AppStrings.fullName, bottom: 12),
+            CustomText(text: "Full Name".tr, bottom: 12),
             CustomTextField(
+
+
+              validator: (value) {
+                if (value == null || value.toString().isEmpty) {
+                  return AppStrings.notBeEmpty;
+                }
+
+                return null;
+              },
               textEditingController: controller.fullNameController,
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.next,
-              hintText: "Enter your full name",
-              inputTextStyle: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.blackNormal),
-              hintStyle: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.whiteNormalActive),
+              hintText: "Enter your full name".tr,
+              inputTextStyle: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.blackNormal),
+              hintStyle: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.whiteNormalActive),
             ),
             const CustomText(text: AppStrings.email, top: 16, bottom: 12),
             CustomTextField(
               textEditingController: controller.emailController,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.emailAddress,
-              inputTextStyle: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.blackNormal),
-              hintText: "Enter your email",
+              inputTextStyle: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.blackNormal),
+              hintText: "Enter your email".tr,
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
@@ -65,40 +83,44 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
             const CustomText(text: AppStrings.gender, top: 16, bottom: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(controller.genderList.length, (index) => GestureDetector(
-                onTap: () => controller.changeGender(index),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 20, width: 20,
-                      padding: const EdgeInsetsDirectional.all(0.5),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        border: Border.all(color: AppColors.blackNormal.withOpacity(0.2)),
-                        shape: BoxShape.circle
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: index == controller.selectedGender ? AppColors.darkBlueColor : Colors.transparent,
-                            shape: BoxShape.circle
+              children: List.generate(
+                  controller.genderList.length,
+                  (index) => GestureDetector(
+                        onTap: () => controller.changeGender(index),
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 20,
+                              width: 20,
+                              padding: const EdgeInsetsDirectional.all(0.5),
+                              decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  border: Border.all(
+                                      color: AppColors.blackNormal
+                                          .withOpacity(0.2)),
+                                  shape: BoxShape.circle),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: index == controller.selectedGender
+                                        ? AppColors.darkBlueColor
+                                        : Colors.transparent,
+                                    shape: BoxShape.circle),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              controller.genderList[index],
+                              style: GoogleFonts.poppins(
+                                  color: AppColors.blackNormal,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
+                            )
+                          ],
                         ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      controller.genderList[index],
-                      style: GoogleFonts.poppins(
-                        color: AppColors.blackNormal,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400
-                      ),
-                    )
-                  ],
-                ),
-              )),
+                      )),
             ),
-            const CustomText(
-                text: AppStrings.dateOfBirth, top: 16, bottom: 12),
+            const CustomText(text: AppStrings.dateOfBirth, top: 16, bottom: 12),
+
             Row(
               children: [
                 Expanded(
@@ -161,11 +183,10 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
             ),
 
             //Password Text and TextField
-            const CustomText(
-                text: AppStrings.password, bottom: 12, top: 16),
+            const CustomText(text: AppStrings.password, bottom: 12, top: 16),
             CustomTextField(
               isPassword: true,
-              hintText: "Enter your password",
+              hintText: "Enter your password".tr,
               keyboardType: TextInputType.visiblePassword,
               textEditingController: controller.passwordController,
               textInputAction: TextInputAction.next,
@@ -189,7 +210,8 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                 }
               },
             ),
-            const CustomText(text: AppStrings.confirmPassword, bottom: 12, top: 16),
+            const CustomText(
+                text: AppStrings.confirmPassword, bottom: 12, top: 16),
             CustomTextField(
               isPassword: true,
               textInputAction: TextInputAction.done,
@@ -211,6 +233,9 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                   return AppStrings.notBeEmpty;
                 } else if (value.length < 6) {
                   return AppStrings.passwordShouldBe;
+                } else if (controller.passwordController.text !=
+                    controller.confirmPasswordController.text) {
+                  return "Doesn't match password".tr;
                 } else {
                   return null;
                 }
@@ -218,30 +243,45 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
             ),
             const SizedBox(height: 24),
             CustomElevatedButton(
-              buttonWidth: MediaQuery.of(context).size.width,
-              onPressed: () => setDataToLocalStore(
-                controller,
-                fullName: controller.fullNameController.text,
-                email: controller.emailController.text,
-                gender: controller.genderList[controller.selectedGender].toString(),
-                dob: "${controller.dateController.text}/${controller.monthController.text}/${controller.yearController.text}",
-                password: controller.confirmPasswordController.text
-              ),
-              titleText: "Continue"
-            )
+                buttonWidth: MediaQuery.of(context).size.width,
+                onPressed: () {
+                   if(formKey.currentState!.validate()){
+                     setDataToLocalStore(controller,
+                         fullName: controller.fullNameController.text,
+                         email: controller.emailController.text,
+                         gender: controller.genderList[controller.selectedGender]
+                             .toString(),
+                         dob:
+                         "${controller.dateController.text}/${controller.monthController.text}/${controller.yearController.text}",
+                         password: controller.confirmPasswordController.text);
+
+                         Get.toNamed(AppRoute.signUpContinueScreen);
+                   }
+
+                },
+                titleText: "Continue".tr)
           ],
         ),
       ),
     );
   }
 
-  setDataToLocalStore(SignUpController signUpController, {required String fullName, required String email, required String gender, required String dob, required String password}) async{
-
-    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.fullName, fullName);
-    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.email, email);
-    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.gender, gender);
-    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.dob, dob);
-    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.password, password);
+  setDataToLocalStore(SignUpController signUpController,
+      {required String fullName,
+      required String email,
+      required String gender,
+      required String dob,
+      required String password}) async {
+    await signUpController.signUpRepo.apiService.sharedPreferences
+        .setString(SharedPreferenceHelper.fullName, fullName);
+    await signUpController.signUpRepo.apiService.sharedPreferences
+        .setString(SharedPreferenceHelper.email, email);
+    await signUpController.signUpRepo.apiService.sharedPreferences
+        .setString(SharedPreferenceHelper.gender, gender);
+    await signUpController.signUpRepo.apiService.sharedPreferences
+        .setString(SharedPreferenceHelper.dob, dob);
+    await signUpController.signUpRepo.apiService.sharedPreferences
+        .setString(SharedPreferenceHelper.password, password);
 
     print("full name: $fullName");
     print("email: $email");
@@ -249,6 +289,6 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
     print("dob: $dob");
     print("password: $password");
 
-    Get.toNamed(AppRoute.signUpContinueScreen);
+
   }
 }

@@ -3,6 +3,7 @@ class ApiUrlContainer{
   static const String baseUrl = "http://192.168.10.14:3001/api/";
 
   static const String signInEndPoint = "user/sign-in";
+  static const String updateProfile = "update/65155da81ae339b4d66437c1";
   static const String signUpEndPoint = "user/signup";
   static const String forgetPasswordEndPoint = "user/forget-password";
   static const String verifyEmailEndPoint = "user/verify";
