@@ -63,10 +63,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       color: AppColors.whiteLight,
                       borderRadius: BorderRadius.circular(4)
                   ),
-                  child: const Row(
+                  child:  Row(
                     children: [
-                      CustomImage(imageSrc: AppIcons.history,size: 18,),
-                      CustomText(text: AppStrings.rentHistory,color: AppColors.whiteDarkHover,left: 8)
+                      const CustomImage(imageSrc: AppIcons.history,size: 18,),
+                      CustomText(text: "Rent History".tr,color: AppColors.whiteDarkHover,left: 8)
                     ],
                   ),
                 ),
@@ -81,11 +81,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       color: AppColors.whiteLight,
                       borderRadius: BorderRadius.circular(4)
                   ),
-                  child: const Row(
-                    children: [
-                      CustomImage(imageSrc: AppIcons.howRentiWorks,size: 18,),
-                      CustomText(text: AppStrings.howRentiWorks,color: AppColors.whiteDarkHover,left: 8)
-                    ],
+                  child:  FittedBox(
+                    child: Row(
+                      children: [
+                        const CustomImage(imageSrc: AppIcons.howRentiWorks,size: 18,),
+                        CustomText(text: "How Renti Works".tr,color: AppColors.whiteDarkHover,left: 8)
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -100,10 +102,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       color: AppColors.whiteLight,
                       borderRadius: BorderRadius.circular(4)
                   ),
-                  child: const Row(
+                  child:  Row(
                     children: [
-                      CustomImage(imageSrc: AppIcons.support1,size: 18,),
-                      CustomText(text: AppStrings.support,color: AppColors.whiteDarkHover,left: 8)
+                      const CustomImage(imageSrc: AppIcons.support1,size: 18,),
+                      CustomText(text: AppStrings.support.tr,color: AppColors.whiteDarkHover,left: 8)
                     ],
                   ),
                 ),
@@ -119,10 +121,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       color: AppColors.whiteLight,
                       borderRadius: BorderRadius.circular(4)
                   ),
-                  child: const Row(
+                  child:  Row(
                     children: [
-                      CustomImage(imageSrc: AppIcons.aboutUsIcon,size: 18,),
-                      CustomText(text: AppStrings.aboutUs,color: AppColors.whiteDarkHover,left: 8)
+                      const CustomImage(imageSrc: AppIcons.aboutUsIcon,size: 18,),
+                      CustomText(text: AppStrings.aboutUs.tr,color: AppColors.whiteDarkHover,left: 8)
                     ],
                   ),
                 ),
@@ -138,10 +140,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       color: AppColors.whiteLight,
                       borderRadius: BorderRadius.circular(4)
                   ),
-                  child: const Row(
+                  child:  Row(
                     children: [
-                      CustomImage(imageSrc: AppIcons.settingsIcon,size: 18,),
-                      CustomText(text: AppStrings.settings,color: AppColors.whiteDarkHover,left: 8)
+                      const CustomImage(imageSrc: AppIcons.settingsIcon,size: 18,),
+                      CustomText(text: AppStrings.settings.tr,color: AppColors.whiteDarkHover,left: 8)
                     ],
                   ),
                 ),
@@ -157,7 +159,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         child: Column(
                           children: [
                             Text(
-                              "You sure want to log out",
+                              "You sure want to log out".tr,
                               style: GoogleFonts.poppins(
                                   color: AppColors.blackNormal,
                                   fontSize: 18,
@@ -184,7 +186,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                           child:  Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 11.5),
                                             child: Text(
-                                              "Yes",
+                                              "Yes".tr,
                                               style: GoogleFonts.poppins(
                                                   color: AppColors.redNormal,
                                                   fontSize: 18,fontWeight: FontWeight.w600
@@ -209,7 +211,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                           child:  Padding(
                                             padding: const EdgeInsets.symmetric(vertical: 11.5),
                                             child: Text(
-                                              "No",
+                                              "No".tr,
                                               style: GoogleFonts.poppins(
                                                   color: AppColors.whiteLight,
                                                   fontSize: 18,
@@ -236,11 +238,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       color: AppColors.whiteLight,
                       borderRadius: BorderRadius.circular(4)
                   ),
-                  child: const Row(
+                  child:  Row(
                     children: [
-                      CustomImage(
+                      const CustomImage(
                         imageSrc: AppIcons.logOutIcon,size: 18,),
-                      CustomText(text: AppStrings.logOut,color: AppColors.whiteDarkHover,left: 8)
+                      CustomText(text: AppStrings.logOut.tr,color: AppColors.whiteDarkHover,left: 8)
                     ],
                   ),
                 ),

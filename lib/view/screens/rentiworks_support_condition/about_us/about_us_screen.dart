@@ -34,7 +34,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar:  const CustomAppBar(
+      appBar:   CustomAppBar(
         appBarContent: CustomBack(
           text: AppStrings.aboutUs,
         ),
@@ -49,7 +49,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                   if(controller.isLoading){
                     const Center(child: CircularProgressIndicator(),);
                   }
-                  return controller.content==null&&controller.content.isEmpty ? const NoDataFoundWidget(): SingleChildScrollView(
+                  return controller.content== null&&controller.content.isEmpty ? const NoDataFoundWidget(): SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
                     child: Column(

@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class AppStrings{
 
   // splash screen Strings
@@ -126,13 +128,12 @@ class AppStrings{
 
   static const String userName = "John Doe";
   static const String userPhone = "(480) 555-0103";
-  static const String rentHistory = "Rent History";
-  static const String paymentMethod = "Payment Method";
-  static const String howRentiWorks = "How Renti Works";
-  static const String support = "Support";
-  static const String settings = "Settings";
-  static const String aboutUs = "About Us";
-  static const String logOut = "Log Out";
+
+  static  String paymentMethod = "Payment Method".tr;
+  static  String support = "Support".tr;
+  static  String settings = "Settings".tr;
+  static  String aboutUs = "About Us".tr;
+  static  String logOut = "Log Out".tr;
 
   //payment method
   static const String bessieCooper = "Bessie Cooper";
@@ -156,7 +157,7 @@ class AppStrings{
    static const String   changePasswordTitle= "Please enter current password to set a new password";
   static const String   currentPassword= "Current password";
   static const String   confirmNewPassword= "Confirm new password";
-  static const String   changePassword= "Change Password";
+  static  String   changePassword= "Change Password";
   static const String   select= "Select";
   //offer car
   static const String seeDetails = "See details";

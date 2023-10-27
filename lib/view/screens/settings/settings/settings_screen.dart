@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/settings/settings/inner_widgets/setting_name.dart';
 
@@ -21,9 +22,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return SafeArea(child: Scaffold(
       extendBody: true,
       backgroundColor: AppColors.primaryColor,
-      appBar: const CustomAppBar(
+      appBar:  CustomAppBar(
         appBarContent: CustomBack(
-          text: AppStrings.settings,
+          text: AppStrings.settings.tr,
         ),
       ),
       body: LayoutBuilder(

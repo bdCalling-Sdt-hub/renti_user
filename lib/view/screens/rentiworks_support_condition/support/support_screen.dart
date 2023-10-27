@@ -43,7 +43,7 @@ class _SupportScreenState extends State<SupportScreen> {
       bottom: false,
       child: Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: const CustomAppBar(
+      appBar:  CustomAppBar(
         appBarContent: CustomBack(
           text:AppStrings.support,
         ),

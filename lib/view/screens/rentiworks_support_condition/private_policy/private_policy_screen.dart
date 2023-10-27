@@ -5,13 +5,12 @@ import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/private_policy/privacy_policy_controller/privacy_policy_controller.dart';
-import 'package:renti_user/view/screens/rentiworks_support_condition/private_policy/privacy_policy_model/privacy_policy_model.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/private_policy/privacy_policy_repo/privacy_policy_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
 import 'package:renti_user/view/widgets/container/custom_container.dart';
 import 'package:renti_user/view/widgets/error_widget/no_data_found_widget.dart';
-import 'package:renti_user/view/widgets/text/custom_text.dart';
+
 
 class PrivatePolicyScreen extends StatefulWidget {
   const PrivatePolicyScreen({super.key});
