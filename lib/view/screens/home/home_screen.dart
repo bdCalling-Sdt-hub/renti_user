@@ -133,7 +133,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0),
+          bottomNavigationBar: const Custom
+            BottomNavBar(currentIndex: 0),
         ),
       ),
     ) ;
