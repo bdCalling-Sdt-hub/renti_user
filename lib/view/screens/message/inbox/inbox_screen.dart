@@ -73,6 +73,7 @@ class _InboxScreenState extends State<InboxScreen> {
   }
 
   @override
+
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,
