@@ -27,7 +27,8 @@ class _InboxScreenState extends State<InboxScreen> {
   String userId = "651c1438254d5546b335bd43";
   String hostId = "65156b821ae339b4d6643ac7";
 
-  late IO.Socket socketService;
+  // late IO.Socket socketService;
+  late final SocketService socketService = SocketService();
 
   List<Map<String, dynamic>> messageList = [];
 
