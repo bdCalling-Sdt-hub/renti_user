@@ -36,8 +36,8 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
       child: Scaffold(
           extendBody: true,
           backgroundColor: AppColors.primaryColor,
-          appBar: const CustomAppBar(
-            appBarContent: CustomBack(text: AppStrings.selectPhoto),
+          appBar:  CustomAppBar(
+            appBarContent: CustomBack(text: "Select Photo".tr),
           ),
           body: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) => GetBuilder<SignUpController>(
@@ -81,9 +81,9 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                                     ),
                                   ),
                                 ),
-                                const CustomText(
+                                 CustomText(
                                   top: 16,
-                                  text: "Upload your photo",
+                                  text: "Upload your photo".tr,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.primaryColor,

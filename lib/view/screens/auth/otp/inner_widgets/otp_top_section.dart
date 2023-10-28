@@ -25,8 +25,8 @@ class _OtpTopSectionState extends State<OtpTopSection> {
       builder: (controller) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomText(
-            text: AppStrings.optCodeTitle,
+           CustomText(
+            text: AppStrings.optCodeTitle.tr,
             fontSize: 16,
             bottom: 24,
           ),
@@ -75,11 +75,11 @@ class _OtpTopSectionState extends State<OtpTopSection> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const CustomText(text:AppStrings.notGetOtp),
+               CustomText(text:AppStrings.notGetOtp.tr),
               GestureDetector(
                 onTap: () {},
-                child: const CustomText(
-                  text: AppStrings.resend,
+                child:  CustomText(
+                  text: AppStrings.resend.tr,
                   color: AppColors.primaryColor,
                   fontSize: 18,
                   fontWeight: FontWeight.w600,

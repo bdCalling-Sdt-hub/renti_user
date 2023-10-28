@@ -44,9 +44,9 @@ class _HowRentiWorksScreenState extends State<HowRentiWorksScreen> {
       bottom: false,
       child: Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: const CustomAppBar(
+      appBar:  CustomAppBar(
         appBarContent: CustomBack(
-          text: AppStrings.rentiWorks,
+          text: AppStrings.rentiWorks.tr,
         ),
       ),
       body: LayoutBuilder(

@@ -44,9 +44,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: Scaffold(
         extendBody: true,
         backgroundColor: AppColors.primaryColor,
-        appBar: const CustomAppBar(
+        appBar:  CustomAppBar(
           appBarContent: CustomBack(
-            text: AppStrings.signUp,
+            text: AppStrings.signUp.tr,
           ),
         ),
         body: GetBuilder<SignUpController>(

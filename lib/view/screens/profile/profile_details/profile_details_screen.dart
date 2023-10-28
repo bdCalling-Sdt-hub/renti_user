@@ -42,9 +42,9 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
       child: Scaffold(
       backgroundColor: AppColors.whiteLight,
       
-      appBar: const CustomAppBar(
+      appBar:  CustomAppBar(
         appBarContent: CustomText(
-          text: AppStrings.profile,
+          text: AppStrings.profile.tr,
           fontSize: 18,
           fontWeight: FontWeight.w600,
           color: AppColors.blackNormal,

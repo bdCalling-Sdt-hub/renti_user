@@ -49,8 +49,8 @@ class _PaymentSectionState extends State<PaymentSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.totalAmount,
+               CustomText(
+                text: AppStrings.totalAmount.tr,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: AppColors.primaryColor ,

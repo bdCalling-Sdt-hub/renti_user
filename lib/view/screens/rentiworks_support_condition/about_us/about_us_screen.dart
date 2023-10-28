@@ -36,7 +36,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
       backgroundColor: AppColors.primaryColor,
       appBar:   CustomAppBar(
         appBarContent: CustomBack(
-          text: AppStrings.aboutUs,
+          text: AppStrings.aboutUs.tr,
         ),
       ),
       body: LayoutBuilder(

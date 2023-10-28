@@ -39,8 +39,8 @@ class _KYCScreenState extends State<KYCScreen> {
       top: false, bottom: false,
       child: Scaffold(
         backgroundColor: AppColors.primaryColor,
-        appBar: const CustomAppBar(
-          appBarContent: CustomBack(text: AppStrings.kyc),
+        appBar:  CustomAppBar(
+          appBarContent: CustomBack(text: "KYC".tr),
         ),
         body: GetBuilder<SignUpController>(
           builder: (controller) => LayoutBuilder(

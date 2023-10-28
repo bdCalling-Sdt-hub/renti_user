@@ -37,7 +37,7 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CustomText(text: AppStrings.phoneNumber, bottom: 12),
+             CustomText(text: AppStrings.phoneNumber.tr, bottom: 12),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -77,9 +77,9 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
 
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return AppStrings.notBeEmpty;
+                        return AppStrings.notBeEmpty.tr;
                       } else if (value.length < 11) {
-                        return "Enter your valid phone number";
+                        return "Enter your valid phone number".tr;
                       } else {
                         return null;
                       }
@@ -87,7 +87,7 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                     textEditingController: controller.phoneNumberController,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.phone,
-                    hintText: AppStrings.enterPhoneNumber,
+                    hintText: AppStrings.enterPhoneNumber.tr,
                     hintStyle: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
@@ -98,17 +98,17 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
             ),
 
             //Address Text and TextField
-            const CustomText(text: AppStrings.address, top: 16, bottom: 12),
+             CustomText(text: AppStrings.address.tr, top: 16, bottom: 12),
             CustomTextField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return AppStrings.notBeEmpty;
+                  return AppStrings.notBeEmpty.tr;
                 }  else {
                   return null;
                 }
               },
               textEditingController: controller.addressController,
-              hintText: AppStrings.enterAddress,
+              hintText: AppStrings.enterAddress.tr,
               maxLines: 4,
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,
@@ -117,17 +117,17 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                   color: AppColors.whiteNormalActive
               ),
             ),
-            const CustomText(text: AppStrings.creditCardNum, bottom: 12, top: 16),
+             CustomText(text: AppStrings.creditCardNum.tr, bottom: 12, top: 16),
             CustomTextField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return AppStrings.notBeEmpty;
+                  return AppStrings.notBeEmpty.tr;
                 }  else {
                   return null;
                 }
               },
               keyboardType: TextInputType.number,
-              hintText: AppStrings.enterCreditCardNum,
+              hintText: AppStrings.enterCreditCardNum.tr,
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
@@ -136,40 +136,40 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
             ),
 
             //Confirm Password Text and TextField
-            const CustomText(
-                text: AppStrings.expireDate,
+             CustomText(
+                text: AppStrings.expireDate.tr,
                 bottom: 12,
                 top: 16),
             CustomTextField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return AppStrings.notBeEmpty;
+                  return AppStrings.notBeEmpty.tr;
                 }  else {
                   return null;
                 }
               },
               keyboardType: TextInputType.number,
-              hintText: AppStrings.mm_yy,
+              hintText: "MM-YY".tr,
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
                   letterSpacing: 1,
                   color: AppColors.whiteNormalActive),
             ),
-            const CustomText(
-                text: AppStrings.cvv,
+             CustomText(
+                text: "CVV".tr,
                 bottom: 12,
                 top: 16),
             CustomTextField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return AppStrings.notBeEmpty;
+                  return AppStrings.notBeEmpty.tr;
                 }  else {
                   return null;
                 }
               },
               keyboardType: TextInputType.number,
-              hintText: AppStrings.enterCVV,
+              hintText: AppStrings.enterCVV.tr,
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,

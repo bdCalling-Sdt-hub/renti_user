@@ -34,7 +34,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                       color: AppColors.whiteNormalActive),
                 ),
-                const CustomText(
+                 CustomText(
                   text: AppStrings.email,
                   top: 16,
                   bottom: 12,

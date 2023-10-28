@@ -61,8 +61,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               //New Password Text and TextField
-                              const CustomText(
-                                  text: AppStrings.currentPassword,
+                               CustomText(
+                                  text: AppStrings.currentPassword.tr,
                                   top: 24,
                                   bottom: 12
                               ),
@@ -78,16 +78,16 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                     color: AppColors.whiteNormalActive),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return AppStrings.notBeEmpty;
+                                    return AppStrings.notBeEmpty.tr;
                                   } else if (value.length < 6) {
-                                    return AppStrings.passwordShouldBe;
+                                    return AppStrings.passwordShouldBe.tr;
                                   } else {
                                     return null;
                                   }
                                 },
                               ),
-                              const CustomText(
-                                  text: AppStrings.newPassword,
+                               CustomText(
+                                  text: AppStrings.newPassword.tr,
                                   top: 24,
                                   bottom: 12
                               ),
@@ -103,16 +103,16 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                     color: AppColors.whiteNormalActive),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return AppStrings.notBeEmpty;
+                                    return AppStrings.notBeEmpty.tr;
                                   } else if (value.length < 6) {
-                                    return AppStrings.passwordShouldBe;
+                                    return AppStrings.passwordShouldBe.tr;
                                   } else {
                                     return null;
                                   }
                                 },
                               ),
-                              const CustomText(
-                                  text: AppStrings.confirmNewPassword,
+                               CustomText(
+                                  text: AppStrings.confirmNewPassword.tr,
                                   top: 24,
                                   bottom: 12),
                               CustomTextField(
@@ -127,7 +127,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                     color: AppColors.whiteNormalActive),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return AppStrings.notBeEmpty;
+                                    return AppStrings.notBeEmpty.tr;
                                   } else if (value.length < 6) {
                                     return AppStrings.passwordShouldBe;
                                   } else if(controller.newPasswordController.text != controller.confirmPasswordController.text){
@@ -156,7 +156,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   controller.changePassword();
                 }
               },
-              titleText: AppStrings.changePassword
+              titleText: AppStrings.changePassword.tr
           ),
         ),
       ),

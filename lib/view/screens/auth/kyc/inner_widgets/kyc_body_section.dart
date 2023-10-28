@@ -34,8 +34,8 @@ class _KycBodySectionState extends State<KycBodySection> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomText(
-                  text: "Upload Driving License",
+                 CustomText(
+                  text: "Upload Driving License".tr,
                   bottom: 12,
                   textAlign: TextAlign.start,
                 ),
@@ -94,8 +94,8 @@ class _KycBodySectionState extends State<KycBodySection> {
                     ],
                   ),
                 ),
-                const CustomText(
-                  text: "Upload INE/Passport",
+                 CustomText(
+                  text: "Upload INE/Passport".tr,
                   top: 16,
                   bottom: 12,
                   textAlign: TextAlign.start,
@@ -155,8 +155,8 @@ class _KycBodySectionState extends State<KycBodySection> {
                     ],
                   ),
                 ),
-                const CustomText(
-                  text: AppStrings.inePassword,
+                 CustomText(
+                  text: "INE/Passport".tr,
                   top: 16,
                   bottom: 12,
                   textAlign: TextAlign.start,
@@ -167,7 +167,7 @@ class _KycBodySectionState extends State<KycBodySection> {
 
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return AppStrings.notBeEmpty;
+                        return AppStrings.notBeEmpty.tr;
                       }  else {
                         return null;
                       }
@@ -175,7 +175,7 @@ class _KycBodySectionState extends State<KycBodySection> {
                     keyboardType: TextInputType.number,
                     textEditingController: controller.ineNumberController,
                     textInputAction: TextInputAction.done,
-                    hintText: AppStrings.enterIne,
+                    hintText: "Enter your INE/Passport".tr,
                     hintStyle: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,

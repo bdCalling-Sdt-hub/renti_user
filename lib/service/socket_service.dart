@@ -3,7 +3,7 @@ import 'package:socket_io_client/socket_io_client.dart' as io;
 
 class SocketService extends GetxController{
 
- late  io.Socket socket;
+   late  io.Socket socket;
 
   void joinRoom(String uid) {
     socket.emit('join-room', {'uid': uid});

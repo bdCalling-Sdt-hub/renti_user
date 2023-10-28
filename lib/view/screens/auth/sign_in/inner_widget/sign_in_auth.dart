@@ -37,9 +37,9 @@ class _SignInAuthState extends State<SignInAuth> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomText(text: AppStrings.email, bottom: 12),
+                 CustomText(text: AppStrings.email.tr, bottom: 12),
                 CustomTextField(
-                  hintText: AppStrings.enterEmail,
+                  hintText: AppStrings.enterEmail.tr,
                   textEditingController: controller.emailController,
                   textInputAction: TextInputAction.next,
                   focusNode: controller.emailFocusNode,
@@ -50,16 +50,16 @@ class _SignInAuthState extends State<SignInAuth> {
                       color: AppColors.whiteNormalActive),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return AppStrings.notBeEmpty;
+                      return AppStrings.notBeEmpty.tr;
                     } else if (!value.contains(RegExp('\@'))) {
-                      return AppStrings.enterValidEmail;
+                      return AppStrings.enterValidEmail.tr;
                     } else {
                       return null;
                     }
                   },
                 ),
-                const CustomText(
-                  text: AppStrings.password,
+                 CustomText(
+                  text: AppStrings.password.tr,
                   bottom: 12,
                   top: 16,
                 ),
@@ -69,7 +69,7 @@ class _SignInAuthState extends State<SignInAuth> {
                   textInputAction: TextInputAction.done,
                   focusNode: controller.passwordFocusNode,
                   isPrefixIcon: false,
-                  hintText:AppStrings.enterPassword,
+                  hintText:AppStrings.enterPassword.tr,
                   keyboardType: TextInputType.visiblePassword,
                   hintStyle: GoogleFonts.poppins(
                       fontSize: 14,
@@ -78,9 +78,9 @@ class _SignInAuthState extends State<SignInAuth> {
                       color: AppColors.whiteNormalActive),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return AppStrings.notBeEmpty;
+                      return AppStrings.notBeEmpty.tr;
                     } else if (value.length < 6) {
-                      return AppStrings.passwordShouldBe;
+                      return AppStrings.passwordShouldBe.tr;
                     } else {
                       return null;
                     }
@@ -90,10 +90,10 @@ class _SignInAuthState extends State<SignInAuth> {
                   onTap: () {
                       Get.toNamed(AppRoute.forgotPasswordScreen);
                   },
-                  child:  const Align(
+                  child:   Align(
                     alignment: Alignment.bottomRight,
                     child: CustomText(
-                      text: AppStrings.forgetPassword,
+                      text: AppStrings.forgetPassword.tr,
                       fontSize: 16,
                       color: AppColors.darkBlueColor,
                       bottom: 24,
@@ -108,16 +108,16 @@ class _SignInAuthState extends State<SignInAuth> {
                       controller.signInUser();
                     }
                   },
-                  titleText: AppStrings.signIn,
+                  titleText: AppStrings.signIn.tr,
                   buttonWidth: double.maxFinite,
                 ),
               ],
             ),
           ),
-          const Align(
+           Align(
             alignment: Alignment.center,
             child: CustomText(
-              text: AppStrings.or,
+              text: "Or".tr,
               top: 24,
               bottom: 24,
               fontSize: 16,

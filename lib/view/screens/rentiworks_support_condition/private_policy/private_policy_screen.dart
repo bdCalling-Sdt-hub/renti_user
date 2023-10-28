@@ -34,9 +34,9 @@ class _PrivatePolicyScreenState extends State<PrivatePolicyScreen> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: const CustomAppBar(
+      appBar:  CustomAppBar(
         appBarContent: CustomBack(
-          text: AppStrings.privacyPolicy,
+          text: AppStrings.privacyPolicy.tr,
         ),
       ),
       body: LayoutBuilder(

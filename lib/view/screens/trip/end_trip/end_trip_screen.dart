@@ -44,7 +44,7 @@ class _EndTripScreenState extends State<EndTripScreen> {
               onTap: (){
                 Get.back();
               },
-              child: const Row(
+              child:  Row(
                 children: [
                   Icon(
                     Icons.arrow_back_ios_new,
@@ -55,7 +55,7 @@ class _EndTripScreenState extends State<EndTripScreen> {
                     width: 8,
                   ),
                   CustomText(
-                      text: AppStrings.endTrip,
+                      text: AppStrings.endTrip.tr,
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                       color: AppColors.blackNormal

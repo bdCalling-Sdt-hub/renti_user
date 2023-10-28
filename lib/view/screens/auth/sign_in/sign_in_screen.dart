@@ -54,8 +54,8 @@ class _SignInScreenState extends State<SignInScreen> {
           bottom: false,
           child: Scaffold(
               backgroundColor: AppColors.primaryColor,
-              appBar: const CustomAppBar(
-                appBarContent: CustomBack(text: AppStrings.signIn),
+              appBar:  CustomAppBar(
+                appBarContent: CustomBack(text: AppStrings.signIn.tr),
               ),
               body: GetBuilder<SignInController>(
                 builder: (controller) => LayoutBuilder(
@@ -74,9 +74,9 @@ class _SignInScreenState extends State<SignInScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const CustomText(
+                                   CustomText(
                                     top: 24,
-                                    text: AppStrings.anAcount,
+                                    text: AppStrings.anAcount.tr,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
                                     left: 4,
@@ -85,9 +85,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                     onTap: () {
                                       Get.toNamed(AppRoute.signUpScreen);
                                     },
-                                    child: const CustomText(
+                                    child:  CustomText(
                                       top: 24,
-                                      text: AppStrings.signUp,
+                                      text: AppStrings.signUp.tr,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                       left: 4,
