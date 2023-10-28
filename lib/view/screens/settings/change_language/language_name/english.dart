@@ -17,9 +17,9 @@ Map<String, String> english = {
   "Change Password" : "Change Password",
   "Terms & Conditions" : "Terms & Conditions",
   "Privacy Policy" : "Privacy Policy",
-"Please enter current password to set a new password":"Please enter current password to set a new password",
-"Current password":"Current password",
-"Confirm new password":"Confirm new password",
+  "Please enter current password to set a new password":"Please enter current password to set a new password",
+  "Current password":"Current password",
+  "Confirm new password":"Confirm new password",
   "Enter new password" : "Enter new password",
 
 
