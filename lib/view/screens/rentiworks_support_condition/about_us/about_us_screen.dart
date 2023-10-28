@@ -9,6 +9,7 @@ import 'package:renti_user/view/screens/rentiworks_support_condition/about_us/ab
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
 import 'package:renti_user/view/widgets/container/custom_container.dart';
+import 'package:renti_user/view/widgets/error_widget/no_data_found_widget.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 
@@ -33,7 +34,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar:  const CustomAppBar(
+      appBar:   CustomAppBar(
         appBarContent: CustomBack(
           text: AppStrings.aboutUs,
         ),
@@ -43,26 +44,22 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
             CustomContainer(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              child:  SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-
-                    GetBuilder<AboutUstController>(builder: (controller) {
-                      if (controller.isLoading){
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else {
-                        return Html(data: controller.content,);
-                      }
-                    })
-
-
-                  ],
-                ),
+              child:  GetBuilder<AboutUstController>(
+                builder: (controller) {
+                  if(controller.isLoading){
+                    const Center(child: CircularProgressIndicator(),);
+                  }
+                  return controller.content== null&&controller.content.isEmpty ? const NoDataFoundWidget(): SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      Html(data: controller.content,),
+                      ],
+                    ),
+                  );
+                }
               ),
             ),
       ),

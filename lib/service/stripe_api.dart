@@ -2,8 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_utils.dart';
+import 'package:renti_user/view/screens/trip_details/trip_details_model/trip_details_model.dart';
 
 class StripeApi {
   createPaymentIntent({required String amount, required String currency}) async {
@@ -27,7 +30,7 @@ class StripeApi {
       AppUtils.successToastMessage("Error $error");
     }
   }
-  makePayment({required String amount, required String currency})async{
+  makePayment({required String amount, required String currency, required int index})async{
    Map<String,dynamic>? paymentIntentData;
     try{
       paymentIntentData = await createPaymentIntent(amount: amount, currency: currency);
@@ -44,6 +47,7 @@ class StripeApi {
         );
         await Stripe.instance.presentPaymentSheet();
         AppUtils.successToastMessage("Successfully");
+        Get.toNamed(AppRoute.startTrip, arguments: index);
       }
     }catch(e){
       AppUtils.successToastMessage("Error $e");

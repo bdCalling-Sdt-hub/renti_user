@@ -6,6 +6,7 @@ import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/how_renti_works/how_renti_work_repo/how_renti_works_repo.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/how_renti_works/how_renti_works_controller/how_renti_works_controller.dart';
+import 'package:renti_user/view/widgets/error_widget/no_data_found_widget.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 import '../../../../utils/app_colors.dart';
@@ -50,17 +51,23 @@ class _HowRentiWorksScreenState extends State<HowRentiWorksScreen> {
       ),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) => GetBuilder<HowRentiWorksController>(
-          builder: (controller) => CustomContainer(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child:  controller.isLoading ? const Center(
-              child: CircularProgressIndicator(),
-            ) : SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
-              child: Html(data: controller.content),
-            ),
-          ),
+          builder: (controller){
+            if(controller.isLoading){
+              const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return CustomContainer(
+
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: controller.content.isNotEmpty&&controller.content!=null?  SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
+                child: Html(data: controller.content),
+              ): const NoDataFoundWidget(),
+            );
+          }
         ),
       )
     ));

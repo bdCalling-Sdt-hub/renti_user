@@ -25,11 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     DeviceUtils.authUtils();
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(SignUpRepo(apiService: Get.find()));
-    final controller = Get.put(SignUpController(signUpRepo: Get.find()));
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      controller.initialState();
-    });
+    Get.put(SignUpController(signUpRepo: Get.find()));
 
     super.initState();
   }

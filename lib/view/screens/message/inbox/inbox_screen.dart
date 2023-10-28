@@ -10,6 +10,7 @@ import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class InboxScreen extends StatefulWidget {
 
@@ -22,34 +23,58 @@ class InboxScreen extends StatefulWidget {
 class _InboxScreenState extends State<InboxScreen> {
 
   TextEditingController messageController = TextEditingController();
-  List<Message> messages = [];
-  SocketService socketService = SocketService();
+
+  String userId = "651c1438254d5546b335bd43";
+  String hostId = "65156b821ae339b4d6643ac7";
+
+  // late IO.Socket socketService;
+  late final SocketService socketService = SocketService();
+
+  List<Map<String, dynamic>> messageList = [];
+
 
   @override
   void initState() {
-    socketService.connectToSocket();
+    /*setState(() {
+      socketService.connectToSocket();
 
-    //TODO-
-    socketService.joinRoom("651c1438254d5546b335bd43");
-    socketService.addNewChat(
-        {
-          "participants": [
-            "651c1438254d5546b335bd43",
-            "652268230cbb1643391e3563"
-          ]
-        },
-       "651c1438254d5546b335bd43"
-    );
-    socketService.joinChat("652fa06617dfc17c83bb5f63");
+      //TODO-
+      socketService.joinRoom(userId); // room id -> user id
+      socketService.addNewChat(
+          {
+            "participants": [
+              userId,
+              hostId
+            ]
+          },
+          userId
+      );
+      socketService.joinChat("6538fb41f7db461561d4dee4");
+    });*/
     super.initState();
+    connectToSocket();
+  }
+
+  void connectToSocket() {
+    socketService = IO.io(
+        "http://192.168.10.14:9000",
+        IO.OptionBuilder().setTransports(['websocket']).enableAutoConnect().build()
+    );
+    socketService.connect();
+
+    socketService.on('all-messages', (messages) {
+      setState(() {
+        for(var message in messages){
+          if(message is Map<String, dynamic>){
+            messageList.add(message);
+          }
+        }
+      });
+    });
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
 
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,
@@ -93,41 +118,37 @@ class _InboxScreenState extends State<InboxScreen> {
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.only(top: 24, bottom: 24),
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
           child: Column(
             children: List.generate(
-              messages.length, (index) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-              ),
-              padding: const EdgeInsets.only(
-                left: 16,
-                right: 16,
-                top: 16,
-              ),
-              child: Align(
-                alignment: (messages[index].messageType == "sender"
+              socketService.messageList.length, (index) => Align(
+                alignment: socketService.messageList[index]["sender"]["role"] == "user"
                     ? Alignment.topRight
-                    : Alignment.topLeft),
+                    : Alignment.topLeft,
                 child: Container(
-                  padding: const EdgeInsets.all(8),
-                  width: MediaQuery.of(context).size.width / 1.5,
+                  margin: const EdgeInsetsDirectional.only(bottom: 12),
+                  padding: const EdgeInsetsDirectional.symmetric(vertical: 16, horizontal: 8),
+                  width: MediaQuery.of(context).size.width * 0.5,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: (messages[index].messageType == "sender"
+                    color:socketService.messageList[index]["sender"]["role"] == "user"
                         ? AppColors.primaryColor
-                        : AppColors.whiteNormalhover),
+                        : AppColors.whiteNormalhover,
                   ),
-                  child: CustomText(
+                  child: Text(
+                    socketService.messageList[index]["message"],
                     textAlign: TextAlign.start,
-                    text: messages[index].messageContent,
-                    color: messages[index].messageType == "sender"
-                        ? AppColors.whiteLight
-                        : AppColors.blackNormal,
+                    style: GoogleFonts.raleway(
+                      color:socketService.messageList[index]["sender"]["role"] == "user"
+                          ? AppColors.whiteLight
+                          : AppColors.blackNormal,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500
+                    ),
                   ),
                 ),
-              ),
-            )),
+              )
+            ),
           ),
         ),
         bottomNavigationBar: AnimatedPadding(
@@ -173,8 +194,9 @@ class _InboxScreenState extends State<InboxScreen> {
                 ),
                 const SizedBox(width: 16),
                 GestureDetector(
-                  onTap: () {
-                    socketService.addNewMessage(messageController.text.toString(), "651c1438254d5546b335bd43", "652fa06617dfc17c83bb5f63");
+                  onTap: () async{
+                    await socketService.addNewMessage(messageController.text.toString(), "651c1438254d5546b335bd43", "65156b821ae339b4d6643ac7");
+                    messageController.clear();
                   },
                   child: const CustomImage(imageSrc: AppIcons.sendSms, size: 24),
                 ),
@@ -185,11 +207,4 @@ class _InboxScreenState extends State<InboxScreen> {
       ),
     );
   }
-}
-
-class Message {
-  final String messageContent;
-  final String messageType; // "sender" or "receiver"
-
-  Message({required this.messageContent, required this.messageType});
 }

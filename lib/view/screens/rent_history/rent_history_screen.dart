@@ -32,7 +32,7 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(RentHistoryRepo(apiService: Get.find()));
     final controller = Get.put(RentHistoryController(rentHistoryRepo: Get.find()));
-    socketService.connectToSocket();
+    socketService.socket;
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.initialState();
@@ -74,7 +74,7 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
         builder: (controller) {
           return  controller .isLoading ? const Center(
             child: CircularProgressIndicator(),
-          ) : controller.rentUser.isEmpty ? Center(
+          ) : controller.rentUser.isEmpty && controller.rentUser==null ? Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,

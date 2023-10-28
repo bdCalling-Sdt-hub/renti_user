@@ -5,6 +5,7 @@ import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/support/support_controller/support_controller.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/support/support_repo/support_repo.dart';
+import 'package:renti_user/view/widgets/error_widget/no_data_found_widget.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_strings.dart';
@@ -42,25 +43,32 @@ class _SupportScreenState extends State<SupportScreen> {
       bottom: false,
       child: Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: const CustomAppBar(
+      appBar:  CustomAppBar(
         appBarContent: CustomBack(
           text:AppStrings.support,
         ),
       ),
       body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) => GetBuilder<SupportController>(
-          builder: (controller) => CustomContainer(
+        builder: (BuildContext context, BoxConstraints constraints){
+          return CustomContainer(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            child: controller.isLoading ? const Center(
-              child: CircularProgressIndicator(),
-            ) : SingleChildScrollView(
-                padding: const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
-                physics: const BouncingScrollPhysics(),
-                child: Html(data: controller.content)
+            child: GetBuilder<SupportController>(
+              builder: (controller) {
+                if(controller.isLoading){
+                  const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return controller.content.isNotEmpty&&controller.content!=null? SingleChildScrollView(
+                    padding: const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
+                    physics: const BouncingScrollPhysics(),
+                    child: Html(data: controller.content)
+                ): const NoDataFoundWidget();
+              }
             ),
-          ),
-        ),
+          );
+        }
       ),
     ));
   }

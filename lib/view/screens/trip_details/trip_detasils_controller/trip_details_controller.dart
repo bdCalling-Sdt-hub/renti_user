@@ -10,7 +10,7 @@ class TripDetailsController extends GetxController {
 
   bool isLoading = false;
   TripDetailsModel tripDetailsModel = TripDetailsModel();
-  loadData(String rentId) async {
+  Future loadData({required String rentId}) async {
     isLoading = true;
     update();
     ApiResponseModel responseModel =
@@ -18,6 +18,8 @@ class TripDetailsController extends GetxController {
     if (responseModel.statusCode == 200) {
       tripDetailsModel =
           TripDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
+
+      print(tripDetailsModel);
     }
     isLoading = false;
     update();

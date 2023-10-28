@@ -12,6 +12,7 @@ import 'package:renti_user/view/screens/search/inner_widgets/searches_car_sectio
 import 'package:renti_user/view/screens/search/search_controller/search_controller.dart';
 import 'package:renti_user/view/screens/search/search_repo/search_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
+import 'package:renti_user/view/widgets/error_widget/no_data_found_widget.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -83,20 +84,19 @@ class _SearchScreenState extends State<SearchScreen> {
                 const SizedBox(
                   height: 16,
                 ),
-                 const Expanded(
-                  child: SingleChildScrollView(
+                  Expanded(
+                  child:controller.carList !=null &&controller.carList.isNotEmpty ? const SingleChildScrollView(
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       child: SearchesCarSection()
+                  ):const NoDataFoundWidget()
                   ),
-                ),
+
               ],
             ),
           ),
           bottomNavigationBar: const CustomBottomNavBar(currentIndex: 1),
-        );
-
-
+           );
           }
         );
       }

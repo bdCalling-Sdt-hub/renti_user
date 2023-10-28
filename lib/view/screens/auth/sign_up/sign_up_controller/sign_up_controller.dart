@@ -8,6 +8,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:renti_user/core/global/api_url_container.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_repo/sign_up_repo.dart';
 
 class SignUpController extends GetxController{
@@ -36,16 +37,6 @@ class SignUpController extends GetxController{
   List<File> kycDocFiles = [];
   File? profileImage;
   String phoneCode = "+52";
-
-  void initialState(){
-    isSubmit = true;
-    update();
-
-    signUpUser();
-
-    isSubmit = false;
-    update();
-  }
 
   void changeGender(int index){
     selectedGender = index;
@@ -124,7 +115,11 @@ class SignUpController extends GetxController{
     }
   }
 
+
   Future<void> signUpUser() async {
+
+    isSubmit = true;
+    update();
 
     try {
       var request = http.MultipartRequest(
@@ -186,11 +181,15 @@ class SignUpController extends GetxController{
         print('Files uploaded successfully');
       } else {
         print('File upload failed with status code: ${response.statusCode}');
+        AppUtils.errorToastMessage("File upload failed");
         print('Response body: ${response.stream.bytesToString()}');
       }
     } catch (e, s) {
       print('Error sending request: $e');
       print('Error s: $s');
     }
+
+    isSubmit = false;
+    update();
   }
 }

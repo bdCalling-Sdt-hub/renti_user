@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
@@ -7,6 +8,7 @@ import 'package:renti_user/view/screens/auth/kyc/inner_widgets/kyc_body_section.
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/container/custom_container.dart';
 
 class KYCScreen extends StatefulWidget {
@@ -17,6 +19,7 @@ class KYCScreen extends StatefulWidget {
 }
 
 class _KYCScreenState extends State<KYCScreen> {
+  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -53,7 +56,9 @@ class _KYCScreenState extends State<KYCScreen> {
                 ),
           ),
         ),
+
       ),
     );
   }
+
 }

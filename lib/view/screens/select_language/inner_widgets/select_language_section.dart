@@ -13,18 +13,8 @@ class SelectLanguageSection extends StatefulWidget {
 class _SelectLanguageSectionState extends State<SelectLanguageSection> {
   List<String> languageName = [
     'English',
-    'English UK',
-    'Hindi',
     'Spanish',
-    'Japanese',
-    'Chinese',
-    'Dutch',
-    'Korean',
-    'Swedish',
-    'Swedish',
-    'Swedish',
-    'Swedish',
-    'Bangla',
+    "French"
   ];
   int selectedItem = 0;
   @override
