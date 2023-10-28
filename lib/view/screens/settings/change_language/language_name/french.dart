@@ -14,9 +14,9 @@ Map<String , String> french = {
   "No": "Non",
 
   //setting
-"Change Password" : "Changer le mot de passe",
-"Terms & Conditions" : "termes et conditions",
-"Privacy Policy" : "politique de confidentialité",
+  "Change Password" : "Changer le mot de passe",
+  "Terms & Conditions" : "termes et conditions",
+  "Privacy Policy" : "politique de confidentialité",
 
   "Please enter current password to set a new password":"Veuillez saisir le mot de passe actuel pour définir un nouveau mot de passe",
   "Current password":"Mot de passe actuel",
