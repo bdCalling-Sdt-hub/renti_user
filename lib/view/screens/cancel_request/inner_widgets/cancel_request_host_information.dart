@@ -33,8 +33,8 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.hostInformation,
+                 CustomText(
+                  text: AppStrings.hostInformation.tr,
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
                   color: AppColors.blackNormal,
@@ -58,8 +58,8 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.name,
+                 CustomText(
+                  text: AppStrings.name.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteDarkActive,
@@ -91,8 +91,8 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.contact,
+                 CustomText(
+                  text: AppStrings.contact.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteDarkActive,
@@ -108,8 +108,8 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.email,
+                 CustomText(
+                  text: AppStrings.email.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteDarkActive,
@@ -125,8 +125,8 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.address,
+                 CustomText(
+                  text: AppStrings.address.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteDarkActive,

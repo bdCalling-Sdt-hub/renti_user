@@ -22,8 +22,8 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
         child: CircularProgressIndicator(),) : Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomText(
-            text: AppStrings.carInformation,
+           CustomText(
+            text: AppStrings.carInformation.tr,
             fontWeight: FontWeight.w600,
             fontSize: 18,
             color: AppColors.blackNormal,
@@ -33,15 +33,14 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.totalMileage,
+               CustomText(
+                text: AppStrings.totalMileage.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
                 bottom: 12,
               ),
               CustomText(
-
                 text: controller.carDetailsModel.cars?.totalRun ?? "",
                 color: AppColors.blackNormal,
                 bottom: 12,
@@ -51,8 +50,8 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.color,
+               CustomText(
+                text: AppStrings.color.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
@@ -68,8 +67,8 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.capacity,
+               CustomText(
+                text: AppStrings.capacity.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
@@ -85,8 +84,8 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.gearType,
+               CustomText(
+                text: AppStrings.gearType.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
@@ -99,16 +98,16 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
               ),
             ],
           ),
-          const Row(
+           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
-                text: AppStrings.fuelTankCapacity,
+                text: AppStrings.fuelTankCapacity.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
               ),
-              CustomText(
+              const CustomText(
                 text: "80/L",
                 // text: controller.carDetailsModel.cars!..toString(),
                 color: AppColors.blackNormal,

@@ -66,22 +66,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: GestureDetector(
                     onTap: ()=>Get.toNamed(AppRoute.searchScreen),
                     child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      margin:  EdgeInsets.symmetric(horizontal: 16),
                       padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                       EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                       decoration: BoxDecoration(
                         color: AppColors.whiteLight,
                         border: Border.all(color: AppColors.whiteNormalActive),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child:  const Row(
+                      child:  Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Icon(Icons.search,
                               size: 20, color: AppColors.whiteNormalActive),
                           CustomText(
-                              text:AppStrings.searchCar,
+                              text:AppStrings.searchCar.tr,
                               color: AppColors.whiteNormalActive,
                               left: 8),
                         ],

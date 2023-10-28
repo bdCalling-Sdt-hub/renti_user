@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
@@ -16,11 +17,11 @@ class HomeTopSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CustomImage(imageSrc: AppImages.bannerHome,
+         CustomImage(imageSrc: AppImages.bannerHome,
           imageType: ImageType.png,),
         const SizedBox(height: 24,),
-        const CustomText(
-          text: AppStrings.searchNearCar,
+         CustomText(
+          text: AppStrings.searchNearCar.tr,
           fontSize:14,
           fontWeight: FontWeight.w500 ,
         ),
@@ -28,10 +29,10 @@ class HomeTopSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Expanded(
+             Expanded(
                 child: CustomTextField(
                   isPrefixIcon: true  ,
-                  hintText: AppStrings.searchCar,
+                  hintText: AppStrings.searchCar.tr,
                   hintStyle: TextStyle(
                     fontSize: 14,
                     color: AppColors.whiteNormalActive,

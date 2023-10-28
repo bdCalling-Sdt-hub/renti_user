@@ -36,8 +36,8 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CustomText(
-                      text: AppStrings.from,
+                     CustomText(
+                      text: AppStrings.from.tr,
                       color: AppColors.blackNormal,
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -48,7 +48,7 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                       textEditingController: controller.startTripDateController,
                       textAlign: TextAlign.start,
                       fieldBorderRadius: 4,
-                      hintText: "YYYY-MM-DD",
+                      hintText: "YYYY-MM-DD".tr,
                       hintStyle: GoogleFonts.poppins(
                         color: AppColors.whiteDarkActive,
                         fontSize: 10,
@@ -68,8 +68,8 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CustomText(
-                      text: AppStrings.until,
+                     CustomText(
+                      text: AppStrings.until.tr,
                       color: AppColors.blackNormal,
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -79,7 +79,7 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                       readOnly: true,
                       textEditingController: controller.endTripDateController,
                       fieldBorderRadius: 4,
-                      hintText: "YYYY-MM-DD",
+                      hintText: "YYYY-MM-DD".tr,
                       hintStyle: GoogleFonts.poppins(
                         color: AppColors.whiteDarkActive,
                         fontSize: 10,

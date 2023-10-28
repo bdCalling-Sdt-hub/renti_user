@@ -49,8 +49,8 @@ class _PopularCarScreenState extends State<PopularCarScreen> {
                       size: 18,
                       color: AppColors.blackNormal,
                     )),
-                const CustomText(
-                  text: "Offer Cars",
+                 CustomText(
+                  text: "Offer Cars".tr,
                   color: AppColors.blackNormal,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -94,7 +94,7 @@ class _PopularCarScreenState extends State<PopularCarScreen> {
                 Expanded(
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
-                    child: controller.offerCarList.isEmpty ? Center(
+                    child: controller.offerCarList.isEmpty ? const Center(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,

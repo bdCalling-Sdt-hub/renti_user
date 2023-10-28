@@ -68,7 +68,7 @@ class _CancelRequestScreenState extends State<CancelRequestScreen> {
                 const Icon(Icons.arrow_back_ios_new,color: AppColors.blackNormal,size: 18,),
                 const SizedBox(width: 8,),
                 Text(
-                  "Car Details",
+                  "Car Details".tr,
                   style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -111,7 +111,7 @@ class _CancelRequestScreenState extends State<CancelRequestScreen> {
             ) : CustomElevatedButton(
               onPressed: () => controller.cancelRequest(controller.rentUser[widget.index].id.toString()),
               buttonColor: Colors.transparent,
-              titleText: "Cancel Request",
+              titleText: "Cancel Request".tr,
               titleColor: AppColors.primaryColor,
               buttonWidth: MediaQuery.of(context).size.width,
               isBorder: true,

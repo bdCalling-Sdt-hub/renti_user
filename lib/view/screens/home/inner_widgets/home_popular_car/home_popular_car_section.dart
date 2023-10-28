@@ -29,8 +29,8 @@ class HomePopularSection extends StatelessWidget {
          Row(
            mainAxisAlignment: MainAxisAlignment.spaceBetween,
            children: [
-             const CustomText(
-               text: "Offer Cars",
+              CustomText(
+               text: "Offer Cars".tr,
                color: AppColors.blackNormal,
                fontSize: 14,
                fontWeight: FontWeight.w500,
@@ -39,8 +39,8 @@ class HomePopularSection extends StatelessWidget {
                onTap: (){
                  Get.toNamed(AppRoute.popularCarScreen);
                },
-               child:  const CustomText(
-                 text: AppStrings.seeAll,
+               child:   CustomText(
+                 text: AppStrings.seeAll.tr,
                  color: AppColors.primaryColor,
                  fontSize: 12,
                  fontWeight: FontWeight.w500,

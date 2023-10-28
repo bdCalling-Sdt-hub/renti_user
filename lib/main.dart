@@ -17,8 +17,8 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey = "pk_test_51NrcLcSJXOqjAG5dxabD5XzUNXE0S3xjn4tFp8aJqZZR4SsQOCZ3SM9MNTbFgCYopG7R8d0XcgvvY9AM6SIxCQKX00mzWSTRUm";
   await di.initDependency();
-  final socketService = SocketService();
-  socketService.socket;
+  // final socketService = SocketService();
+  // socketService.socket;
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

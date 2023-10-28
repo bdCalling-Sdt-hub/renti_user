@@ -30,7 +30,6 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(CarDetailsRepo(apiService: Get.find()));
     final controller = Get.put(CarDetailsController(carDetailsRepo: Get.find()));
-
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.loadCarDetailsData(carId);
     });
@@ -55,8 +54,8 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
                 size: 18,
                 color: AppColors.blackNormal,
               )),
-          const CustomText(
-            text: AppStrings.carDetails,
+           CustomText(
+            text: AppStrings.carDetails.tr,
             color: AppColors.blackNormal,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -83,6 +82,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
           }
         ),
       ),
-    ));
+      )
+    );
   }
 }

@@ -43,7 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
         return Scaffold(
           appBar: CustomAppBar(
               appBarContent: Text(
-                "Search Car",
+                "Search Cars".tr,
                 style: GoogleFonts.poppins(
                   color: AppColors.blackNormal,
                   fontSize: 18,
@@ -74,7 +74,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   ),
                   fieldBorderRadius: 8,
-                  hintText: AppStrings.searchCar,
+                  hintText: AppStrings.searchCar.tr,
                   inputTextStyle: GoogleFonts.poppins(
                     color: AppColors.blackNormal,
                     fontSize: 14,

@@ -93,7 +93,7 @@ class OfferCarSection extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             CustomElevatedButton(onPressed: () => Get.toNamed(AppRoute.carDetails, arguments: controller.offerCarList[index].id.toString()),
-                              titleText: AppStrings.seeDetails,
+                              titleText: AppStrings.seeDetails.tr,
                               titleWeight: FontWeight.w400,
                               titleSize: 10,
                               buttonRadius: 4,
