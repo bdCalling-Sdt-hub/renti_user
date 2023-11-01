@@ -42,7 +42,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     fit: BoxFit.fill,
                   ),
                 ),
-                child: const Column(
+                child:  const Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

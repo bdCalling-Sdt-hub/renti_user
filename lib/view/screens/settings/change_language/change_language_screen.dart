@@ -18,7 +18,6 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
   List<String> languageName = [
     'English',
     'Spanish',
-    'French',
   ];
   int selectedItem = 0;
   @override
@@ -49,20 +48,16 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                           (index) {
                         return GestureDetector(
                           onTap: () {
-                            setState(() {
-                              selectedItem = index;
-                            });
                             if(selectedItem==0){
                               Get.updateLocale(const Locale("en","US"));
                             }
                             else if(selectedItem == 1){
-
                               Get.updateLocale(const Locale("es","MX"));
                             }
-                            else if(selectedItem == 2){
-                              Get.updateLocale(const Locale("fr","CA"));
+                            setState(() {
+                              selectedItem = index;
+                            });
 
-                            }
                           },
                           child: Container(
                             margin: const EdgeInsets.only(bottom: 8),

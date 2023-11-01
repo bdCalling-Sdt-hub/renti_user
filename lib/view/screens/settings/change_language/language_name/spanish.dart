@@ -115,4 +115,6 @@ Map<String, String> spanish = {
   "Review" : "Revisar",
   "give your review here........" : "deja tu opinion aqui.....",
 
+  "Get Started" : "Empezar",
+
 };

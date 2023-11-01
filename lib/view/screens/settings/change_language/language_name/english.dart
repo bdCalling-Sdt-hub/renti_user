@@ -120,4 +120,5 @@ Map<String, String> english = {
   "give your review here........" : "give your review here........",
 
   "Trip Details" : "Trip Details",
+  "Get Started" : "Get Started",
 };
