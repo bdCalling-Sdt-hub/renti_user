@@ -23,7 +23,7 @@ class AllCarsController extends GetxController{
     isLoading = true;
     update();
 
-    ApiResponseModel responseModel = await allCarsRepo.AllCarsRepoResponse(search: search);
+    ApiResponseModel responseModel = await allCarsRepo.allCarsRepoResponse(search: search);
 
     if(responseModel.statusCode == 200){
       allCarsModel = AllCarsModel.fromJson(jsonDecode(responseModel.responseJson));

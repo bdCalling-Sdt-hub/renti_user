@@ -63,7 +63,7 @@ class _AllCarScreenState extends State<AllCarScreen> {
               ],
             )),
         body: GetBuilder<LuxuryCarController>(builder: (controller){
-          return  Padding(
+          return  const Padding(
             padding: EdgeInsets.symmetric(vertical: 24,horizontal: 20),
             child: Column(
               children: [

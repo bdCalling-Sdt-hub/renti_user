@@ -17,7 +17,7 @@ class HomeTopSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         CustomImage(imageSrc: AppImages.bannerHome,
+         const CustomImage(imageSrc: AppImages.bannerHome,
           imageType: ImageType.png,),
         const SizedBox(height: 24,),
          CustomText(
@@ -33,7 +33,7 @@ class HomeTopSection extends StatelessWidget {
                 child: CustomTextField(
                   isPrefixIcon: true  ,
                   hintText: AppStrings.searchCar.tr,
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     fontSize: 14,
                     color: AppColors.whiteNormalActive,
                     fontWeight: FontWeight.w400,

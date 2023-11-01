@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
+import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
+import 'package:renti_user/view/widgets/container/custom_container.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-import '../../../../utils/app_colors.dart';
-import '../../../widgets/appbar/custom_app_bar.dart';
-import '../../../widgets/buttons/custom_back_button.dart';
-import '../../../widgets/container/custom_container.dart';
 
 class ChangeLanguageScreen extends StatefulWidget {
   const ChangeLanguageScreen({super.key});
@@ -19,7 +19,8 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
     'English',
     'Spanish',
   ];
-  int selectedItem = 0;
+  int selectedItem = -1;
+  // bool changeColor = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,9 +54,11 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                             }
                             else if(selectedItem == 1){
                               Get.updateLocale(const Locale("es","MX"));
+
                             }
                             setState(() {
                               selectedItem = index;
+                              selectedItem == 0? Get.updateLocale(const Locale("en", "US")) : Get.updateLocale(const Locale("es" , "MX"));
                             });
 
                           },
@@ -65,7 +68,6 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                             decoration: ShapeDecoration(
                               color: AppColors.whiteLight,
                               shape: RoundedRectangleBorder(
-
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               shadows:  const [
@@ -82,7 +84,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                                   left: 16, right: 16, top: 16, bottom: 16),
                               child: Row(
                                 children: [
-                                  Container(
+                              Container(
                                     height: 20,
                                     width: 20,
                                     decoration: BoxDecoration(
@@ -110,7 +112,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                   ),
 
                 ],
-              ),
+              )
             ),
           ),
         ),

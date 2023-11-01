@@ -8,10 +8,7 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/home/home_controller/home_controller.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_controller/all_cars_controller.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_repo/all_cars_repo.dart';
-import 'package:renti_user/view/widgets/image/custom_image.dart';
+import 'package:renti_user/view/screens/home/home_repo/home_repo.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class HomePopularSection extends StatelessWidget {

@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final allCarsModel = allCarsModelFromJson(jsonString);
+
 import 'dart:convert';
 
 AllCarsModel allCarsModelFromJson(String str) => AllCarsModel.fromJson(json.decode(str));
@@ -51,7 +55,6 @@ class Car {
   String? carSeats;
   String? totalRun;
   String? hourlyRate;
-  String? offerHourlyRate;
   String? registrationDate;
   int? popularity;
   String? gearType;
@@ -63,10 +66,10 @@ class Car {
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
-  List<dynamic>? carImage;
-  String? userId;
+  String? offerHourlyRate;
   String? paymentId;
-  int? averageRatings;
+  List<String>? carImage;
+  String? userId;
 
   Car({
     this.id,
@@ -83,7 +86,6 @@ class Car {
     this.carSeats,
     this.totalRun,
     this.hourlyRate,
-    this.offerHourlyRate,
     this.registrationDate,
     this.popularity,
     this.gearType,
@@ -95,10 +97,10 @@ class Car {
     this.createdAt,
     this.updatedAt,
     this.v,
+    this.offerHourlyRate,
+    this.paymentId,
     this.carImage,
     this.userId,
-    this.paymentId,
-    this.averageRatings,
   });
 
   factory Car.fromJson(Map<String, dynamic> json) => Car(
@@ -116,7 +118,6 @@ class Car {
     carSeats: json["carSeats"],
     totalRun: json["totalRun"],
     hourlyRate: json["hourlyRate"],
-    offerHourlyRate: json["offerHourlyRate"],
     registrationDate: json["registrationDate"],
     popularity: json["popularity"],
     gearType: json["gearType"],
@@ -128,10 +129,10 @@ class Car {
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
-    carImage: json["carImage"] == null ? [] : List<dynamic>.from(json["carImage"]!.map((x) => x)),
-    userId: json["userId"],
+    offerHourlyRate: json["offerHourlyRate"],
     paymentId: json["paymentId"],
-    averageRatings: json["averageRatings"],
+    carImage: json["carImage"] == null ? [] : List<String>.from(json["carImage"]!.map((x) => x)),
+    userId: json["userId"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -149,7 +150,6 @@ class Car {
     "carSeats": carSeats,
     "totalRun": totalRun,
     "hourlyRate": hourlyRate,
-    "offerHourlyRate": offerHourlyRate,
     "registrationDate": registrationDate,
     "popularity": popularity,
     "gearType": gearType,
@@ -161,10 +161,10 @@ class Car {
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
+    "offerHourlyRate": offerHourlyRate,
+    "paymentId": paymentId,
     "carImage": carImage == null ? [] : List<dynamic>.from(carImage!.map((x) => x)),
     "userId": userId,
-    "paymentId": paymentId,
-    "averageRatings": averageRatings,
   };
 }
 
@@ -174,7 +174,7 @@ class CarOwner {
   String? email;
   String? phoneNumber;
   String? gender;
-  String? address;
+  dynamic address;
   String? dateOfBirth;
   String? password;
   List<String>? kyc;
@@ -190,6 +190,8 @@ class CarOwner {
   int? v;
   String? creaditCardNumber;
   String? ine;
+  BankInfo? bankInfo;
+  String? stripeConnectAccountId;
 
   CarOwner({
     this.id,
@@ -213,6 +215,8 @@ class CarOwner {
     this.v,
     this.creaditCardNumber,
     this.ine,
+    this.bankInfo,
+    this.stripeConnectAccountId,
   });
 
   factory CarOwner.fromJson(Map<String, dynamic> json) => CarOwner(
@@ -237,6 +241,8 @@ class CarOwner {
     v: json["__v"],
     creaditCardNumber: json["creaditCardNumber"],
     ine: json["ine"],
+    bankInfo: json["bankInfo"] == null ? null : BankInfo.fromJson(json["bankInfo"]),
+    stripeConnectAccountId: json["stripeConnectAccountId"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -261,6 +267,64 @@ class CarOwner {
     "__v": v,
     "creaditCardNumber": creaditCardNumber,
     "ine": ine,
+    "bankInfo": bankInfo?.toJson(),
+    "stripeConnectAccountId": stripeConnectAccountId,
+  };
+}
+
+class AddressClass {
+  String? city;
+  String? line1;
+  String? postalCode;
+  String? state;
+  String? country;
+
+  AddressClass({
+    this.city,
+    this.line1,
+    this.postalCode,
+    this.state,
+    this.country,
+  });
+
+  factory AddressClass.fromJson(Map<String, dynamic> json) => AddressClass(
+    city: json["city"],
+    line1: json["line1"],
+    postalCode: json["postal_code"],
+    state: json["state"],
+    country: json["country"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "city": city,
+    "line1": line1,
+    "postal_code": postalCode,
+    "state": state,
+    "country": country,
+  };
+}
+
+class BankInfo {
+  String? accountNumber;
+  String? accountHolderName;
+  String? accountHolderType;
+
+  BankInfo({
+    this.accountNumber,
+    this.accountHolderName,
+    this.accountHolderType,
+  });
+
+  factory BankInfo.fromJson(Map<String, dynamic> json) => BankInfo(
+    accountNumber: json["account_number"],
+    accountHolderName: json["account_holder_name"],
+    accountHolderType: json["account_holder_type"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "account_number": accountNumber,
+    "account_holder_name": accountHolderName,
+    "account_holder_type": accountHolderType,
   };
 }
 
