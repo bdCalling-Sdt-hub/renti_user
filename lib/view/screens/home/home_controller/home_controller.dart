@@ -50,7 +50,6 @@ class HomeController extends GetxController{
 
   loadOfferCarData() async{
     ApiResponseModel responseModel = await homeRepo.fetchOfferCarsData();
-
     if(responseModel.statusCode == 200){
       OfferCarModel model = OfferCarModel.fromJson(jsonDecode(responseModel.responseJson));
       List<OfferCar>? tempList = model.offerCars;
@@ -62,7 +61,6 @@ class HomeController extends GetxController{
 
   loadLuxuryCarData() async{
     ApiResponseModel responseModel = await homeRepo.fetchLuxuryCarsData();
-
     if(responseModel.statusCode == 200){
       LuxuryCarModel model = LuxuryCarModel.fromJson(jsonDecode(responseModel.responseJson));
       List<LuxuryCar>? tempList = model.luxuryCars;

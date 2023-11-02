@@ -121,4 +121,6 @@ Map<String, String> english = {
 
   "Trip Details" : "Trip Details",
   "Get Started" : "Get Started",
+
+  "English" : "English"
 };

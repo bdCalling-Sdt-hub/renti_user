@@ -13,6 +13,7 @@ import 'package:renti_user/view/screens/car_list/luxury_car/luxury_car_screen.da
 import 'package:renti_user/view/screens/car_list/offer_car/offer_car_screen.dart';
 import 'package:renti_user/view/screens/home/home_screen.dart';
 import 'package:renti_user/view/screens/intro/intro_screen.dart';
+import 'package:renti_user/view/screens/message/messages/messages_screen.dart';
 
 
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_screen.dart';
@@ -73,11 +74,11 @@ class AppRoute {
     GetPage(name: startTrip, page: ()=> const StartTripScreen()),
     GetPage(name: endTrip, page: ()=> const EndTripScreen()),
     GetPage(name: popularCarScreen, page: ()=>  const PopularCarScreen()),
-    // GetPage(name: inboxScreen, page: ()=> const InboxScreen()),
-    // GetPage(name: messageScreen, page: ()=> const MessageScreen()),
+     //GetPage(name: inboxScreen, page: ()=>  InboxScreen()),
+    GetPage(name: messageScreen, page: ()=> const MessageScreen()),
     GetPage(name:allCarScreen , page: ()=>const AllCarScreen()),
     GetPage(name: introScreen, page: ()=> const IntroScreen()),
-    GetPage(name: selectLanguageScreen, page: ()=>const SelectLanguageScreen()),
+    GetPage(name: selectLanguageScreen, page: ()=> const SelectLanguageScreen()),
     GetPage(name: signInScreen, page: ()=>const SignInScreen()),
     GetPage(name: signUpScreen, page: ()=>const SignUpScreen()),
     GetPage(name: signUpContinueScreen, page: ()=>const SignUpContinueScreen()),

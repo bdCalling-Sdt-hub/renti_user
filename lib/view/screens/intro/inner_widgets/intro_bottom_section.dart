@@ -9,20 +9,16 @@ import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 class IntroBottomSection extends StatefulWidget {
-   const IntroBottomSection({super.key});
+
+  const IntroBottomSection({ super.key});
 
   @override
   State<IntroBottomSection> createState() => _IntroBottomSectionState();
 }
 
-
 class _IntroBottomSectionState extends State<IntroBottomSection> {
-  @override
-  void setState(VoidCallback fn) {
-    // TODO: implement setState
 
-    super.setState(fn);
-  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -32,17 +28,17 @@ class _IntroBottomSectionState extends State<IntroBottomSection> {
           onTap: () {
             Get.toNamed(AppRoute.selectLanguageScreen);
           },
-          child: const Row(
+          child:  Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CustomText(
-                text: "English",
+                text: "English".tr,
                 color: AppColors.whiteLight,
                 fontSize: 16,
                 right: 8,
               ),
-              Icon(
+              const Icon(
                 Icons.arrow_forward_ios_outlined,
                 color: AppColors.whiteLight,
                 size: 14,

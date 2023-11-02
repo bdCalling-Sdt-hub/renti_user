@@ -1,5 +1,8 @@
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
@@ -18,7 +21,8 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
     'English',
     'Spanish',
   ];
-  int selectedItem =0;
+  int selectedItem =-1;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,19 +50,12 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                           languageName.length,
                               (index) {
                             return GestureDetector(
-                              onTap: () {
-                                languageName;
-
-                                if(selectedItem==0){
-                                  Get.updateLocale(const Locale("en","US"));
-                                }
-                                else if(selectedItem == 1){
-                                  Get.updateLocale(const Locale("es","MX"));
-                                }
-
+                              onTap: () async {
                                 setState(() {
                                   selectedItem = index;
+                                  selectedItem == 0 ? Get.updateLocale(const Locale("en", "US")) : Get.updateLocale(const Locale("es" , "MX"));
                                 });
+                                await Get.toNamed(AppRoute.introScreen);
                               },
                               child: Container(
                                 margin: const EdgeInsets.only(bottom: 8),
@@ -82,19 +79,6 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                                       left: 16, right: 16, top: 16, bottom: 16),
                                   child: Row(
                                     children: [
-                                      Container(
-                                        height: 20,
-                                        width: 20,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          border: Border.all(
-                                              color: Colors.black12.withOpacity(.2),
-                                              width: 1),
-                                          color: index == selectedItem
-                                              ? AppColors.primaryColor
-                                              : AppColors.whiteLight,
-                                        ),
-                                      ),
                                       CustomText(
                                         text: languageName[index],
                                         color: AppColors.blackNormal,

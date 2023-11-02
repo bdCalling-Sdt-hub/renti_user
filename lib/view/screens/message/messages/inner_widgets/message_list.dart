@@ -62,7 +62,7 @@ class MessageList extends StatelessWidget {
             (index) {
           return GestureDetector(
             onTap: () {
-              Get.toNamed(AppRoute.inboxScreen);
+            //Get.toNamed(AppRoute.inboxScreen);
             },
             child: Padding(
               padding: const EdgeInsets.only(bottom: 8.0),

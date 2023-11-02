@@ -84,7 +84,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                                   left: 16, right: 16, top: 16, bottom: 16),
                               child: Row(
                                 children: [
-                              Container(
+                             /* Container(
                                     height: 20,
                                     width: 20,
                                     decoration: BoxDecoration(
@@ -96,7 +96,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                                           ? AppColors.primaryColor
                                           : AppColors.whiteLight,
                                     ),
-                                  ),
+                                  ),*/
                                   CustomText(
                                     text: languageName[index],
                                     color: AppColors.blackNormal,
