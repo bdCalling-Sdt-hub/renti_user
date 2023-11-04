@@ -15,7 +15,7 @@ class Sender {
   bool ?emailVerified;
   bool ?approved;
   String? isBanned;
-  dynamic? oneTimeCode;
+  dynamic oneTimeCode;
   String ?createdAt;
   String ?updatedAt;
   int ?v;

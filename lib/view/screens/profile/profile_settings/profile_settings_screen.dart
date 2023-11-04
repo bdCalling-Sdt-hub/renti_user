@@ -77,7 +77,9 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
         builder: (controller) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: controller.isSubmit ? const CustomElevatedLoadingButton() : CustomElevatedButton(
-              onPressed: () => controller.updateProfile(),
+              onPressed: () {
+                controller.updateProfile();
+              },
               titleText: AppStrings.updateprofile
           ),
         ),

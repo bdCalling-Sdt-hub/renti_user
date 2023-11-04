@@ -35,8 +35,7 @@ class _AllCarScreenState extends State<AllCarScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    AllCarsModel allCarsModel = Get.arguments;
+    // AllCarsModel allCarsModel = Get.arguments;
     return SafeArea(
       top: true,
       child: Scaffold(

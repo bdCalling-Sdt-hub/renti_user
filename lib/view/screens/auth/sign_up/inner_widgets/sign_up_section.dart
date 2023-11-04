@@ -74,7 +74,7 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                 if (value == null || value.isEmpty) {
                   return AppStrings.notBeEmpty.tr;
                 } else if (!value.contains(RegExp('\@'))) {
-                  return AppStrings.enterValidEmail;
+                  return AppStrings.enterValidEmail.tr;
                 } else {
                   return null;
                 }
@@ -122,6 +122,7 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
              CustomText(text: AppStrings.dateOfBirth.tr, top: 16, bottom: 12),
 
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: CustomTextField(
@@ -139,6 +140,15 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                       fontWeight: FontWeight.w400,
                       color: AppColors.whiteNormalActive,
                     ),
+                    validator: (value){
+                      if(value==null||value.isEmpty){
+                        return AppStrings.notBeEmpty.tr;
+                      }
+                      else if(value.length>2){
+                        return "Please enter valid date".tr;
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -158,6 +168,15 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                       fontWeight: FontWeight.w400,
                       color: AppColors.whiteNormalActive,
                     ),
+                    validator: (value){
+                      if(value==null||value.isEmpty){
+                        return AppStrings.notBeEmpty.tr;
+                      }
+                      else if(value.length>2){
+                        return "Please enter valid month".tr;
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -177,6 +196,17 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                       fontWeight: FontWeight.w400,
                       color: AppColors.whiteNormalActive,
                     ),
+                    validator: (value){
+                       if(value == null || value.isEmpty){
+                      return AppStrings.notBeEmpty.tr;
+                      }
+                    else if(value.length>4){
+                        return "Please enter valid year".tr;
+                      }
+                      else {
+                        return null;
+                      }
+                    },
                   ),
                 ),
               ],
@@ -204,7 +234,7 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                 if (value == null || value.isEmpty) {
                   return AppStrings.notBeEmpty.tr;
                 } else if (value.length < 6) {
-                  return AppStrings.passwordShouldBe;
+                  return AppStrings.passwordShouldBe.tr;
                 } else {
                   return null;
                 }
@@ -232,7 +262,7 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                 if (value == null || value.isEmpty) {
                   return AppStrings.notBeEmpty.tr;
                 } else if (value.length < 6) {
-                  return AppStrings.passwordShouldBe;
+                  return AppStrings.passwordShouldBe.tr;
                 } else if (controller.passwordController.text !=
                     controller.confirmPasswordController.text) {
                   return "Doesn't match password".tr;

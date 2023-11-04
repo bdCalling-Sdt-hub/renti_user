@@ -70,6 +70,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       child:Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+
                           CustomText(
                             text: AppStrings.emailSentTitle.tr,
                             textAlign: TextAlign.start,

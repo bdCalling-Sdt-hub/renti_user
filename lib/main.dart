@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       locale: const Locale("en","US"),
-       //locale: Get.find<LanguageController>().language.val ? const Locale("en" , "US") : const Locale("fr", "CA"),
+        //locale: Get.find<LanguageController>().language.val ? const Locale("es" , "US") : const Locale("fr", "MX"),
       fallbackLocale:const Locale("en" , "US"),
        translations: Language(),
        debugShowCheckedModeBanner: false,

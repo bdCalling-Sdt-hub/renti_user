@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/settings/settings/inner_widgets/setting_name.dart';
+import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
+import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
+import 'package:renti_user/view/widgets/container/custom_container.dart';
 
-import '../../../../utils/app_colors.dart';
-import '../../../widgets/appbar/custom_app_bar.dart';
-import '../../../widgets/buttons/custom_back_button.dart';
-import '../../../widgets/buttons/custom_elevated_button.dart';
-import '../../../widgets/container/custom_container.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});

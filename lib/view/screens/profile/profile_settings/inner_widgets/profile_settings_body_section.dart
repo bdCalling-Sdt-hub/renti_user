@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
 import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_image_section.dart';
+import 'package:renti_user/view/widgets/image/custom_image.dart';
+import 'package:renti_user/view/widgets/text/custom_text.dart';
+import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
 
-import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_icons.dart';
-import '../../../../../utils/app_strings.dart';
-import '../../../../widgets/image/custom_image.dart';
-import '../../../../widgets/text/custom_text.dart';
-import '../../../../widgets/text_field/custom_text_field.dart';
 
 class ProfileSettingsBodySection extends StatelessWidget {
   const ProfileSettingsBodySection({super.key});
@@ -34,7 +34,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                       color: AppColors.whiteNormalActive),
                 ),
-                 CustomText(
+                 const CustomText(
                   text: AppStrings.email,
                   top: 16,
                   bottom: 12,
@@ -79,7 +79,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                               width: 1.0,
                               style: BorderStyle.solid),
                         ),
-                        child: const Row(
+                        child:  const Row(
                           children: [
                             CustomImage(
                                 imageSrc: AppIcons.flafMaxico,

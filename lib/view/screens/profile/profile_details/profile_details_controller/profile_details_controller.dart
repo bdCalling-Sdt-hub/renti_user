@@ -1,6 +1,6 @@
+
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
@@ -8,8 +8,8 @@ import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_model/profile_details_model.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_repo/profile_details_repo.dart';
 import 'package:renti_user/view/screens/profile/user_post_model/user_post_model.dart';
-class ProfileDetailsController extends GetxController{
 
+class ProfileDetailsController extends GetxController{
   ProfileDetailsRepo profileDetailsRepo;
   ProfileDetailsController({required this.profileDetailsRepo});
 
@@ -21,7 +21,6 @@ class ProfileDetailsController extends GetxController{
   String dob = "";
   String phoneNumber = "";
   String address = "";
-  
   String profileImage = "";
 
   void initialState() async{
@@ -65,7 +64,6 @@ class ProfileDetailsController extends GetxController{
   updateProfile() async{
     isSubmit = true;
     update();
-
     UserPostModel model = UserPostModel(
         fullName: fullNameController.text,
         email: emailController.text,
@@ -86,7 +84,6 @@ class ProfileDetailsController extends GetxController{
   loadData() async{
     isLoading = true;
     update();
-
     fullNameController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.fullName) ?? "";
     emailController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.email) ?? "";
     phoneNumberController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.phoneNumber) ?? "";

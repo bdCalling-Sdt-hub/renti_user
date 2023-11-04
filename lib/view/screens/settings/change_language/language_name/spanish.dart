@@ -119,5 +119,8 @@ Map<String, String> spanish = {
   "give your review here........": "deja tu opinion aqui.....",
 
   "Get Started": "Empezar",
-  "English": "Spanish"
+  "English": "Spanish",
+  "Please enter valid date": "Por favor ingresa una fecha válida",
+  "Please enter valid month": "Por favor ingrese el mes válido",
+  "Please enter valid year": "Por favor ingrese el año válido",
 };

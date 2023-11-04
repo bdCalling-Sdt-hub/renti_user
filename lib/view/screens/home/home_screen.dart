@@ -9,7 +9,7 @@ import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:renti_user/view/screens/home/home_controller/home_controller.dart';
 import 'package:renti_user/view/screens/home/home_repo/home_repo.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_car_section.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_car_section.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/home_offer_car/home_offer_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_top_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/drawer/custom_drawer.dart';
@@ -35,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.initialState();
+
     });
     super.initState();
   }
@@ -117,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller.offerCarList.isNotEmpty ? const Column(
                   children: [
                     SizedBox(height: 24),
-                    HomePopularSection(),
+                     HomePopularSection(),
                   ],
                 ) : const SizedBox(),
                 controller.luxuryCarList.isNotEmpty ? const Column(

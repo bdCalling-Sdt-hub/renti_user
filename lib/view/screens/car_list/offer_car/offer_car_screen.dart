@@ -65,7 +65,7 @@ class _PopularCarScreenState extends State<PopularCarScreen> {
                 child: CircularProgressIndicator()
             ) : Column(
               children: [
-                TextFormField(
+               /* TextFormField(
                   cursorColor: AppColors.blackNormal,
                   showCursor: true,
                   style: GoogleFonts.poppins(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.blackNormal),
@@ -89,7 +89,7 @@ class _PopularCarScreenState extends State<PopularCarScreen> {
                       borderSide: const BorderSide(color: AppColors.whiteNormalActive,width: 1),
                     ),
                   ),
-                ),
+                ),*/
                 const SizedBox(height: 24),
                 Expanded(
                   child: SingleChildScrollView(

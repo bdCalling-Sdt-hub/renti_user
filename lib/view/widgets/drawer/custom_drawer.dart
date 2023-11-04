@@ -81,13 +81,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       color: AppColors.whiteLight,
                       borderRadius: BorderRadius.circular(4)
                   ),
-                  child:  FittedBox(
-                    child: Row(
-                      children: [
-                        const CustomImage(imageSrc: AppIcons.howRentiWorks,size: 18,),
-                        CustomText(text: "How Renti Works".tr,color: AppColors.whiteDarkHover,left: 8)
-                      ],
-                    ),
+                  child:  Row(
+                    children: [
+                      const CustomImage(imageSrc: AppIcons.howRentiWorks,size: 18,),
+                      CustomText(text: "How Renti Works".tr,color: AppColors.whiteDarkHover,left: 8)
+                    ],
                   ),
                 ),
               ),

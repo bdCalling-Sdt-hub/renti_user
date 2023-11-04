@@ -45,12 +45,13 @@ Map<String, String> english = {
   "Enter your INE/Passport": "Enter your INE/Passport",
   "Select Photo": "Select Photo",
   "Upload your photo": "Upload your photo",
-  "Verify Email" : "Verify Email",
-  "Please enter your email address for recover your password." : "Please enter your email address for recover your password.",
-  "Resend" :"Resend",
-  "Verify" : "Verify",
-  "didnotOtp" : "Did not get the OTP?",
-  "Please enter the OTP code." : "Please enter the OTP code.",
+  "Verify Email": "Verify Email",
+  "Please enter your email address for recover your password.":
+      "Please enter your email address for recover your password.",
+  "Resend": "Resend",
+  "Verify": "Verify",
+  "didnotOtp": "Did not get the OTP?",
+  "Please enter the OTP code.": "Please enter the OTP code.",
   //drawer
   "Rent History": "Rent History",
   "Payment Method": "Payment Method",
@@ -110,17 +111,20 @@ Map<String, String> english = {
   "Date of Birth": "Date of Birth",
   "Phone Number": "Phone Number",
 
-  "No Data Found" : "No Data Found",
+  "No Data Found": "No Data Found",
 
   //trip
-  "End Trip" : "End Trip",
-  "Send Review" : "Send Review",
-  "Give us rating out of 5" : "Give us rating out of 5",
-  "Review" : "Review",
-  "give your review here........" : "give your review here........",
+  "End Trip": "End Trip",
+  "Send Review": "Send Review",
+  "Give us rating out of 5": "Give us rating out of 5",
+  "Review": "Review",
+  "give your review here........": "give your review here........",
 
-  "Trip Details" : "Trip Details",
-  "Get Started" : "Get Started",
+  "Trip Details": "Trip Details",
+  "Get Started": "Get Started",
 
-  "English" : "English"
+  "English": "English",
+  "Please enter valid date": " enter valid date",
+  "Please enter valid month": " enter valid month",
+  "Please enter valid year": " enter valid year",
 };
