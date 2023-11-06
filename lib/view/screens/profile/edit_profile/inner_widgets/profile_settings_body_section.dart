@@ -25,17 +25,17 @@ class ProfileSettingsBodySection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomText(text: AppStrings.fullName, bottom: 12),
+                 CustomText(text: AppStrings.fullName.tr, bottom: 12),
                 CustomTextField(
                   textEditingController: controller.nameController,
-                  hintText: AppStrings.typeFullName,
+                  hintText: AppStrings.typeFullName.tr,
                   hintStyle: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: AppColors.whiteNormalActive),
                 ),
-                 const CustomText(
-                  text: AppStrings.email,
+                  CustomText(
+                  text: AppStrings.email.tr,
                   top: 16,
                   bottom: 12,
                 ),
@@ -43,7 +43,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                   readOnly: true,
                   textEditingController: controller.emailController,
                   textInputAction: TextInputAction.done,
-                  hintText: AppStrings.typeFullName,
+                  hintText: AppStrings.typeEmail,
                   hintStyle: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -59,8 +59,8 @@ class ProfileSettingsBodySection extends StatelessWidget {
                     }
                   },
                 ),
-                const CustomText(
-                  text: AppStrings.phoneNumber,
+                 CustomText(
+                  text: AppStrings.phoneNumber.tr,
                   bottom: 12,
                   top: 16,
                 ),
@@ -109,7 +109,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                     ),
                   ],
                 ),
-                const CustomText(text: AppStrings.address, top: 16, bottom: 12),
+                CustomText(text: AppStrings.address.tr, top: 16, bottom: 12),
                 Container(
                   height: 100,
                   padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),

@@ -24,9 +24,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
 
   @override
   void initState() {
-
     carId = Get.arguments;
-
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(CarDetailsRepo(apiService: Get.find()));
     final controller = Get.put(CarDetailsController(carDetailsRepo: Get.find()));

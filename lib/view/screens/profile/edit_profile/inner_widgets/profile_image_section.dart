@@ -38,16 +38,16 @@ class _ProfileImageSectionState extends State<ProfileImageSection> {
           const SizedBox(height: 16),
           GestureDetector(
             onTap: () => openGallery(context),
-            child: const Row(
+            child:  Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomImage(
+                const CustomImage(
                   imageSrc: AppIcons.selectCamera,
                   size: 18,
                   imageColor: AppColors.primaryColor,
                 ),
                 CustomText(
-                  text: AppStrings.changePhoto,
+                  text: AppStrings.changePhoto.tr,
                   color: AppColors.primaryColor,
                   left: 10,
                 )

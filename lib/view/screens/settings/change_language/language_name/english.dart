@@ -127,4 +127,12 @@ Map<String, String> english = {
   "Please enter valid date": " enter valid date",
   "Please enter valid month": " enter valid month",
   "Please enter valid year": " enter valid year",
+
+  // edit profile
+  "Profile Settings" : "Profile Settings",
+  "Change Photo": "Change Photo",
+  "Update Profile": "Update Profile"
+
+
+
 };

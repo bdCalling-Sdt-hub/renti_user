@@ -55,8 +55,8 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 size: 18,
                 color: AppColors.blackNormal,
               )),
-          const CustomText(
-            text: AppStrings.profileSettings,
+           CustomText(
+            text: AppStrings.profileSettings.tr,
             color: AppColors.blackNormal,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -82,7 +82,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               onPressed: () {
                 controller.updateUserInfo(controller.userId);
               },
-              titleText: AppStrings.updateprofile
+              titleText: AppStrings.updateprofile.tr
           ),
         ),
       )

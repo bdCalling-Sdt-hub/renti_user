@@ -88,7 +88,8 @@ class EditProfileController extends GetxController {
       var response = await request.send();
 
       if (response.statusCode == 200) {
-        profileController.loadProfileData();
+
+        profileController.initialState();
         update();
         AppUtils.errorToastMessage("Successfully profile updated");
         Get.back();

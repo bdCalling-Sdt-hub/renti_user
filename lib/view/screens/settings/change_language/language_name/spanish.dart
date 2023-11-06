@@ -123,4 +123,10 @@ Map<String, String> spanish = {
   "Please enter valid date": "Por favor ingresa una fecha válida",
   "Please enter valid month": "Por favor ingrese el mes válido",
   "Please enter valid year": "Por favor ingrese el año válido",
+
+  // profile Edit
+
+  "Profile Settings" : "Configuración de perfil",
+"Change Photo": "Cambiar foto",
+  "Update Profile": "Actualización del perfil"
 };

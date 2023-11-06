@@ -48,8 +48,12 @@ class ProfileDetailsController extends GetxController{
       phoneNumber = profileDetailsModel.user?.phoneNumber ?? "";
       address = profileDetailsModel.user?.address ?? "";
       userId = profileDetailsModel.user?.id ?? "";
-
       profileImage = profileDetailsModel.user?.image ?? "";
+
+      fullNameController.text = username;
+      addressController.text = address;
+      emailController.text = email;
+      phoneNumberController.text = phoneNumber;
     }
   }
 
@@ -77,7 +81,7 @@ class ProfileDetailsController extends GetxController{
     );
 
     await profileDetailsRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.address, addressController.text);
-    await profileDetailsRepo.updateUser(model);
+    // await profileDetailsRepo.updateUser(model);
 
     isSubmit = false;
     update();

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
 import 'package:renti_user/view/widgets/container/custom_container.dart';
@@ -49,16 +51,23 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                           (index) {
                         return GestureDetector(
                           onTap: () {
-                            if(selectedItem==0){
+                            /*if(selectedItem==0){
                               Get.updateLocale(const Locale("en","US"));
+                              Get.toNamed(AppRoute.settings);
+                              AppUtils.successToastMessage("Change Language Successfully");
                             }
                             else if(selectedItem == 1){
+                              Get.toNamed(AppRoute.settings);
+                              AppUtils.successToastMessage("Cambiar idioma con éxito");
                               Get.updateLocale(const Locale("es","MX"));
 
-                            }
+                            }*/
                             setState(() {
                               selectedItem = index;
-                              selectedItem == 0? Get.updateLocale(const Locale("en", "US")) : Get.updateLocale(const Locale("es" , "MX"));
+                              selectedItem == 0 ? Get.updateLocale(const Locale("en", "US")) : Get.updateLocale(const Locale("es" , "MX"));
+                              Get.toNamed(AppRoute.settings);
+                              selectedItem==0?AppUtils.successToastMessage("Change Language Successfully"):AppUtils.successToastMessage("Cambiar idioma con éxito");
+
                             });
 
                           },

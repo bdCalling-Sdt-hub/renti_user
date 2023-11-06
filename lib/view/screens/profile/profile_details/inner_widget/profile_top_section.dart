@@ -82,7 +82,8 @@ class ProfileTopSection extends StatelessWidget {
                   editProfileController.profileImage = controller.profileImage;
                   editProfileController.userId = controller.userId;
                   Get.toNamed(AppRoute.profileSettingsScreen);
-                  print(controller.userId);
+                  print(controller.addressController.text);
+                  print(controller.fullNameController.text);
                 },
                 child: const CustomImage(
                   imageSrc: AppIcons.editProfileIcon,
