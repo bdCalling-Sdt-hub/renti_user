@@ -3,10 +3,11 @@ import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/view/screens/profile/edit_profile/edit_profile_controller/edit_profile_controller.dart';
+import 'package:renti_user/view/screens/profile/edit_profile/inner_widgets/profile_settings_body_section.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_repo/profile_details_repo.dart';
-import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_body_section.dart';
-//import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_settings_bottom_nav_section.dart';
+
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_loading_button.dart';
@@ -26,6 +27,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   void initState() {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(ProfileDetailsRepo(apiService: Get.find()));
+    Get.put(EditProfileController());
     final controller = Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -73,12 +75,12 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             )
         ),
       ),
-      bottomNavigationBar: GetBuilder<ProfileDetailsController>(
+      bottomNavigationBar: GetBuilder<EditProfileController>(
         builder: (controller) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: controller.isSubmit ? const CustomElevatedLoadingButton() : CustomElevatedButton(
               onPressed: () {
-                controller.updateProfile();
+                controller.updateUserInfo(controller.userId);
               },
               titleText: AppStrings.updateprofile
           ),

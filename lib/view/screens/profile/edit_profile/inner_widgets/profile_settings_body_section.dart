@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
-import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_image_section.dart';
+import 'package:renti_user/view/screens/profile/edit_profile/edit_profile_controller/edit_profile_controller.dart';
+import 'package:renti_user/view/screens/profile/edit_profile/inner_widgets/profile_image_section.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
@@ -16,7 +16,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProfileDetailsController>(
+    return GetBuilder<EditProfileController>(
       builder: (controller) => Column(
         children: [
           ProfileImageSection(imagePath: controller.profileImage, isEdit: true),
@@ -27,7 +27,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
               children: [
                 const CustomText(text: AppStrings.fullName, bottom: 12),
                 CustomTextField(
-                  textEditingController: controller.fullNameController,
+                  textEditingController: controller.nameController,
                   hintText: AppStrings.typeFullName,
                   hintStyle: GoogleFonts.poppins(
                       fontSize: 14,
@@ -40,6 +40,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                   bottom: 12,
                 ),
                 CustomTextField(
+                  readOnly: true,
                   textEditingController: controller.emailController,
                   textInputAction: TextInputAction.done,
                   hintText: AppStrings.typeFullName,
@@ -97,7 +98,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: CustomTextField(
-                        textEditingController: controller.phoneNumberController,
+                        textEditingController: controller.numberController,
                         keyboardType: TextInputType.phone,
                         hintText: AppStrings.enterPhoneNumber,
                         hintStyle: GoogleFonts.poppins(

@@ -14,10 +14,10 @@ import 'package:renti_user/view/screens/car_list/offer_car/offer_car_screen.dart
 import 'package:renti_user/view/screens/home/home_screen.dart';
 import 'package:renti_user/view/screens/intro/intro_screen.dart';
 import 'package:renti_user/view/screens/message/messages/messages_screen.dart';
+import 'package:renti_user/view/screens/profile/edit_profile/profile_settings_screen.dart';
 
 
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_screen.dart';
-import 'package:renti_user/view/screens/profile/profile_settings/profile_settings_screen.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/about_us/about_us_screen.dart';
 import 'package:renti_user/view/screens/rentiworks_support_condition/how_renti_works/how_renti_works_screen.dart';

@@ -22,6 +22,7 @@ class ProfileDetailsController extends GetxController{
   String phoneNumber = "";
   String address = "";
   String profileImage = "";
+  String userId = "";
 
   void initialState() async{
 
@@ -41,12 +42,13 @@ class ProfileDetailsController extends GetxController{
 
     if(responseModel.statusCode == 200){
       ProfileDetailsModel profileDetailsModel = ProfileDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
-
       username = profileDetailsModel.user?.fullName ?? "";
       email = profileDetailsModel.user?.email ?? "";
       dob = profileDetailsModel.user?.dateOfBirth ?? "";
       phoneNumber = profileDetailsModel.user?.phoneNumber ?? "";
       address = profileDetailsModel.user?.address ?? "";
+      userId = profileDetailsModel.user?.id ?? "";
+
       profileImage = profileDetailsModel.user?.image ?? "";
     }
   }
