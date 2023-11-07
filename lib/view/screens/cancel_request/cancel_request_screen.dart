@@ -38,7 +38,7 @@ class _CancelRequestScreenState extends State<CancelRequestScreen> {
 
    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
 
-     socketService.connectToSocket();
+     socketService.socket;
      controller.initialState();
    });
 
