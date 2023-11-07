@@ -34,46 +34,26 @@ class _InboxScreenState extends State<InboxScreen> {
 
   @override
   void initState() {
-    /*setState(() {
-      socketService.connectToSocket();
+    Get.put(SocketService());
+    final controller = Get.find<SocketService>();
 
-      //TODO-
-      socketService.joinRoom(userId); // room id -> user id
-      socketService.addNewChat(
-          {
-            "participants": [
-              userId,
-              hostId
-            ]
-          },
-          userId
-      );
-      socketService.joinChat("6538fb41f7db461561d4dee4");
-    });*/
-    super.initState();
-    connectToSocket();
-  }
+    controller.connectToSocket();
 
-  void connectToSocket() {
-    socketService = IO.io(
-        "http://192.168.10.14:9000",
-        IO.OptionBuilder().setTransports(['websocket']).enableAutoConnect().build()
+    //TODO-
+    controller.joinRoom(userId); // room id -> user id
+    controller.addNewChat(
+        {
+          "participants": [
+            userId,
+            hostId
+          ]
+        },
+        userId
     );
-    socketService.connect();
-
-    socketService.on('all-messages', (messages) {
-      setState(() {
-        for(var message in messages){
-          if(message is Map<String, dynamic>){
-            messageList.add(message);
-          }
-        }
-      });
-    });
+    super.initState();
   }
 
   @override
-
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,
@@ -115,93 +95,99 @@ class _InboxScreenState extends State<InboxScreen> {
             ],
           ),
         ),
-        body: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
-          child: Column(
-            children: List.generate(
-              socketService.messageList.length, (index) => Align(
-                alignment: socketService.messageList[index]["sender"]["role"] == "user"
-                    ? Alignment.topRight
-                    : Alignment.topLeft,
-                child: Container(
-                  margin: const EdgeInsetsDirectional.only(bottom: 12),
-                  padding: const EdgeInsetsDirectional.symmetric(vertical: 16, horizontal: 8),
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    color:socketService.messageList[index]["sender"]["role"] == "user"
-                        ? AppColors.primaryColor
-                        : AppColors.whiteNormalhover,
-                  ),
-                  child: Text(
-                    socketService.messageList[index]["message"],
-                    textAlign: TextAlign.start,
-                    style: GoogleFonts.raleway(
-                      color:socketService.messageList[index]["sender"]["role"] == "user"
-                          ? AppColors.whiteLight
-                          : AppColors.blackNormal,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500
+        body: GetBuilder<SocketService>(
+          builder: (socketService) {
+            return SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
+              child: Column(
+                children: List.generate(
+                  socketService.messageList.length, (index) => Align(
+                    alignment: socketService.messageList[index]["sender"]["role"] == "user"
+                        ? Alignment.topRight
+                        : Alignment.topLeft,
+                    child: Container(
+                      margin: const EdgeInsetsDirectional.only(bottom: 12),
+                      padding: const EdgeInsetsDirectional.symmetric(vertical: 16, horizontal: 8),
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color:socketService.messageList[index]["sender"]["role"] == "user"
+                            ? AppColors.primaryColor
+                            : AppColors.whiteNormalhover,
+                      ),
+                      child: Text(
+                        socketService.messageList[index]["message"],
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.raleway(
+                          color:socketService.messageList[index]["sender"]["role"] == "user"
+                              ? AppColors.whiteLight
+                              : AppColors.blackNormal,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500
+                        ),
+                      ),
+                    ),
+                  )
+                ),
+              ),
+            );
+          }
+        ),
+        bottomNavigationBar: GetBuilder<SocketService>(
+          builder: (socketService) => AnimatedPadding(
+            padding: MediaQuery.of(context).viewInsets,
+            duration: const Duration(milliseconds: 100),
+            curve: Curves.decelerate,
+            child: Container(
+              padding: const EdgeInsetsDirectional.symmetric(
+                  vertical: 16, horizontal: 20),
+              width: MediaQuery.of(context).size.width,
+              decoration: const ShapeDecoration(
+                color: AppColors.whiteLight,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(width: 0.50, color: AppColors.whiteLight),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 52,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: AppColors.whiteLight,
+                        border: Border.all(
+                            color: AppColors.whiteNormalActive,
+                            style: BorderStyle.solid,
+                            width: 1.0,
+                            strokeAlign: 1),
+                      ),
+                      child: CustomTextField(
+                        textEditingController: messageController,
+                        textInputAction: TextInputAction.done,
+                        fieldBorderColor: AppColors.whiteLight,
+                        hintText: AppStrings.enterAddress,
+                        hintStyle: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.whiteNormalActive),
+                      ),
                     ),
                   ),
-                ),
-              )
-            ),
-          ),
-        ),
-        bottomNavigationBar: AnimatedPadding(
-          padding: MediaQuery.of(context).viewInsets,
-          duration: const Duration(milliseconds: 100),
-          curve: Curves.decelerate,
-          child: Container(
-            padding: const EdgeInsetsDirectional.symmetric(
-                vertical: 16, horizontal: 20),
-            width: MediaQuery.of(context).size.width,
-            decoration: const ShapeDecoration(
-              color: AppColors.whiteLight,
-              shape: RoundedRectangleBorder(
-                side: BorderSide(width: 0.50, color: AppColors.whiteLight),
+                  const SizedBox(width: 16),
+                  GestureDetector(
+                    onTap: () async{
+                      await socketService.addNewMessage(messageController.text.toString(), "651c1438254d5546b335bd43", "65156b821ae339b4d6643ac7");
+                      messageController.clear();
+                    },
+                    child: const CustomImage(imageSrc: AppIcons.sendSms, size: 24),
+                  ),
+                ],
               ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 52,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: AppColors.whiteLight,
-                      border: Border.all(
-                          color: AppColors.whiteNormalActive,
-                          style: BorderStyle.solid,
-                          width: 1.0,
-                          strokeAlign: 1),
-                    ),
-                    child: CustomTextField(
-                      textEditingController: messageController,
-                      textInputAction: TextInputAction.done,
-                      fieldBorderColor: AppColors.whiteLight,
-                      hintText: AppStrings.enterAddress,
-                      hintStyle: GoogleFonts.poppins(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.whiteNormalActive),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                GestureDetector(
-                  onTap: () async{
-                    await socketService.addNewMessage(messageController.text.toString(), "651c1438254d5546b335bd43", "65156b821ae339b4d6643ac7");
-                    messageController.clear();
-                  },
-                  child: const CustomImage(imageSrc: AppIcons.sendSms, size: 24),
-                ),
-              ],
-            ),
-          ),
+          )
         ),
       ),
     );

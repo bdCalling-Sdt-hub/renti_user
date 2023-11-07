@@ -10,4 +10,6 @@ Future<void> initDependency() async{
   Get.lazyPut(() => sharedPreference, fenix: true);
   Get.lazyPut(() => ApiService(sharedPreferences: Get.find()), fenix: true);
   Get.lazyPut(() => SocketService(), fenix: true);
+
+  Get.find<SocketService>().connectToSocket();
 }
