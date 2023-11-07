@@ -131,7 +131,13 @@ Map<String, String> english = {
   // edit profile
   "Profile Settings" : "Profile Settings",
   "Change Photo": "Change Photo",
-  "Update Profile": "Update Profile"
+  "Update Profile": "Update Profile",
+  "Cancel Request" : "Cancel Request",
+
+
+  // trip details
+  "Make Payment" : "Make Payment",
+
 
 
 

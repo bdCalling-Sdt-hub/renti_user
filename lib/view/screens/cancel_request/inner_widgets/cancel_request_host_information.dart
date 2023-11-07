@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/socket_service.dart';
+import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_strings.dart';
 
 class CancelRequestHostInfo extends StatefulWidget {
   

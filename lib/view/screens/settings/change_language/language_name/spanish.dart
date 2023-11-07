@@ -128,5 +128,6 @@ Map<String, String> spanish = {
 
   "Profile Settings" : "Configuración de perfil",
 "Change Photo": "Cambiar foto",
-  "Update Profile": "Actualización del perfil"
+  "Update Profile": "Actualización del perfil",
+  "Cancel Request" : "Cancelar petición",
 };

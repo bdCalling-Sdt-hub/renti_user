@@ -84,7 +84,7 @@ class _EndTripScreenState extends State<EndTripScreen> {
             builder: (controller) {
               return BottomNavButton(onTap: (){
                 controller.addCarMultipleFilesAndParams1(id);
-              }, buttonName: AppStrings.endTrip, buttonColor: AppColors.primaryColor);
+              }, buttonName: AppStrings.endTrip.tr, buttonColor: AppColors.primaryColor);
             }
         ),
       ),

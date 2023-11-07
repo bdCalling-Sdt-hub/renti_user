@@ -99,7 +99,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                 onPressed: () async{
                   await StripeApi().makePayment(amount: "1000", currency: "INR", index: index);
                 },
-                titleText: "Make Payment",
+                titleText: "Make Payment".tr,
                 buttonWidth: MediaQuery.of(context).size.width,
               ),
             )
