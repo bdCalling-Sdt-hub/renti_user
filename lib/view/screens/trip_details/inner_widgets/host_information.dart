@@ -31,7 +31,14 @@ class HostInfo extends StatelessWidget {
                   color: AppColors.blackNormal,
                 ),
                 GestureDetector(
-                  onTap: () => Get.toNamed(AppRoute.inboxScreen),
+                  onTap: () => Get.toNamed(AppRoute.inboxScreen,
+                      arguments: [
+                    controller.rentHistoryModel.userWiseRent![index].userId!.id,
+                    controller.rentHistoryModel.userWiseRent![index].hostId!.fullName,
+                    controller.rentHistoryModel.userWiseRent![index].hostId!.image,
+                    controller.rentHistoryModel.userWiseRent![index].hostId!.id
+                  ]
+                  ),
                   child: Container(
                     padding: const EdgeInsetsDirectional.symmetric(horizontal: 6, vertical: 6),
                     decoration: const BoxDecoration(
@@ -122,7 +129,7 @@ class HostInfo extends StatelessWidget {
                   bottom: 24,
                 ),
                 CustomText(
-                  text: controller.rentUser[index].hostId?.address ?? "---",
+                  text: controller.rentUser[index].hostId?.address?.city ?? "---",
                   color: AppColors.blackNormal,
                   bottom: 24,
                 ),

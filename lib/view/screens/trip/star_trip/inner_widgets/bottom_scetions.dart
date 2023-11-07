@@ -159,7 +159,7 @@ class _BottomScetionsState extends State<BottomScetions> {
                   color: AppColors.whiteDarkHover,
                 ),
                 SizedBox(),
-                Text(controller.rentUser[widget.index].hostId?.address??"",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+                Text(controller.rentUser[widget.index].hostId?.address?.city??"",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
               ],
             ),
           ],

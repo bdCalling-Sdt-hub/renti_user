@@ -14,8 +14,6 @@ import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 
 import '../../../utils/app_colors.dart';
-
-
 class CancelRequestScreen extends StatefulWidget {
 
   final int index;

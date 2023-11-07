@@ -41,7 +41,14 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(AppRoute.inboxScreen, arguments: widget.socketService);
+                    Get.toNamed(AppRoute.inboxScreen, arguments: [
+                        controller.rentHistoryModel.userWiseRent![widget.index].userId!.id,
+                        controller.rentHistoryModel.userWiseRent![widget.index].hostId!.fullName,
+                      controller.rentHistoryModel.userWiseRent![widget.index].hostId!.image,
+                      controller.rentHistoryModel.userWiseRent![widget.index].hostId!.id
+                        ]
+
+                    );
                   },
                   child: Container(
                     padding: const EdgeInsetsDirectional.symmetric(horizontal: 6, vertical: 6),
@@ -133,7 +140,7 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
                   bottom: 24,
                 ),
                 CustomText(
-                  text: controller.rentUser[widget.index].hostId?.address ?? "---",
+                  text: controller.rentUser[widget.index].hostId?.address?.city ?? "---",
                   color: AppColors.blackNormal,
                   bottom: 24,
                 ),

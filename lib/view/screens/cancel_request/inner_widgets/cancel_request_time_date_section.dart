@@ -35,7 +35,7 @@ class CancelRequestTimeDateSection extends StatelessWidget {
                 bottom: 12,
               ),
               CustomText(
-                text: DateConverter.isoStringToLocalDateOnly(controller.rentUser[index].startDate ?? "---"),
+                text: DateConverter.isoStringToLocalDateOnly(controller.rentUser[index].startDate.toString()?? "---"),
                 color: AppColors.blackNormal,
                 bottom: 12,
                 right: 8,
@@ -53,7 +53,7 @@ class CancelRequestTimeDateSection extends StatelessWidget {
                 bottom: 12,
               ),
               CustomText(
-                text: DateConverter.isoStringToLocalDateOnly(controller.rentUser[index].endDate ?? "---"),
+                text: DateConverter.isoStringToLocalDateOnly(controller.rentUser[index].endDate.toString() ?? "---"),
                 color: AppColors.blackNormal,
                 bottom: 12,
                 right: 8,

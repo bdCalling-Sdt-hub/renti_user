@@ -108,7 +108,7 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
                 bottom: 24,
               ),
               CustomText(
-                text: controller.carDetailsModel.cars?.carOwner?.address ?? "",
+                text: controller.carDetailsModel.cars?.carOwner?.address!.city ?? "",
                 color: AppColors.blackNormal,
                 bottom: 24,
               ),
