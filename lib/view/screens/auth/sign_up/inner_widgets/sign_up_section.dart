@@ -37,7 +37,7 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
 
               validator: (value) {
                 if (value == null || value.toString().isEmpty) {
-                  return AppStrings.notBeEmpty;
+                  return AppStrings.notBeEmpty.tr;
                 }
 
                 return null;
@@ -55,7 +55,7 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                   fontWeight: FontWeight.w400,
                   color: AppColors.whiteNormalActive),
             ),
-            const CustomText(text: AppStrings.email, top: 16, bottom: 12),
+             CustomText(text: AppStrings.email.tr, top: 16, bottom: 12),
             CustomTextField(
               textEditingController: controller.emailController,
               textInputAction: TextInputAction.next,
@@ -72,15 +72,15 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                   color: AppColors.whiteNormalActive),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return AppStrings.notBeEmpty;
+                  return AppStrings.notBeEmpty.tr;
                 } else if (!value.contains(RegExp('\@'))) {
-                  return AppStrings.enterValidEmail;
+                  return AppStrings.enterValidEmail.tr;
                 } else {
                   return null;
                 }
               },
             ),
-            const CustomText(text: AppStrings.gender, top: 16, bottom: 12),
+             CustomText(text: AppStrings.gender.tr, top: 16, bottom: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: List.generate(
@@ -109,7 +109,7 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              controller.genderList[index],
+                              controller.genderList[index].tr,
                               style: GoogleFonts.poppins(
                                   color: AppColors.blackNormal,
                                   fontSize: 14,
@@ -119,9 +119,10 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                         ),
                       )),
             ),
-            const CustomText(text: AppStrings.dateOfBirth, top: 16, bottom: 12),
+             CustomText(text: AppStrings.dateOfBirth.tr, top: 16, bottom: 12),
 
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: CustomTextField(
@@ -133,12 +134,21 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                       fontWeight: FontWeight.w400,
                       color: AppColors.blackNormal,
                     ),
-                    hintText: AppStrings.dd,
+                    hintText:"DD".tr,
                     hintStyle: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: AppColors.whiteNormalActive,
                     ),
+                    validator: (value){
+                      if(value==null||value.isEmpty){
+                        return AppStrings.notBeEmpty.tr;
+                      }
+                      else if(value.length>2){
+                        return "Please enter valid date".tr;
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -152,12 +162,21 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                       fontWeight: FontWeight.w400,
                       color: AppColors.blackNormal,
                     ),
-                    hintText: AppStrings.mm,
+                    hintText: "MM".tr,
                     hintStyle: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: AppColors.whiteNormalActive,
                     ),
+                    validator: (value){
+                      if(value==null||value.isEmpty){
+                        return AppStrings.notBeEmpty.tr;
+                      }
+                      else if(value.length>2){
+                        return "Please enter valid month".tr;
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -171,19 +190,30 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                       fontWeight: FontWeight.w400,
                       color: AppColors.blackNormal,
                     ),
-                    hintText: AppStrings.yy,
+                    hintText:"YYYY".tr,
                     hintStyle: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: AppColors.whiteNormalActive,
                     ),
+                    validator: (value){
+                       if(value == null || value.isEmpty){
+                      return AppStrings.notBeEmpty.tr;
+                      }
+                    else if(value.length>4){
+                        return "Please enter valid year".tr;
+                      }
+                      else {
+                        return null;
+                      }
+                    },
                   ),
                 ),
               ],
             ),
 
             //Password Text and TextField
-            const CustomText(text: AppStrings.password, bottom: 12, top: 16),
+             CustomText(text: AppStrings.password.tr, bottom: 12, top: 16),
             CustomTextField(
               isPassword: true,
               hintText: "Enter your password".tr,
@@ -202,20 +232,20 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                   color: AppColors.whiteNormalActive),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return AppStrings.notBeEmpty;
+                  return AppStrings.notBeEmpty.tr;
                 } else if (value.length < 6) {
-                  return AppStrings.passwordShouldBe;
+                  return AppStrings.passwordShouldBe.tr;
                 } else {
                   return null;
                 }
               },
             ),
-            const CustomText(
-                text: AppStrings.confirmPassword, bottom: 12, top: 16),
+             CustomText(
+                text: AppStrings.confirmPassword.tr, bottom: 12, top: 16),
             CustomTextField(
               isPassword: true,
               textInputAction: TextInputAction.done,
-              hintText: "Enter confirm password",
+              hintText: "Enter confirm password".tr,
               keyboardType: TextInputType.visiblePassword,
               textEditingController: controller.confirmPasswordController,
               inputTextStyle: GoogleFonts.poppins(
@@ -230,9 +260,9 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                   color: AppColors.whiteNormalActive),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return AppStrings.notBeEmpty;
+                  return AppStrings.notBeEmpty.tr;
                 } else if (value.length < 6) {
-                  return AppStrings.passwordShouldBe;
+                  return AppStrings.passwordShouldBe.tr;
                 } else if (controller.passwordController.text !=
                     controller.confirmPasswordController.text) {
                   return "Doesn't match password".tr;

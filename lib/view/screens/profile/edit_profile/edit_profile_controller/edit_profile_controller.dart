@@ -13,6 +13,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../profile_details/profile_details_controller/profile_details_controller.dart';
 
 class EditProfileController extends GetxController {
+
+
   EditProfileController();
   File? imageFile;
   List<File> addImages = [];
@@ -20,16 +22,18 @@ class EditProfileController extends GetxController {
   // final imagePicker = ImagePicker();
   // String? imageUrl;
   bool isLoading = false;
+  bool isSubmit = false;
   var profileController = Get.find<ProfileDetailsController>();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController numberController = TextEditingController();
   TextEditingController addressController = TextEditingController();
+  String profileImage = "";
+  String userId = "";
 
   void openGallery(BuildContext context) async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery,imageQuality: 50);
-
     if (pickedFile != null) {
       imageFile = File(pickedFile.path);
       addImages.add(imageFile!);
@@ -37,33 +41,18 @@ class EditProfileController extends GetxController {
     }
   }
 
-  // void openGallery(BuildContext context) async{
-  //   final pickImage =  await ImagePicker().pickImage(source:ImageSource.gallery,imageQuality: 60);
-  //   if(pickImage!=null){
-  //     imageFile = File(pickedFile.path);
-  //     addImages.add(imageFile!);
-  //     update();
-  //   }
-  // }
 
-  // void openCamera(BuildContext context) async {
-  //   final pickedFile = await ImagePicker()
-  //       .pickImage(source: ImageSource.camera, maxHeight: 120, maxWidth: 120);
-  //
-  //   if (pickedFile != null) {
-  //     imageFile = File(pickedFile.path);
-  //     update();
-  //   }
-  // }
 
-  Future<void> updateUserInfo() async {
+  Future<void> updateUserInfo(String userId) async {
+    isSubmit = true;
+    update();
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString(SharedPreferenceHelper.accessTokenKey);
 
     try {
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.updateProfile}"),
+        Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.updateProfile}$userId"),
       );
 
       for (var img in addImages) {
@@ -99,7 +88,9 @@ class EditProfileController extends GetxController {
       var response = await request.send();
 
       if (response.statusCode == 200) {
-        profileController.loadProfileData();
+
+        profileController.initialState();
+        update();
         AppUtils.errorToastMessage("Successfully profile updated");
         Get.back();
         print(response.statusCode);
@@ -110,5 +101,8 @@ class EditProfileController extends GetxController {
     } catch (e) {
       AppUtils.errorToastMessage("Somethings went wrong $e");
     }
+    isSubmit = false;
+    update();
   }
+
 }

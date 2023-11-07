@@ -24,14 +24,21 @@ class HostInfo extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.hostInformation,
+                 CustomText(
+                  text: AppStrings.hostInformation.tr,
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
                   color: AppColors.blackNormal,
                 ),
                 GestureDetector(
-                  onTap: () => Get.toNamed(AppRoute.inboxScreen),
+                  onTap: () => Get.toNamed(AppRoute.inboxScreen,
+                      arguments: [
+                    controller.rentHistoryModel.userWiseRent![index].userId!.id,
+                    controller.rentHistoryModel.userWiseRent![index].hostId!.fullName,
+                    controller.rentHistoryModel.userWiseRent![index].hostId!.image,
+                    controller.rentHistoryModel.userWiseRent![index].hostId!.id
+                  ]
+                  ),
                   child: Container(
                     padding: const EdgeInsetsDirectional.symmetric(horizontal: 6, vertical: 6),
                     decoration: const BoxDecoration(
@@ -47,8 +54,8 @@ class HostInfo extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.name,
+                 CustomText(
+                  text: AppStrings.name.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteDarkActive,
@@ -80,8 +87,8 @@ class HostInfo extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.contact,
+                 CustomText(
+                  text: AppStrings.contact.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteDarkActive,
@@ -97,8 +104,8 @@ class HostInfo extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.email,
+                 CustomText(
+                  text: AppStrings.email.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteDarkActive,
@@ -114,15 +121,15 @@ class HostInfo extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.address,
+                 CustomText(
+                  text: AppStrings.address.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteDarkActive,
                   bottom: 24,
                 ),
                 CustomText(
-                  text: controller.rentUser[index].hostId?.address ?? "---",
+                  text: controller.rentUser[index].hostId?.address?.city ?? "---",
                   color: AppColors.blackNormal,
                   bottom: 24,
                 ),

@@ -15,8 +15,8 @@ class CancelRequestCarInfoSection extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomText(
-            text: AppStrings.carInformation,
+           CustomText(
+            text: AppStrings.carInformation.tr,
             fontWeight: FontWeight.w600,
             fontSize: 18,
             color: AppColors.blackNormal,
@@ -25,8 +25,8 @@ class CancelRequestCarInfoSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.totalMileage,
+               CustomText(
+                text: AppStrings.totalMileage.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
@@ -42,8 +42,8 @@ class CancelRequestCarInfoSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.color,
+               CustomText(
+                text: AppStrings.color.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
@@ -59,8 +59,8 @@ class CancelRequestCarInfoSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.capacity,
+               CustomText(
+                text: AppStrings.capacity.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
@@ -76,8 +76,8 @@ class CancelRequestCarInfoSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.gearType,
+               CustomText(
+                text: AppStrings.gearType.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
@@ -90,11 +90,11 @@ class CancelRequestCarInfoSection extends StatelessWidget {
               ),
             ],
           ),
-          const Row(
+           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
-                text: AppStrings.fuelTankCapacity,
+                text: AppStrings.fuelTankCapacity.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,

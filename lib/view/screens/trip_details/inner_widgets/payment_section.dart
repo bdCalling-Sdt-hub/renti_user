@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-import '../../../../../utils/app_icons.dart';
-import '../../../../../utils/app_strings.dart';
 import 'hsbc_méxico_card.dart';
 
 class PaymentSection extends StatefulWidget {
@@ -49,8 +49,8 @@ class _PaymentSectionState extends State<PaymentSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.totalAmount,
+               CustomText(
+                text: AppStrings.totalAmount.tr,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: AppColors.primaryColor ,

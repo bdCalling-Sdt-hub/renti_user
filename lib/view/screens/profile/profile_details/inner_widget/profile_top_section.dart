@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/core/route/app_route.dart%20';
+import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/view/screens/profile/edit_profile/edit_profile_controller/edit_profile_controller.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
+import 'package:renti_user/view/widgets/image/custom_image.dart';
+import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-import '../../../../../core/route/app_route.dart';
-import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_icons.dart';
-import '../../../../../utils/app_strings.dart';
-import '../../../../widgets/image/custom_image.dart';
-import '../../../../widgets/text/custom_text.dart';
 
 class ProfileTopSection extends StatelessWidget {
 
@@ -15,7 +15,7 @@ class ProfileTopSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+       var editProfileController = Get.put(EditProfileController());
     return GetBuilder<ProfileDetailsController>(
       builder: (controller) => Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -75,7 +75,15 @@ class ProfileTopSection extends StatelessWidget {
             ),
             GestureDetector(
                 onTap: () {
+                  editProfileController.nameController.text = controller.fullNameController.text;
+                  editProfileController.numberController.text = controller.phoneNumberController.text;
+                  editProfileController.emailController.text = controller.emailController.text;
+                  editProfileController.addressController.text = controller.addressController.text;
+                  editProfileController.profileImage = controller.profileImage;
+                  editProfileController.userId = controller.userId;
                   Get.toNamed(AppRoute.profileSettingsScreen);
+                  print(controller.addressController.text);
+                  print(controller.fullNameController.text);
                 },
                 child: const CustomImage(
                   imageSrc: AppIcons.editProfileIcon,

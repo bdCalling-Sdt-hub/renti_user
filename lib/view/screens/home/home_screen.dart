@@ -8,8 +8,8 @@ import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:renti_user/view/screens/home/home_controller/home_controller.dart';
 import 'package:renti_user/view/screens/home/home_repo/home_repo.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/all_cars/home_luxury_car_section.dart';
-import 'package:renti_user/view/screens/home/inner_widgets/home_popular_car/home_popular_car_section.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_car_section.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/home_offer_car/home_offer_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_top_section.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/drawer/custom_drawer.dart';
@@ -35,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.initialState();
+
     });
     super.initState();
   }
@@ -45,11 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       top: false,
       bottom: false,
       child: GetBuilder<HomeController>(
-        builder: (controller) => controller.isLoading ? const Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
-          ),
-        ) : Scaffold(
+        builder: (controller) =>  Scaffold(
           key: scaffoldKey,
           drawer: const CustomDrawer(),
           appBar: CustomAppBar(
@@ -66,22 +63,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: GestureDetector(
                     onTap: ()=>Get.toNamed(AppRoute.searchScreen),
                     child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      margin:  const EdgeInsets.symmetric(horizontal: 16),
                       padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                       const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                       decoration: BoxDecoration(
                         color: AppColors.whiteLight,
                         border: Border.all(color: AppColors.whiteNormalActive),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child:  const Row(
+                      child:  Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(Icons.search,
+                          const Icon(Icons.search,
                               size: 20, color: AppColors.whiteNormalActive),
                           CustomText(
-                              text:AppStrings.searchCar,
+                              text:AppStrings.searchCar.tr,
                               color: AppColors.whiteNormalActive,
                               left: 8),
                         ],
@@ -121,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller.offerCarList.isNotEmpty ? const Column(
                   children: [
                     SizedBox(height: 24),
-                    HomePopularSection(),
+                     HomePopularSection(),
                   ],
                 ) : const SizedBox(),
                 controller.luxuryCarList.isNotEmpty ? const Column(

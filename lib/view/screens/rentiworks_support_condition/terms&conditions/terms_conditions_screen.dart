@@ -33,9 +33,9 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
   Widget build(BuildContext context) {
     return  SafeArea(child: Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: const CustomAppBar(
+      appBar:  CustomAppBar(
         appBarContent: CustomBack(
-          text:AppStrings.termsConditions,
+          text:AppStrings.termsConditions.tr,
         ),
       ),
       body:LayoutBuilder(

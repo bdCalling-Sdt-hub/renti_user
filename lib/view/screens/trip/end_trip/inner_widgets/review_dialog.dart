@@ -32,7 +32,7 @@ class _ReviewDialogState extends State<ReviewDialog> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(AppStrings.review),
+                   Text(AppStrings.review.tr),
                   GestureDetector(
                     onTap: (){
                       Get.back();
@@ -52,8 +52,8 @@ class _ReviewDialogState extends State<ReviewDialog> {
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 children: [
-                  const CustomText(
-                    text: AppStrings.giveReviewTitle,
+                   CustomText(
+                    text: AppStrings.giveReviewTitle.tr,
                     color: AppColors.blackNormal,
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
@@ -78,7 +78,7 @@ class _ReviewDialogState extends State<ReviewDialog> {
                     ),
                     maxLines: 3,
                     decoration: InputDecoration(
-                        hintText: "give your review here........",
+                        hintText: "give your review here........".tr,
 
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
@@ -102,7 +102,7 @@ class _ReviewDialogState extends State<ReviewDialog> {
                     onPressed: () {
 
                     },
-                    titleText: AppStrings.sendReview,
+                    titleText: AppStrings.sendReview.tr,
                     titleSize: 18,
                     titleWeight: FontWeight.w600,
                   ),

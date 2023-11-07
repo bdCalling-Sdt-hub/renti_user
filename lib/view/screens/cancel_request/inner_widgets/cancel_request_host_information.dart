@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/socket_service.dart';
+import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_strings.dart';
 
 class CancelRequestHostInfo extends StatefulWidget {
   
@@ -33,15 +33,22 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.hostInformation,
+                 CustomText(
+                  text: AppStrings.hostInformation.tr,
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
                   color: AppColors.blackNormal,
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(AppRoute.inboxScreen, arguments: widget.socketService);
+                    Get.toNamed(AppRoute.inboxScreen, arguments: [
+                        controller.rentHistoryModel.userWiseRent![widget.index].userId!.id,
+                        controller.rentHistoryModel.userWiseRent![widget.index].hostId!.fullName,
+                      controller.rentHistoryModel.userWiseRent![widget.index].hostId!.image,
+                      controller.rentHistoryModel.userWiseRent![widget.index].hostId!.id
+                        ]
+
+                    );
                   },
                   child: Container(
                     padding: const EdgeInsetsDirectional.symmetric(horizontal: 6, vertical: 6),
@@ -58,8 +65,8 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.name,
+                 CustomText(
+                  text: AppStrings.name.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteDarkActive,
@@ -91,8 +98,8 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.contact,
+                 CustomText(
+                  text: AppStrings.contact.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteDarkActive,
@@ -108,8 +115,8 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.email,
+                 CustomText(
+                  text: AppStrings.email.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteDarkActive,
@@ -125,15 +132,15 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.address,
+                 CustomText(
+                  text: AppStrings.address.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteDarkActive,
                   bottom: 24,
                 ),
                 CustomText(
-                  text: controller.rentUser[widget.index].hostId?.address ?? "---",
+                  text: controller.rentUser[widget.index].hostId?.address?.city ?? "---",
                   color: AppColors.blackNormal,
                   bottom: 24,
                 ),

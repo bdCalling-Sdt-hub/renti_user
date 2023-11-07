@@ -63,7 +63,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                     const Icon(Icons.arrow_back_ios_new,color: AppColors.blackNormal,size: 18,),
                      const SizedBox(width: 8),
                     Text(
-                      "Trip Details",
+                      "Trip Details".tr,
                       style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
@@ -99,7 +99,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                 onPressed: () async{
                   await StripeApi().makePayment(amount: "1000", currency: "INR", index: index);
                 },
-                titleText: "Make Payment",
+                titleText: "Make Payment".tr,
                 buttonWidth: MediaQuery.of(context).size.width,
               ),
             )

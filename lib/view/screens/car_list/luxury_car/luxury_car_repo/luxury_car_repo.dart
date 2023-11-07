@@ -8,7 +8,7 @@ class LuxuryCarRepo{
 
    LuxuryCarRepo({required this.apiService});
 
-   fetchLuxuryCar() async{
+  Future<ApiResponseModel> fetchLuxuryCar() async{
 
      String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.luxuryCarEndPoint}";
      String requestMethod = ApiResponseMethod.getMethod;

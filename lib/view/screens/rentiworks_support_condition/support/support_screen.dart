@@ -45,7 +45,7 @@ class _SupportScreenState extends State<SupportScreen> {
       backgroundColor: AppColors.primaryColor,
       appBar:  CustomAppBar(
         appBarContent: CustomBack(
-          text:AppStrings.support,
+          text:AppStrings.support.tr,
         ),
       ),
       body: LayoutBuilder(

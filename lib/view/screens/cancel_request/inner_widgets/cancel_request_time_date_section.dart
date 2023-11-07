@@ -17,8 +17,8 @@ class CancelRequestTimeDateSection extends StatelessWidget {
       builder: (controller) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomText(
-            text: "Time & Date",
+           CustomText(
+            text: "Time & Date".tr,
             fontWeight: FontWeight.w600,
             fontSize: 18,
             color: AppColors.blackNormal,
@@ -27,15 +27,15 @@ class CancelRequestTimeDateSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: "From",
+               CustomText(
+                text: "From".tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
                 bottom: 12,
               ),
               CustomText(
-                text: DateConverter.isoStringToLocalDateOnly(controller.rentUser[index].startDate ?? "---"),
+                text: DateConverter.isoStringToLocalDateOnly(controller.rentUser[index].startDate.toString()?? "---"),
                 color: AppColors.blackNormal,
                 bottom: 12,
                 right: 8,
@@ -45,15 +45,15 @@ class CancelRequestTimeDateSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: "Until",
+               CustomText(
+                text: "Until".tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
                 bottom: 12,
               ),
               CustomText(
-                text: DateConverter.isoStringToLocalDateOnly(controller.rentUser[index].endDate ?? "---"),
+                text: DateConverter.isoStringToLocalDateOnly(controller.rentUser[index].endDate.toString() ?? "---"),
                 color: AppColors.blackNormal,
                 bottom: 12,
                 right: 8,

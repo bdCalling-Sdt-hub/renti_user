@@ -17,8 +17,8 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey = "pk_test_51NrcLcSJXOqjAG5dxabD5XzUNXE0S3xjn4tFp8aJqZZR4SsQOCZ3SM9MNTbFgCYopG7R8d0XcgvvY9AM6SIxCQKX00mzWSTRUm";
   await di.initDependency();
-  final socketService = SocketService();
-  socketService.socket;
+  // final socketService = SocketService();
+  // socketService.socket;
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       locale: const Locale("en","US"),
-       //locale: Get.find<LanguageController>().language.val ? const Locale("en" , "US") : const Locale("fr", "CA"),
+        //locale: Get.find<LanguageController>().language.val ? const Locale("es" , "US") : const Locale("fr", "MX"),
       fallbackLocale:const Locale("en" , "US"),
        translations: Language(),
        debugShowCheckedModeBanner: false,

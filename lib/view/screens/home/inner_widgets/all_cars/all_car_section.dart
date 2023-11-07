@@ -24,8 +24,8 @@ class HomeLuxuryCarSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: "Luxury Cars",
+               CustomText(
+                text: "Luxury Cars".tr,
                 color: AppColors.blackNormal,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -34,8 +34,8 @@ class HomeLuxuryCarSection extends StatelessWidget {
                 onTap: (){
                   Get.toNamed(AppRoute.allCarScreen);
                 },
-                child:  const CustomText(
-                  text: AppStrings.seeAll,
+                child:   CustomText(
+                  text: AppStrings.seeAll.tr,
                   color: AppColors.primaryColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w500,

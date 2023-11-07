@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/car_details/car_details_controller/car_details_controller.dart';
@@ -16,12 +17,13 @@ class CarDetailsCarInfoSection extends StatefulWidget {
 class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CarDetailsController>(builder: (controller){
-      return Column(
+    return GetBuilder<CarDetailsController>(builder: (controller) {
+      return controller.isLoading ? const Center(
+        child: CircularProgressIndicator(),) : Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomText(
-            text: AppStrings.carInformation,
+           CustomText(
+            text: AppStrings.carInformation.tr,
             fontWeight: FontWeight.w600,
             fontSize: 18,
             color: AppColors.blackNormal,
@@ -31,8 +33,8 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.totalMileage,
+               CustomText(
+                text: AppStrings.totalMileage.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
@@ -48,8 +50,8 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.color,
+               CustomText(
+                text: AppStrings.color.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
@@ -65,8 +67,8 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.capacity,
+               CustomText(
+                text: AppStrings.capacity.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
@@ -82,8 +84,8 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.gearType,
+               CustomText(
+                text: AppStrings.gearType.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
@@ -96,24 +98,26 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
               ),
             ],
           ),
-          const Row(
+           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
-                text: AppStrings.fuelTankCapacity,
+                text: AppStrings.fuelTankCapacity.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
               ),
-              CustomText(
-                text: '70 L',
+              const CustomText(
+                text: "80/L",
+                // text: controller.carDetailsModel.cars!..toString(),
                 color: AppColors.blackNormal,
               ),
             ],
           ),
         ],
       );
-
-    });
+    }
+    );
   }
 }
+

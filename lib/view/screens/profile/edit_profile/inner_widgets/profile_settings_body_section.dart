@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
-import 'package:renti_user/view/screens/profile/profile_settings/inner_widgets/profile_image_section.dart';
+import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/profile/edit_profile/edit_profile_controller/edit_profile_controller.dart';
+import 'package:renti_user/view/screens/profile/edit_profile/inner_widgets/profile_image_section.dart';
+import 'package:renti_user/view/widgets/image/custom_image.dart';
+import 'package:renti_user/view/widgets/text/custom_text.dart';
+import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
 
-import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_icons.dart';
-import '../../../../../utils/app_strings.dart';
-import '../../../../widgets/image/custom_image.dart';
-import '../../../../widgets/text/custom_text.dart';
-import '../../../../widgets/text_field/custom_text_field.dart';
 
 class ProfileSettingsBodySection extends StatelessWidget {
   const ProfileSettingsBodySection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProfileDetailsController>(
+    return GetBuilder<EditProfileController>(
       builder: (controller) => Column(
         children: [
           ProfileImageSection(imagePath: controller.profileImage, isEdit: true),
@@ -25,24 +25,25 @@ class ProfileSettingsBodySection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomText(text: AppStrings.fullName, bottom: 12),
+                 CustomText(text: AppStrings.fullName.tr, bottom: 12),
                 CustomTextField(
-                  textEditingController: controller.fullNameController,
-                  hintText: AppStrings.typeFullName,
+                  textEditingController: controller.nameController,
+                  hintText: AppStrings.typeFullName.tr,
                   hintStyle: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: AppColors.whiteNormalActive),
                 ),
-                const CustomText(
-                  text: AppStrings.email,
+                  CustomText(
+                  text: AppStrings.email.tr,
                   top: 16,
                   bottom: 12,
                 ),
                 CustomTextField(
+                  readOnly: true,
                   textEditingController: controller.emailController,
                   textInputAction: TextInputAction.done,
-                  hintText: AppStrings.typeFullName,
+                  hintText: AppStrings.typeEmail,
                   hintStyle: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -58,8 +59,8 @@ class ProfileSettingsBodySection extends StatelessWidget {
                     }
                   },
                 ),
-                const CustomText(
-                  text: AppStrings.phoneNumber,
+                 CustomText(
+                  text: AppStrings.phoneNumber.tr,
                   bottom: 12,
                   top: 16,
                 ),
@@ -79,7 +80,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                               width: 1.0,
                               style: BorderStyle.solid),
                         ),
-                        child: const Row(
+                        child:  const Row(
                           children: [
                             CustomImage(
                                 imageSrc: AppIcons.flafMaxico,
@@ -97,7 +98,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: CustomTextField(
-                        textEditingController: controller.phoneNumberController,
+                        textEditingController: controller.numberController,
                         keyboardType: TextInputType.phone,
                         hintText: AppStrings.enterPhoneNumber,
                         hintStyle: GoogleFonts.poppins(
@@ -108,7 +109,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                     ),
                   ],
                 ),
-                const CustomText(text: AppStrings.address, top: 16, bottom: 12),
+                CustomText(text: AppStrings.address.tr, top: 16, bottom: 12),
                 Container(
                   height: 100,
                   padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),

@@ -34,7 +34,7 @@ class AppStrings{
   static const String signIn = "Sign In";
   static const String enterEmail = "Enter your email";
   static const String enterPassword = "Enter your password";
-  static const String notBeEmpty = "This field can not be empty";
+  static const String notBeEmpty = "This filed can not be empty";
   static const String enterValidEmail = "Please enter a valid email";
   static const String passwordShouldBe = "Password should be more than 6 characters";
   static const String password = "Password";

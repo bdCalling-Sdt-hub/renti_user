@@ -1,6 +1,6 @@
+
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
@@ -8,8 +8,8 @@ import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_model/profile_details_model.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_repo/profile_details_repo.dart';
 import 'package:renti_user/view/screens/profile/user_post_model/user_post_model.dart';
-class ProfileDetailsController extends GetxController{
 
+class ProfileDetailsController extends GetxController{
   ProfileDetailsRepo profileDetailsRepo;
   ProfileDetailsController({required this.profileDetailsRepo});
 
@@ -21,8 +21,8 @@ class ProfileDetailsController extends GetxController{
   String dob = "";
   String phoneNumber = "";
   String address = "";
-  
   String profileImage = "";
+  String userId = "";
 
   void initialState() async{
 
@@ -35,19 +35,25 @@ class ProfileDetailsController extends GetxController{
     update();
   }
 
+
   Future<void> loadProfileData() async{
 
     ApiResponseModel responseModel = await profileDetailsRepo.fetchProfileData();
 
     if(responseModel.statusCode == 200){
       ProfileDetailsModel profileDetailsModel = ProfileDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
-
       username = profileDetailsModel.user?.fullName ?? "";
       email = profileDetailsModel.user?.email ?? "";
       dob = profileDetailsModel.user?.dateOfBirth ?? "";
       phoneNumber = profileDetailsModel.user?.phoneNumber ?? "";
       address = profileDetailsModel.user?.address ?? "";
+      userId = profileDetailsModel.user?.id ?? "";
       profileImage = profileDetailsModel.user?.image ?? "";
+
+      fullNameController.text = username;
+      addressController.text = address;
+      emailController.text = email;
+      phoneNumberController.text = phoneNumber;
     }
   }
 
@@ -64,7 +70,6 @@ class ProfileDetailsController extends GetxController{
   updateProfile() async{
     isSubmit = true;
     update();
-
     UserPostModel model = UserPostModel(
         fullName: fullNameController.text,
         email: emailController.text,
@@ -76,7 +81,7 @@ class ProfileDetailsController extends GetxController{
     );
 
     await profileDetailsRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.address, addressController.text);
-    await profileDetailsRepo.updateUser(model);
+    // await profileDetailsRepo.updateUser(model);
 
     isSubmit = false;
     update();
@@ -85,7 +90,6 @@ class ProfileDetailsController extends GetxController{
   loadData() async{
     isLoading = true;
     update();
-
     fullNameController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.fullName) ?? "";
     emailController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.email) ?? "";
     phoneNumberController.text = profileDetailsRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.phoneNumber) ?? "";
@@ -93,5 +97,13 @@ class ProfileDetailsController extends GetxController{
 
     isLoading = false;
     update();
+  }
+
+  clearData (){
+    fullNameController.text = "";
+    phoneNumberController.text = "";
+    addressController.text = "";
+    update();
+
   }
 }

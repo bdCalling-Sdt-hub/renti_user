@@ -1,34 +1,38 @@
 // To parse this JSON data, do
 //
-//     final carDetailsModel = carDetailsModelFromJson(jsonString);
+//     final offerCarModel = offerCarModelFromJson(jsonString);
 
 import 'dart:convert';
 
-CarDetailsModel carDetailsModelFromJson(String str) => CarDetailsModel.fromJson(json.decode(str));
+OfferCarModel offerCarModelFromJson(String str) => OfferCarModel.fromJson(json.decode(str));
 
-String carDetailsModelToJson(CarDetailsModel data) => json.encode(data.toJson());
+String offerCarModelToJson(OfferCarModel data) => json.encode(data.toJson());
 
-class CarDetailsModel {
+class OfferCarModel {
   String? message;
-  Cars? cars;
+  List<OfferCar>? offerCars;
+  Pagination? pagination;
 
-  CarDetailsModel({
+  OfferCarModel({
     this.message,
-    this.cars,
+    this.offerCars,
+    this.pagination,
   });
 
-  factory CarDetailsModel.fromJson(Map<String, dynamic> json) => CarDetailsModel(
+  factory OfferCarModel.fromJson(Map<String, dynamic> json) => OfferCarModel(
     message: json["message"],
-    cars: json["cars"] == null ? null : Cars.fromJson(json["cars"]),
+    offerCars: json["offerCars"] == null ? [] : List<OfferCar>.from(json["offerCars"]!.map((x) => OfferCar.fromJson(x))),
+    pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
   );
 
   Map<String, dynamic> toJson() => {
     "message": message,
-    "cars": cars?.toJson(),
+    "offerCars": offerCars == null ? [] : List<dynamic>.from(offerCars!.map((x) => x.toJson())),
+    "pagination": pagination?.toJson(),
   };
 }
 
-class Cars {
+class OfferCar {
   String? id;
   String? carModelName;
   List<String>? image;
@@ -43,6 +47,7 @@ class Cars {
   String? carSeats;
   String? totalRun;
   String? hourlyRate;
+  String? offerHourlyRate;
   String? registrationDate;
   int? popularity;
   String? gearType;
@@ -54,8 +59,9 @@ class Cars {
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
+  String? paymentId;
 
-  Cars({
+  OfferCar({
     this.id,
     this.carModelName,
     this.image,
@@ -70,6 +76,7 @@ class Cars {
     this.carSeats,
     this.totalRun,
     this.hourlyRate,
+    this.offerHourlyRate,
     this.registrationDate,
     this.popularity,
     this.gearType,
@@ -81,9 +88,10 @@ class Cars {
     this.createdAt,
     this.updatedAt,
     this.v,
+    this.paymentId,
   });
 
-  factory Cars.fromJson(Map<String, dynamic> json) => Cars(
+  factory OfferCar.fromJson(Map<String, dynamic> json) => OfferCar(
     id: json["_id"],
     carModelName: json["carModelName"],
     image: json["image"] == null ? [] : List<String>.from(json["image"]!.map((x) => x)),
@@ -98,6 +106,7 @@ class Cars {
     carSeats: json["carSeats"],
     totalRun: json["totalRun"],
     hourlyRate: json["hourlyRate"],
+    offerHourlyRate: json["offerHourlyRate"],
     registrationDate: json["registrationDate"],
     popularity: json["popularity"],
     gearType: json["gearType"],
@@ -109,6 +118,7 @@ class Cars {
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
+    paymentId: json["paymentId"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -126,6 +136,7 @@ class Cars {
     "carSeats": carSeats,
     "totalRun": totalRun,
     "hourlyRate": hourlyRate,
+    "offerHourlyRate": offerHourlyRate,
     "registrationDate": registrationDate,
     "popularity": popularity,
     "gearType": gearType,
@@ -137,6 +148,7 @@ class Cars {
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
+    "paymentId": paymentId,
   };
 }
 
@@ -146,14 +158,13 @@ class CarOwner {
   String? email;
   String? phoneNumber;
   String? gender;
-  Address? address;
+  dynamic address;
   String? dateOfBirth;
   String? password;
   List<String>? kyc;
   String? rfc;
   String? ine;
   String? image;
-  BankInfo? bankInfo;
   String? role;
   bool? emailVerified;
   bool? approved;
@@ -162,6 +173,7 @@ class CarOwner {
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
+  BankInfo? bankInfo;
   String? stripeConnectAccountId;
 
   CarOwner({
@@ -177,7 +189,6 @@ class CarOwner {
     this.rfc,
     this.ine,
     this.image,
-    this.bankInfo,
     this.role,
     this.emailVerified,
     this.approved,
@@ -186,6 +197,7 @@ class CarOwner {
     this.createdAt,
     this.updatedAt,
     this.v,
+    this.bankInfo,
     this.stripeConnectAccountId,
   });
 
@@ -195,14 +207,13 @@ class CarOwner {
     email: json["email"],
     phoneNumber: json["phoneNumber"],
     gender: json["gender"],
-    address: json["address"] == null ? null : Address.fromJson(json["address"]),
+    address: json["address"],
     dateOfBirth: json["dateOfBirth"],
     password: json["password"],
     kyc: json["KYC"] == null ? [] : List<String>.from(json["KYC"]!.map((x) => x)),
     rfc: json["RFC"],
     ine: json["ine"],
     image: json["image"],
-    bankInfo: json["bankInfo"] == null ? null : BankInfo.fromJson(json["bankInfo"]),
     role: json["role"],
     emailVerified: json["emailVerified"],
     approved: json["approved"],
@@ -211,6 +222,7 @@ class CarOwner {
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
+    bankInfo: json["bankInfo"] == null ? null : BankInfo.fromJson(json["bankInfo"]),
     stripeConnectAccountId: json["stripeConnectAccountId"],
   );
 
@@ -220,14 +232,13 @@ class CarOwner {
     "email": email,
     "phoneNumber": phoneNumber,
     "gender": gender,
-    "address": address?.toJson(),
+    "address": address,
     "dateOfBirth": dateOfBirth,
     "password": password,
     "KYC": kyc == null ? [] : List<dynamic>.from(kyc!.map((x) => x)),
     "RFC": rfc,
     "ine": ine,
     "image": image,
-    "bankInfo": bankInfo?.toJson(),
     "role": role,
     "emailVerified": emailVerified,
     "approved": approved,
@@ -236,35 +247,40 @@ class CarOwner {
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
+    "bankInfo": bankInfo?.toJson(),
     "stripeConnectAccountId": stripeConnectAccountId,
   };
 }
 
-class Address {
+class AddressClass {
   String? city;
-  String? country;
   String? line1;
+  String? postalCode;
   String? state;
+  String? country;
 
-  Address({
+  AddressClass({
     this.city,
-    this.country,
     this.line1,
+    this.postalCode,
     this.state,
+    this.country,
   });
 
-  factory Address.fromJson(Map<String, dynamic> json) => Address(
+  factory AddressClass.fromJson(Map<String, dynamic> json) => AddressClass(
     city: json["city"],
-    country: json["country"],
     line1: json["line1"],
+    postalCode: json["postal_code"],
     state: json["state"],
+    country: json["country"],
   );
 
   Map<String, dynamic> toJson() => {
     "city": city,
-    "country": country,
     "line1": line1,
+    "postal_code": postalCode,
     "state": state,
+    "country": country,
   };
 }
 
@@ -289,5 +305,37 @@ class BankInfo {
     "account_number": accountNumber,
     "account_holder_name": accountHolderName,
     "account_holder_type": accountHolderType,
+  };
+}
+
+class Pagination {
+  int? totalDocuments;
+  int? totalPage;
+  int? currentPage;
+  dynamic previousPage;
+  dynamic nextPage;
+
+  Pagination({
+    this.totalDocuments,
+    this.totalPage,
+    this.currentPage,
+    this.previousPage,
+    this.nextPage,
+  });
+
+  factory Pagination.fromJson(Map<String, dynamic> json) => Pagination(
+    totalDocuments: json["totalDocuments"],
+    totalPage: json["totalPage"],
+    currentPage: json["currentPage"],
+    previousPage: json["previousPage"],
+    nextPage: json["nextPage"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "totalDocuments": totalDocuments,
+    "totalPage": totalPage,
+    "currentPage": currentPage,
+    "previousPage": previousPage,
+    "nextPage": nextPage,
   };
 }

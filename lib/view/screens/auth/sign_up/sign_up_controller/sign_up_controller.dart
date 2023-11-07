@@ -1,5 +1,5 @@
+import 'dart:convert';
 import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -124,9 +124,7 @@ class SignUpController extends GetxController{
     try {
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse(
-            "${ApiUrlContainer.baseUrl}${ApiUrlContainer.signUpEndPoint}"),
-      );
+        Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.signUpEndPoint}"));
 
       // Add the KYC files to the request
       for (var file in kycDocFiles) {
@@ -165,6 +163,7 @@ class SignUpController extends GetxController{
         "dateOfBirth": "${dateController.text}/${monthController.text}/${yearController.text}",
         "password": passwordController.text,
         "ine": ineNumberController.text,
+
         "role": "user"
       };
 
@@ -179,7 +178,11 @@ class SignUpController extends GetxController{
       if (response.statusCode == 201) {
         gotoNextStep();
         print('Files uploaded successfully');
-      } else {
+      } else if(response.statusCode ==409){
+        var response1 = await http.Response.fromStream(response);
+        print(jsonDecode(response1.body));
+        AppUtils.errorToastMessage('User already exists! Please login');
+      }else{
         print('File upload failed with status code: ${response.statusCode}');
         AppUtils.errorToastMessage("File upload failed");
         print('Response body: ${response.stream.bytesToString()}');

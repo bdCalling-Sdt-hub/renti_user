@@ -21,7 +21,7 @@ class _SelectPhotoBottomNavSectionState extends State<SelectPhotoBottomNavSectio
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
           child: controller.isSubmit ? const CustomElevatedLoadingButton() : CustomElevatedButton(onPressed: (){
             controller.signUpUser();
-          }, titleText: "Continue"),
+          }, titleText: "Continue".tr),
         );
       }
     );

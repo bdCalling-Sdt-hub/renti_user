@@ -17,6 +17,7 @@ class ProfileDetails extends StatefulWidget {
 }
 
 class _ProfileDetailsState extends State<ProfileDetails> {
+
   @override
   Widget build(BuildContext context) {
 
@@ -42,8 +43,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CustomText(
-                        text: AppStrings.email,
+                       CustomText(
+                        text: "Email".tr,
                         fontSize: 12,
                         color: AppColors.whiteDark,
                         left: 14,
@@ -77,8 +78,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CustomText(
-                        text: AppStrings.dateOfBirth,
+                       CustomText(
+                        text: "Date of Birth".tr,
                         fontSize: 12,
                         color: AppColors.whiteDark,
                         left: 14,
@@ -112,8 +113,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CustomText(
-                        text: AppStrings.phoneNumber,
+                       CustomText(
+                        text: "Phone Number".tr,
                         fontSize: 12,
                         color: AppColors.whiteDark,
                         left: 14,
@@ -147,8 +148,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CustomText(
-                        text: AppStrings.address,
+                       CustomText(
+                        text: "Address".tr,
                         fontSize: 12,
                         color: AppColors.whiteDark,
                         left: 14,

@@ -49,9 +49,9 @@ class _ForgotPassOTPState extends State<ForgotPassOTP> {
       child: Scaffold(
         extendBody: true,
         backgroundColor: AppColors.primaryColor,
-        appBar: const CustomAppBar(
+        appBar:  CustomAppBar(
           appBarContent: CustomBack(
-            text: AppStrings.otp,
+            text: AppStrings.otp.tr,
           ),
         ),
         body: LayoutBuilder(

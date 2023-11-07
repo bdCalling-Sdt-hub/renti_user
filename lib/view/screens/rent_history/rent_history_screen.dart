@@ -32,7 +32,7 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(RentHistoryRepo(apiService: Get.find()));
     final controller = Get.put(RentHistoryController(rentHistoryRepo: Get.find()));
-    socketService.socket;
+    // socketService.socket;
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.initialState();
@@ -61,8 +61,8 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
                 size: 18,
                 color: AppColors.blackNormal,
               )),
-          const CustomText(
-            text: AppStrings.rentiHistory,
+           CustomText(
+            text: AppStrings.rentiHistory.tr,
             color: AppColors.blackNormal,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -82,7 +82,7 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
                 const CustomImage(imageSrc: "assets/images/no_car.svg", size: 150),
                 const SizedBox(height: 12),
                 Text(
-                    "No Data Found", textAlign: TextAlign.center, style: GoogleFonts.poppins(
+                    "No Data Found".tr, textAlign: TextAlign.center, style: GoogleFonts.poppins(
                     color: AppColors.blackNormal,
                     fontSize: 14,
                     fontWeight: FontWeight.w500

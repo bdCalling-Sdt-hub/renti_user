@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/intro/inner_widgets/intro_bottom_section.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 
 class IntroScreen extends StatefulWidget {
+
   const IntroScreen({super.key});
 
   @override
