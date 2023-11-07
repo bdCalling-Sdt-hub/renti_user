@@ -84,7 +84,8 @@ class RentHistorySection extends StatelessWidget {
                                   children: [
                                     const CustomImage(imageSrc: AppIcons.location,size: 14, imageColor: AppColors.whiteDarkActive),
                                     CustomText(
-                                      text: controller.rentUser[index].hostId!.address.toString(),
+                                      text: "",
+                                      //text: controller.rentUser[index].hostId!.address!.city.toString(),
                                       fontSize: 12,
                                       color: AppColors.whiteDarkActive,
                                       left: 8,
