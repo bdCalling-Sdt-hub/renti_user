@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/view/screens/home/home_screen.dart';
-import 'package:renti_user/view/screens/message/inbox/inbox_screen.dart';
-import 'package:renti_user/view/screens/message/messages/messages_screen.dart';
+import 'package:renti_user/view/screens/message/messages_screen.dart';
+
 
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_screen.dart';
 import 'package:renti_user/view/screens/search/search_screen.dart';
@@ -102,8 +102,8 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
     }
     else if (index == 2) {
       if (!(widget.currentIndex == 2)) {
-       //Get.to(() =>  const MessageScreen());
-       Get.to(() =>  const InboxScreen());
+       Get.to(() =>  const MessageScreen());
+       // Get.to(() =>   InboxScreen());
       }
     }
     else if (index == 3) {

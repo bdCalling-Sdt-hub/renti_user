@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_utils.dart';
-import 'package:renti_user/view/screens/trip_details/trip_details_model/trip_details_model.dart';
 
 class StripeApi {
   createPaymentIntent({required String amount, required String currency}) async {
