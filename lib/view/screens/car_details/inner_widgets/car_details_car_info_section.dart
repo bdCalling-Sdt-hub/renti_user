@@ -108,7 +108,7 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
                 color: AppColors.whiteDarkActive,
               ),
               const CustomText(
-                text: "80/L",
+                text: "---",
                 // text: controller.carDetailsModel.cars!..toString(),
                 color: AppColors.blackNormal,
               ),

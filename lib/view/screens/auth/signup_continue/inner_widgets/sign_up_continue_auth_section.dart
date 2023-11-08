@@ -148,7 +148,7 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                   return null;
                 }
               },
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               hintText: "MM-YY".tr,
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,

@@ -49,7 +49,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                   if(controller.isLoading){
                     const Center(child: CircularProgressIndicator(),);
                   }
-                  return controller.content== null&&controller.content.isEmpty ? const NoDataFoundWidget(): SingleChildScrollView(
+                  return controller.content==""&&controller.content.isEmpty ? const NoDataFoundWidget(): SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
                     child: Column(

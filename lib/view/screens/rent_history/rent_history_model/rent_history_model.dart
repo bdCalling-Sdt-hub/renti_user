@@ -66,8 +66,8 @@ class UserWiseRent {
   String? totalAmount;
   String? totalHours;
   String? requestStatus;
-  DateTime? startDate;
-  DateTime? endDate;
+  String? startDate;
+  String? endDate;
   String? payment;
   UserId? userId;
   CarId? carId;
@@ -99,8 +99,8 @@ class UserWiseRent {
     totalAmount: json["totalAmount"],
     totalHours: json["totalHours"],
     requestStatus: json["requestStatus"],
-    startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
-    endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
+    startDate: json["startDate"],
+    endDate: json["endDate"],
     payment: json["payment"],
     userId: json["userId"] == null ? null : UserId.fromJson(json["userId"]),
     carId: json["carId"] == null ? null : CarId.fromJson(json["carId"]),
@@ -116,8 +116,8 @@ class UserWiseRent {
     "totalAmount": totalAmount,
     "totalHours": totalHours,
     "requestStatus": requestStatus,
-    "startDate": startDate?.toIso8601String(),
-    "endDate": endDate?.toIso8601String(),
+    "startDate": startDate,
+    "endDate": endDate,
     "payment": payment,
     "userId": userId?.toJson(),
     "carId": carId?.toJson(),

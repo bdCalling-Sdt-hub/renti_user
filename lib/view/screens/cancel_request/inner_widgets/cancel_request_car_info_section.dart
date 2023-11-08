@@ -99,8 +99,8 @@ class CancelRequestCarInfoSection extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 color: AppColors.whiteDarkActive,
               ),
-              CustomText(
-                text: '---',
+              const CustomText(
+                text: "---",
                 color: AppColors.blackNormal,
               ),
             ],

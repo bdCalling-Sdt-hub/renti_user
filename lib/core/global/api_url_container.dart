@@ -1,6 +1,7 @@
 class ApiUrlContainer{
 
   static const String baseUrl = "http://192.168.10.14:3001/api/";
+  //static const String baseUrl = "104.131.72.121:3000:3001/api/";
 
   static const String signInEndPoint = "user/sign-in";
   static const String updateProfile = "user/update/";
@@ -9,9 +10,7 @@ class ApiUrlContainer{
   static const String verifyEmailEndPoint = "user/verify";
   static const String resetPasswordEndPoint = "user/update-password";
   static const String logoutEndPoint = "user/logout";
-
   static const String changePasswordEndPoint = "user/change-password";
-
   static const String profileDetailsEndPoint = "user/user-info";
   static const String profileUpdateEndPoint = "user/update";
   static const String privacyPolicy = "privacyPolicy/all";

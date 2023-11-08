@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
@@ -104,12 +105,10 @@ class _FromUntilSectionState extends State<FromUntilSection> {
             buttonWidth: MediaQuery.of(context).size.width,
             onPressed: () {
               controller.sentRentRequest(
-                carId: widget.carId,
-                startDate: controller.startTripDateController.text.toString(),
-                endDate: controller.endTripDateController.text.toString()
+                  carId: widget.carId,
+                  startDate: controller.startTripDateController.text.toString(),
+                  endDate: controller.endTripDateController.text.toString()
               );
-
-
             },
             titleText: AppStrings.sentRentRequest.tr
           ),

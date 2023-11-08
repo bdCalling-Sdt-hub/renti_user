@@ -62,6 +62,7 @@ class CarDetailsController extends GetxController{
         AppUtils.errorToastMessage("Request send failed");
       }
 
+
     clearData();
     isSubmit = false;
     update();

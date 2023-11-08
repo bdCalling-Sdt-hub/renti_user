@@ -73,7 +73,7 @@ class RentHistorySection extends StatelessWidget {
                                   children: [
                                     const CustomImage(imageSrc: AppIcons.calenderIcon,size: 14,imageColor: AppColors.whiteDarkActive,),
                                     CustomText(
-                                      text: DateConverter.isoStringToLocalFormattedDateOnly(controller.rentUser[index].startDate.toString()),
+                                      text: DateConverter.isoStringToLocalFormattedDateOnly(controller.rentUser[index].startDate ?? "---"),
                                       fontSize: 12,
                                       color: AppColors.whiteDarkActive,
                                       left: 8,
@@ -81,12 +81,11 @@ class RentHistorySection extends StatelessWidget {
                                   ],
                                 ),
                                 const SizedBox(height: 8),
-                                Row(
+                                 Row(
                                   children: [
-                                    const CustomImage(imageSrc: AppIcons.location,size: 14, imageColor: AppColors.whiteDarkActive),
+                                    CustomImage(imageSrc: AppIcons.location,size: 14, imageColor: AppColors.whiteDarkActive),
                                     CustomText(
-                                      text: "",
-                                      //text: controller.rentUser[index].hostId!.address!.city.toString(),
+                                      text: controller.rentUser[index].hostId!.address!.city.toString(),
                                       fontSize: 12,
                                       color: AppColors.whiteDarkActive,
                                       left: 8,

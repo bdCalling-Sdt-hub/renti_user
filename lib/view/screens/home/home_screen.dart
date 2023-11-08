@@ -107,7 +107,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          body: controller.offerCarList.isEmpty && controller.luxuryCarList.isEmpty ? const NoDataFoundWidget() : SingleChildScrollView(
+          body: controller.isLoading? const Center(
+            child: CircularProgressIndicator(color: AppColors.darkBlueColor,),
+          ): controller.offerCarList.isEmpty && controller.luxuryCarList.isEmpty ? const NoDataFoundWidget() : SingleChildScrollView(
             padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
             physics: const BouncingScrollPhysics(),
             child: Column(

@@ -103,7 +103,7 @@ class RentalInfo extends StatelessWidget {
                 color: AppColors.whiteDarkActive,
               ),
               CustomText(
-                text: '70 L',
+                text: "---",
                 color: AppColors.blackNormal,
               ),
             ],
