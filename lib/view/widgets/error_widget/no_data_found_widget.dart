@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 
@@ -18,7 +19,7 @@ class NoDataFoundWidget extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            "No Data Found",
+            "No Data Found".tr,
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
                 color: const Color(0xffCCCCCC),

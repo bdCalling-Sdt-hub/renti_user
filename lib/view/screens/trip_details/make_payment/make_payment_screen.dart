@@ -132,7 +132,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
              _controller.tokenizeCard(hostId:widget.hostId,amount:200,email: "abc@gmail.com",productName:"Product Name",residenceId:widget.residenceId
              );
 
-           }, titleText: "Pay Now"),
+           }, titleText: "Pay Now".tr),
      ),
     );
   }

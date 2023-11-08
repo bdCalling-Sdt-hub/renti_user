@@ -129,18 +129,23 @@ Map<String, String> english = {
   "Please enter valid year": " enter valid year",
 
   // edit profile
-  "Profile Settings" : "Profile Settings",
+  "Profile Settings": "Profile Settings",
   "Change Photo": "Change Photo",
   "Update Profile": "Update Profile",
-  "Cancel Request" : "Cancel Request",
-
+  "Cancel Request": "Cancel Request",
 
   // trip details
-  "Make Payment" : "Make Payment",
-  "Total Amount" : "Total Amount",
-  "Sent Rent Request" : "Sent Rent Request",
+  "Make Payment": "Make Payment",
+  "Total Amount": "Total Amount",
+  "Sent Rent Request": "Sent Rent Request",
 
-
-
-
+  "Payment": "Payment",
+  "Card Number": "Card Number",
+  "Enter Your Card Number": "Enter Your Card Number",
+  "Expired Date": "Expired Date",
+  "CVV": "CVV",
+  "Enter CVV ": "Enter CVV ",
+  "Pay Now" : "Pay Now",
+  "No Data Found":"No Data Found",
+  "Messages":"Messages"
 };

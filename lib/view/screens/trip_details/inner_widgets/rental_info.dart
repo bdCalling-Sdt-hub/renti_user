@@ -96,15 +96,21 @@ class RentalInfo extends StatelessWidget {
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomText(
-                text: AppStrings.fuelTankCapacity.tr,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: AppColors.whiteDarkActive,
+              Flexible(
+                child: CustomText(
+                  maxLines: 1,overflow: TextOverflow.ellipsis,
+                  text: AppStrings.fuelTankCapacity.tr,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.whiteDarkActive,
+                ),
               ),
-              CustomText(
-                text: "---",
-                color: AppColors.blackNormal,
+              const  Flexible(
+                child:  CustomText(
+                  maxLines: 1,overflow: TextOverflow.ellipsis,
+                  text: "---",
+                  color: AppColors.blackNormal,
+                ),
               ),
             ],
           ),

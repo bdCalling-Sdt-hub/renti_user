@@ -122,10 +122,14 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
                   color: AppColors.whiteDarkActive,
                   bottom: 12,
                 ),
-                CustomText(
-                  text: controller.rentUser[widget.index].hostId?.email ?? "---",
-                  color: AppColors.blackNormal,
-                  bottom: 12,
+                const SizedBox(width: 24,),
+                Flexible(
+                  child: CustomText(
+                    maxLines: 1,overflow: TextOverflow.ellipsis,
+                    text: controller.rentUser[widget.index].hostId?.email ?? "---",
+                    color: AppColors.blackNormal,
+                    bottom: 12,
+                  ),
                 ),
               ],
             ),

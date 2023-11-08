@@ -110,7 +110,6 @@ Map<String, String> spanish = {
   "Date of Birth": "Fecha de nacimiento",
   "Phone Number": "Número de teléfono",
 
-  "No Data Found": "Datos no encontrados",
 //trip
   "End Trip": "Fin del viaje",
   "Send Review": "Enviar reseña",
@@ -126,11 +125,21 @@ Map<String, String> spanish = {
 
   // profile Edit
 
-  "Profile Settings" : "Configuración de perfil",
-"Change Photo": "Cambiar foto",
+  "Profile Settings": "Configuración de perfil",
+  "Change Photo": "Cambiar foto",
   "Update Profile": "Actualización del perfil",
-  "Cancel Request" : "Cancelar petición",
+  "Cancel Request": "Cancelar petición",
   //payment
-  "Make Payment" : "Hacer el pago",
-  "Total Amount" : "Cantidad total"
+  "Make Payment": "Hacer el pago",
+  "Total Amount": "Cantidad total",
+  "Trip Details": "Detalles del viaje",
+  "Payment": "Pago",
+  "Card Number": "Número de tarjeta",
+  "Enter Your Card Number": "Ingrese su número de tarjeta",
+  "Expired Date": "Fecha de vencimiento",
+  "CVV": "CVV",
+  "Enter CVV ": "Ingrese CVV",
+  "Pay Now": "Pagar ahora",
+  "No Data Found":"Datos no encontrados",
+  "Messages": "Mensajes"
 };

@@ -101,16 +101,23 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomText(
-                text: AppStrings.fuelTankCapacity.tr,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: AppColors.whiteDarkActive,
+              Flexible(
+                child: CustomText(
+                  maxLines: 1,overflow: TextOverflow.ellipsis,
+                  text: AppStrings.fuelTankCapacity.tr,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.whiteDarkActive,
+                ),
               ),
-              const CustomText(
-                text: "---",
-                // text: controller.carDetailsModel.cars!..toString(),
-                color: AppColors.blackNormal,
+              const SizedBox(width: 24,),
+              const Flexible(
+                child: CustomText(
+                  maxLines: 1,overflow: TextOverflow.ellipsis,
+                  text: "---",
+                  // text: controller.carDetailsModel.cars!..toString(),
+                  color: AppColors.blackNormal,
+                ),
               ),
             ],
           ),
