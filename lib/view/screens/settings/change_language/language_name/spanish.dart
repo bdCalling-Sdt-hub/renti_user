@@ -130,4 +130,7 @@ Map<String, String> spanish = {
 "Change Photo": "Cambiar foto",
   "Update Profile": "Actualización del perfil",
   "Cancel Request" : "Cancelar petición",
+  //payment
+  "Make Payment" : "Hacer el pago",
+  "Total Amount" : "Cantidad total"
 };

@@ -18,7 +18,6 @@ class EditProfileController extends GetxController {
   EditProfileController();
   File? imageFile;
   List<File> addImages = [];
-
   // final imagePicker = ImagePicker();
   // String? imageUrl;
   bool isLoading = false;
@@ -31,16 +30,17 @@ class EditProfileController extends GetxController {
   TextEditingController addressController = TextEditingController();
   String profileImage = "";
   String userId = "";
+  var filePath="".obs;
 
   void openGallery(BuildContext context) async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery,imageQuality: 50);
     if (pickedFile != null) {
       imageFile = File(pickedFile.path);
       addImages.add(imageFile!);
+      filePath.value=pickedFile.path;
       update();
     }
   }
-
 
 
   Future<void> updateUserInfo(String userId) async {
@@ -54,21 +54,26 @@ class EditProfileController extends GetxController {
         'POST',
         Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.updateProfile}$userId"),
       );
-
-      for (var img in addImages) {
-        if (img.existsSync()) {
-          try {
-            var multipartImg = await http.MultipartFile.fromPath(
-                'image', img.path,
-                contentType: MediaType('image', 'jpeg'));
-            request.files.add(multipartImg);
-          } on Exception catch (e) {
-            print("Error is :${e.toString()}");
-          }
-        } else {
-          print('File does not exist: ${img.path}');
-        }
+       if(filePath.isNotEmpty){
+        request.files.add(await http.MultipartFile.fromPath('image', filePath.value,contentType: MediaType('image', 'jpeg')));
       }
+
+
+
+      // for (var img in addImages) {
+      //   if (imageFile != null && img.existsSync()) {
+      //     try {
+      //       var multipartImg = await http.MultipartFile.fromPath(
+      //           'image', img.path,
+      //           contentType: MediaType('image', 'jpeg'));
+      //       request.files.add(multipartImg);
+      //     } on Exception catch (e) {
+      //       print("Error is :${e.toString()}");
+      //     }
+      //   } else {
+      //     print('File does not exist: ${img.path}');
+      //   }
+      // }
       // Add the parameters to the request
       Map<String, dynamic> params = {
         "fullName": nameController.text,

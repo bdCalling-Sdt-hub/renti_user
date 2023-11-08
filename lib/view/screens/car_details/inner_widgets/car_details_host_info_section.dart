@@ -90,10 +90,14 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
                 color: AppColors.whiteDarkActive,
                 bottom: 12,
               ),
-              CustomText(
-                text: controller.carDetailsModel.cars?.carOwner?.email ?? "",
-                color: AppColors.blackNormal,
-                bottom: 12,
+              SizedBox(width: 24,),
+              Flexible(
+                child: CustomText(
+                  maxLines: 1,overflow: TextOverflow.ellipsis,
+                  text: controller.carDetailsModel.cars?.carOwner?.email ?? "",
+                  color: AppColors.blackNormal,
+                  bottom: 12,
+                ),
               ),
             ],
           ),

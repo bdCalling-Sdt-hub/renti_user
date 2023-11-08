@@ -17,82 +17,95 @@ class ProfileTopSection extends StatelessWidget {
   Widget build(BuildContext context) {
        var editProfileController = Get.put(EditProfileController());
     return GetBuilder<ProfileDetailsController>(
-      builder: (controller) => Container(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-        margin: const EdgeInsets.only(bottom: 16),
-        width: MediaQuery.of(context).size.width,
-        decoration: ShapeDecoration(
-          color: AppColors.primaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          shadows: const [
-            BoxShadow(
-              color: AppColors.shadowColor,
-              blurRadius: 10,
-              offset: Offset(0, 1),
-              spreadRadius: 0,
-            )
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Container(
-                  height: 50, width: 50,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: controller.profileImage.isEmpty ? const DecorationImage(
-                        image: AssetImage("assets/images/user.png"),
-                        fit: BoxFit.fill
-                    ) : DecorationImage(
-                      image: NetworkImage(controller.profileImage),
-                      fit: BoxFit.fill
-                    )
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomText(
-                      text: controller.username,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.whiteLight,
-                      left: 12,
-                    ),
-                    CustomText(
-                      text: controller.phoneNumber,
-                      color: AppColors.whiteLight,
-                      left: 12,
-                      top: 8,
-                    ),
-                  ],
+      builder: (controller){
+        print("=======> Profile Image controller  ${controller.profileImage}");
+        return GestureDetector(
+          onTap: () {
+            editProfileController.nameController.text = controller.fullNameController.text;
+            editProfileController.numberController.text = controller.phoneNumberController.text;
+            editProfileController.emailController.text = controller.emailController.text;
+            editProfileController.addressController.text = controller.addressController.text;
+            editProfileController.profileImage = controller.profileImage;
+            editProfileController.userId = controller.userId;
+            Get.toNamed(AppRoute.profileSettingsScreen);
+            print(controller.addressController.text);
+            print(controller.fullNameController.text);
+          },
+
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+            margin: const EdgeInsets.only(bottom: 16),
+            width: MediaQuery.of(context).size.width,
+            decoration: ShapeDecoration(
+              color: AppColors.primaryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              shadows: const [
+                BoxShadow(
+                  color: AppColors.shadowColor,
+                  blurRadius: 10,
+                  offset: Offset(0, 1),
+                  spreadRadius: 0,
                 )
               ],
             ),
-            GestureDetector(
-                onTap: () {
-                  editProfileController.nameController.text = controller.fullNameController.text;
-                  editProfileController.numberController.text = controller.phoneNumberController.text;
-                  editProfileController.emailController.text = controller.emailController.text;
-                  editProfileController.addressController.text = controller.addressController.text;
-                  editProfileController.profileImage = controller.profileImage;
-                  editProfileController.userId = controller.userId;
-                  Get.toNamed(AppRoute.profileSettingsScreen);
-                  print(controller.addressController.text);
-                  print(controller.fullNameController.text);
-                },
-                child: const CustomImage(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 50, width: 50,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: controller.profileImage.isEmpty? const DecorationImage(
+                                image: AssetImage("assets/images/user.png"),
+                                fit: BoxFit.fill
+                            ) : DecorationImage(
+                                image: NetworkImage(controller.profileImage),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomText(
+                              textAlign: TextAlign.start,
+                              maxLines: 1,overflow: TextOverflow.ellipsis,
+                              text: controller.username,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.whiteLight,
+                              left: 12,
+                            ),
+                            CustomText(
+                              textAlign: TextAlign.start,
+                              text: controller.phoneNumber,
+                              color: AppColors.whiteLight,
+                              left: 12,
+                              top: 8,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 24),
+                const CustomImage(
                   imageSrc: AppIcons.editProfileIcon,
                   imageType: ImageType.svg,
                   size: 18,
-                ))
-          ],
-        ),
-      ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

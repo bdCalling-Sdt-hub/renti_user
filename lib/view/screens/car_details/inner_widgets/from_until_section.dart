@@ -111,7 +111,7 @@ class _FromUntilSectionState extends State<FromUntilSection> {
 
 
             },
-            titleText: AppStrings.sentRentRequest
+            titleText: AppStrings.sentRentRequest.tr
           ),
         ],
       ),

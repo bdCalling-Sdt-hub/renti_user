@@ -58,7 +58,7 @@ class _InboxScreenState extends State<InboxScreen> {
         appBar: CustomAppBar(
           appBarBgColor: AppColors.primaryColor,
           // bottom: 20,
-          appBarHeight: 80,
+          appBarHeight: 100,
           // bottomLeft: 16,
           appBarContent: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,6 +73,7 @@ class _InboxScreenState extends State<InboxScreen> {
                     child: const Icon(Icons.arrow_back_ios_rounded,
                         size: 18, color: AppColors.whiteLight),
                   ),
+                  const SizedBox(width: 8,),
                   Container(
                     height: 52,
                     width: 52,
@@ -81,6 +82,7 @@ class _InboxScreenState extends State<InboxScreen> {
                         image: DecorationImage(
                             image: CachedNetworkImageProvider(image))),
                   ),
+                  const SizedBox(width: 8,),
                   CustomText(
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -90,10 +92,9 @@ class _InboxScreenState extends State<InboxScreen> {
                       color: AppColors.whiteLight)
                 ],
               ),
-              const SizedBox(width: 24),
-              const Icon(Icons.phone, size: 24, color: AppColors.whiteLight),
             ],
           ),
+
         ),
         body: GetBuilder<SocketService>(
           builder: (socketService) {
@@ -103,7 +104,7 @@ class _InboxScreenState extends State<InboxScreen> {
                         style: GoogleFonts.raleway(fontSize: 20)))
                 : SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.only(top: 24, bottom: 100),
+                    padding: const EdgeInsets.only(top: 24, bottom: 100,left: 20,right: 20),
                     child: CustomContainer(
                       child: Column(
                         children: List.generate(
@@ -171,7 +172,7 @@ class _InboxScreenState extends State<InboxScreen> {
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(16),
                     topRight: Radius.circular(16)),
-                color: AppColors.whiteNormalActive,
+                color: AppColors.whiteLight,
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.blackNormal.withOpacity(0.1),

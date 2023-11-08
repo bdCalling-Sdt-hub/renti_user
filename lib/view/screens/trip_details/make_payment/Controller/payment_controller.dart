@@ -3,6 +3,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../../core/helper/shared_preference_helper.dart';
+import '../../../../../core/route/app_route.dart ';
 
 
 
@@ -12,7 +16,7 @@ class PaymentController extends GetxController{
   TextEditingController cvvCode=TextEditingController();
 
 
-  Future<void> tokenizeCard({required String hostId,required  String productName,required int amount,required  String email}) async {
+  Future<void> tokenizeCard({required String hostId,required  String productName,required int amount,required  String email,required  int residenceId}) async {
     print( expiryDate.text.substring(0,2));
     print( expiryDate.text.substring(3,5));
     var headers = {
@@ -34,7 +38,7 @@ class PaymentController extends GetxController{
       //print(await response.stream.bytesToString());
       var data=json.decode(await response.stream.bytesToString());
       print(data);
-      await payment(amount:200,hostId: hostId,productName: productName,email: email,token:"tok_visa");
+      await payment(amount:amount,hostId: hostId,productName: productName,email: email,token:"tok_visa",residenceId: residenceId);
     }
     else {
       print(response.reasonPhrase);
@@ -42,27 +46,30 @@ class PaymentController extends GetxController{
   }
 
 
-  payment({required String hostId,required  String productName,required int amount,required  String email,required String token})async {
+  payment({required String hostId,required  String productName,required int amount,required  String email,required String token,required  int residenceId})async {
     try {
       Map<String,dynamic> body={
         "product": {
-          "name": productName,
-          "price": amount
+          "name": "Totota",
+          "price": 200
         },
         "token": {
-          "email": email,
-          "id": token
+          "email":"abc@gmail.com",
+          "id": "tok_visa"
         }
       };
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      String t = prefs.getString(SharedPreferenceHelper.accessTokenKey)??"";
       var headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQ5ZjA3ZGNkZWIyYzhlYjRjYjI0ZTMiLCJlbWFpbCI6InB5dGhvbmxvdmVya2FiaXIxMUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImFjdGl2aXR5SWQiOm51bGwsImlhdCI6MTY5OTM0ODAzMiwiZXhwIjoxNjk5MzkxMjMyfQ.lg_uM7g_0_Sxm4XSnzOfMpjZDGcnFKne20Sr5Yjlugc'
+        'Authorization': 'Bearer $t'
       };
 
 
       var response= await http.post(Uri.parse("http://192.168.10.14:3001/api/payment/$hostId"),body:jsonEncode(body),headers: headers);
       if(response.statusCode==200){
         Get.snackbar('Payment Successful', "Payment Successful Done");
+        Get.toNamed(AppRoute.startTrip,arguments: residenceId);
         print("==========> response : ${response.body}");
       }else{
         print("==========> response error : ${response.statusCode}");

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/settings/change_password/change_password_controller/change_password_controller.dart';
@@ -154,7 +155,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               onPressed: () {
                 if(controller.formKey.currentState!.validate()){
                   controller.changePassword();
+                  Get.toNamed(AppRoute.signInScreen);
                 }
+
               },
               titleText: AppStrings.changePassword.tr
           ),

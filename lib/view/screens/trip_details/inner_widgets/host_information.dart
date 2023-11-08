@@ -111,10 +111,14 @@ class HostInfo extends StatelessWidget {
                   color: AppColors.whiteDarkActive,
                   bottom: 12,
                 ),
-                CustomText(
-                  text: controller.rentUser[index].hostId?.email ?? "---",
-                  color: AppColors.blackNormal,
-                  bottom: 12,
+                SizedBox(width: 24),
+                Flexible(
+                  child: CustomText(
+                    maxLines: 1,overflow: TextOverflow.ellipsis,
+                    text: controller.rentUser[index].hostId?.email ?? "---",
+                    color: AppColors.blackNormal,
+                    bottom: 12,
+                  ),
                 ),
               ],
             ),

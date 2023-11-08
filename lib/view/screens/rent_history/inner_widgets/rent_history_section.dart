@@ -22,7 +22,8 @@ class RentHistorySection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(controller.rentUser.length, (index) {
-              return  GestureDetector(
+              return controller.rentUser[index].hostId != null && controller.rentUser[index].carId != null
+              ? GestureDetector(
                 onTap: (){
                   if(controller.rentUser[index].requestStatus == "Accepted"){
                     Get.toNamed(AppRoute.rentRequest, arguments: index);
@@ -126,7 +127,7 @@ class RentHistorySection extends StatelessWidget {
                             decoration:  BoxDecoration(
                               image: DecorationImage(
                                 fit: BoxFit.fill,
-                                image: NetworkImage(controller.rentUser[index].carId!.image![0])
+                                image: NetworkImage(controller.rentUser[index].carId?.image?[0]??'')
                               ),
                               borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(8),
@@ -139,7 +140,7 @@ class RentHistorySection extends StatelessWidget {
                     ],
                   ),
                 ),
-              );
+              ) : const SizedBox();
             }
             )
         ),

@@ -137,6 +137,8 @@ Map<String, String> english = {
 
   // trip details
   "Make Payment" : "Make Payment",
+  "Total Amount" : "Total Amount",
+  "Sent Rent Request" : "Sent Rent Request",
 
 
 

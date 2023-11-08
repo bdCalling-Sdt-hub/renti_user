@@ -67,7 +67,7 @@ class _PaymentSectionState extends State<PaymentSection> {
             ],
           ),
           const SizedBox(height: 16),
-          Container(
+         /* Container(
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               decoration: ShapeDecoration(
@@ -93,7 +93,7 @@ class _PaymentSectionState extends State<PaymentSection> {
                       ),
                     ],
                   ),
-                  InkWell(
+                  *//*InkWell(
                     onTap: (){
                       setState(() {
                         isArrowUp  =! isArrowUp;
@@ -108,10 +108,10 @@ class _PaymentSectionState extends State<PaymentSection> {
                       size: 20,
                       color: AppColors.primaryColor,
                     ),
-                  )
+                  )*//*
                 ],
               )
-          ),
+          ),*/
           isArrowUp ? const HsbcMexicoCard() : const SizedBox(),
         ],
       ),

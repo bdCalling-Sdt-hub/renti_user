@@ -169,13 +169,13 @@ class _MessageScreenState extends State<MessageScreen> {
                                           fontWeight: FontWeight.w500) ,
                                     ],
                                   ),
-                                  CustomText(
+                                 /* CustomText(
                                     text: participant[index].id.toString(),
                                     fontSize: 12,
                                     color: AppColors.whiteDark,
                                     textAlign: TextAlign.start,
                                     top: 8,
-                                  ),
+                                  ),*/
                                 ],
                               ),
                             ),
@@ -189,7 +189,7 @@ class _MessageScreenState extends State<MessageScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: CustomBottomNavBar(currentIndex: 2,),
+        bottomNavigationBar: const CustomBottomNavBar(currentIndex: 2),
       ),
     );
   }

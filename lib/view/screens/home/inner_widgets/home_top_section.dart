@@ -14,18 +14,18 @@ class HomeTopSection extends StatelessWidget {
   const HomeTopSection({super.key});
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         const CustomImage(imageSrc: AppImages.bannerHome,
+         CustomImage(imageSrc: AppImages.bannerHome,
           imageType: ImageType.png,),
-        const SizedBox(height: 24,),
-         CustomText(
+        SizedBox(height: 24,),
+        /* CustomText(
           text: AppStrings.searchNearCar.tr,
           fontSize:14,
           fontWeight: FontWeight.w500 ,
-        ),
-        const SizedBox(height: 12,),
+        ),*/
+      /*  const SizedBox(height: 12,),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -53,7 +53,7 @@ class HomeTopSection extends StatelessWidget {
                 child: SvgPicture.asset(AppIcons.locationHome)
             )
           ],
-        )
+        )*/
       ],
     );
   }

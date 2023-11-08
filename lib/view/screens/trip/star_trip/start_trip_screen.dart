@@ -19,7 +19,7 @@ class StartTripScreen extends StatefulWidget {
 }
 class _StartTripScreenState extends State<StartTripScreen> {
 
-  late int index;
+  int? index;
 
   @override
   void initState() {
@@ -37,6 +37,7 @@ class _StartTripScreenState extends State<StartTripScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
         child: Scaffold(
           appBar: CustomAppBar(
@@ -73,9 +74,9 @@ class _StartTripScreenState extends State<StartTripScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          AddCarImage(),
-                          SizedBox(height: 24),
-                          BottomScetions(index: index,)
+                          const AddCarImage(),
+                          const SizedBox(height: 24),
+                          BottomScetions(index: index ?? 0,)
                         ],
                       ),
                     );
@@ -86,7 +87,7 @@ class _StartTripScreenState extends State<StartTripScreen> {
           bottomNavigationBar: GetBuilder<RentHistoryController>(
               builder: (controller) {
                 return BottomNavButton(onTap: (){
-                  controller.addCarMultipleFilesAndParams(controller.rentUser[index].id ?? "");
+                  controller.addCarMultipleFilesAndParams(controller.rentUser[index ??0].id ?? "");
                   print("okay");
                 }, buttonName: AppStrings.startTrip, buttonColor: AppColors.primaryColor);
               }

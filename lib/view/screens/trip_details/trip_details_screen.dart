@@ -104,9 +104,8 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
               child: CustomElevatedButton(
                 onPressed: () async{
                   // await StripeApi().makePayment(amount: "1000", currency: "INR", index: index);
-                    Navigator.push(context,MaterialPageRoute(builder: (_)=>MakePaymentScreen(hostId:_rentController.rentHistoryModel.userWiseRent![index].hostId!.id!,
-
-
+                    Navigator.push(context,MaterialPageRoute(builder:
+                        (_)=>MakePaymentScreen(hostId:_rentController.rentHistoryModel.userWiseRent?[index].hostId?.id ?? "", residenceId: index??0,
                     ))
                     );
                   print("=======> Host id  ${_rentController.rentHistoryModel.userWiseRent![0].hostId!.id}");

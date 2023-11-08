@@ -42,6 +42,8 @@ class ProfileDetailsController extends GetxController{
 
     if(responseModel.statusCode == 200){
       ProfileDetailsModel profileDetailsModel = ProfileDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
+
+
       username = profileDetailsModel.user?.fullName ?? "";
       email = profileDetailsModel.user?.email ?? "";
       dob = profileDetailsModel.user?.dateOfBirth ?? "";
@@ -54,6 +56,9 @@ class ProfileDetailsController extends GetxController{
       addressController.text = address;
       emailController.text = email;
       phoneNumberController.text = phoneNumber;
+      print("======== > Profile Image ${profileDetailsModel.user!.image}");
+      print("======== > Profile Image ${profileImage}");
+      print("======== > Profile Name ${profileDetailsModel.user!.fullName}");
     }
   }
 
