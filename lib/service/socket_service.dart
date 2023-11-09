@@ -17,10 +17,7 @@ class SocketService extends GetxController {
   void connectToSocket() {
     socket = io.io(
         "http://104.131.72.121:3001/api",
-        io.OptionBuilder()
-            .setTransports(['websocket'])
-            .enableAutoConnect()
-            .build());
+        io.OptionBuilder().setTransports(['websocket']).enableAutoConnect().build());
 
     socket.onConnect((data) => print("Connection Established"));
     socket.onConnectError((data) => print("Connection Error"));
