@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
@@ -29,6 +30,7 @@ class CustomTextField extends StatefulWidget {
     this.prefixIconSrc,
     this.readOnly = false,
     this.onTap,
+    this.inputFormatters,
     super.key}
   );
 
@@ -56,6 +58,7 @@ class CustomTextField extends StatefulWidget {
   final Color ? prefixIconColor;
   final bool readOnly;
   final VoidCallback? onTap;
+  final List<TextInputFormatter>? inputFormatters;
 
 
   @override
@@ -69,6 +72,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      inputFormatters: widget.inputFormatters,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       readOnly: widget.readOnly,
       controller: widget.textEditingController,

@@ -1,7 +1,7 @@
 class ApiUrlContainer{
 
-  static const String baseUrl = "http://192.168.10.14:3001/api/";
-  // static const String baseUrl = "104.131.72.121:3000/api/";
+  // static const String baseUrl = "http://192.168.10.14:3001/api/";
+  static const String baseUrl = "http://104.131.72.121:3000/api/";
 
   static const String signInEndPoint = "user/sign-in";
   static const String updateProfile = "user/update/";

@@ -35,7 +35,6 @@ class _SearchScreenState extends State<SearchScreen> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return  GetBuilder<SearchScreenController>(
@@ -85,7 +84,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   height: 16,
                 ),
                   Expanded(
-                  child:controller.carList !=null &&controller.carList.isNotEmpty ? const SingleChildScrollView(
+                  child:controller.isLoading?const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,),):controller.carList !=null &&controller.carList.isNotEmpty ? const SingleChildScrollView(
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       child: SearchesCarSection()

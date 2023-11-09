@@ -87,7 +87,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                        // focusNode: controller.passwordFocusNode,
                        textInputAction: TextInputAction.next,
                        hintText:"MM-YY".tr,
-                       keyboardType: TextInputType.number,
+                       keyboardType: TextInputType.text,
                        hintStyle: GoogleFonts.poppins(
                            fontSize: 14,
                            fontWeight: FontWeight.w400,
