@@ -132,7 +132,7 @@ class RentHistoryController extends GetxController{
       var response = await request.send();
 
       if (response.statusCode == 200) {
-        Get.toNamed(AppRoute.endTrip);
+        Get.toNamed(AppRoute.rentiHistory);
       } else {
         print(response.statusCode);
         print('Response body: ${await response.stream.bytesToString()}');
@@ -231,6 +231,33 @@ class RentHistoryController extends GetxController{
       print("okay 3");
       print(e.toString());
     }
+  }
+
+  changeState(int index) {
+    print("change: $index");
+
+    var user = rentUser[index];
+
+    if(user.requestStatus == "Accepted" && user.payment == "Pending" && user.requestStatus == "Pending"){
+      Get.toNamed(AppRoute.rentRequest, arguments: index);
+    }
+    if(user.requestStatus == "Accepted" && user.payment == "Completed" && user.carId!.tripStatus == "Pending"){
+      Get.toNamed(AppRoute.startTrip, arguments: index);
+    }
+    if(user.requestStatus == "Accepted" &&user.payment == "Completed" && user.carId?.tripStatus == "Start"){
+      Get.toNamed(AppRoute.endTrip, arguments: rentUser[index]);
+    }
+
+    // if(user.carId?.tripStatus == "Start" && user.requestStatus == "Pending"){
+    //   Get.toNamed(AppRoute.rentRequest, arguments: index);
+    // }
+    // else if(user.payment == "Completed" && user.requestStatus == "Accepted"){
+    //   Get.toNamed(AppRoute.startTrip, arguments: index);
+    // }
+    // else if(user.requestStatus == "Accepted"){
+    //   Get.toNamed(AppRoute.rentRequest, arguments: index);
+    // }
+    update();
   }
 }
 

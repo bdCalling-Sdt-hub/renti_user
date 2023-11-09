@@ -99,19 +99,38 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
               ),
             ),
           )),
-          bottomNavigationBar: Padding(
+          bottomNavigationBar: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
               padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
-              child: CustomElevatedButton(
-                onPressed: () async{
-                  // await StripeApi().makePayment(amount: "1000", currency: "INR", index: index);
-                    Navigator.push(context,MaterialPageRoute(builder:
-                        (_)=>MakePaymentScreen(hostId:_rentController.rentHistoryModel.userWiseRent?[index].hostId?.id ?? "", residenceId: index??0,
-                    ))
-                    );
-                  print("=======> Host id  ${_rentController.rentHistoryModel.userWiseRent![0].hostId!.id}");
-                },
-                titleText: "Make Payment".tr,
-                buttonWidth: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
+                  CustomElevatedButton(
+                    onPressed: () async{
+                      // await StripeApi().makePayment(amount: "1000", currency: "INR", index: index);
+                        Navigator.push(context,MaterialPageRoute(builder:
+                            (_)=>MakePaymentScreen(rentId:_rentController.rentHistoryModel.userWiseRent![index].id?? "", residenceId: index??0,
+                        ))
+                        );
+                      print("=======> Host id  ${_rentController.rentHistoryModel.userWiseRent![0].hostId!.id}");
+                    },
+                    titleText: "Make Payment".tr,
+                    buttonWidth: MediaQuery.of(context).size.width,
+                  ),
+                 const SizedBox(height: 12,),
+                  GetBuilder<RentHistoryController>(
+                      builder: (controller) => controller.isSubmit ? const SizedBox(
+                        height: 20, width: 20,
+                        child: CircularProgressIndicator(),
+                      ) : CustomElevatedButton(
+                        onPressed: () => controller.cancelRequest(controller.rentUser[index].id.toString()),
+                        buttonColor: Colors.transparent,
+                        titleText: "Cancel Request".tr,
+                        titleColor: AppColors.primaryColor,
+                        buttonWidth: MediaQuery.of(context).size.width,
+                        isBorder: true,
+                      )
+                  )
+                ],
               ),
             )
         )

@@ -16,7 +16,7 @@ class PaymentController extends GetxController{
   TextEditingController cvvCode=TextEditingController();
 
 
-  Future<void> tokenizeCard({required String hostId,required  String productName,required int amount,required  String email,required  int residenceId}) async {
+  Future<void> tokenizeCard({required String rentId,required  String productName,required int amount,required  String email,required  int residenceId}) async {
     print( expiryDate.text.substring(0,2));
     print( expiryDate.text.substring(3,5));
     var headers = {
@@ -38,7 +38,7 @@ class PaymentController extends GetxController{
       //print(await response.stream.bytesToString());
       var data=json.decode(await response.stream.bytesToString());
       print(data);
-      await payment(amount:amount,hostId: hostId,productName: productName,email: email,token:"tok_visa",residenceId: residenceId);
+      await payment(amount:amount,rentId: rentId,productName: productName,email: email,token:"tok_visa",residenceId: residenceId);
     }
     else {
       print(response.reasonPhrase);
@@ -46,15 +46,15 @@ class PaymentController extends GetxController{
   }
 
 
-  payment({required String hostId,required  String productName,required int amount,required  String email,required String token,required  int residenceId})async {
+  payment({required String rentId,required  String productName,required int amount,required  String email,required String token,required  int residenceId})async {
     try {
       Map<String,dynamic> body={
         "product": {
-          "name": "Totota",
-          "price": 200
+          "name": "Toyota X Corolla",
+          "price": 500
         },
         "token": {
-          "email":"abc@gmail.com",
+          "email": "farvezhossen101@gmail.com",
           "id": "tok_visa"
         }
       };
@@ -66,7 +66,7 @@ class PaymentController extends GetxController{
       };
 
 
-      var response= await http.post(Uri.parse("http://192.168.10.14:3001/api/payment/$hostId"),body:jsonEncode(body),headers: headers);
+      var response= await http.post(Uri.parse("http://192.168.10.14:3001/api/payment/$rentId"),body:body,headers: headers);
       if(response.statusCode==200){
         Get.snackbar('Payment Successful', "Payment Successful Done");
         Get.toNamed(AppRoute.startTrip,arguments: residenceId);

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/helper/date_converter_helper.dart';
-import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_model/rent_history_model.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
-
 
 class RentHistorySection extends StatelessWidget {
 
@@ -25,17 +24,9 @@ class RentHistorySection extends StatelessWidget {
               return controller.rentUser[index].hostId != null && controller.rentUser[index].carId != null
               ? GestureDetector(
                 onTap: (){
-                  if(controller.rentUser[index].requestStatus == "Accepted"){
-                    Get.toNamed(AppRoute.rentRequest, arguments: index);
-                  }else if(controller.rentUser[index].requestStatus == "Reserved"){
-                    Get.toNamed(AppRoute.endTrip, arguments: controller.rentUser[index]);
-                  }else if(controller.rentUser[index].requestStatus == "Pending"){
-                    Get.toNamed(AppRoute.cancelRequestScreen, arguments: index);
-                  }
-
-                  // payment complete hole start trip e jabe
+                  controller.changeState(index);
                 },
-                child: Container(
+                child: controller.rentUser[index].requestStatus == "Cancel" ? const SizedBox() : Container(
                   margin:const EdgeInsets.only(bottom: 8),
                   width: MediaQuery.of(context).size.width,
                   decoration: ShapeDecoration(
@@ -97,23 +88,36 @@ class RentHistorySection extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                                   decoration: BoxDecoration(
                                     color: controller.rentUser[index].requestStatus == "Pending" ?
-                                    const Color(0xffFFEED0) :
-                                    controller.rentUser[index].requestStatus == "Reserved" ? 
+                                    const Color(0xffFFEED0) : controller.rentUser[index].requestStatus == "Reserved" ?
                                     const Color(0xFFFBE9EC) : controller.rentUser[index].requestStatus == "Cancel" ? 
                                     AppColors.primaryColor.withOpacity(0.1)  : const Color(0xffE6F6F4),
                                     borderRadius: BorderRadius.circular(4),
 
                                   ),
-                                  child: CustomText(
-                                    text: controller.rentUser[index].requestStatus ?? "",
-                                    color: controller.rentUser[index].requestStatus == "Pending" ?
-                                    const Color(0xffFBA91D) :
-                                    controller.rentUser[index].requestStatus == "Reserved" ?
-                                    const Color(0xffD7263D) : controller.rentUser[index].requestStatus == "Cancel" ? 
-                                    AppColors.primaryColor  : const Color(0xff00A991),
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                                  child: tripStatusText(controller.rentUser[index]),
+
+                                  // controller.rentUser[index].carId?.tripStatus == "Start" ? CustomText(
+                                  //   text: "Start",
+                                  //   color: controller.rentUser[index].requestStatus == "Pending" ?
+                                  //   const Color(0xffFBA91D) :
+                                  //   controller.rentUser[index].requestStatus == "Reserved" ?
+                                  //   const Color(0xffD7263D) : controller.rentUser[index].requestStatus == "Cancel" ?
+                                  //   AppColors.primaryColor  : const Color(0xff00A991),
+                                  //   fontSize: 10,
+                                  //   fontWeight: FontWeight.w400,
+                                  // ) : CustomText(
+                                  //   text: controller.rentUser[index].payment == "Pending"
+                                  //       ? "Pending" : controller.rentUser[index].payment == "Completed"
+                                  //       ? "Completed" : "",
+                                  //   color: controller.rentUser[index].requestStatus == "Pending" ?
+                                  //   const Color(0xffFBA91D) :
+                                  //   controller.rentUser[index].requestStatus == "Reserved" ?
+                                  //   const Color(0xffD7263D) : controller.rentUser[index].requestStatus == "Cancel" ?
+                                  //   AppColors.primaryColor  : const Color(0xff00A991),
+                                  //   fontSize: 10,
+                                  //   fontWeight: FontWeight.w400,
+                                  // ),
+
                                 )
                               ],
                             ),
@@ -146,4 +150,28 @@ class RentHistorySection extends StatelessWidget {
       )
     );
   }
+
+  Widget tripStatusText(UserWiseRent rentUser) {
+
+    String statusText = "";
+
+    if(rentUser.requestStatus == "Accepted" &&  rentUser.payment == "Pending" &&  rentUser.carId?.tripStatus == "Pending"){
+      statusText = "Accepted";
+    }
+
+    if( rentUser.requestStatus == "Accepted"  && rentUser.payment == "Completed" && rentUser.carId!.tripStatus == "End"){
+      statusText = "End Trip";
+    }
+
+    if( rentUser.requestStatus == "Accepted"  && rentUser.payment == "Completed" &&  rentUser.carId?.tripStatus == "Start"){
+      statusText = "Start Trip";
+    }
+
+    if( rentUser.requestStatus == "Pending" && rentUser.payment == "Pending" && rentUser.carId?.tripStatus == "Pending"){
+      statusText = "Pending";
+    }
+
+    return Text(statusText);
+  }
+
 }

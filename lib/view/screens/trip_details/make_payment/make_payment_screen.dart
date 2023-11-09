@@ -12,10 +12,10 @@ import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
 
 class MakePaymentScreen extends StatefulWidget {
-   const MakePaymentScreen({super.key,required this.hostId, required this.residenceId});
+   const MakePaymentScreen({super.key,required this.rentId, required this.residenceId});
 
    final int residenceId;
-   final String hostId;
+   final String rentId;
 
   @override
   State<MakePaymentScreen> createState() => _MakePaymentScreenState();
@@ -30,7 +30,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("host id ${widget.hostId}");
+    print("host id ${widget.rentId}");
     return Scaffold(
       appBar:  CustomAppBar(
           appBarContent: Row(
@@ -129,7 +129,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
            buttonWidth: MediaQuery.of(context).size.width,
            onPressed: ()
            {
-             _controller.tokenizeCard(hostId:widget.hostId,amount:200,email: "abc@gmail.com",productName:"Product Name",residenceId:widget.residenceId
+             _controller.tokenizeCard(rentId:widget.rentId,amount:200,email: "abc@gmail.com",productName:"Product Name",residenceId:widget.residenceId
              );
 
            }, titleText: "Pay Now".tr),

@@ -1,7 +1,7 @@
 class ApiUrlContainer{
 
-  // static const String baseUrl = "http://192.168.10.14:3001/api/";
-  static const String baseUrl = "http://104.131.72.121:3000/api/";
+  static const String baseUrl = "http://192.168.10.14:3001/api/";
+  // static const String baseUrl = "http://104.131.72.121:3000/api/";
 
   static const String signInEndPoint = "user/sign-in";
   static const String updateProfile = "user/update/";
@@ -18,10 +18,10 @@ class ApiUrlContainer{
   static const String termConditionEndPoint = "termsConditionRouter/all";
   static const String howRentiWorksEndPoint = "howRentiWork";
   static const String allCarsEndPoint = "car/all";
-  static const String rentHistoryEndPoint = "rent/all";
+  static const String rentAll = "rent/all";
   static const String carDetailsEndPoint = "car/";
   static const String sendRentRequestEndPoint = "rent/request/";
-  // static const String rentHistoryEndPoint = "rent/rent-history";
+  static const String rentHistoryEndPoint = "rent/rent-history";
   // static const String carDetailsEndPoint = "car";
   static const String offerCarEndPoint = "car/offer";
   static const String rentRequestPaymentEndPoint = "payment/";
