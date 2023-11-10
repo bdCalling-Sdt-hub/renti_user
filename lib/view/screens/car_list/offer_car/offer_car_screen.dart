@@ -38,25 +38,26 @@ class _PopularCarScreenState extends State<PopularCarScreen> {
       child: Scaffold(
         backgroundColor: AppColors.whiteLight,
         appBar: CustomAppBar(
-            appBarContent: Row(
-              children: [
-                GestureDetector(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: const Icon(
-                      Icons.arrow_back_ios_new,
-                      size: 18,
-                      color: AppColors.blackNormal,
-                    )),
-                 CustomText(
-                  text: "Offer Cars".tr,
-                  color: AppColors.blackNormal,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  left: 14,
-                )
-              ],
+            appBarContent: GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.arrow_back_ios_new,
+                    size: 18,
+                    color: AppColors.blackNormal,
+                  ),
+                   CustomText(
+                    text: "Offer Cars".tr,
+                    color: AppColors.blackNormal,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    left: 14,
+                  )
+                ],
+              ),
             )),
         body: GetBuilder<OfferCarController>(
           builder: (controller) => Padding(

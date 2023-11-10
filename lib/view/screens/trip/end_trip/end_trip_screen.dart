@@ -46,12 +46,12 @@ class _EndTripScreenState extends State<EndTripScreen> {
               },
               child:  Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.arrow_back_ios_new,
                     color: AppColors.blackNormal,
                     size: 18,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   CustomText(
@@ -88,9 +88,6 @@ class _EndTripScreenState extends State<EndTripScreen> {
             }
         ),
       ),
-
-
-
     );
   }
 }

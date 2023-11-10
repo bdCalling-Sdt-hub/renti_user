@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
@@ -9,7 +8,6 @@ import 'package:renti_user/view/screens/rent_history/inner_widgets/rent_history_
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_repo/rent_history_repo.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
-
 import '../../../utils/app_colors.dart';
 import '../../widgets/appbar/custom_app_bar.dart';
 import '../../widgets/text/custom_text.dart';
@@ -50,26 +48,27 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
       child: Scaffold(
       backgroundColor: AppColors.whiteLight,
       appBar: CustomAppBar(
-        appBarContent: Row(
-        children: [
-          GestureDetector(
-              onTap: () {
-                Get.back();
-              },
-              child: const Icon(
-                Icons.arrow_back_ios_new,
-                size: 18,
-                color: AppColors.blackNormal,
-              )),
-           CustomText(
-            text: AppStrings.rentiHistory.tr,
-            color: AppColors.blackNormal,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            left: 14,
-          )
-        ],
-      )),
+        appBarContent: GestureDetector(
+          onTap: () {
+            Get.back();
+          },
+          child: Row(
+          children: [
+            const Icon(
+              Icons.arrow_back_ios_new,
+              size: 18,
+              color: AppColors.blackNormal,
+            ),
+             CustomText(
+              text: AppStrings.rentiHistory.tr,
+              color: AppColors.blackNormal,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              left: 14,
+            )
+          ],
+      ),
+        )),
       body: GetBuilder<RentHistoryController>(
         builder: (controller) {
           return  controller .isLoading ? const Center(

@@ -2,20 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/service/api_service.dart';
-import 'package:renti_user/service/stripe_api.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/device_utils.dart';
-import 'package:renti_user/view/screens/car_details/car_details_controller/car_details_controller.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
-import 'package:renti_user/view/screens/rent_history/rent_history_model/rent_history_model.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_repo/rent_history_repo.dart';
 import 'package:renti_user/view/screens/trip_details/inner_widgets/host_information.dart';
 import 'package:renti_user/view/screens/trip_details/inner_widgets/payment_section.dart';
 import 'package:renti_user/view/screens/trip_details/inner_widgets/rental_info.dart';
 import 'package:renti_user/view/screens/trip_details/inner_widgets/top_upload_scetion.dart';
 import 'package:renti_user/view/screens/trip_details/make_payment/make_payment_screen.dart';
-import 'package:renti_user/view/screens/trip_details/trip_details_repo/trip_details_repo.dart';
-import 'package:renti_user/view/screens/trip_details/trip_detasils_controller/trip_details_controller.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 
@@ -31,7 +26,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
   final _rentController =Get.find<RentHistoryController>();
 
 
-  late int index;
+   late int index;
   @override
   void initState() {
     DeviceUtils.authUtils();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/helper/date_converter_helper.dart';
+import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
@@ -24,7 +25,23 @@ class RentHistorySection extends StatelessWidget {
               return controller.rentUser[index].hostId != null && controller.rentUser[index].carId != null
               ? GestureDetector(
                 onTap: (){
-                  controller.changeState(index);
+                  var user = controller.rentUser[0];
+                  if(user.requestStatus == "Accepted" && user.payment == "Pending" && user.requestStatus == "Pending"){
+                    Get.toNamed(AppRoute.rentRequest, arguments: index);
+                  }
+                  if(user.requestStatus == "Accepted" &&user.payment == "Completed" && user.carId?.tripStatus == "Start"){
+                    Get.toNamed(AppRoute.endTrip, arguments: index);
+                  }
+                  if(user.requestStatus == "Accepted" && user.payment == "Completed" && user.carId!.tripStatus == "Pending"){
+                    Get.toNamed(AppRoute.startTrip, arguments: index,);
+                  }
+                  if(user.requestStatus == "Pending" &&user.payment == "Pending" && user.carId?.tripStatus == "Pending"){
+                    Get.toNamed(AppRoute.rentRequest, arguments:index);
+                  }
+
+                  if(user.requestStatus == "Accepted"  && user.payment == "Completed" && user.carId!.tripStatus == "End"){
+                    Get.toNamed(AppRoute.rentiHistory, arguments:index);
+                  }
                 },
                 child: controller.rentUser[index].requestStatus == "Cancel" ? const SizedBox() : Container(
                   margin:const EdgeInsets.only(bottom: 8),
@@ -74,7 +91,7 @@ class RentHistorySection extends StatelessWidget {
                                 const SizedBox(height: 8),
                                  Row(
                                   children: [
-                                    CustomImage(imageSrc: AppIcons.location,size: 14, imageColor: AppColors.whiteDarkActive),
+                                    const CustomImage(imageSrc: AppIcons.location,size: 14, imageColor: AppColors.whiteDarkActive),
                                     CustomText(
                                       text: controller.rentUser[index].hostId!.address!.city.toString(),
                                       fontSize: 12,
@@ -144,8 +161,8 @@ class RentHistorySection extends StatelessWidget {
                   ),
                 ),
               ) : const SizedBox();
-            }
-            )
+              }
+              )
         ),
       )
     );
@@ -159,16 +176,16 @@ class RentHistorySection extends StatelessWidget {
       statusText = "Accepted";
     }
 
-    if( rentUser.requestStatus == "Accepted"  && rentUser.payment == "Completed" && rentUser.carId!.tripStatus == "End"){
-      statusText = "End Trip";
-    }
-
     if( rentUser.requestStatus == "Accepted"  && rentUser.payment == "Completed" &&  rentUser.carId?.tripStatus == "Start"){
       statusText = "Start Trip";
     }
 
     if( rentUser.requestStatus == "Pending" && rentUser.payment == "Pending" && rentUser.carId?.tripStatus == "Pending"){
       statusText = "Pending";
+    }
+
+    if( rentUser.requestStatus == "Accepted"  && rentUser.payment == "Completed" && rentUser.carId!.tripStatus == "End"){
+      statusText = "End Trip";
     }
 
     return Text(statusText);
