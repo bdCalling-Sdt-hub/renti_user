@@ -85,7 +85,6 @@ class RentHistoryController extends GetxController{
       } else if (index == 2) {
         thirdImg = File(pickedFile.path);
         addCarImages.add(thirdImg!);
-
         update();
       }
     }

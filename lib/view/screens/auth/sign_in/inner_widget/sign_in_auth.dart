@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_controller/sign_in_controller.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_loading_button.dart';
 
@@ -106,7 +107,9 @@ class _SignInAuthState extends State<SignInAuth> {
                   onPressed: (){
                     if(formKey.currentState!.validate()){
                       controller.signInUser();
+
                     }
+
                   },
                   titleText: AppStrings.signIn.tr,
                   buttonWidth: double.maxFinite,

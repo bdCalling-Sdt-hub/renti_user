@@ -5,6 +5,7 @@ import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_controller/sign_in_controller.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_repo/sign_in_repo.dart';
@@ -84,7 +85,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                   GestureDetector(
                                     onTap: () {
                                       Get.toNamed(AppRoute.signUpScreen);
+
                                     },
+
                                     child:  CustomText(
                                       top: 24,
                                       text: AppStrings.signUp.tr,

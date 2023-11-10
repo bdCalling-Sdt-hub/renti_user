@@ -52,12 +52,12 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
       ),
       body: GetBuilder<ProfileDetailsController>(
         builder: (controller) => LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) => SingleChildScrollView(
+            builder: (BuildContext context, BoxConstraints constraints) =>controller.isLoading ? const Center(
+              child: CircularProgressIndicator(),
+            ) : SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-              child: controller.isLoading ? const Center(
-                child: CircularProgressIndicator(),
-              ) : const Column(
+              child:  const Column(
                 children: [
                   ProfileTopSection(),
                   ProfileDetails()
