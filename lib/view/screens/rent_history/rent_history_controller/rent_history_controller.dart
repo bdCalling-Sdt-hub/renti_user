@@ -232,40 +232,6 @@ class RentHistoryController extends GetxController{
     }
   }
 
- /* changeState(int index) {
-    print("change: $index");
-
-    var user = rentUser[index];
-
-    if(user.requestStatus == "Accepted" && user.payment == "Pending" && user.requestStatus == "Pending"){
-      Get.toNamed(AppRoute.rentRequest, arguments: index);
-    }
-    if(user.requestStatus == "Accepted" &&user.payment == "Completed" && user.carId?.tripStatus == "Start"){
-      Get.toNamed(AppRoute.endTrip, arguments: rentUser[index]);
-    }
-    if(user.requestStatus == "Accepted" && user.payment == "Completed" && user.carId!.tripStatus == "Pending"){
-      Get.toNamed(AppRoute.startTrip, arguments: index);
-    }
-    if(user.requestStatus == "Pending" &&user.payment == "Pending" && user.carId?.tripStatus == "Pending"){
-      Get.toNamed(AppRoute.rentRequest, arguments: rentUser[index]);
-    }
-
-    if(user.requestStatus == "Accepted"  && user.payment == "Completed" && user.carId!.tripStatus == "End"){
-      Get.toNamed(AppRoute.rentiHistory, arguments: rentUser[index]);
-    }
-
-
-    // if(user.carId?.tripStatus == "Start" && user.requestStatus == "Pending"){
-    //   Get.toNamed(AppRoute.rentRequest, arguments: index);
-    // }
-    // else if(user.payment == "Completed" && user.requestStatus == "Accepted"){
-    //   Get.toNamed(AppRoute.startTrip, arguments: index);
-    // }
-    // else if(user.requestStatus == "Accepted"){
-    //   Get.toNamed(AppRoute.rentRequest, arguments: index);
-    // }
-    update();
-  }*/
 }
 
 

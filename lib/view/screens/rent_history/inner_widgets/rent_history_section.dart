@@ -4,14 +4,15 @@ import 'package:renti_user/core/helper/date_converter_helper.dart';
 import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_model/rent_history_model.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
+
 class RentHistorySection extends StatelessWidget {
   const RentHistorySection({super.key});
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RentHistoryController>(
@@ -25,49 +26,32 @@ class RentHistorySection extends StatelessWidget {
                         ? GestureDetector(
                             onTap: () {
                               // Get.toNamed(AppRoute.rentRequest, arguments: index);
-                              var user = controller.rentUser[index];
 
-                              if (user.requestStatus == "Accepted" &&
-                                  user.payment == "Pending" &&
-                                  user.requestStatus == "Pending") {
-                                Get.toNamed(AppRoute.rentRequest,
-                                    arguments: index);
+                              print("==========================>clicked");
+
+                              var user = controller.rentUser[index];
+                              if (user.requestStatus == "Accepted" && user.payment == "Pending") {
+                                Get.toNamed(AppRoute.rentRequest, arguments: index);
+                                print("====================>Accepted");
                               }
-                              if (user.requestStatus == "Accepted" &&
-                                  user.payment == "Completed" &&
-                                  user.carId?.tripStatus == "Start") {
+                              if (user.requestStatus == "Pending" ) {
+                                AppUtils.successToastMessage("Wait for Host Approval");
+                              }
+                              if (user.requestStatus == "Accepted" && user.payment == "Completed") {
+                                Get.toNamed(AppRoute.startTrip, arguments: index,);
+                              }
+                              else if (user.payment == "Completed" && user.carId?.tripStatus == "Pending") {
+                                Get.toNamed(AppRoute.startTrip, arguments: index);
+                              }
+
+                             /* if (user.requestStatus == "Completed" && user.payment == "Completed" && user.carId!.tripStatus == "End") {
+                                // Get.toNamed(AppRoute.rentiHistory, arguments: index);
+                              }*/
+                              if (user.requestStatus == "Accepted" && user.payment == "Completed" && user.carId?.tripStatus == "Start") {
                                 Get.toNamed(AppRoute.endTrip, arguments: index);
                               }
-                              if (user.requestStatus == "Accepted" &&
-                                  user.payment == "Completed" &&
-                                  user.carId!.tripStatus == "Pending") {
-                                Get.toNamed(
-                                  AppRoute.startTrip,
-                                  arguments: index,
-                                );
-                              }
-                              // if(user.requestStatus == "Pending" &&user.payment == "Pending" && user.carId?.tripStatus == "Pending"){
-                              //   Get.toNamed(AppRoute.rentRequest, arguments:index);
-                              // }
-
-                              if (user.requestStatus == "Completed" &&
-                                  user.payment == "Completed" &&
-                                  user.carId!.tripStatus == "End") {
-                                Get.toNamed(AppRoute.rentiHistory,
-                                    arguments: index);
-                                print("+=====================>clicked");
-                              }
                             },
-                            child: controller.rentUser[index].requestStatus ==
-                                        "Pending" ||
-                                    controller.rentUser[index].payment ==
-                                        "Pending" ||
-                                    controller.rentUser[index].carId
-                                            ?.tripStatus ==
-                                        "Pending" ||
-                                    controller.rentUser[index].requestStatus ==
-                                        "Cancel"
-                                ? const SizedBox()
+                            child: controller.rentUser[index].requestStatus == "Cancel" ? const SizedBox()
                                 : Container(
                                     margin: const EdgeInsets.only(bottom: 8),
                                     width: MediaQuery.of(context).size.width,
@@ -167,15 +151,7 @@ class RentHistorySection extends StatelessWidget {
                                                         horizontal: 8),
                                                     decoration: BoxDecoration(
                                                       color: controller.rentUser[index].requestStatus ==
-                                                              "Pending"
-                                                          ? const Color(
-                                                              0xffFFEED0)
-                                                          : controller
-                                                                      .rentUser[
-                                                                          index]
-                                                                      .requestStatus ==
-                                                                  "Reserved"
-                                                              ? const Color(
+                                                              "Pending" ? const Color(0xffFFEED0) : controller.rentUser[index].requestStatus == "Reserved" ? const Color(
                                                                   0xFFFBE9EC)
                                                               : controller
                                                                           .rentUser[
@@ -248,23 +224,23 @@ class RentHistorySection extends StatelessWidget {
 
   Widget tripStatusText(UserWiseRent rentUser) {
     String statusText = "";
-
-    if (rentUser.requestStatus == "Accepted" && rentUser.payment == "Pending" && rentUser.carId?.tripStatus == "Pending") {
+    if (rentUser.requestStatus == "Pending") {
+      statusText = "Pending";
+    }
+    if (rentUser.requestStatus == "Accepted" && rentUser.payment == "Pending") {
       statusText = "Accepted";
     }
-
-    if (rentUser.requestStatus == "Accepted" && rentUser.payment == "Completed" && rentUser.carId?.tripStatus == "Start") {
+    if (rentUser.requestStatus == "Accepted" && rentUser.payment == "Completed") {
       statusText = "Reserved";
     }
-
-    // if( rentUser.requestStatus == "Pending" && rentUser.payment == "Pending" && rentUser.carId?.tripStatus == "Pending"){
-    //   statusText = "Pending";
-    // }
-
+    if (rentUser.requestStatus == "Accepted" && rentUser.payment == "Completed" &&  rentUser.carId!.tripStatus == "Start") {
+      statusText = "Start";
+    }
     if (rentUser.requestStatus == "Completed" && rentUser.payment == "Completed" && rentUser.carId!.tripStatus == "End") {
       statusText = "End Trip";
     }
 
     return Text(statusText);
   }
+
 }

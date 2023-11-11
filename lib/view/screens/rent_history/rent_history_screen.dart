@@ -73,7 +73,7 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
         builder: (controller) {
           return  controller .isLoading ? const Center(
             child: CircularProgressIndicator(),
-          ) : controller.rentUser.isEmpty && controller.rentUser==null ? Center(
+          ) : controller.rentUser.isEmpty && controller.rentUser== "" ? Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
