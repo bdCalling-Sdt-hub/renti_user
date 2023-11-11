@@ -20,9 +20,10 @@ class EndTripScreen extends StatefulWidget {
 
 class _EndTripScreenState extends State<EndTripScreen> {
 
-
+   int? index;
   @override
   void initState() {
+    index =Get.arguments;
     DeviceUtils.authUtils();
     Get.put(ApiService(sharedPreferences: Get.find()));
     super.initState();
@@ -36,7 +37,6 @@ class _EndTripScreenState extends State<EndTripScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final id = Get.arguments;
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
@@ -65,16 +65,16 @@ class _EndTripScreenState extends State<EndTripScreen> {
             )),
         body: LayoutBuilder(
           builder: (context, constraint) {
-            return const SingleChildScrollView(
-              padding: EdgeInsetsDirectional.symmetric(
+            return  SingleChildScrollView(
+              padding: const EdgeInsetsDirectional.symmetric(
                   vertical: 20, horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // top Section with upload button
-                  EndTripAddCarImage(),
-                  SizedBox(height: 24,),
-                  BottomInfoScetion()
+                  const EndTripAddCarImage(),
+                  const SizedBox(height: 24,),
+                  BottomInfoScetion(index: index ?? 0,)
                 ],
               ),
             );
@@ -83,7 +83,7 @@ class _EndTripScreenState extends State<EndTripScreen> {
         bottomNavigationBar: GetBuilder<RentHistoryController>(
             builder: (controller) {
               return BottomNavButton(onTap: (){
-                controller.addCarMultipleFilesAndParams1(id);
+                controller.addCarMultipleFilesAndParams1(controller.rentUser[index ??0].id ?? "");
               }, buttonName: AppStrings.endTrip.tr, buttonColor: AppColors.primaryColor);
             }
         ),

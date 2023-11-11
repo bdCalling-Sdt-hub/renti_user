@@ -24,8 +24,6 @@ class TripDetailsScreen extends StatefulWidget {
 class _TripDetailsScreenState extends State<TripDetailsScreen> {
 
   final _rentController =Get.find<RentHistoryController>();
-
-
    late int index;
   @override
   void initState() {

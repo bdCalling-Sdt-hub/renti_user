@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:renti_user/core/global/api_url_container.dart';
+import 'package:renti_user/utils/app_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/helper/shared_preference_helper.dart';
 import '../../../../../core/route/app_route.dart ';
-
-
 
 class PaymentController extends GetxController{
   TextEditingController expiryDate=TextEditingController();
@@ -39,6 +39,8 @@ class PaymentController extends GetxController{
       var data=json.decode(await response.stream.bytesToString());
       print(data);
       await payment(amount:amount,rentId: rentId,productName: productName,email: email,token:"tok_visa",residenceId: residenceId);
+      AppUtils.successToastMessage("Payment Success");
+
     }
     else {
       print(response.reasonPhrase);
@@ -50,23 +52,24 @@ class PaymentController extends GetxController{
     try {
       Map<String,dynamic> body={
         "product": {
-          "name": "Toyota X Corolla",
-          "price": 500
+          "name": productName,
+          "price": amount
         },
         "token": {
-          "email": "farvezhossen101@gmail.com",
+          "email": email,
           "id": "tok_visa"
         }
       };
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       String t = prefs.getString(SharedPreferenceHelper.accessTokenKey)??"";
+      debugPrint("=======> bearer token :$t");
+      debugPrint("=======> rentId :$rentId");
       var headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $t'
       };
 
-
-      var response= await http.post(Uri.parse("http://192.168.10.14:3001/api/payment/$rentId"),body:body,headers: headers);
+      var response= await http.post(Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.paymentApi}$rentId"),body:json.encode(body),headers: headers);
       if(response.statusCode==200){
         Get.snackbar('Payment Successful', "Payment Successful Done");
         Get.toNamed(AppRoute.startTrip,arguments: residenceId);

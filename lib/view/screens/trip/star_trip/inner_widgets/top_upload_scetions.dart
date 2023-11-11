@@ -15,7 +15,6 @@ class AddCarImage extends StatelessWidget {
         child: Row(
           children: [
             //First Image
-
             controller.firstImg == null
                 ? Expanded(
               child: GestureDetector(

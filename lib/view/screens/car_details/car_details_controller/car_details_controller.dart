@@ -25,9 +25,11 @@ class CarDetailsController extends GetxController{
     ApiResponseModel responseModel = await carDetailsRepo.fetchCarDetails(id: carId);
     if(responseModel.statusCode == 200){
       carDetailsModel = CarDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
+
     }
     else{
       print("Error");
+
     }
 
     isLoading = false;
@@ -54,14 +56,21 @@ class CarDetailsController extends GetxController{
       if(responseModel.statusCode == 200){
         sentRentRequestModel = SentRentRequestModel.fromJson(jsonDecode(responseModel.responseJson));
         requestStatus = sentRentRequestModel.rents?.requestStatus ?? "";
-
         await carDetailsRepo.apiService.sharedPreferences.setString("request_status_key", requestStatus);
+        AppUtils.successToastMessage("Request Sent Successfully");
         gotoNextStep();
+
+      }
+
+      else if(startTripDateController.text.isEmpty || endTripDateController.text.isEmpty){
+        AppUtils.successToastMessage("Please fill-up start date and end date");
+      }
+      else if(responseModel.statusCode == 500){
+        AppUtils.successToastMessage("Change your date please");
       }
       else{
-        AppUtils.errorToastMessage("Request send failed");
+        AppUtils.successToastMessage("Internal server error");
       }
-
 
     clearData();
     isSubmit = false;
@@ -75,6 +84,8 @@ class CarDetailsController extends GetxController{
 
   gotoNextStep() {
     Get.offAndToNamed(AppRoute.rentiHistory);
+
+
   }
 
   Future<void> startTripDatePicker(BuildContext context) async{
