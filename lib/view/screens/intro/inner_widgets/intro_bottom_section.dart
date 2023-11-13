@@ -50,7 +50,7 @@ class _IntroBottomSectionState extends State<IntroBottomSection> {
         const SizedBox(height: 24),
         CustomElevatedButton(
           onPressed: () {
-           Navigator.push(context, MaterialPageRoute(builder: (_)=>SignInScreen()));
+          Get.toNamed(AppRoute.signInScreen);
           },
           titleText: AppStrings.getStarted.tr,
           buttonWidth: double.maxFinite,

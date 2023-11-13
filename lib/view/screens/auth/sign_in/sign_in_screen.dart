@@ -43,7 +43,6 @@ class _SignInScreenState extends State<SignInScreen> {
     DeviceUtils.screenUtils();
     super.dispose();
   }
-  bool shouldPop = true;
   @override
   Widget build(BuildContext context) {
 
@@ -53,63 +52,58 @@ class _SignInScreenState extends State<SignInScreen> {
         child: SafeArea(
           top: false,
           bottom: false,
-          child: WillPopScope(
-              onWillPop: () async {
-                return shouldPop;
-              },
-            child: Scaffold(
-                backgroundColor: AppColors.primaryColor,
-                appBar:  CustomAppBar(
-                  appBarContent: CustomBack(text: AppStrings.signIn.tr),
-                ),
-                body: GetBuilder<SignInController>(
-                  builder: (controller) => LayoutBuilder(
-                    builder: (BuildContext context, BoxConstraints constraints) =>
-                        CustomContainer(
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width,
-                          child: SingleChildScrollView(
-                            padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
-                            physics: const BouncingScrollPhysics(),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const SignInAuth(),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                     CustomText(
+          child: Scaffold(
+              backgroundColor: AppColors.primaryColor,
+              appBar:  CustomAppBar(
+                appBarContent: CustomBack(text: AppStrings.signIn.tr),
+              ),
+              body: GetBuilder<SignInController>(
+                builder: (controller) => LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) =>
+                      CustomContainer(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        child: SingleChildScrollView(
+                          padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
+                          physics: const BouncingScrollPhysics(),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const SignInAuth(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                   CustomText(
+                                    top: 24,
+                                    text: AppStrings.anAcount.tr,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    left: 4,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(AppRoute.signUpScreen);
+
+                                    },
+
+                                    child:  CustomText(
                                       top: 24,
-                                      text: AppStrings.anAcount.tr,
+                                      text: AppStrings.signUp.tr,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                       left: 4,
+                                      color: AppColors.primaryColor,
                                     ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Get.toNamed(AppRoute.signUpScreen);
-
-                                      },
-
-                                      child:  CustomText(
-                                        top: 24,
-                                        text: AppStrings.signUp.tr,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        left: 4,
-                                        color: AppColors.primaryColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                  ),
-                )),
-          ),
+                      ),
+                ),
+              )),
         ),
       ),
     );
