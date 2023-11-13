@@ -11,10 +11,12 @@ import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
 
-class MakePaymentScreen extends StatefulWidget {
-   const MakePaymentScreen({super.key,required this.rentId, required this.residenceId});
+import '../../rent_history/rent_history_controller/rent_history_controller.dart';
 
-   final int residenceId;
+class MakePaymentScreen extends StatefulWidget {
+   const MakePaymentScreen({super.key,required this.rentId, required this.index});
+
+   final int index;
    final String rentId;
 
   @override
@@ -24,6 +26,7 @@ class MakePaymentScreen extends StatefulWidget {
 class _MakePaymentScreenState extends State<MakePaymentScreen> {
 
   final PaymentController  _controller= Get.put(PaymentController());
+  final _rentController =Get.find<RentHistoryController>();
 
 
   final formKey = GlobalKey<FormState>();
@@ -116,20 +119,19 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                      ),
                    ],
                  ),
-
-
-
             ],
           ),
         ),
       ),
      bottomNavigationBar: Padding(
        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
-       child: CustomElevatedButton(
+       child: _controller.isLoading
+           ? const Center(child: CircularProgressIndicator())
+           : CustomElevatedButton(
            buttonWidth: MediaQuery.of(context).size.width,
            onPressed: ()
            {
-             _controller.tokenizeCard(rentId:widget.rentId,amount:200,email: "abc@gmail.com",productName:"Product Name",residenceId:widget.residenceId
+             _controller.tokenizeCard(rentId:widget.rentId,amount:int.parse(_rentController.rentUser[widget.index].totalAmount!),email:_rentController.rentUser[widget.index].userId!.email!,productName:_rentController.rentUser[widget.index].carId!.carModelName!,index:widget.index
              );
 
            }, titleText: "Pay Now".tr),

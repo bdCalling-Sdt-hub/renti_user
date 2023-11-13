@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
@@ -42,7 +43,7 @@ class _EndTripScreenState extends State<EndTripScreen> {
         appBar: CustomAppBar(
             appBarContent: GestureDetector(
               onTap: (){
-                Get.back();
+                Get.offAllNamed(AppRoute.homeScreen);
               },
               child:  Row(
                 children: [

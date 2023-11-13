@@ -66,8 +66,11 @@ class CarDetailsController extends GetxController{
         AppUtils.successToastMessage("Please fill-up start date and end date");
       }
       else if(responseModel.statusCode == 500){
-        AppUtils.successToastMessage("Change your date please");
+        AppUtils.successToastMessage("Rent request already exits");
       }
+      // else if(responseModel.statusCode == 400){
+      //   AppUtils.successToastMessage("Rent request already exits");
+      // }
       else{
         AppUtils.successToastMessage("Internal server error");
       }

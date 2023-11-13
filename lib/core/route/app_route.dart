@@ -36,14 +36,14 @@ import 'package:renti_user/view/screens/trip_details/trip_details_screen.dart';
 
 class AppRoute {
 
-  static  String rentRequest = "/rent_request_screen";
-  static  String homeScreen = "/home_screen";
-  static  String searchScreen = "/search_screen";
-  static  String startTrip = "/start_trip_screen";
-  static  String endTrip = "/end_trip_screen";
-  static  String popularCarScreen = "/popular_car_screen";
-  static  String allCarScreen= "/all_cars_screen";
-  static  String inboxScreen= "/inbox_screen";
+  static const  String rentRequest = "/rent_request_screen";
+  static const String homeScreen = "/home_screen";
+  static const String searchScreen = "/search_screen";
+  static const String startTrip = "/start_trip_screen";
+  static const String endTrip = "/end_trip_screen";
+  static const String popularCarScreen = "/popular_car_screen";
+  static const String allCarScreen= "/all_cars_screen";
+  static const String inboxScreen= "/inbox_screen";
   static const String messageScreen = "/message_screen";
   static const String cancelShowDialog = "/cancel_show_dialog";
   static const String introScreen = "/splash_screen";
@@ -75,7 +75,7 @@ class AppRoute {
     GetPage(name: startTrip, page: ()=> const StartTripScreen()),
     GetPage(name: endTrip, page: ()=> const EndTripScreen()),
     GetPage(name: popularCarScreen, page: ()=>  const PopularCarScreen()),
-     GetPage(name: inboxScreen, page: ()=>  InboxScreen()),
+    GetPage(name: inboxScreen, page: ()=>  InboxScreen()),
     GetPage(name: messageScreen, page: ()=> const MessageScreen()),
     GetPage(name:allCarScreen , page: ()=>const AllCarScreen()),
     GetPage(name: introScreen, page: ()=> const IntroScreen()),

@@ -16,7 +16,7 @@ class SocketService extends GetxController {
 
   void connectToSocket() {
     socket = io.io(
-        "http://192.168.10.14:9000/api",
+        "http://192.168.10.14:9000",
         io.OptionBuilder()
             .setTransports(['websocket'])
             .enableAutoConnect()

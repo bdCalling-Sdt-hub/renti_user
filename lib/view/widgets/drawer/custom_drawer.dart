@@ -9,6 +9,7 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/auth/sign_in/sign_in_controller/sign_in_controller.dart';
 import 'package:renti_user/view/screens/logout/logout_controller/logout_controller.dart';
 import 'package:renti_user/view/screens/logout/logout_repo/logout_repo.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
@@ -181,7 +182,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                               children: [
                                 Expanded(
                                     child:InkWell(
-                                      onTap: () => controller.logout(),
+                                      onTap: () {
+                                        controller.logout();
+
+                                      },
                                       child: Container(
                                           decoration: BoxDecoration(
                                               color: const Color(0x7FFBE9EC),

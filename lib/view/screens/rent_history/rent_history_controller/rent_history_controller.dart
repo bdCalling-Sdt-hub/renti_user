@@ -19,7 +19,7 @@ class RentHistoryController extends GetxController{
 
   RentHistoryModel rentHistoryModel = RentHistoryModel();
   bool isLoading = false;
-  List<UserWiseRent> rentUser = [];
+  RxList<UserWiseRent> rentUser = <UserWiseRent>[].obs;
   RequestCancelResponseModel requestCancelResponseModel = RequestCancelResponseModel();
 
   void initialState() async{
@@ -38,6 +38,8 @@ class RentHistoryController extends GetxController{
       List<UserWiseRent>? tempCarList = rentHistoryModel.userWiseRent;
       if(tempCarList != null && tempCarList.isNotEmpty){
         rentUser.addAll(tempCarList);
+        rentUser.refresh();
+        update();
       }
     }
   }
@@ -131,7 +133,7 @@ class RentHistoryController extends GetxController{
       var response = await request.send();
 
       if (response.statusCode == 200) {
-        Get.toNamed(AppRoute.rentiHistory);
+        Get.offAllNamed(AppRoute.homeScreen);
       } else {
         print(response.statusCode);
         print('Response body: ${await response.stream.bytesToString()}');
@@ -221,7 +223,7 @@ class RentHistoryController extends GetxController{
       var response = await request.send();
 
       if (response.statusCode == 200) {
-        Get.toNamed(AppRoute.rentiHistory);
+        Get.offAllNamed(AppRoute.homeScreen);
       } else {
         print(response.statusCode);
         print('Response body: ${await response.stream.bytesToString()}');

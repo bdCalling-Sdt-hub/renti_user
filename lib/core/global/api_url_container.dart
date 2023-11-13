@@ -35,5 +35,7 @@ class ApiUrlContainer{
   static const String cancelRentRequestEndPoint = "rent/cancel/request";
   static const String starTripEndPoint = "rent/trip";
   static const String paymentApi ="payment/";
+  static const String stripeUrl ="https://api.stripe.com//v1/tokens";
+
 
 }

@@ -223,12 +223,8 @@ class _InboxScreenState extends State<InboxScreen> {
                   const SizedBox(width: 20),
                   GestureDetector(
                     onTap: () {
-                      if (messageController.text != null &&
-                          messageController.text != "" &&
-                          messageController.text.isNotEmpty) {
-                        Get.find<SocketService>().addNewMessage(
-                            messageController.text,
-                            userUid, Get.find<SocketService>().chatId);
+                      if (messageController.text != null && messageController.text != "" && messageController.text.isNotEmpty) {
+                        Get.find<SocketService>().addNewMessage(messageController.text, userUid, Get.find<SocketService>().chatId);
                       }
 
                       messageController.text = "";

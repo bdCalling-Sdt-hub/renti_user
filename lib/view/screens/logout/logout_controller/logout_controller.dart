@@ -5,6 +5,7 @@ import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/utils/app_utils.dart';
+import 'package:renti_user/view/screens/auth/sign_in/sign_in_controller/sign_in_controller.dart';
 import 'package:renti_user/view/screens/logout/logout_model/logout_model.dart';
 import 'package:renti_user/view/screens/logout/logout_repo/logout_repo.dart';
 
@@ -13,9 +14,9 @@ class LogoutController extends GetxController{
   LogoutRepo repo;
   LogoutController({required this.repo});
 
-  TextEditingController currentPasswordController = TextEditingController();
-  TextEditingController newPasswordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
+  // TextEditingController currentPasswordController = TextEditingController();
+  // TextEditingController newPasswordController = TextEditingController();
+  // TextEditingController confirmPasswordController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
@@ -29,9 +30,13 @@ class LogoutController extends GetxController{
     ApiResponseModel responseModel = await repo.userLogout();
 
     if(responseModel.statusCode == 200){
+
       LogoutModel model = LogoutModel.fromJson(jsonDecode(responseModel.responseJson));
       AppUtils.successToastMessage(model.message ?? "Logout Successfully");
+
     }
+
+
     await clearSharedPrefData();
     Get.offAllNamed(AppRoute.signInScreen);
 
@@ -47,4 +52,5 @@ class LogoutController extends GetxController{
     await repo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, false);
     return Future.value();
   }
+
 }

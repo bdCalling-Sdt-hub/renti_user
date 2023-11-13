@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:renti_user/core/global/api_url_container.dart';
+import 'package:renti_user/utils/app_constents.dart';
 import 'package:renti_user/utils/app_utils.dart';
+import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/helper/shared_preference_helper.dart';
@@ -14,41 +16,56 @@ class PaymentController extends GetxController{
   TextEditingController expiryDate=TextEditingController();
   TextEditingController cardNumber=TextEditingController();
   TextEditingController cvvCode=TextEditingController();
+  bool isLoading = false;
+
+  final rentHistoryController =Get.find<RentHistoryController>();
 
 
-  Future<void> tokenizeCard({required String rentId,required  String productName,required int amount,required  String email,required  int residenceId}) async {
+  Future<void> tokenizeCard({required String rentId,required  String productName,required int amount,required  String email,required  int index}) async {
     print( expiryDate.text.substring(0,2));
     print( expiryDate.text.substring(3,5));
-    var headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer sk_test_51M6KI7Jb9nyriLWoahD6dzwy06PfzLdDBt72MjJv1quIUgJXRQXAhI7bfH617cUKES7G5eQpCBnKV6KooQwrda5c00oLKLZP0w'
-    };
-    var request = http.Request('POST', Uri.parse('https://api.stripe.com//v1/tokens'));
+    try {
+      isLoading = true;
+      update();
+      var headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Bearer ${AppConstants.secretKeyStripe}'
+      };
+      var request = http.Request('POST', Uri.parse(ApiUrlContainer.stripeUrl));
 
-    request.bodyFields = {
-      'card[exp_month]': expiryDate.text.substring(0,2),
-      'card[exp_year]': expiryDate.text.substring(3,5),
-      'card[number]': cardNumber.text,
-      'card[cvc]': cvvCode.text
-    };
-    request.headers.addAll(headers);
-    http.StreamedResponse response = await request.send();
+      request.bodyFields = {
+        'card[exp_month]': expiryDate.text.substring(0,2),
+        'card[exp_year]': expiryDate.text.substring(3,5),
+        'card[number]': cardNumber.text,
+        'card[cvc]': cvvCode.text
+      };
+      request.headers.addAll(headers);
+      http.StreamedResponse response = await request.send();
 
-    if (response.statusCode == 200) {
-      //print(await response.stream.bytesToString());
-      var data=json.decode(await response.stream.bytesToString());
-      print(data);
-      await payment(amount:amount,rentId: rentId,productName: productName,email: email,token:"tok_visa",residenceId: residenceId);
-      AppUtils.successToastMessage("Payment Success");
+      if (response.statusCode == 200) {
+        isLoading = false;
+        update();
+        //print(await response.stream.bytesToString());
+        var data=json.decode(await response.stream.bytesToString());
+        print(data['id']);
+        await payment(amount:amount,rentId: rentId,productName: productName,email:email,token:data['id'],index: index);
+       // AppUtils.successToastMessage("Payment Success");
+      }
+      else {
 
+        print(response.reasonPhrase);
+      }
+
+    } on Exception catch (e) {
+
+      // TODO
     }
-    else {
-      print(response.reasonPhrase);
-    }
+    isLoading = true;
+    update();
   }
 
 
-  payment({required String rentId,required  String productName,required int amount,required  String email,required String token,required  int residenceId})async {
+  payment({required String rentId,required  String productName,required int amount,required  String email,required String token,required  int index})async {
     try {
       Map<String,dynamic> body={
         "product": {
@@ -57,7 +74,7 @@ class PaymentController extends GetxController{
         },
         "token": {
           "email": email,
-          "id": "tok_visa"
+          "id": token
         }
       };
       final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -68,14 +85,15 @@ class PaymentController extends GetxController{
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $t'
       };
-
+      debugPrint("=======> Url : ${ApiUrlContainer.baseUrl}${ApiUrlContainer.paymentApi}$rentId");
       var response= await http.post(Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.paymentApi}$rentId"),body:json.encode(body),headers: headers);
       if(response.statusCode==200){
-        Get.snackbar('Payment Successful', "Payment Successful Done");
-        Get.toNamed(AppRoute.startTrip,arguments: residenceId);
+        AppUtils.successToastMessage("Payment Completed");
+        rentHistoryController.rentHistoryResult();
+        Get.toNamed(AppRoute.startTrip,arguments:index);
         print("==========> response : ${response.body}");
       }else{
-        print("==========> response error : ${response.statusCode}");
+        print("==========> response error : ${response.body}");
       }
     } on Exception catch (e) {
       print("==========> catch error  : $e ");

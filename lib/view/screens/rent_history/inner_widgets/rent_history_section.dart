@@ -34,6 +34,9 @@ class RentHistorySection extends StatelessWidget {
                                 Get.toNamed(AppRoute.rentRequest, arguments: index);
                                 print("====================>Accepted");
                               }
+                              if (user.requestStatus == "Rejected") {
+                                AppUtils.successToastMessage("Rejected by Car Owner");
+                              }
                               if (user.requestStatus == "Pending" ) {
                                 AppUtils.successToastMessage("Wait for Host Approval");
                               }
@@ -44,9 +47,10 @@ class RentHistorySection extends StatelessWidget {
                                 Get.toNamed(AppRoute.startTrip, arguments: index);
                               }
 
-                             /* if (user.requestStatus == "Completed" && user.payment == "Completed" && user.carId!.tripStatus == "End") {
+                              if (user.requestStatus == "Completed" && user.payment == "Completed" && user.carId!.tripStatus == "End") {
                                 // Get.toNamed(AppRoute.rentiHistory, arguments: index);
-                              }*/
+                                AppUtils.successToastMessage("Already Trip Completed");
+                              }
                               if (user.requestStatus == "Accepted" && user.payment == "Completed" && user.carId?.tripStatus == "Start") {
                                 Get.toNamed(AppRoute.endTrip, arguments: index);
                               }
@@ -227,6 +231,9 @@ class RentHistorySection extends StatelessWidget {
     if (rentUser.requestStatus == "Pending") {
       statusText = "Pending";
     }
+    if (rentUser.requestStatus == "Rejected") {
+      statusText = "Rejected";
+    }
     if (rentUser.requestStatus == "Accepted" && rentUser.payment == "Pending") {
       statusText = "Accepted";
     }
@@ -239,7 +246,6 @@ class RentHistorySection extends StatelessWidget {
     if (rentUser.requestStatus == "Completed" && rentUser.payment == "Completed" && rentUser.carId!.tripStatus == "End") {
       statusText = "End Trip";
     }
-
     return Text(statusText);
   }
 

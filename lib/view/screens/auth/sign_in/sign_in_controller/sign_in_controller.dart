@@ -35,6 +35,7 @@ class SignInController extends GetxController{
     print("status code: ${responseModel.statusCode}");
 
     if(responseModel.statusCode == 200){
+      clearData();
       SignInResponseModel signInResponseModel = SignInResponseModel.fromJson(jsonDecode(responseModel.responseJson));
       print("data: ${signInResponseModel.user.toString()}");
       AppUtils.successToastMessage("Sign In Successfully");

@@ -5,6 +5,7 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
@@ -49,9 +50,7 @@ class _IntroBottomSectionState extends State<IntroBottomSection> {
         const SizedBox(height: 24),
         CustomElevatedButton(
           onPressed: () {
-            Get.toNamed(
-                AppRoute.signInScreen
-            );
+           Navigator.push(context, MaterialPageRoute(builder: (_)=>SignInScreen()));
           },
           titleText: AppStrings.getStarted.tr,
           buttonWidth: double.maxFinite,
