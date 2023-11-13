@@ -94,7 +94,7 @@ class SignUpController extends GetxController{
   String? imageUrl;
 
   void openGallery() async{
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery, maxHeight: 120, maxWidth: 120);
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
 
     if(pickedFile != null){
       imageFile = File(pickedFile.path);
@@ -104,9 +104,7 @@ class SignUpController extends GetxController{
 
   void openCamera(BuildContext context)  async{
     final pickedFile = await ImagePicker().pickImage(
-        source: ImageSource.camera,
-        maxHeight: 120,
-        maxWidth: 120
+        source: ImageSource.camera
     );
 
     if(pickedFile != null) {

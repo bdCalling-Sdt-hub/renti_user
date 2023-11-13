@@ -7,7 +7,6 @@ class CustomWillPopWidget extends StatelessWidget {
   final String nextRoute;
 
   const CustomWillPopWidget({required this.child, this.nextRoute = "", super.key});
-
   @override
   Widget build(BuildContext context) {
 

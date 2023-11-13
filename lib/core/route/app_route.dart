@@ -75,7 +75,7 @@ class AppRoute {
     GetPage(name: startTrip, page: ()=> const StartTripScreen()),
     GetPage(name: endTrip, page: ()=> const EndTripScreen()),
     GetPage(name: popularCarScreen, page: ()=>  const PopularCarScreen()),
-    GetPage(name: inboxScreen, page: ()=>  InboxScreen()),
+    GetPage(name: inboxScreen, page: ()=>  const InboxScreen()),
     GetPage(name: messageScreen, page: ()=> const MessageScreen()),
     GetPage(name:allCarScreen , page: ()=>const AllCarScreen()),
     GetPage(name: introScreen, page: ()=> const IntroScreen()),

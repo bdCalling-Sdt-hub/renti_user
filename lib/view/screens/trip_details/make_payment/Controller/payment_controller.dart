@@ -24,9 +24,10 @@ class PaymentController extends GetxController{
   Future<void> tokenizeCard({required String rentId,required  String productName,required int amount,required  String email,required  int index}) async {
     print( expiryDate.text.substring(0,2));
     print( expiryDate.text.substring(3,5));
+    isLoading = true;
+    update();
     try {
-      isLoading = true;
-      update();
+
       var headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': 'Bearer ${AppConstants.secretKeyStripe}'
@@ -43,16 +44,16 @@ class PaymentController extends GetxController{
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        isLoading = false;
-        update();
+
         //print(await response.stream.bytesToString());
         var data=json.decode(await response.stream.bytesToString());
         print(data['id']);
         await payment(amount:amount,rentId: rentId,productName: productName,email:email,token:data['id'],index: index);
        // AppUtils.successToastMessage("Payment Success");
+        isLoading = false;
+        update();
       }
       else {
-
         print(response.reasonPhrase);
       }
 
@@ -60,7 +61,7 @@ class PaymentController extends GetxController{
 
       // TODO
     }
-    isLoading = true;
+    isLoading = false;
     update();
   }
 

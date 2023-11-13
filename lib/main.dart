@@ -31,13 +31,13 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       locale: const Locale("en","US"),
         //locale: Get.find<LanguageController>().language.val ? const Locale("es" , "US") : const Locale("fr", "MX"),
-      fallbackLocale:const Locale("en" , "US"),
+       fallbackLocale:const Locale("en" , "US"),
        translations: Language(),
        debugShowCheckedModeBanner: false,
        defaultTransition: Transition.noTransition,
+      transitionDuration: const Duration(milliseconds: 200),
        initialRoute: AppRoute.introScreen,
-      // navigatorKey: Get.key,
-       transitionDuration: const Duration(milliseconds: 200),
+       navigatorKey: Get.key,
        getPages: AppRoute.routes,
     );
   }
