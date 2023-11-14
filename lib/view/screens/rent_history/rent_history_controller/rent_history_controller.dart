@@ -69,27 +69,9 @@ class RentHistoryController extends GetxController{
 
 
   void selectImage() async{
-    final pickedFile = await imagePicker.pickImage(
-      source: ImageSource.gallery,
-    );
-    List<File>xfilePick = pickedFile as List<File>;
-    if(xfilePick.isNotEmpty) {
-      for (var i = 0; i < xfilePick.length; i++) {
-        if (addCarImages.length < 4) {
-          addCarImages.add(File(xfilePick[i].path));
-          print("Selected Image $addCarImages");
-        } else {
-          // Utils.toastMessage("You can only select up to 5 images".tr);
-          break;
-        }
-      }
-      update();
-    } else {
-      addCarImages.clear();
-      AppUtils.successToastMessage("No image selected".tr);
-      update();
+    if(firstImg==null){
+      AppUtils.successToastMessage("Selecet Imadjdfohisgp ");
     }
-    print(addCarImages);
   }
 
   void openGallery({required int index}) async {
@@ -163,7 +145,6 @@ class RentHistoryController extends GetxController{
       print(e.toString());
     }
   }
-
 
   //END TRIP Controller
   List<File> addCarImages1= [];

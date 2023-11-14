@@ -4,6 +4,7 @@ import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/screens/trip/end_trip/inner_widgets/top_upload_scetion.dart';
@@ -84,8 +85,12 @@ class _EndTripScreenState extends State<EndTripScreen> {
         bottomNavigationBar: GetBuilder<RentHistoryController>(
             builder: (controller) {
               return BottomNavButton(onTap: (){
-
-                controller.addCarMultipleFilesAndParams1(controller.rentUser[index ??0].id ?? "");
+                if(controller.firstImg == null || controller.secondImg == null || controller.thirdImg == null){
+                  AppUtils.successToastMessage("please select 3 images");
+                }
+                else{
+                 controller.addCarMultipleFilesAndParams1(controller.rentUser[index ??0].id ?? "");
+                }
               }, buttonName: AppStrings.endTrip.tr, buttonColor: AppColors.primaryColor);
             }
         ),

@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -44,6 +46,7 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                 itemCount:controller.carDetailsModel.cars?.image?.length,
                 itemBuilder: (BuildContext context, int itemIndex, int pageIndex) =>
                     Container(
+                      margin: EdgeInsets.only(right:  5,left: 5),
                         padding: const EdgeInsets.symmetric(vertical: 44,horizontal: 44),
                         height: 200,
                         width: MediaQuery.of(context).size.width,
@@ -63,12 +66,12 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                     ),  options: CarouselOptions(
                          onPageChanged: (index, reason) {
                               setState(() {
-                                       currentIndex = index;
+                                          currentIndex = index;
                                        });
               },
               enableInfiniteScroll: false,
               viewportFraction: 1,
-              height: 180.0,
+              height: 200.0,
               autoPlay: true,
             ),
             ),

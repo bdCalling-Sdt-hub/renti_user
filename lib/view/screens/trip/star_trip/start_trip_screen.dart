@@ -88,14 +88,14 @@ class _StartTripScreenState extends State<StartTripScreen> {
           ),
           bottomNavigationBar: GetBuilder<RentHistoryController>(
               builder: (controller) {
-                return BottomNavButton(onTap: (){
-                  controller.addCarMultipleFilesAndParams(controller.rentUser[index ??0].id ?? "");
-                  // controller.openGallery(index: index ?? 0);
-                  controller.selectImage();
-                  if(controller.secondImg == null || controller.firstImg== null && controller.thirdImg ==null){
-                    AppUtils.successToastMessage("please seleact image");
+                return BottomNavButton(
+                    onTap: (){
+                  if(controller.firstImg == null || controller.secondImg == null || controller.thirdImg == null){
+                    AppUtils.successToastMessage("please select 3 images");
                   }
-                  print("okay");
+                  else{
+                    controller.addCarMultipleFilesAndParams(controller.rentUser[index ??0].id ?? "");
+                  }
                 }, buttonName: AppStrings.startTrip, buttonColor: AppColors.primaryColor);
               }
           ),

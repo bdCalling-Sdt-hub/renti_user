@@ -10,11 +10,12 @@ class CustomBack extends StatelessWidget {
         this.vertical = 0,
         this.text = "",
         this.fontSize = 18,
-        this.height,
+        this.height =44,
         this.onTap,
         this.left = 8,
         this.fontWeight = FontWeight.w500,
-        this.color = AppColors.whiteLight});
+        this.color = AppColors.whiteLight,
+        });
 
   final double horizontal;
   final double vertical;
@@ -26,14 +27,17 @@ class CustomBack extends StatelessWidget {
   final FontWeight fontWeight;
   final Color color;
 
+
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: (){
         Get.back();
       },
       child: Container(
         height: height,
+        // width: width,
         padding: EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
         child: Row(
           children: [
