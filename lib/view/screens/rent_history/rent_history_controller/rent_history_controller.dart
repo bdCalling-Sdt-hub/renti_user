@@ -96,9 +96,6 @@ class RentHistoryController extends GetxController{
     final pickedFile = await imagePicker.pickImage(
       source: ImageSource.gallery,
     );
-
-
-
     if (pickedFile != null) {
       if (index == 0) {
         firstImg = File(pickedFile.path);
@@ -169,8 +166,6 @@ class RentHistoryController extends GetxController{
 
 
   //END TRIP Controller
-
-
   List<File> addCarImages1= [];
   File? firstImg1;
   File? secondImg1;

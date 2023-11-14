@@ -4,6 +4,7 @@ import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
@@ -91,6 +92,9 @@ class _StartTripScreenState extends State<StartTripScreen> {
                   controller.addCarMultipleFilesAndParams(controller.rentUser[index ??0].id ?? "");
                   // controller.openGallery(index: index ?? 0);
                   controller.selectImage();
+                  if(controller.secondImg == null || controller.firstImg== null && controller.thirdImg ==null){
+                    AppUtils.successToastMessage("please seleact image");
+                  }
                   print("okay");
                 }, buttonName: AppStrings.startTrip, buttonColor: AppColors.primaryColor);
               }
