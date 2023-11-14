@@ -182,7 +182,7 @@ class RentHistorySection extends StatelessWidget {
                                         Expanded(
                                             flex: 1,
                                             child: Container(
-                                              height: 170,
+                                              height: 200,
                                               decoration: BoxDecoration(
                                                 image: DecorationImage(
                                                     fit: BoxFit.fill,
