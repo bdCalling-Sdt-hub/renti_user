@@ -26,7 +26,7 @@ class OfferCarSection extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.only(bottom: 16),
                           width: MediaQuery.of(context).size.width,
-                          padding: const EdgeInsetsDirectional.all(16),
+                          padding: const EdgeInsetsDirectional.only(start: 16),
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: AppColors.whiteNormalActive, width: 1),
@@ -43,7 +43,7 @@ class OfferCarSection extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
-                                flex: 5,
+                                flex: 2,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,16 +58,15 @@ class OfferCarSection extends StatelessWidget {
                                           fontWeight: FontWeight.w500,
                                           color: AppColors.darkBlueColor,
                                         ),
-                                        const SizedBox(
-                                          width: 8,
-                                        ),
-                                        const CustomImage(
-                                            imageSrc: AppIcons.starIcon),
+                                        // const SizedBox(
+                                        //   width: 8,
+                                        // ),
+                                        // const CustomImage(imageSrc: AppIcons.starIcon),
                                         const SizedBox(
                                           width: 8,
                                         ),
                                         const CustomText(
-                                          text: "(4.5)",
+                                          text: "",
                                           fontSize: 10,
                                           fontWeight: FontWeight.w400,
                                           color: AppColors.blackNormal,
@@ -124,7 +123,7 @@ class OfferCarSection extends StatelessWidget {
                                 ),
                               ),
                               Expanded(
-                                flex: 3,
+                                flex: 2,
                                   child: Container(
                                     height: 120,
                                 decoration: BoxDecoration(

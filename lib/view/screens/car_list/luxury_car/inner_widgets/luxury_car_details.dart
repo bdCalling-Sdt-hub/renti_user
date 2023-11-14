@@ -13,7 +13,6 @@ class LuxuryCarDetails extends StatelessWidget {
   const LuxuryCarDetails({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LuxuryCarController>(builder: (controller) {
@@ -59,12 +58,12 @@ class LuxuryCarDetails extends StatelessWidget {
                             const SizedBox(
                               width: 8,
                             ),
-                            const CustomImage(imageSrc: AppIcons.starIcon),
+                            // const CustomImage(imageSrc: AppIcons.starIcon),
                             const SizedBox(
                               width: 8,
                             ),
                             const CustomText(
-                              text: "(4.5)",
+                              text: "",
                               fontSize: 10,
                               fontWeight: FontWeight.w400,
                               color: AppColors.blackNormal,
