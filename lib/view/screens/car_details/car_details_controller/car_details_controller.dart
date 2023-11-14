@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/car_details/car_details_model/car_details_model.dart';
 import 'package:renti_user/view/screens/car_details/car_details_repo/car_details_repo.dart';
@@ -93,6 +94,16 @@ class CarDetailsController extends GetxController{
 
   Future<void> startTripDatePicker(BuildContext context) async{
     final DateTime? picked = await showDatePicker(
+      builder: (context, child) => Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme:  const ColorScheme.light(
+              primary: AppColors.primaryColor, // <-- SEE HERE
+              onPrimary: AppColors.whiteLight, // <-- SEE HERE
+              onSurface: AppColors.primaryColor, // <-- SEE HERE
+            ),
+          ),
+          child: child!
+      ),
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2023),
@@ -103,9 +114,18 @@ class CarDetailsController extends GetxController{
       update();
     }
   }
-
   Future<void> endTripDatePicker(BuildContext context) async{
     final DateTime? picked = await showDatePicker(
+      builder: (context, child) => Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme:  const ColorScheme.light(
+              primary: AppColors.primaryColor, // <-- SEE HERE
+              onPrimary: AppColors.whiteLight, // <-- SEE HERE
+              onSurface: AppColors.primaryColor, // <-- SEE HERE
+            ),
+          ),
+          child: child!
+      ),
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2023),

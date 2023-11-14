@@ -8,6 +8,7 @@ import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/trip_details/make_payment/Controller/payment_controller.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_loading_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
 
@@ -123,18 +124,20 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
           ),
         ),
       ),
-     bottomNavigationBar: Padding(
-       padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
-       child: _controller.isLoading
-           ? const Center(child: CircularProgressIndicator())
-           : CustomElevatedButton(
-           buttonWidth: MediaQuery.of(context).size.width,
-           onPressed: ()
-           {
-             _controller.tokenizeCard(rentId:widget.rentId,amount:int.parse(_rentController.rentUser[widget.index].totalAmount!),email:_rentController.rentUser[widget.index].userId!.email!,productName:_rentController.rentUser[widget.index].carId!.carModelName!,index:widget.index
-             );
-
-           }, titleText: "Pay Now".tr),
+     bottomNavigationBar: GetBuilder<PaymentController>(
+       builder: (controller){
+         return Padding(
+           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
+           child: controller.isLoading ? const CustomElevatedLoadingButton()
+               : CustomElevatedButton(
+               buttonWidth: MediaQuery.of(context).size.width,
+               onPressed: ()
+               {
+                 controller.tokenizeCard(rentId:widget.rentId,amount:int.parse(_rentController.rentUser[widget.index].totalAmount!),email:_rentController.rentUser[widget.index].userId!.email!,productName:_rentController.rentUser[widget.index].carId!.carModelName!,index:widget.index
+                 );
+               }, titleText: "Pay Now".tr),
+         );
+       },
      ),
     );
   }

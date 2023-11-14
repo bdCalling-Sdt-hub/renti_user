@@ -50,7 +50,9 @@ class TopUploadSection extends StatelessWidget {
                     ) : const DecorationImage(
                         image: AssetImage(AppImages.carImage),
                         fit: BoxFit.fill
-                    )
+                    ),
+
+                  borderRadius: BorderRadius.circular(8)
                 )
             ),
             Padding(

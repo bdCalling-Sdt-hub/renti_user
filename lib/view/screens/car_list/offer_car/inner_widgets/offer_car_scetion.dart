@@ -43,7 +43,7 @@ class OfferCarSection extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
-                                flex: 2,
+                                flex: 5,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,9 +124,9 @@ class OfferCarSection extends StatelessWidget {
                                 ),
                               ),
                               Expanded(
+                                flex: 3,
                                   child: Container(
-                                height: 60,
-                                width: 120,
+                                    height: 120,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: NetworkImage(controller

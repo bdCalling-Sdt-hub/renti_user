@@ -89,6 +89,8 @@ class _StartTripScreenState extends State<StartTripScreen> {
               builder: (controller) {
                 return BottomNavButton(onTap: (){
                   controller.addCarMultipleFilesAndParams(controller.rentUser[index ??0].id ?? "");
+                  // controller.openGallery(index: index ?? 0);
+                  controller.selectImage();
                   print("okay");
                 }, buttonName: AppStrings.startTrip, buttonColor: AppColors.primaryColor);
               }

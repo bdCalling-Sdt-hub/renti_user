@@ -27,6 +27,7 @@ class AppUtils {
       gravity: ToastGravity.BOTTOM,
       toastLength: Toast.LENGTH_LONG,
       textColor: AppColors.whiteLight,
+
     );
   }
 

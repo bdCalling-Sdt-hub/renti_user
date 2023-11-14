@@ -174,27 +174,7 @@ class RentHistorySection extends StatelessWidget {
                                                     ),
                                                     child: tripStatusText(
                                                         controller.rentUser[index]),
-                                                    // controller.rentUser[index].carId?.tripStatus == "Start" ? CustomText(
-                                                    //   text: "Start",
-                                                    //   color: controller.rentUser[index].requestStatus == "Pending" ?
-                                                    //   const Color(0xffFBA91D) :
-                                                    //   controller.rentUser[index].requestStatus == "Reserved" ?
-                                                    //   const Color(0xffD7263D) : controller.rentUser[index].requestStatus == "Cancel" ?
-                                                    //   AppColors.primaryColor  : const Color(0xff00A991),
-                                                    //   fontSize: 10,
-                                                    //   fontWeight: FontWeight.w400,
-                                                    // ) : CustomText(
-                                                    //   text: controller.rentUser[index].payment == "Pending"
-                                                    //       ? "Pending" : controller.rentUser[index].payment == "Completed"
-                                                    //       ? "Completed" : "",
-                                                    //   color: controller.rentUser[index].requestStatus == "Pending" ?
-                                                    //   const Color(0xffFBA91D) :
-                                                    //   controller.rentUser[index].requestStatus == "Reserved" ?
-                                                    //   const Color(0xffD7263D) : controller.rentUser[index].requestStatus == "Cancel" ?
-                                                    //   AppColors.primaryColor  : const Color(0xff00A991),
-                                                    //   fontSize: 10,
-                                                    //   fontWeight: FontWeight.w400,
-                                                    // ),
+
                                                   )
                                                 ],
                                               ),
@@ -202,7 +182,7 @@ class RentHistorySection extends StatelessWidget {
                                         Expanded(
                                             flex: 1,
                                             child: Container(
-                                              height: 160,
+                                              height: 170,
                                               decoration: BoxDecoration(
                                                 image: DecorationImage(
                                                     fit: BoxFit.fill,

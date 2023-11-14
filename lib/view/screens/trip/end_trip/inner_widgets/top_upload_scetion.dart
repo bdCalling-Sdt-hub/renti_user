@@ -58,7 +58,6 @@ class EndTripAddCarImage extends StatelessWidget {
               child: Column(
                 children: [
                   //Second Image
-
                   controller.secondImg == null
                       ? Expanded(
                     child: GestureDetector(

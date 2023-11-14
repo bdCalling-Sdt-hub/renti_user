@@ -1,3 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/utils/app_colors.dart';
@@ -7,9 +10,15 @@ import 'package:renti_user/view/screens/car_details/car_details_controller/car_d
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
-class CarDetailsTopSection extends StatelessWidget {
-  const CarDetailsTopSection({super.key});
+class CarDetailsTopSection extends StatefulWidget {
+   CarDetailsTopSection({super.key});
 
+  @override
+  State<CarDetailsTopSection> createState() => _CarDetailsTopSectionState();
+}
+
+class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CarDetailsController>(
@@ -31,22 +40,37 @@ class CarDetailsTopSection extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Container(
-                padding: const EdgeInsets.symmetric(vertical: 44,horizontal: 44),
-                height: 200,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: AppColors.whiteDArkHover,
-                  image:  controller.carDetailsModel.cars?.image != null ? DecorationImage(
-                    image: NetworkImage(
-                      controller.carDetailsModel.cars?.image![0] ?? ""
-                    ),
-                    fit: BoxFit.fill
-                  ) : const DecorationImage(
-                      image: AssetImage(AppImages.carImage),
-                      fit: BoxFit.fill
-                  )
-                )
+            CarouselSlider.builder(
+                itemCount:controller.carDetailsModel.cars?.image?.length,
+                itemBuilder: (BuildContext context, int itemIndex, int pageIndex) =>
+                    Container(
+                        padding: const EdgeInsets.symmetric(vertical: 44,horizontal: 44),
+                        height: 200,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColors.whiteDArkHover,
+                            image:  controller.carDetailsModel.cars!.image!= null ? DecorationImage(
+                                image: CachedNetworkImageProvider(
+                                    controller.carDetailsModel.cars!.image![itemIndex] ?? ""
+                                ),
+                                fit: BoxFit.fill
+                            ) : const DecorationImage(
+                                image: AssetImage(AppImages.carImage),
+                                fit: BoxFit.fill
+                            )
+                        )
+                    ),  options: CarouselOptions(
+                         onPageChanged: (index, reason) {
+                              setState(() {
+                                       currentIndex = index;
+                                       });
+              },
+              enableInfiniteScroll: false,
+              viewportFraction: 1,
+              height: 180.0,
+              autoPlay: true,
+            ),
             ),
             Padding(
               padding: const EdgeInsets.all(12),
@@ -67,7 +91,7 @@ class CarDetailsTopSection extends StatelessWidget {
                             imageSrc: AppIcons.starIcon,
                             size: 12,),
                           CustomText(
-                            text: '(4.5)',
+                            text: "0",
                             fontSize: 10,
                             color: AppColors.blackNormal,
                             left: 8,
@@ -102,6 +126,15 @@ class CarDetailsTopSection extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+
+            DotsIndicator(
+              decorator: DotsDecorator(
+                color: Colors.grey.withOpacity(0.2),
+                activeColor: AppColors.blackNormal,
+              ),
+              dotsCount: controller.carDetailsModel.cars?.image?.length ?? 0,
+              position: currentIndex,
             )
           ],
         ),

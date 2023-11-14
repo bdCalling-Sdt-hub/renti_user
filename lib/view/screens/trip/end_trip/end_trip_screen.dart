@@ -84,6 +84,7 @@ class _EndTripScreenState extends State<EndTripScreen> {
         bottomNavigationBar: GetBuilder<RentHistoryController>(
             builder: (controller) {
               return BottomNavButton(onTap: (){
+
                 controller.addCarMultipleFilesAndParams1(controller.rentUser[index ??0].id ?? "");
               }, buttonName: AppStrings.endTrip.tr, buttonColor: AppColors.primaryColor);
             }

@@ -25,10 +25,9 @@ class LuxuryCarDetails extends StatelessWidget {
             (index) => Container(
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.only(bottom: 16),
-              padding: const EdgeInsetsDirectional.all(16),
+              padding: const EdgeInsetsDirectional.only(start: 16),
               decoration: BoxDecoration(
-                border:
-                    Border.all(color: AppColors.whiteNormalActive, width: 1),
+                border: Border.all(color: AppColors.whiteNormalActive, width: 1),
                 color: AppColors.whiteLight,
                 borderRadius: BorderRadius.circular(4),
                 boxShadow: const [
@@ -42,7 +41,7 @@ class LuxuryCarDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    flex: 2,
+                    flex: 5,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,11 +118,13 @@ class LuxuryCarDetails extends StatelessWidget {
                       ],
                     ),
                   ),
+
                   Expanded(
+                    flex: 3,
                     child: Container(
-                      height: 60,
-                      width: 120,
+                      height: 120,
                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(bottomRight: Radius.circular(4),topRight: Radius.circular(4)),
                           image: DecorationImage(
                               image: NetworkImage(controller
                                       .luxuryCarList[index].image![0]

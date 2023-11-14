@@ -79,7 +79,7 @@ class HomeLuxuryCarSection extends StatelessWidget {
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width * 0.6,
-                              height: 95,
+                              height: 120,
                               decoration:  ShapeDecoration(
                                 image: DecorationImage(
                                   image: NetworkImage(controller.luxuryCarList[index].image![0].toString()) ,

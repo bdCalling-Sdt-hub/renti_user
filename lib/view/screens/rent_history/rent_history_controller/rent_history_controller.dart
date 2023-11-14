@@ -67,12 +67,37 @@ class RentHistoryController extends GetxController{
   File? thirdImg;
   final imagePicker = ImagePicker();
 
+
+  void selectImage() async{
+    final pickedFile = await imagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
+    List<File>xfilePick = pickedFile as List<File>;
+    if(xfilePick.isNotEmpty) {
+      for (var i = 0; i < xfilePick.length; i++) {
+        if (addCarImages.length < 4) {
+          addCarImages.add(File(xfilePick[i].path));
+          print("Selected Image $addCarImages");
+        } else {
+          // Utils.toastMessage("You can only select up to 5 images".tr);
+          break;
+        }
+      }
+      update();
+    } else {
+      addCarImages.clear();
+      AppUtils.successToastMessage("No image selected".tr);
+      update();
+    }
+    print(addCarImages);
+  }
+
   void openGallery({required int index}) async {
     final pickedFile = await imagePicker.pickImage(
       source: ImageSource.gallery,
-      maxHeight: 120,
-      maxWidth: 120,
     );
+
+
 
     if (pickedFile != null) {
       if (index == 0) {
@@ -82,7 +107,6 @@ class RentHistoryController extends GetxController{
       } else if (index == 1) {
         secondImg = File(pickedFile.path);
         addCarImages.add(secondImg!);
-
         update();
       } else if (index == 2) {
         thirdImg = File(pickedFile.path);
@@ -98,8 +122,7 @@ class RentHistoryController extends GetxController{
       print("okay 1");
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse(
-            "${ApiUrlContainer.baseUrl}${ApiUrlContainer.starTripEndPoint}/$id"),
+        Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.starTripEndPoint}/$id"),
       );
       print(request);
       for (var img in addCarImages) {
