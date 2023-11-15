@@ -104,7 +104,8 @@ class SignUpController extends GetxController{
 
   void openCamera(BuildContext context)  async{
     final pickedFile = await ImagePicker().pickImage(
-        source: ImageSource.camera
+        source: ImageSource.camera,
+
     );
 
     if(pickedFile != null) {

@@ -21,15 +21,23 @@ class LogoutController extends GetxController{
   // TextEditingController confirmPasswordController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
-
-
- //  HomeRepo homeRepo;
- //  ProfileDetailsModel profileDetailsModel = ProfileDetailsModel();
+  ProfileDetailsModel profileDetailsModel = ProfileDetailsModel();
  // String profileImage = "";
  // String userName = "";
  // String phoneNumber = "";
 
   bool isSubmit = false;
+
+  // initialState(){
+  //   loadUserData();
+  // }
+  // loadUserData() async{
+  //   ApiResponseModel responseModel = await repo.fetchUserData();
+  //   if(responseModel.statusCode == 200){
+  //     ProfileDetailsModel model = ProfileDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
+  //     profileImage = model.user?.image ?? "assets/images/user.png";
+  //   }
+  // }
   Future<void> logout() async{
     isSubmit = true;
     update();
@@ -51,13 +59,7 @@ class LogoutController extends GetxController{
     update();
   }
 
-  // loadUserData() async{
-  //   ApiResponseModel responseModel = await homeRepo.fetchUserData();
-  //   if(responseModel.statusCode == 200){
-  //     ProfileDetailsModel model = ProfileDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
-  //     profileImage = model.user?.image ?? "assets/images/user.png";
-  //   }
-  // }
+
 
   Future<void> clearSharedPrefData()async{
     await repo.apiService.sharedPreferences.setString(SharedPreferenceHelper.fullName, '');

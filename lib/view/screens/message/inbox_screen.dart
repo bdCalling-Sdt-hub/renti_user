@@ -57,9 +57,9 @@ class _InboxScreenState extends State<InboxScreen> {
         extendBody: true,
         appBar: CustomAppBar(
           appBarBgColor: AppColors.primaryColor,
-          // bottom: 20,
+           bottom: 10,
+          top: 10,
           appBarHeight: 100,
-          // bottomLeft: 16,
           appBarContent: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,25 +68,17 @@ class _InboxScreenState extends State<InboxScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    onTap: () => Get.back(),
-                    child: const SizedBox(
-                      height: 44,
-                      width: 44,
-                      child: Icon(Icons.arrow_back_ios_rounded,
-                          size: 18, color: AppColors.whiteLight),
-                    ),
-                  ),
-                  const SizedBox(width: 16,),
+                 IconButton(onPressed: ()=>Get.back(), icon: const Icon(Icons.arrow_back_ios_new,color: AppColors.whiteLight,)),
+                  const SizedBox(width: 10,),
                   Container(
-                    height: 52,
-                    width: 52,
+                    height: 60,
+                    width: 60,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
                             image: CachedNetworkImageProvider(image))),
                   ),
-                  const SizedBox(width: 8,),
+                  const SizedBox(width: 12,),
                   CustomText(
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -114,9 +106,7 @@ class _InboxScreenState extends State<InboxScreen> {
                         children: List.generate(
                           socketService.messageList.length,
                           (index) => Align(
-                            alignment: socketService.messageList[index]
-                                        ["sender"]["role"] !=
-                                    "user"
+                            alignment: socketService.messageList[index]["sender"]["role"] != "user"
                                 ? Alignment.topLeft
                                 : Alignment.topRight,
                             child: Container(

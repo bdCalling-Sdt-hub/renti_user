@@ -46,22 +46,31 @@ class _CustomDrawerState extends State<CustomDrawer> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Drawer Top Section
-              const SizedBox(height: 40),
-              Container(
-                  height: 60, width: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: profileController.profileImage.isEmpty ? const DecorationImage(
-                          image: AssetImage("assets/images/user.png"),
-                          fit: BoxFit.fill
-                      ) : DecorationImage(
-                          image: NetworkImage(profileController.profileImage),
-                          fit: BoxFit.fill
-                      )
-                  )
+              const SizedBox(height: 30),
+              GetBuilder<ProfileDetailsController>(
+                builder: (controller) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                    Container(
+                        height: 60, width: 60,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: controller.profileImage.isEmpty ? const DecorationImage(
+                                image: AssetImage("assets/images/user.png"),
+                                fit: BoxFit.fill
+                            ) : DecorationImage(
+                                image: NetworkImage(controller.profileImage),
+                                fit: BoxFit.fill
+                            )
+                        )
+                    ),
+                    CustomText(text:controller.username , fontSize: 16, fontWeight: FontWeight.w500,top: 8),
+                    CustomText(text:"${controller.number}  ${controller.phoneNumber}", fontSize: 12, color: AppColors.whiteDarkHover,top: 8,bottom: 8),
+                  ],);
+                }
               ),
-              CustomText(text:profileController.username , fontSize: 16, fontWeight: FontWeight.w500,top: 8),
-              CustomText(text:"${profileController.number}  ${profileController.phoneNumber}", fontSize: 12, color: AppColors.whiteDarkHover,top: 8,bottom: 8),
+
               const Divider(color: AppColors.blackLightHover,thickness: 1),
               // rent history
               InkWell(

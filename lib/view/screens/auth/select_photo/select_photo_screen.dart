@@ -54,7 +54,7 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                             },
                             child: controller.imageFile == null
                                 ? Column(
-                              children: [
+                                children: [
                                 Container(
                                   height: 150,
                                   width: 150,

@@ -3,17 +3,25 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget{
 
   final double appBarHeight;
-  final double? appBarWidth;
+  final double ? appBarWidth;
+  final double left;
+
+  final double bottom;
+  final double top;
+  final double right;
   final Color appBarBgColor;
   final Widget appBarContent;
 
   const CustomAppBar({
-
     this.appBarHeight = 64,
     this.appBarWidth,
     this.appBarBgColor = Colors.transparent,
     required this.appBarContent,
-    super.key
+    this.left =20,
+    this.bottom =0,
+    this.right = 20,
+    this.top= 20,
+    super.key,
   });
 
   @override
@@ -31,7 +39,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       preferredSize: widget.preferredSize,
       child: Container(
         width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsetsDirectional.only(start: 20, top: 24, end: 20),
+        padding:   EdgeInsetsDirectional.only(start:widget.left, top:  widget.top, bottom: widget.bottom,end: widget.right),
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
             color: widget.appBarBgColor
