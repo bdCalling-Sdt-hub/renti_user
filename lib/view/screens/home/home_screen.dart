@@ -11,6 +11,8 @@ import 'package:renti_user/view/screens/home/home_repo/home_repo.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_offer_car/home_offer_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_top_section.dart';
+import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
+import 'package:renti_user/view/screens/profile/profile_details/profile_details_repo/profile_details_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/drawer/custom_drawer.dart';
 import 'package:renti_user/view/widgets/error_widget/no_data_found_widget.dart';
@@ -24,18 +26,21 @@ class HomeScreen extends StatefulWidget {
 }
 class _HomeScreenState extends State<HomeScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+
+ // late ProfileDetailsController  profileController;
+
   @override
   void initState() {
 
     DeviceUtils.screenUtils();
-
+    Get.put(ProfileDetailsRepo(apiService: Get.find()));
+    Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(HomeRepo(apiService: Get.find()));
     final controller = Get.put(HomeController(homeRepo: Get.find()));
-
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.initialState();
-
     });
     super.initState();
   }

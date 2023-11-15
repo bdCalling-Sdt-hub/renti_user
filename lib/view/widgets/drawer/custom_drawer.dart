@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
-import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/view/screens/auth/sign_in/sign_in_controller/sign_in_controller.dart';
 import 'package:renti_user/view/screens/logout/logout_controller/logout_controller.dart';
 import 'package:renti_user/view/screens/logout/logout_repo/logout_repo.dart';
+import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 class CustomDrawer extends StatefulWidget {
@@ -32,9 +29,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(LogoutRepo(apiService: Get.find()));
     Get.put(LogoutController(repo: Get.find()));
+    profileController.initialState();
     super.initState();
   }
-
+  var profileController=  Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LogoutController>(
@@ -49,9 +47,21 @@ class _CustomDrawerState extends State<CustomDrawer> {
             children: [
               //Drawer Top Section
               const SizedBox(height: 30),
-              const CustomImage(imageSrc: AppImages.profileImg, imageType: ImageType.png, size: 50),
-              const CustomText(text: "Jane Cooper", fontSize: 16, fontWeight: FontWeight.w500,top: 8),
-              const CustomText(text: "(480) 555-0103", fontSize: 12, color: AppColors.whiteDarkHover,top: 8,bottom: 8),
+            Container(
+                  height: 60, width: 60,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: profileController.profileImage.isEmpty ? const DecorationImage(
+                          image: AssetImage("assets/images/user.png"),
+                          fit: BoxFit.fill
+                      ) : DecorationImage(
+                          image: NetworkImage(profileController.profileImage),
+                          fit: BoxFit.fill
+                      )
+                  )
+              ),
+               CustomText(text:profileController.username , fontSize: 16, fontWeight: FontWeight.w500,top: 8),
+               CustomText(text:"${profileController.number}  ${profileController.phoneNumber}", fontSize: 12, color: AppColors.whiteDarkHover,top: 8,bottom: 8),
               const Divider(color: AppColors.blackLightHover,thickness: 1),
               // rent history
               InkWell(

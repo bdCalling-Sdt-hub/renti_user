@@ -14,7 +14,7 @@ class ProfileDetailsController extends GetxController{
 
   bool isLoading = false;
   ProfileDetailsModel profileDetailsModel = ProfileDetailsModel();
-
+  String number = "+52";
   String username = "";
   String email = "";
   String dob = "";
@@ -24,12 +24,9 @@ class ProfileDetailsController extends GetxController{
   String userId = "";
 
   void initialState() async{
-
     isLoading = true;
     update();
-
     await loadProfileData();
-
     isLoading = false;
     update();
   }
@@ -41,8 +38,6 @@ class ProfileDetailsController extends GetxController{
 
     if(responseModel.statusCode == 200){
       ProfileDetailsModel profileDetailsModel = ProfileDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
-
-
       username = profileDetailsModel.user?.fullName ?? "";
       email = profileDetailsModel.user?.email ?? "";
       dob = profileDetailsModel.user?.dateOfBirth ?? "";
@@ -55,9 +50,7 @@ class ProfileDetailsController extends GetxController{
       addressController.text = address;
       emailController.text = email;
       phoneNumberController.text = phoneNumber;
-      print("======== > Profile Image ${profileDetailsModel.user!.image}");
-      print("======== > Profile Image ${profileImage}");
-      print("======== > Profile Name ${profileDetailsModel.user!.fullName}");
+
     }
   }
 

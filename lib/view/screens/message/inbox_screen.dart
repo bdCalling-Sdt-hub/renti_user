@@ -70,10 +70,14 @@ class _InboxScreenState extends State<InboxScreen> {
                 children: [
                   GestureDetector(
                     onTap: () => Get.back(),
-                    child: const Icon(Icons.arrow_back_ios_rounded,
-                        size: 18, color: AppColors.whiteLight),
+                    child: const SizedBox(
+                      height: 44,
+                      width: 44,
+                      child: Icon(Icons.arrow_back_ios_rounded,
+                          size: 18, color: AppColors.whiteLight),
+                    ),
                   ),
-                  const SizedBox(width: 8,),
+                  const SizedBox(width: 16,),
                   Container(
                     height: 52,
                     width: 52,
