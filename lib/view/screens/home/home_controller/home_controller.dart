@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/view/screens/car_list/luxury_car/luxury_car_model/luxury_car_model.dart';
 import 'package:renti_user/view/screens/car_list/offer_car/offer_car_model/offer_car_model.dart';
-
 import 'package:renti_user/view/screens/home/home_repo/home_repo.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_model/profile_details_model.dart';
 

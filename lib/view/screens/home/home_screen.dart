@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
 
- // late ProfileDetailsController  profileController;
+  // late ProfileDetailsController  profileController;
 
   @override
   void initState() {
@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       margin:  const EdgeInsets.symmetric(horizontal: 16),
                       padding:
-                       const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                       decoration: BoxDecoration(
                         color: AppColors.whiteLight,
                         border: Border.all(color: AppColors.whiteNormalActive),
@@ -92,22 +92,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Get.toNamed(AppRoute.profileDetails);
-                  },
-                  child: Container(
-                    height: 40, width: 40,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: controller.profileImage.isEmpty ? const DecorationImage(
-                        image: AssetImage("assets/images/user.png"),
-                        fit: BoxFit.fill
-                      ) : DecorationImage(
-                          image: NetworkImage(controller.profileImage),
-                          fit: BoxFit.fill
-                      )
+                    onTap: () {
+                      Get.toNamed(AppRoute.profileDetails);
+                    },
+                    child: Container(
+                        height: 40, width: 40,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: controller.profileImage.isEmpty ? const DecorationImage(
+                                image: AssetImage("assets/images/user.png"),
+                                fit: BoxFit.fill
+                            ) : DecorationImage(
+                                image: NetworkImage(controller.profileImage),
+                                fit: BoxFit.fill
+                            )
+                        )
                     )
-                  )
                 ),
               ],
             ),
@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller.offerCarList.isNotEmpty ? const Column(
                   children: [
                     SizedBox(height: 24),
-                     HomePopularSection(),
+                    HomePopularSection(),
                   ],
                 ) : const SizedBox(),
                 controller.luxuryCarList.isNotEmpty ? const Column(

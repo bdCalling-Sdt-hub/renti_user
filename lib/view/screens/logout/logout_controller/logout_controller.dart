@@ -6,8 +6,10 @@ import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_controller/sign_in_controller.dart';
+import 'package:renti_user/view/screens/home/home_repo/home_repo.dart';
 import 'package:renti_user/view/screens/logout/logout_model/logout_model.dart';
 import 'package:renti_user/view/screens/logout/logout_repo/logout_repo.dart';
+import 'package:renti_user/view/screens/profile/profile_details/profile_details_model/profile_details_model.dart';
 
 class LogoutController extends GetxController{
 
@@ -21,8 +23,13 @@ class LogoutController extends GetxController{
   final formKey = GlobalKey<FormState>();
 
 
-  bool isSubmit = false;
+ //  HomeRepo homeRepo;
+ //  ProfileDetailsModel profileDetailsModel = ProfileDetailsModel();
+ // String profileImage = "";
+ // String userName = "";
+ // String phoneNumber = "";
 
+  bool isSubmit = false;
   Future<void> logout() async{
     isSubmit = true;
     update();
@@ -43,6 +50,14 @@ class LogoutController extends GetxController{
     isSubmit = false;
     update();
   }
+
+  // loadUserData() async{
+  //   ApiResponseModel responseModel = await homeRepo.fetchUserData();
+  //   if(responseModel.statusCode == 200){
+  //     ProfileDetailsModel model = ProfileDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
+  //     profileImage = model.user?.image ?? "assets/images/user.png";
+  //   }
+  // }
 
   Future<void> clearSharedPrefData()async{
     await repo.apiService.sharedPreferences.setString(SharedPreferenceHelper.fullName, '');

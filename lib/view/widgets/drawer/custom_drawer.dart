@@ -46,8 +46,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Drawer Top Section
-              const SizedBox(height: 30),
-            Container(
+              const SizedBox(height: 40),
+              Container(
                   height: 60, width: 60,
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -60,8 +60,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       )
                   )
               ),
-               CustomText(text:profileController.username , fontSize: 16, fontWeight: FontWeight.w500,top: 8),
-               CustomText(text:"${profileController.number}  ${profileController.phoneNumber}", fontSize: 12, color: AppColors.whiteDarkHover,top: 8,bottom: 8),
+              CustomText(text:profileController.username , fontSize: 16, fontWeight: FontWeight.w500,top: 8),
+              CustomText(text:"${profileController.number}  ${profileController.phoneNumber}", fontSize: 12, color: AppColors.whiteDarkHover,top: 8,bottom: 8),
               const Divider(color: AppColors.blackLightHover,thickness: 1),
               // rent history
               InkWell(
@@ -97,8 +97,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       const CustomImage(imageSrc: AppIcons.howRentiWorks,size: 18,),
                       Flexible(
                         child: CustomText(
-                            text: "How Renti Works".tr,color: AppColors.whiteDarkHover,left: 8,
-                            maxLines: 2,
+                          text: "How Renti Works".tr,color: AppColors.whiteDarkHover,left: 8,
+                          maxLines: 2,
                           textAlign: TextAlign.start,
                         ),
                       )

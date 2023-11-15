@@ -18,7 +18,6 @@ class ProfileTopSection extends StatelessWidget {
        var editProfileController = Get.put(EditProfileController());
     return GetBuilder<ProfileDetailsController>(
       builder: (controller){
-        print("=======> Profile Image controller  ${controller.profileImage}");
         return GestureDetector(
           onTap: () {
             editProfileController.nameController.text = controller.fullNameController.text;
@@ -28,8 +27,6 @@ class ProfileTopSection extends StatelessWidget {
             editProfileController.profileImage = controller.profileImage;
             editProfileController.userId = controller.userId;
             Get.toNamed(AppRoute.profileSettingsScreen);
-            print(controller.addressController.text);
-            print(controller.fullNameController.text);
           },
 
           child: Container(
@@ -84,7 +81,7 @@ class ProfileTopSection extends StatelessWidget {
                             ),
                             CustomText(
                               textAlign: TextAlign.start,
-                              text: "${controller.number}   ${controller.phoneNumber}",
+                              text: "${controller.number}  ${controller.phoneNumber}",
                               color: AppColors.whiteLight,
                               left: 12,
                               top: 8,
