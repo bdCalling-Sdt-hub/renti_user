@@ -11,7 +11,7 @@ class ChangePasswordRepo{
 
   Future<ApiResponseModel> changePassword({required String currentPassword, required String newPassword, required String retypePassword}) async{
 
-    String uri = "${ApiUrlContainer.apiBaseUrl}user/change-password";
+    String uri = "${ApiUrlContainer.apiBaseUrl}/user/change-password";
 
     String requestMethod = ApiResponseMethod.postMethod;
 

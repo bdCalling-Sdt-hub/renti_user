@@ -10,7 +10,7 @@ class LogoutRepo{
 
   Future<ApiResponseModel> userLogout() async{
 
-    String uri = "${ApiUrlContainer.apiBaseUrl}user/logout";
+    String uri = "${ApiUrlContainer.apiBaseUrl}/user/logout";
 
     String requestMethod = ApiResponseMethod.postMethod;
 
