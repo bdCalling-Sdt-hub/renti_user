@@ -35,15 +35,14 @@ class _InboxScreenState extends State<InboxScreen> {
     socketService.addNewChat({
       "participants": [userUid, hostUid],
     }, userUid);
-
     DeviceUtils.screenUtils();
+
     super.initState();
   }
 
   @override
   void dispose() {
     DeviceUtils.screenUtils();
-
     super.dispose();
   }
 
@@ -51,6 +50,10 @@ class _InboxScreenState extends State<InboxScreen> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("=======> user Uid $userUid");
+    debugPrint("=======> user Name $name");
+    debugPrint("=======> user Image $image");
+    debugPrint("=======> user Host Id $hostUid");
     return SafeArea(
       top: true,
       child: Scaffold(
@@ -215,7 +218,7 @@ class _InboxScreenState extends State<InboxScreen> {
                   GestureDetector(
                     onTap: () {
                       if(messageController.text != "" && messageController.text.isNotEmpty){
-                        Get.find<SocketService>().addNewMessage(messageController.text, userUid, Get.find<SocketService>().chatId);
+                        Get.find<SocketService>().addNewMessage(messageController.text, hostUid, Get.find<SocketService>().chatId);
                       }
 
                       messageController.text = "";

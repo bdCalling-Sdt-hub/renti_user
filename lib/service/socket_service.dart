@@ -14,7 +14,7 @@ class SocketService extends GetxController {
   List<dynamic> messageList = [];
   List<dynamic> allMessageList = [];
   bool isLoading = false;
-  String chatId = "";
+   String chatId = "";
 
   void connectToSocket() {
     socket = io.io(ApiUrlContainer.socketGlobal,
@@ -30,13 +30,14 @@ class SocketService extends GetxController {
 
     socket.on('join-check', (data) {
       if (kDebugMode) {
-        print("this is: $data");
+        print("=======> Join check Listen this is: $data");
       }
     });
 
     socket.on('new-chat', (chat) {
       chatId = chat["_id"];
       joinChat(chatId);
+      print("======> New Chat ${chat["_id"]}");
       if (kDebugMode) {
         print("chat id: $chatId");
       }
@@ -49,7 +50,7 @@ class SocketService extends GetxController {
       messageList.clear();
       isLoading = true;
       update();
-
+      debugPrint("========> Check Listen");
       if (messages is List) {
         for (var message in messages) {
           if (message is Map<String, dynamic>) {
@@ -136,14 +137,19 @@ class SocketService extends GetxController {
 
   void joinRoom(String uid) {
     socket.emit('join-room', {'uid': uid});
+
+    debugPrint("=========> Join Room $uid");
   }
 
   void addNewChat(Map chatInfo, String uid) {
     socket.emit('add-new-chat', {'chatInfo': chatInfo, "uid": uid});
+    debugPrint("=========> Uid $uid");
+    debugPrint("=========> Join ChatInfo $chatInfo");
   }
 
   joinChat(String uid) {
     socket.emit('join-chat', {'uid': uid});
+    debugPrint("=========> Join Chat $uid");
   }
 
   addNewMessage(String message, String sender, String chat) {
