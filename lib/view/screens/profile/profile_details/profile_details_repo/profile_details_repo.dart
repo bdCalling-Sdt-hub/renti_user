@@ -15,7 +15,7 @@ class ProfileDetailsRepo {
 
   Future<ApiResponseModel> fetchProfileData() async {
     String url =
-        "${ApiUrlContainer.baseUrl}${ApiUrlContainer.profileDetailsEndPoint}";
+        "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.profileDetailsEndPoint}";
     String responseMethod = ApiResponseMethod.getMethod;
 
     ApiResponseModel responseModel =

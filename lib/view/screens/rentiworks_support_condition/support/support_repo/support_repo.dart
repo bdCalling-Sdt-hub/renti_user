@@ -10,7 +10,7 @@ class SupportRepo{
 
   Future<ApiResponseModel> fetchData() async{
 
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.supportEndPoint}";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.supportEndPoint}";
     String requestMethod = ApiResponseMethod.getMethod;
 
     ApiResponseModel responseModel = await apiService.request(url, requestMethod, null, passHeader: true);

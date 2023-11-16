@@ -10,7 +10,7 @@ class SignInRepo{
 
   Future<ApiResponseModel> signInUser({required String email, required String password}) async{
 
-    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.signInEndPoint}";
+    String uri = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.signInEndPoint}";
 
     String requestMethod = ApiResponseMethod.postMethod;
 

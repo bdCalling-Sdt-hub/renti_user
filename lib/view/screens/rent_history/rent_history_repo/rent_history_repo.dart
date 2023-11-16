@@ -10,7 +10,7 @@ class RentHistoryRepo{
 
   Future<ApiResponseModel> rentHistoryRepoResponse() async{
 
-    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.rentHistoryEndPoint}";
+    String uri = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.rentHistoryEndPoint}";
 
     String requestMethod = ApiResponseMethod.getMethod;
 
@@ -22,7 +22,7 @@ class RentHistoryRepo{
 
   Future<ApiResponseModel> cancelRentRequest({required String rentId}) async{
 
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.cancelRentRequestEndPoint}/$rentId";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.cancelRentRequestEndPoint}/$rentId";
 
     String requestMethod = ApiResponseMethod.postMethod;
 

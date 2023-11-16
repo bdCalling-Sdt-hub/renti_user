@@ -10,7 +10,7 @@ class LuxuryCarRepo{
 
   Future<ApiResponseModel> fetchLuxuryCar() async{
 
-     String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.luxuryCarEndPoint}";
+     String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.luxuryCarEndPoint}";
      String requestMethod = ApiResponseMethod.getMethod;
 
      ApiResponseModel responseModel = await apiService.request(url, requestMethod, null, passHeader: true);

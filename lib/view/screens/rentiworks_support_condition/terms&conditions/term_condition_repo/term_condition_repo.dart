@@ -11,7 +11,7 @@ class TermConditionRepo {
 
   Future<ApiResponseModel> ternConditionResponse() async{
 
-    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.termConditionEndPoint}";
+    String uri = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.termConditionEndPoint}";
 
     String requestMethod = ApiResponseMethod.getMethod;
     Map<String,dynamic> body ={};

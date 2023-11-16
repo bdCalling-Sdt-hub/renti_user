@@ -10,7 +10,7 @@ class HomeRepo{
 
   fetchUserData() async{
 
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.profileDetailsEndPoint}";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.profileDetailsEndPoint}";
     String requestMethod = ApiResponseMethod.getMethod;
     ApiResponseModel responseModel = await apiService.request(url, requestMethod, null, passHeader: true);
 
@@ -18,7 +18,7 @@ class HomeRepo{
   }
 
   fetchOfferCarsData() async{
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.offerCarEndPoint}";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.offerCarEndPoint}";
     String requestMethod = ApiResponseMethod.getMethod;
 
     ApiResponseModel responseModel = await apiService.request(url, requestMethod, null, passHeader: true);
@@ -27,7 +27,7 @@ class HomeRepo{
   }
 
   fetchLuxuryCarsData() async{
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.luxuryCarEndPoint}";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.luxuryCarEndPoint}";
     String requestMethod = ApiResponseMethod.getMethod;
 
     ApiResponseModel responseModel = await apiService.request(url, requestMethod, null, passHeader: true);

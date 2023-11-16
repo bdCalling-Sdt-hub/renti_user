@@ -10,7 +10,7 @@ class PrivacyPolicyRepo {
 
   Future<ApiResponseModel> privacyPolicyResponse() async{
 
-    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.privacyPolicy}";
+    String uri = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.privacyPolicy}";
 
     String requestMethod = ApiResponseMethod.getMethod;
     Map<String,dynamic> body ={};

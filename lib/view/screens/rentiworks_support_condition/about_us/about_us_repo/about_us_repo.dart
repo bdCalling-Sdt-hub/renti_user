@@ -11,7 +11,7 @@ class AboutUsRepo {
 
   Future<ApiResponseModel> aboutUsResponse() async{
 
-    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.aboutUsEnd}";
+    String uri = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.aboutUsEnd}";
 
     String requestMethod = ApiResponseMethod.getMethod;
 

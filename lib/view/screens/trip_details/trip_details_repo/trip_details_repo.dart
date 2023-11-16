@@ -10,7 +10,7 @@ class TripDetailsRepo{
 
   Future<ApiResponseModel> fetchData({required String rentID}) async{
 
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.rentDetailsEndPont}/$rentID";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.rentDetailsEndPont}/$rentID";
     print("Url: $url");
 
     String requestMethod = ApiResponseMethod.getMethod;
@@ -21,7 +21,7 @@ class TripDetailsRepo{
   }
 
   Future<ApiResponseModel> makePayment({required String rentID,required int productPrice,required String productName, required String cardNumber}) async{
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.rentRequestPaymentEndPoint}/$rentID";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.rentRequestPaymentEndPoint}/$rentID";
     String requestMethod = ApiResponseMethod.postMethod;
     Map<String, dynamic> params = {
       "product": {

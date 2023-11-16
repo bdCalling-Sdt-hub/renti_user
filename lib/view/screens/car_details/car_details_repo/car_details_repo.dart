@@ -13,7 +13,7 @@ class CarDetailsRepo{
 
   Future<ApiResponseModel> fetchCarDetails({required String id}) async{
 
-    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.carDetailsEndPoint}/$id";
+    String uri = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.carDetailsEndPoint}/$id";
 
     String requestMethod = ApiResponseMethod.getMethod;
     
@@ -24,7 +24,7 @@ class CarDetailsRepo{
 
   Future<ApiResponseModel> sentRentRequest({required String carId, required String startDate, required String endDate}) async{
 
-    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.sentRentRequestEndPoint}/$carId";
+    String uri = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.sentRentRequestEndPoint}/$carId";
     print("Url: $uri");
 
     String requestMethod = ApiResponseMethod.postMethod;

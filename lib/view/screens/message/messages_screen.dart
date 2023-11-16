@@ -63,7 +63,7 @@ class _MessageScreenState extends State<MessageScreen> {
 
   @override
   void dispose() {
-    socketService.socketDispose("all-chats");
+    //socketService.socketDispose("all-chats");
     super.dispose();
   }
 

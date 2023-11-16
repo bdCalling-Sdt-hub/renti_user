@@ -101,7 +101,7 @@ class RentHistoryController extends GetxController{
       print("okay 1");
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.starTripEndPoint}/$id"),
+        Uri.parse("${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.starTripEndPoint}/$id"),
       );
       print(request);
       for (var img in addCarImages) {
@@ -188,7 +188,7 @@ class RentHistoryController extends GetxController{
       var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            "${ApiUrlContainer.baseUrl}${ApiUrlContainer.starTripEndPoint}/$id"),
+            "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.starTripEndPoint}/$id"),
       );
 
       for (var img in addCarImages1) {

@@ -79,8 +79,8 @@ class PaymentController extends GetxController{
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $t'
       };
-      debugPrint("=======> Url : ${ApiUrlContainer.baseUrl}${ApiUrlContainer.paymentApi}$rentId");
-      var response= await http.post(Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.paymentApi}$rentId"),body:json.encode(body),headers: headers);
+      debugPrint("=======> Url : ${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.paymentApi}/$rentId");
+      var response= await http.post(Uri.parse("${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.paymentApi}/$rentId"),body:json.encode(body),headers: headers);
       if(response.statusCode==200){
         clearData();
         AppUtils.successToastMessage("Payment Completed");

@@ -10,7 +10,7 @@ class HowRentiWorksRepo {
 
   Future<ApiResponseModel> fetchData() async{
 
-    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.howRentiWorksEndPoint}";
+    String uri = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.howRentiWorksEndPoint}";
 
     String requestMethod = ApiResponseMethod.getMethod;
 

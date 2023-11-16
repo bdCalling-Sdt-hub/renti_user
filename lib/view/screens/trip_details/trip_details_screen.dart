@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/service/api_service.dart';
+import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
@@ -26,6 +27,7 @@ class TripDetailsScreen extends StatefulWidget {
 class _TripDetailsScreenState extends State<TripDetailsScreen> {
 
   final _rentController =Get.find<RentHistoryController>();
+
    late int index;
   @override
   void initState() {
@@ -34,7 +36,6 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(RentHistoryRepo(apiService: Get.find()));
     final controller = Get.put(RentHistoryController(rentHistoryRepo: Get.find()));
-
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.initialState();
       print(index);
@@ -45,6 +46,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
 
   @override
   void dispose() {
+
     DeviceUtils.screenUtils();
     super.dispose();
   }

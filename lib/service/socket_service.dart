@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/core/global/api_url_container.dart';
 import 'package:renti_user/service/notification.dart';
+import 'package:renti_user/utils/app_constents.dart';
 
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
@@ -15,14 +17,13 @@ class SocketService extends GetxController {
   String chatId = "";
 
   void connectToSocket() {
-    socket = io.io(
-        "http://192.168.10.14:9000",
+    socket = io.io(ApiUrlContainer.socketGlobal,
         io.OptionBuilder()
             .setTransports(['websocket'])
             .enableAutoConnect()
             .build());
 
-    socket.onConnect((data) => print("Connection Established"));
+    socket.onConnect((data) => debugPrint("Connection Established"));
     socket.onConnectError((data) => print("Connection Error"));
 
     socket.connect();

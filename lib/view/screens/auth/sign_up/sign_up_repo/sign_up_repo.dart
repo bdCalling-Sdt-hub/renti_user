@@ -23,7 +23,7 @@ class SignUpRepo{
     required String ineNumber,
   }) async{
 
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.signUpEndPoint}";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.signUpEndPoint}";
 
     String responseMethod = ApiResponseMethod.postMethod;
 

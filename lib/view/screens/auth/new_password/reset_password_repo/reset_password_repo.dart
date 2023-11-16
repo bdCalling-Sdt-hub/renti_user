@@ -10,7 +10,7 @@ class ResetPasswordRepo{
 
   Future<ApiResponseModel> resetPassword({required String password}) async{
 
-    String url = "${ApiUrlContainer.baseUrl}user/update-password";
+    String url = "${ApiUrlContainer.apiBaseUrl}user/update-password";
     String requestMethod = ApiResponseMethod.postMethod;
 
     Map<String, String> params = {"password" : password};

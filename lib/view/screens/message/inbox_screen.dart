@@ -160,72 +160,69 @@ class _InboxScreenState extends State<InboxScreen> {
             curve: Curves.decelerate,
             child: Container(
               width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsetsDirectional.symmetric(
-                  horizontal: 20, vertical: 24),
+              padding: const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16)),
-                color: AppColors.whiteLight,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.blackNormal.withOpacity(0.1),
-                    offset: const Offset(2, 2),
-                    blurRadius: 10,
-                  ),
-                ],
+                  color: AppColors.whiteDark,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.blackNormal.withOpacity(0.1),
+                      offset: const Offset(2, 2),
+                      blurRadius: 10,
+                    )
+                  ]
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: TextFormField(
-                      cursorColor: AppColors.blackNormal,
-                      keyboardType: TextInputType.multiline,
-                      textAlign: TextAlign.left,
-                      textInputAction: TextInputAction.done,
-                      controller: messageController,
-                      style: GoogleFonts.raleway(
-                          color: AppColors.blackNormal,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500),
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsetsDirectional.only(
-                            start: 12, end: 12, top: 12, bottom: 12),
-                        fillColor: Colors.transparent,
-                        filled: true,
-                        hintText: "Type message".tr,
-                        hintStyle: GoogleFonts.raleway(
+                      child: TextFormField(
+                        cursorColor: AppColors.blackNormal,
+                        keyboardType: TextInputType.multiline,
+                        textAlign: TextAlign.left,
+                        textInputAction: TextInputAction.done,
+                        controller: messageController,
+                        style: GoogleFonts.raleway(
                             color: AppColors.blackNormal,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(
-                                color: AppColors.blackNormal.withOpacity(0.5))),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(
-                                color: AppColors.blackNormal.withOpacity(0.5))),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(
-                                color: AppColors.blackNormal.withOpacity(0.5))),
-                      ),
-                    ),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500
+                        ),
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsetsDirectional.only(start: 12, end: 12, top: 12, bottom: 12),
+                          fillColor: Colors.transparent,
+                          filled: true,
+                          hintText: "Type message",
+                          hintStyle: GoogleFonts.raleway(
+                              color: AppColors.blackNormal,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14
+                          ),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: AppColors.darkBlueColor.withOpacity(0.5))
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: AppColors.darkBlueColor.withOpacity(0.5))
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: AppColors.darkBlueColor.withOpacity(0.5))
+                          ),
+                        ),
+                      )
                   ),
                   const SizedBox(width: 20),
                   GestureDetector(
                     onTap: () {
-                      if (messageController.text != null && messageController.text != "" && messageController.text.isNotEmpty) {
+                      if(messageController.text != "" && messageController.text.isNotEmpty){
                         Get.find<SocketService>().addNewMessage(messageController.text, userUid, Get.find<SocketService>().chatId);
                       }
 
                       messageController.text = "";
                     },
                     child: const Icon(Icons.send,
-                        color: AppColors.primaryColor, size: 20),
-                  ),
+                        color: AppColors.darkBlueColor, size: 20),
+                  )
                 ],
               ),
             ),
@@ -234,11 +231,4 @@ class _InboxScreenState extends State<InboxScreen> {
       ),
     );
   }
-}
-
-class Message {
-  final String messageContent;
-  final String messageType; // "sender" or "receiver"
-
-  Message({required this.messageContent, required this.messageType});
 }

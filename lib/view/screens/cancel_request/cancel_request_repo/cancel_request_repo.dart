@@ -12,7 +12,7 @@ class CancelRequestRepo{
 
   Future<ApiResponseModel> fetchData({required String rentId}) async{
 
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.rentDetailsEndPont}/$rentId";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.rentDetailsEndPont}/$rentId";
     print("url: $url");
 
     String requestMethod = ApiResponseMethod.getMethod;
@@ -25,7 +25,7 @@ class CancelRequestRepo{
 
   Future<ApiResponseModel> cancelRentRequest({required String rentId}) async{
 
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.cancelRentRequestEndPoint}/$rentId";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.cancelRentRequestEndPoint}/$rentId";
 
     String requestMethod = ApiResponseMethod.postMethod;
 

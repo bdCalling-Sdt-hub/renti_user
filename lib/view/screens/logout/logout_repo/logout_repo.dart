@@ -10,7 +10,7 @@ class LogoutRepo{
 
   Future<ApiResponseModel> userLogout() async{
 
-    String uri = "${ApiUrlContainer.baseUrl}user/logout";
+    String uri = "${ApiUrlContainer.apiBaseUrl}user/logout";
 
     String requestMethod = ApiResponseMethod.postMethod;
 
@@ -22,7 +22,7 @@ class LogoutRepo{
   }
 
   Future<ApiResponseModel>fetchUserData() async{
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.profileDetailsEndPoint}";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.profileDetailsEndPoint}";
     String requestMethod = ApiResponseMethod.getMethod;
     ApiResponseModel responseModel = await apiService.request(url, requestMethod, null, passHeader: true);
     return responseModel;

@@ -10,7 +10,7 @@ class AllCarsRepo{
 
   Future<ApiResponseModel> allCarsRepoResponse({String search = ""}) async{
 
-    String uri = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.allCarsEndPoint}$search";
+    String uri = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.allCarsEndPoint}$search";
 
     String requestMethod = ApiResponseMethod.getMethod;
 

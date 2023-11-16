@@ -11,7 +11,7 @@ class OTPRepo{
 
   verifyEmail({required String email, required String otpCode}) async{
 
-    String url = "${ApiUrlContainer.baseUrl}${ApiUrlContainer.verifyEmailEndPoint}";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.verifyEmailEndPoint}";
     String requestMethod = ApiResponseMethod.postMethod;
 
     Map<String, String> params = {

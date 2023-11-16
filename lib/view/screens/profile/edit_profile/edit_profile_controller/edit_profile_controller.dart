@@ -52,7 +52,7 @@ class EditProfileController extends GetxController {
     try {
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.updateProfile}$userId"),
+        Uri.parse("${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.updateProfile}$userId"),
       );
        if(filePath.isNotEmpty){
         request.files.add(await http.MultipartFile.fromPath('image', filePath.value,contentType: MediaType('image', 'jpeg')));

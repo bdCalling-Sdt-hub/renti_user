@@ -57,7 +57,7 @@ class SignUpController extends GetxController{
 
     if (result != null && result.files.isNotEmpty) {
       uploadDrivingLicense = File(result.files.single.path.toString());
-      //drivingLicenseFileName = result.files.single.name;
+      drivingLicenseFileName = result.files.single.name;
 
       kycDocFiles.add(uploadDrivingLicense!);
       update();
@@ -69,7 +69,7 @@ class SignUpController extends GetxController{
 
     if (result != null && result.files.isNotEmpty) {
       uploadPassport = File(result.files.single.path.toString());
-      //passportFileName = result.files.single.name;
+      passportFileName = result.files.single.name;
       kycDocFiles.add(uploadPassport!);
       update();
     }
@@ -123,7 +123,7 @@ class SignUpController extends GetxController{
     try {
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse("${ApiUrlContainer.baseUrl}${ApiUrlContainer.signUpEndPoint}"));
+        Uri.parse("${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.signUpEndPoint}"));
 
       // Add the KYC files to the request
       for (var file in kycDocFiles) {
