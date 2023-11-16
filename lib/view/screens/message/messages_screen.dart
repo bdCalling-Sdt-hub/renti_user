@@ -22,26 +22,26 @@ class MessageScreen extends StatefulWidget {
 
 class _MessageScreenState extends State<MessageScreen> {
   SocketService socketService = SocketService();
-  String hostUid = "";
+  String userUid = "";
 
   List<Chat> allChatList = [];
-  List<Participant> participant=[];
+  List<Participant> participants=[];
 
   getAllChats() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    hostUid = prefs.getString(SharedPreferenceHelper.userIdKey).toString();
+    userUid = prefs.getString(SharedPreferenceHelper.userIdKey).toString();
     socketService.connectToSocket();
-    socketService.joinRoom(hostUid);
+    socketService.joinRoom(userUid);
     socketService.fetchAllChats(
-        hostId: hostUid,
+        userUid: userUid,
         didFetchChats: (list) {
-          participant.clear();
+          participants.clear();
           if (kDebugMode) {
             print("List =======> ${list.length}");
           }
 
           list.forEach((element) {
-            participant.addAll(element.participants);
+            participants.addAll(element.participants);
             if (kDebugMode) {
               print("Participant =======> ${element.participants.length}");
             }
@@ -83,18 +83,24 @@ class _MessageScreenState extends State<MessageScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: Column(
             children: List.generate(
-              participant.length,
+              participants.length,
               (index) {
 
-                return participant.length == 0 ? CircularProgressIndicator() : Padding(
+
+
+
+                return participants.isEmpty ? const CircularProgressIndicator() : Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: GestureDetector(
                     onTap: () {
+
+                     var host =   participants[index];
+
                       Get.toNamed(AppRoute.inboxScreen, arguments: [
-                        participant[index].id,
-                        participant[index].fullName,
-                        participant[index].image,
-                        hostUid
+                        userUid,
+                        host.fullName,
+                        host.image,
+                        host.id,
                       ]);
                     },
                     child: Slidable(
@@ -150,7 +156,7 @@ class _MessageScreenState extends State<MessageScreen> {
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
                                       fit: BoxFit.cover,
-                                      image: CachedNetworkImageProvider(participant[index].image.toString()))),
+                                      image: CachedNetworkImageProvider(participants[index].image.toString()))),
                             ),
                             const SizedBox(width: 8),
                             Expanded(
@@ -164,7 +170,7 @@ class _MessageScreenState extends State<MessageScreen> {
                                     children: [
                                       //chat.participants[index].role == "user"?
                                       CustomText(
-                                          text: participant[index].fullName.toString(),
+                                          text: participants[index].fullName.toString(),
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500) ,
                                     ],

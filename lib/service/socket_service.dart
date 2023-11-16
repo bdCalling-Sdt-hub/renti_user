@@ -115,10 +115,10 @@ class SocketService extends GetxController {
   }
 
   fetchAllChats({
-    required String hostId,
+    required String userUid,
     required Function(List<Chat>) didFetchChats,
   }) {
-    socket.emit('get-all-chats', {'uid': hostId});
+    socket.emit('get-all-chats', {'uid': userUid});
 
     socket.on('all-chats', (chats) {
       if (kDebugMode) {

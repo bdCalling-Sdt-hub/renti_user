@@ -34,7 +34,7 @@ class _InboxScreenState extends State<InboxScreen> {
     socketService.joinRoom(userUid);
     socketService.addNewChat({
       "participants": [userUid, hostUid],
-    }, userUid);
+    }, userUid );
     DeviceUtils.screenUtils();
 
     super.initState();
@@ -58,6 +58,7 @@ class _InboxScreenState extends State<InboxScreen> {
       top: true,
       child: Scaffold(
         extendBody: true,
+        backgroundColor: AppColors.whiteLight1,
         appBar: CustomAppBar(
           appBarBgColor: AppColors.primaryColor,
            bottom: 10,
@@ -165,7 +166,7 @@ class _InboxScreenState extends State<InboxScreen> {
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
               decoration: BoxDecoration(
-                  color: AppColors.whiteDark,
+                  color: AppColors.whiteLight,
                   boxShadow: [
                     BoxShadow(
                       color: AppColors.blackNormal.withOpacity(0.1),
@@ -218,7 +219,7 @@ class _InboxScreenState extends State<InboxScreen> {
                   GestureDetector(
                     onTap: () {
                       if(messageController.text != "" && messageController.text.isNotEmpty){
-                        Get.find<SocketService>().addNewMessage(messageController.text, hostUid, Get.find<SocketService>().chatId);
+                        Get.find<SocketService>().addNewMessage(messageController.text, userUid, Get.find<SocketService>().chatId);
                       }
 
                       messageController.text = "";

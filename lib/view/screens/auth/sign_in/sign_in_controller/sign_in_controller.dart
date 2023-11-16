@@ -13,8 +13,8 @@ class SignInController extends GetxController{
   SignInRepo signInRepo;
   SignInController({required this.signInRepo});
 
-  TextEditingController emailController = TextEditingController(text: "pythonloverkabir11@gmail.com");
-  TextEditingController passwordController = TextEditingController(text: "112233");
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   final FocusNode emailFocusNode = FocusNode();
   final FocusNode passwordFocusNode = FocusNode();
