@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/main.dart';
 import 'package:renti_user/service/api_service.dart';
+import 'package:renti_user/service/notification.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
@@ -17,6 +19,10 @@ import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/drawer/custom_drawer.dart';
 import 'package:renti_user/view/widgets/error_widget/no_data_found_widget.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../core/helper/shared_preference_helper.dart';
+import '../../../service/socket_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,12 +33,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-
   // late ProfileDetailsController  profileController;
 
   @override
   void initState() {
-
     DeviceUtils.screenUtils();
     Get.put(ProfileDetailsRepo(apiService: Get.find()));
     Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
@@ -41,8 +45,20 @@ class _HomeScreenState extends State<HomeScreen> {
     final controller = Get.put(HomeController(homeRepo: Get.find()));
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.initialState();
+      joinRoom();
     });
     super.initState();
+  }
+
+  SocketService socketService = SocketService();
+  String userUid = "";
+  joinRoom()async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    userUid = prefs.getString(SharedPreferenceHelper.userIdKey).toString();
+    socketService.connectToSocket();
+    socketService.joinRoom(userUid);
+    socketService.listenNotification();
+    debugPrint("===========> Join room with home screen");
   }
 
   @override
@@ -110,6 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                     )
                 ),
+
               ],
             ),
           ),

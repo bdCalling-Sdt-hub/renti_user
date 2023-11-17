@@ -1,5 +1,5 @@
 class ApiUrlContainer {
-  static const bool is_debug_mode = false;
+  static const bool is_debug_mode = true;
 
   static const String baseAddress =
       is_debug_mode ? "http://192.168.10.14" : "http://104.131.72.121";

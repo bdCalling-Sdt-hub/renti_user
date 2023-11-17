@@ -6,10 +6,12 @@ import 'package:renti_user/utils/app_constents.dart';
 
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
+import '../main.dart';
+
 class SocketService extends GetxController {
   late io.Socket socket;
 
-  NotificationClass notificationClass = NotificationClass();
+  //NotificationClass notificationClass = NotificationClass();
 
   List<dynamic> messageList = [];
   List<dynamic> allMessageList = [];
@@ -84,23 +86,47 @@ class SocketService extends GetxController {
       update();
     });
 
-    socket.on('host-notification', (data) {
+    // socket.on('host-notification', (data) {
+    //   if (data == null) {
+    //     if (kDebugMode) {
+    //       print("No Data: $data");
+    //     }
+    //   } else {
+    //     NotificationHelper.showNotification(body: {}, fln:flutterLocalNotificationsPlugin);
+    //     // notificationClass
+    //     //     .showNotification(data['allNotification'][0]['message']);
+    //     if (kDebugMode) {
+    //       print("This is  Data: $data");
+    //     }
+    //     if (kDebugMode) {
+    //       print("This is Data msg : ${data['allNotification'][0]['message']}");
+    //     }
+    //   }
+    // });
+  }
+
+  listenNotification(){
+    socket.on('user-notification', (data) {
       if (data == null) {
         if (kDebugMode) {
           print("No Data: $data");
         }
       } else {
-        notificationClass
-            .showNotification(data['allNotification'][0]['message']);
+        NotificationHelper.showNotification(body:data, fln: flutterLocalNotificationsPlugin);
+        // notificationClass
+        //     .showNotification(data['allNotification'][0]['message']);
+
+        debugPrint("============> User Notification  $data");
         if (kDebugMode) {
           print("This is  Data: $data");
         }
         if (kDebugMode) {
-          print("This is Data msg : ${data['allNotification'][0]['message']}");
+          // print("This is Data msg : ${data['allNotification'][0]['message']}");
         }
       }
     });
   }
+
 
   socketDispose(String event){
     socket.off(event);

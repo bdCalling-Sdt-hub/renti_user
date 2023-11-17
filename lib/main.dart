@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:renti_user/core/route/app_route.dart%20';
+import 'package:renti_user/service/notification.dart';
 import 'package:renti_user/view/screens/settings/change_language/translator.dart';
 import 'core/di_service/dependency_injection.dart' as di;
 
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin=FlutterLocalNotificationsPlugin();
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +20,8 @@ void main() async{
   await di.initDependency();
   // final socketService = SocketService();
   // socketService.socket;
+
+  await NotificationHelper.initLocalNotification(flutterLocalNotificationsPlugin);
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
