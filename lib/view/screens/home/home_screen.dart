@@ -13,6 +13,7 @@ import 'package:renti_user/view/screens/home/home_repo/home_repo.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_offer_car/home_offer_car_section.dart';
 import 'package:renti_user/view/screens/home/inner_widgets/home_top_section.dart';
+import 'package:renti_user/view/screens/notification/notification_screen.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_repo/profile_details_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
@@ -108,6 +109,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+                IconButton(onPressed: (){
+                  Get.to(()=>NotificationScreen());
+                }, icon:const Icon(Icons.notifications_none_outlined,color:AppColors.darkBlueColor,size:28,)),
+                const SizedBox(width: 4,),
                 GestureDetector(
                     onTap: () {
                       Get.toNamed(AppRoute.profileDetails);
@@ -126,6 +131,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                     )
                 ),
+
+
+
 
               ],
             ),

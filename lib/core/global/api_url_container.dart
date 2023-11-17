@@ -1,5 +1,5 @@
 class ApiUrlContainer {
-  static const bool is_debug_mode = true;
+  static const bool is_debug_mode = false;
 
   static const String baseAddress =
       is_debug_mode ? "http://192.168.10.14" : "http://104.131.72.121";
@@ -43,4 +43,5 @@ class ApiUrlContainer {
   static const String starTripEndPoint = "/rent/trip";
   static const String paymentApi = "/payment";
   static const String stripeUrl = "https://api.stripe.com//v1/tokens";
+  static const String notificationEndPoint="/notifications";
 }

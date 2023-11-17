@@ -8,6 +8,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/service/notification.dart';
+import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/view/screens/settings/change_language/translator.dart';
 import 'core/di_service/dependency_injection.dart' as di;
 
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
        debugShowCheckedModeBanner: false,
        defaultTransition: Transition.noTransition,
       transitionDuration: const Duration(milliseconds: 200),
+
        initialRoute: AppRoute.introScreen,
        navigatorKey: Get.key,
        getPages: AppRoute.routes,
