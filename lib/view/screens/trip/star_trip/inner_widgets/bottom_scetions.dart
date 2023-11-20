@@ -20,8 +20,8 @@ class _BottomScetionsState extends State<BottomScetions> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CustomText(
-              text:  AppStrings.rentalInformation,
+             CustomText(
+              text:  AppStrings.rentalInformation.tr,
               fontSize: 16,
               fontWeight: FontWeight.w500,
               color: AppColors.blackNormal,
@@ -30,8 +30,8 @@ class _BottomScetionsState extends State<BottomScetions> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.carmodel,
+                 CustomText(
+                  text: AppStrings.carmodel.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: AppColors.whiteDarkHover,
@@ -44,8 +44,8 @@ class _BottomScetionsState extends State<BottomScetions> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.carColor,
+                 CustomText(
+                  text: AppStrings.carColor.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: AppColors.whiteDarkHover,
@@ -59,107 +59,107 @@ class _BottomScetionsState extends State<BottomScetions> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
-                  text: AppStrings.carlicenseno,
+                  text: AppStrings.carlicenseno.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: AppColors.whiteDarkHover,
                 ),
-                SizedBox(),
-                Text(controller.rentUser[widget.index].carId?.carLicenseNumber??"",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+                const SizedBox(),
+                Text(controller.rentUser[widget.index].carId?.carLicenseNumber??"",style: const TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
               ],
             ),
-            SizedBox(height: 8,),
+            const SizedBox(height: 8,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
-                  text: AppStrings.rentalTime,
+                  text: AppStrings.rentalTime.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: AppColors.whiteDarkHover,
                 ),
-                SizedBox(),
-                Text(controller.rentUser[widget.index].carId?.totalRun??"",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+                const SizedBox(),
+                Text(controller.rentUser[widget.index].carId?.totalRun??"",style: const TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
               ],
             ),
-            SizedBox(height: 8,),
+            const SizedBox(height: 8,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
-                  text: AppStrings.rentalDate,
+                  text: AppStrings.rentalDate.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: AppColors.whiteDarkHover,
                 ),
-                SizedBox(),
-                Text(controller.rentUser[widget.index].carId?.registrationDate??"",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+                const SizedBox(),
+                Text(controller.rentUser[widget.index].carId?.registrationDate??"",style: const TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             CustomText(
-              text:  AppStrings.hostInformation,
+              text:  AppStrings.hostInformation.tr,
               fontSize: 16,
               fontWeight: FontWeight.w500,
               color: AppColors.blackNormal,
             ),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
-                  text: AppStrings.name,
+                  text: AppStrings.name.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: AppColors.whiteDarkHover,
                 ),
-                SizedBox(),
-                Text(controller.rentUser[widget.index].hostId?.fullName??"",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+                const SizedBox(),
+                Text(controller.rentUser[widget.index].hostId?.fullName??"",style: const TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
               ],
             ),
-            SizedBox(height: 8,),
+            const SizedBox(height: 8,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
-                  text: AppStrings.ine,
+                  text: AppStrings.ine.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: AppColors.whiteDarkHover,
                 ),
-                SizedBox(),
-                Text(controller.rentUser[widget.index].hostId?.ine??"",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+                const SizedBox(),
+                Text(controller.rentUser[widget.index].hostId?.ine??"",style: const TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
 
               ],
             ),
-            SizedBox(height: 8,),
+            const SizedBox(height: 8,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
-                  text: AppStrings.drivingLicenseNo,
+                  text: AppStrings.drivingLicenseNo.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: AppColors.whiteDarkHover,
                 ),
-                SizedBox(),
-                Text(controller.rentUser[widget.index].hostId?.ine??"",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+                const SizedBox(),
+                const Text("--",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
               ],
             ),
-            SizedBox(height: 8,),
+            const SizedBox(height: 8,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
-                  text: AppStrings.pickupLocation,
+                  text: AppStrings.pickupLocation.tr,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: AppColors.whiteDarkHover,
                 ),
-                SizedBox(),
-                Text(controller.rentUser[widget.index].hostId?.address?.city??"",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+                const SizedBox(),
+                Text(controller.rentUser[widget.index].hostId?.address?.city??"",style: const TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
               ],
             ),
           ],

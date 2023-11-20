@@ -48,32 +48,30 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
       child: Scaffold(
       backgroundColor: AppColors.whiteLight,
       appBar: CustomAppBar(
-        appBarContent: GestureDetector(
-          onTap: () {
-            Get.back();
-          },
-          child: Row(
-          children: [
-            const Icon(
-              Icons.arrow_back_ios_new,
-              size: 18,
-              color: AppColors.blackNormal,
-            ),
-             CustomText(
-              text: AppStrings.rentiHistory.tr,
-              color: AppColors.blackNormal,
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              left: 14,
-            )
-          ],
-      ),
-        )),
+        appBarContent: Row(
+        children: [
+          IconButton(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onPressed: (){Get.back();}, icon: const Icon(
+            Icons.arrow_back_ios_new,
+            size: 18,
+            color: AppColors.blackNormal,
+          ),),
+           CustomText(
+            text: AppStrings.rentiHistory.tr,
+            color: AppColors.blackNormal,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            
+          )
+        ],
+      )),
       body: GetBuilder<RentHistoryController>(
         builder: (controller) {
           return  controller .isLoading ? const Center(
             child: CircularProgressIndicator(),
-          ) : controller.rentUser.isEmpty && controller.rentUser== "" ? Center(
+          ) : controller.rentUser.isEmpty && controller.rentUser == "" ? Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,

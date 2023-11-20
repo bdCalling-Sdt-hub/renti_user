@@ -72,7 +72,11 @@ class _InboxScreenState extends State<InboxScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                 IconButton(onPressed: ()=>Get.back(), icon: const Icon(Icons.arrow_back_ios_new,color: AppColors.whiteLight,)),
+                  IconButton(onPressed: (){Get.back();}, icon: const Icon(
+                    Icons.arrow_back_ios_new,
+                    size: 18,
+                    color: AppColors.blackNormal,
+                  ),),
                   const SizedBox(width: 10,),
                   Container(
                     height: 60,

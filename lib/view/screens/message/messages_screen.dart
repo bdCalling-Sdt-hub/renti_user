@@ -85,10 +85,6 @@ class _MessageScreenState extends State<MessageScreen> {
             children: List.generate(
               participants.length,
               (index) {
-
-
-
-
                 return participants.isEmpty ? const CircularProgressIndicator() : Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: GestureDetector(
@@ -112,7 +108,7 @@ class _MessageScreenState extends State<MessageScreen> {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
-                                    return AlertDialog(
+                                    return const AlertDialog(
                                       title: Text("Delete message"),
                                     );
                                     // return CommonPopUp(
@@ -175,13 +171,6 @@ class _MessageScreenState extends State<MessageScreen> {
                                           fontWeight: FontWeight.w500) ,
                                     ],
                                   ),
-                                 /* CustomText(
-                                    text: participant[index].id.toString(),
-                                    fontSize: 12,
-                                    color: AppColors.whiteDark,
-                                    textAlign: TextAlign.start,
-                                    top: 8,
-                                  ),*/
                                 ],
                               ),
                             ),

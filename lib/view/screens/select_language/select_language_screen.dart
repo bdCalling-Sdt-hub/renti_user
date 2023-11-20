@@ -55,7 +55,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                                 setState(() {
                                   selectedItem = index;
                                   selectedItem == 0 ? Get.updateLocale(const Locale("en", "US")) : Get.updateLocale(const Locale("es" , "MX"));
-                                  selectedItem == 0?AppUtils.successToastMessage("Change Language Successfully"):AppUtils.successToastMessage("Cambiar idioma con éxito");
+                                 // selectedItem == 0?AppUtils.successToastMessage("Change Language Successfully"):AppUtils.successToastMessage("Cambiar idioma con éxito");
 
                                 });
                                 await Get.toNamed(AppRoute.introScreen);

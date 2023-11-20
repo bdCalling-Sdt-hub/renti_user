@@ -120,7 +120,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                         left: 14,
                       ),
                       CustomText(
-                        text: "${controller.number}  ${controller.phoneNumber}",
+                        text: "${controller.phoneNumber}",
                         color: AppColors.blackNormal,
                         left: 14,
                         top: 8,

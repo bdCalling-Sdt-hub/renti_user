@@ -4,8 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import '../../../utils/app_colors.dart';
-import '../../widgets/appbar/custom_app_bar.dart';
-import '../../widgets/buttons/custom_back_button.dart';
 import '../../widgets/image/custom_image.dart';
 import '../../widgets/text/custom_text.dart';
 import 'notification_controller.dart';
@@ -36,14 +34,20 @@ class _NotificationScreenState extends State<NotificationScreen> {
         title: Text(
           "Notification".tr,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: FontWeight.w500,
             color: AppColors.blackNormal,
           ),
         ),
-        leading: IconButton(onPressed:(){
-          Get.back();
-        }, icon:const Icon(Icons.arrow_back_ios_new,color:AppColors.blackNormal,size: 20,)),
+        titleSpacing: -8,
+        leading:IconButton(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          onPressed: (){Get.back();}, icon: const Icon(
+          Icons.arrow_back_ios_new,
+          size: 18,
+          color: AppColors.blackNormal,
+        ),),
         backgroundColor: AppColors.whiteLight,
         centerTitle: false,
       ),

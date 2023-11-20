@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,11 +40,11 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
       appBar:  CustomAppBar(
           appBarContent: Row(
             children: [
-              GestureDetector(
-                  onTap: () {
+              IconButton(
+                  onPressed: () {
                     Get.back();
                   },
-                  child: const Icon(
+                  icon: const Icon(
                     Icons.arrow_back_ios_new,
                     size: 18,
                     color: AppColors.blackNormal,
@@ -53,7 +54,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                 color: AppColors.blackNormal,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                left: 14,
+
               )
             ],
           )),
@@ -69,7 +70,10 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                    children: [
                      CustomText(text: "Card Number".tr, bottom: 12),
                      CustomTextField(
-                       hintText: "Enter Your Card Number".tr,
+                       inputFormatters: [
+                         FilteringTextInputFormatter.digitsOnly,
+                         CardNumberFormatter()],
+                       hintText: "XXXX XXXX XXXX XXXX".tr,
                        textEditingController: _controller.cardNumber,
                        textInputAction: TextInputAction.next,
                        keyboardType: TextInputType.number,
@@ -79,6 +83,15 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                            fontWeight: FontWeight.w400,
                            letterSpacing: 1,
                            color: AppColors.whiteNormalActive),
+                       validator: (value){
+                         if(value == null || value.isEmpty){
+                           return "Enter your card number".tr;
+                         }
+                         else if(value.length > 19 || value.length <19){
+                           return "Enter your valid card number";
+                         }
+                         return null;
+                       },
                      ),
                      CustomText(
                        text: "Expired Date".tr,
@@ -86,17 +99,26 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                        top: 16,
                      ),
                      CustomTextField(
-
+                        inputFormatters: [CardExpirationFormatter()],
                        textEditingController: _controller.expiryDate,
                        // focusNode: controller.passwordFocusNode,
                        textInputAction: TextInputAction.next,
-                       hintText:"MM-YY".tr,
-                       keyboardType: TextInputType.text,
+                       hintText:"MM/YY".tr,
+                       keyboardType: TextInputType.number,
                        hintStyle: GoogleFonts.poppins(
                            fontSize: 14,
                            fontWeight: FontWeight.w400,
                            letterSpacing: 1,
                            color: AppColors.whiteNormalActive),
+                       validator: (value){
+                         if(value==null||value.toString().isEmpty){
+                           return "Enter your Expire date".tr;
+                         }
+                         else if(value.toString().length > 5){
+                           return "Enter your valid Expire date".tr;
+                         }
+                         return null;
+                       },
 
                      ),
                      CustomText(
@@ -109,13 +131,22 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                        textInputAction: TextInputAction.next,
                        // focusNode: controller.passwordFocusNode,
 
-                       hintText:"Enter CVV ".tr,
+                       hintText:"Enter CVV".tr,
                        keyboardType: TextInputType.number,
                        hintStyle: GoogleFonts.poppins(
                            fontSize: 14,
                            fontWeight: FontWeight.w400,
                            letterSpacing: 1,
                            color: AppColors.whiteNormalActive),
+                       validator: (value){
+                         if(value == null || value.toString().isEmpty){
+                           return "Enter your CVV number".tr;
+                         }
+                         else if(value.toString().length > 4){
+                           return "Enter your valid CVV number";
+                         }
+                         return null;
+                       },
 
                      ),
                    ],
@@ -139,6 +170,62 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
          );
        },
      ),
+    );
+  }
+}
+class CardExpirationFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final newValueString = newValue.text;
+    String valueToReturn = '';
+
+    for (int i = 0; i < newValueString.length; i++) {
+      if (newValueString[i] != '/') valueToReturn += newValueString[i];
+      var nonZeroIndex = i + 1;
+      final contains = valueToReturn.contains(RegExp(r'\/'));
+      if (nonZeroIndex % 2 == 0 &&
+          nonZeroIndex != newValueString.length &&
+          !(contains)) {
+        valueToReturn += '/';
+      }
+    }
+    return newValue.copyWith(
+      text: valueToReturn,
+      selection: TextSelection.fromPosition(
+        TextPosition(offset: valueToReturn.length),
+      ),
+    );
+  }
+}
+
+class CardNumberFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue previousValue,
+      TextEditingValue nextValue,
+      ) {
+    var inputText = nextValue.text;
+
+    if (nextValue.selection.baseOffset == 0) {
+      return nextValue;
+    }
+
+    var bufferString = StringBuffer();
+    for (int i = 0; i < inputText.length; i++) {
+      bufferString.write(inputText[i]);
+      var nonZeroIndexValue = i + 1;
+      if (nonZeroIndexValue % 4 == 0 && nonZeroIndexValue != inputText.length) {
+        bufferString.write(' ');
+      }
+    }
+
+    var string = bufferString.toString();
+    return nextValue.copyWith(
+      text: string,
+      selection: TextSelection.collapsed(
+        offset: string.length,
+      ),
     );
   }
 }

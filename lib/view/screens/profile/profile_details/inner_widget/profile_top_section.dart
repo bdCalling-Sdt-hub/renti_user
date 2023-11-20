@@ -81,7 +81,7 @@ class ProfileTopSection extends StatelessWidget {
                             ),
                             CustomText(
                               textAlign: TextAlign.start,
-                              text: "${controller.number}  ${controller.phoneNumber}",
+                              text: "${controller.phoneNumber}",
                               color: AppColors.whiteLight,
                               left: 12,
                               top: 8,

@@ -4,13 +4,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
+import 'package:renti_user/view/widgets/text/custom_text.dart';
+import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
 
-import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_strings.dart';
-import '../../../../widgets/text/custom_text.dart';
-import '../../../../widgets/text_field/custom_text_field.dart';
 
 class SignUpAuthSection extends StatefulWidget {
   const SignUpAuthSection({super.key});
@@ -118,108 +118,26 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                       )),
             ),
             CustomText(text: AppStrings.dateOfBirth.tr, top: 16, bottom: 12),
+            CustomTextField(
+              hintText: "YY-MM-DD".tr,
+              readOnly: true,
+              textEditingController: controller.dateOfBirthController,
+              textInputAction: TextInputAction.next,
+              inputTextStyle: GoogleFonts.poppins(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: AppColors.blackNormal,
+              ),
+              hintStyle: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 1,
+                  color: AppColors.whiteNormalActive),
 
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: CustomTextField(
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
-                      LengthLimitingTextInputFormatter(2),
-                      DayFormatter(),
-                    ],
-                    textEditingController: controller.dateController,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    inputTextStyle: GoogleFonts.poppins(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.blackNormal,
-                    ),
-                    hintText: "DD".tr,
-                    hintStyle: GoogleFonts.poppins(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.whiteNormalActive,
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return AppStrings.notBeEmpty.tr;
-                      } else if (value.length > 2) {
-                        return "Please enter valid date".tr;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: CustomTextField(
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
-                      LengthLimitingTextInputFormatter(2),
-                      MonthFormatter(),
-                    ],
-                    textEditingController: controller.monthController,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    inputTextStyle: GoogleFonts.poppins(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.blackNormal,
-                    ),
-                    hintText: "MM".tr,
-                    hintStyle: GoogleFonts.poppins(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.whiteNormalActive,
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return AppStrings.notBeEmpty.tr;
-                      } else if (value.length > 2) {
-                        return "Please enter valid month".tr;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: CustomTextField(
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
-                      LengthLimitingTextInputFormatter(4),
-                      YearFormatter(),
-                    ],
-                    textEditingController: controller.yearController,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    inputTextStyle: GoogleFonts.poppins(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.blackNormal,
-                    ),
-                    hintText: "YYYY".tr,
-                    hintStyle: GoogleFonts.poppins(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.whiteNormalActive,
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return AppStrings.notBeEmpty.tr;
-                      } else if (value.length > 4) {
-                        return "Please enter valid year".tr;
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                ),
-              ],
+              onTap: ()=>controller.dateOfBirthPicker(context),
             ),
+
+
 
             //Password Text and TextField
             CustomText(text: AppStrings.password.tr, bottom: 12, top: 16),
@@ -329,113 +247,4 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
   }
 }
 
-class DayFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue prevText, TextEditingValue currText) {
-    int selectionIndex;
-    // Get the previous and current input strings
-    String pText = prevText.text;
-    String cText = currText.text;
-    // Abbreviate lengths
-    int cLen = cText.length;
-    int pLen = pText.length;
 
-    if (cLen == 1) {
-      // Can only be 0, 1, 2 or 3
-      if (int.parse(cText) > 3) {
-        // Remove char
-        cText = '';
-      }
-    } else if (cLen == 2 && pLen == 1) {
-      // Days cannot be greater than 31
-      int dd = int.parse(cText.substring(0, 2));
-      if (dd == 0 || dd > 31) {
-        // Remove char
-        cText = cText.substring(0, 1);
-      } else {
-        // Add a / char
-      }
-    }
-
-    selectionIndex = cText.length;
-    return TextEditingValue(
-      text: cText,
-      selection: TextSelection.collapsed(offset: selectionIndex),
-    );
-  }
-}
-
-class MonthFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue prevText, TextEditingValue currText) {
-    String cText = currText.text;
-    int cLen = cText.length;
-
-    if (cLen == 1) {
-      // If the input has only one character, it can only be 0, 1, 2, or 3.
-      if (int.tryParse(cText) == null || int.parse(cText) > 3) {
-        // Invalid input, remove the character.
-        return TextEditingValue(
-          text: '',
-          selection: TextSelection.collapsed(offset: 0),
-        );
-      }
-    } else if (cLen == 2) {
-      // If the input has exactly 2 characters, validate the month.
-      int? mm = int.tryParse(cText);
-      if (mm == null || mm < 1 || mm > 12) {
-        // Invalid month, keep only the first character.
-        return TextEditingValue(
-          text: cText.substring(0, 1),
-          selection: TextSelection.collapsed(offset: 1),
-        );
-      }
-    }
-
-    // If the input is valid, allow it to continue.
-    return currText;
-  }
-}
-
-class YearFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue prevText, TextEditingValue currText) {
-    // Get the previous and current input strings
-    String pText = prevText.text;
-    String cText = currText.text;
-
-    // Abbreviate lengths
-    int cLen = cText.length;
-    int pLen = pText.length;
-
-    if (cLen == 5 && pLen == 4) {
-      // User has entered a complete 4-digit year, do not modify
-      return currText;
-    } else if (cLen == 1) {
-      // Ensure the first character is within 1-2 (i.e., 19 or 20)
-      int y1 = int.parse(cText);
-      if (y1 < 1 || y1 > 2) {
-        // Remove the first character
-        cText = '';
-      }
-    } else if (cLen == 2) {
-      // Ensure the first two characters are within 19 or 20
-      int y1 = int.parse(cText.substring(0, 2));
-      if (y1 < 19 || y1 > 20) {
-        // Remove the second character
-        cText = cText.substring(0, 1);
-      }
-    } else if (cLen > 4) {
-      // User has entered more than 4 digits, truncate it
-      cText = cText.substring(0, 4);
-    }
-
-    return TextEditingValue(
-      text: cText,
-      selection: TextSelection.collapsed(offset: cText.length),
-    );
-  }
-}

@@ -15,6 +15,7 @@ import 'package:renti_user/view/screens/home/home_screen.dart';
 import 'package:renti_user/view/screens/intro/intro_screen.dart';
 import 'package:renti_user/view/screens/message/inbox_screen.dart';
 import 'package:renti_user/view/screens/message/messages_screen.dart';
+import 'package:renti_user/view/screens/no_internet/no_internet_screen.dart';
 import 'package:renti_user/view/screens/profile/edit_profile/edit_profile_screen.dart';
 
 
@@ -69,6 +70,7 @@ class AppRoute {
   static const String rentiHistory = "/renti_history_screen";
   static const String carDetails = "/car_details_screen";
   static const String cancelRequestScreen = "/cancel_request_screen";
+  static const String noInternet = "/no_internet_screen";
 
   static List<GetPage> routes = [
     GetPage(name: rentRequest, page: ()=> const TripDetailsScreen()),
@@ -102,6 +104,7 @@ class AppRoute {
     GetPage(name: rentiHistory, page: ()=>const RentHistoryScreen()),
     GetPage(name: homeScreen, page: ()=>const HomeScreen()),
     GetPage(name: searchScreen, page: ()=>const SearchScreen()),
+    GetPage(name: noInternet, page: ()=>const NoInternetScreen()),
     GetPage(name: cancelRequestScreen, page: ()=> CancelRequestScreen(index: Get.arguments)),
   ];
 }

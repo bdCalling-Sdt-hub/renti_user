@@ -44,27 +44,25 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
       child: Scaffold(
       backgroundColor: AppColors.whiteLight,
       appBar: CustomAppBar(
-          appBarContent: GestureDetector(
-              onTap: () {
-                Get.toNamed(AppRoute.profileDetails);
-              },
-            child: Row(
+          appBarContent: Row(
         children: [
-            const Icon(
-              Icons.arrow_back_ios_new,
-              size: 18,
-              color: AppColors.blackNormal,
-            ),
-             CustomText(
-              text: AppStrings.profileSettings.tr,
-              color: AppColors.blackNormal,
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              left: 14,
-            )
+          IconButton(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onPressed: (){Get.back();}, icon: const Icon(
+            Icons.arrow_back_ios_new,
+            size: 18,
+            color: AppColors.blackNormal,
+          ),),
+           CustomText(
+            text: AppStrings.profileSettings.tr,
+            color: AppColors.blackNormal,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            left: 14,
+          )
         ],
-      ),
-          )),
+      )),
       body: GetBuilder<ProfileDetailsController>(
         builder: (controller) => LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) => SingleChildScrollView(

@@ -42,28 +42,27 @@ class _EndTripScreenState extends State<EndTripScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-            appBarContent: GestureDetector(
-              onTap: (){
-                Get.offAllNamed(AppRoute.homeScreen);
-              },
-              child:  Row(
-                children: [
-                  const Icon(
-                    Icons.arrow_back_ios_new,
-                    color: AppColors.blackNormal,
-                    size: 18,
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  CustomText(
-                      text: AppStrings.endTrip.tr,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.blackNormal
-                  )
-                ],
-              ),
+            appBarContent: Row(
+              children: [
+                IconButton(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+
+                  onPressed: (){Get.offAllNamed(AppRoute.homeScreen);}, icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  size: 18,
+                  color: AppColors.blackNormal,
+                ),),
+                const SizedBox(
+                  width: 8,
+                ),
+                CustomText(
+                    text: AppStrings.endTrip.tr,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.blackNormal
+                )
+              ],
             )),
         body: LayoutBuilder(
           builder: (context, constraint) {
@@ -86,7 +85,7 @@ class _EndTripScreenState extends State<EndTripScreen> {
             builder: (controller) {
               return BottomNavButton(onTap: (){
                 if(controller.firstImg == null || controller.secondImg == null || controller.thirdImg == null){
-                  AppUtils.successToastMessage("please select 3 images");
+                  AppUtils.successToastMessage("please select 3 images".tr);
                 }
                 else{
                  controller.addCarMultipleFilesAndParams1(controller.rentUser[index ??0].id ?? "");

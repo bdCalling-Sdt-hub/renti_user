@@ -36,6 +36,7 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
              CustomText(text: AppStrings.phoneNumber.tr, bottom: 12),
             Row(
@@ -96,9 +97,8 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                 ),
               ],
             ),
-
             //Address Text and TextField
-             CustomText(text: AppStrings.address.tr, top: 16, bottom: 12),
+            CustomText(text: AppStrings.address.tr, top: 16, bottom: 12),
             CustomTextField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -117,7 +117,7 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                   color: AppColors.whiteNormalActive
               ),
             ),
-             CustomText(text: AppStrings.creditCardNum.tr, bottom: 12, top: 16),
+          /*   CustomText(text: AppStrings.creditCardNum.tr, bottom: 12, top: 16),
             CustomTextField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -134,8 +134,6 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                   letterSpacing: 1,
                   color: AppColors.whiteNormalActive),
             ),
-
-            //Confirm Password Text and TextField
              CustomText(
                 text: AppStrings.expireDate.tr,
                 bottom: 12,
@@ -177,14 +175,22 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                   color: AppColors.whiteNormalActive),
             ),
             const SizedBox(height: 24),
-            CustomElevatedButton(
-                buttonWidth: MediaQuery.of(context).size.width,
-                onPressed: () => setDataToLocalStore(
-                  controller,
-                  phoneNumber: "${controller.phoneCode} ${controller.phoneNumberController.text}",
-                  address: controller.addressController.text
-                ),
-                titleText: "Continue".tr
+            */
+
+
+            SizedBox(height: Get.height*0.4,),
+
+            Align(
+
+              child: CustomElevatedButton(
+                  buttonWidth: MediaQuery.of(context).size.width,
+                  onPressed: () => setDataToLocalStore(
+                      controller,
+                      phoneNumber: "${controller.phoneCode} ${controller.phoneNumberController.text}",
+                      address: controller.addressController.text
+                  ),
+                  titleText: "Continue".tr
+              ),
             )
           ],
         ),

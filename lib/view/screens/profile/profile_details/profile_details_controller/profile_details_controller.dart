@@ -14,7 +14,7 @@ class ProfileDetailsController extends GetxController{
 
   bool isLoading = false;
   ProfileDetailsModel profileDetailsModel = ProfileDetailsModel();
-  String number = "+52";
+  // String number = "+52";
   String username = "";
   String email = "";
   String dob = "";

@@ -7,6 +7,7 @@ import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/car_details/car_details_screen.dart';
 import 'package:renti_user/view/screens/home/home_controller/home_controller.dart';
 import 'package:renti_user/view/screens/home/home_repo/home_repo.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
@@ -53,7 +54,8 @@ class HomePopularSection extends StatelessWidget {
              child: Row(
                children: List.generate(
                    controller.offerCarList.length, (index) => GestureDetector(
-                     onTap: () => Get.toNamed(AppRoute.carDetails, arguments: controller.offerCarList[index].id.toString()),
+                 onTap: () => Get.toNamed(AppRoute.carDetails, arguments: controller.offerCarList[index].id.toString()),
+                 //onTap:()=>  Navigator.push(context, MaterialPageRoute(builder: (_)=>const CarDetailsScreen())),
                      child: Stack(
                      children: [
                        Container(

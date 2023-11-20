@@ -41,33 +41,30 @@ class _AllCarScreenState extends State<AllCarScreen> {
       child: Scaffold(
         backgroundColor: AppColors.whiteLight,
         appBar:  CustomAppBar(
-            appBarContent: GestureDetector(
-              onTap: () {
-                Get.back();
-              },
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.arrow_back_ios_new,
-                    size: 18,
-                    color: AppColors.blackNormal,
-                  ),
-                   CustomText(
-                    text: "Luxury Cars".tr,
-                    color: AppColors.blackNormal,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    left: 14,
-                  )
-                ],
-              ),
+            appBarContent: Row(
+              children: [
+                IconButton(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onPressed: (){Get.back();}, icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  size: 18,
+                  color: AppColors.blackNormal,
+                ),),
+                 CustomText(
+                  text: "Luxury Cars".tr,
+                  color: AppColors.blackNormal,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  left: 14,
+                )
+              ],
             )),
         body: GetBuilder<LuxuryCarController>(builder: (controller){
           return  const Padding(
             padding: EdgeInsets.symmetric(vertical: 24,horizontal: 20),
             child: Column(
               children: [
-
                 SizedBox(height: 24),
                 LuxuryCarDetails()
               ],

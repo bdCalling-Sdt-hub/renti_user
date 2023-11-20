@@ -46,6 +46,8 @@ class PaymentController extends GetxController{
         var data=json.decode(await response.stream.bytesToString());
         print(data['id']);
         await payment(amount:amount,rentId: rentId,productName: productName,email:email,token:data['id'],index: index);
+        isLoading = false;
+        update();
       }
       else {
         print(response.reasonPhrase);
@@ -53,8 +55,11 @@ class PaymentController extends GetxController{
 
     } on Exception catch (e) {
 
+      AppUtils.successToastMessage(e.toString());
       // TODO
     }
+    isLoading = false;
+    update();
 
   }
 

@@ -117,36 +117,36 @@ class _SignInAuthState extends State<SignInAuth> {
               ],
             ),
           ),
-           Align(
-            alignment: Alignment.center,
-            child: CustomText(
-              text: "Or".tr,
-              top: 24,
-              bottom: 24,
-              fontSize: 16,
-            ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CustomElevatedButtonWithIcon(
-                  onPressed: () {},
-                  titleText: AppStrings.google,
-                  iconSrc: AppIcons.googleIcon,
-                  imageType: ImageType.svg,
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: CustomElevatedButtonWithIcon(
-                  onPressed: () {},
-                  titleText: AppStrings.apple,
-                  iconSrc: AppIcons.appleIcon,
-                  imageType: ImageType.svg,
-                ),
-              ),
-            ],
-          ),
+          //  Align(
+          //   alignment: Alignment.center,
+          //   child: CustomText(
+          //     text: "Or".tr,
+          //     top: 24,
+          //     bottom: 24,
+          //     fontSize: 16,
+          //   ),
+          // ),
+          // Row(
+          //   children: [
+          //     Expanded(
+          //       child: CustomElevatedButtonWithIcon(
+          //         onPressed: () {},
+          //         titleText: AppStrings.google,
+          //         iconSrc: AppIcons.googleIcon,
+          //         imageType: ImageType.svg,
+          //       ),
+          //     ),
+          //     const SizedBox(width: 16),
+          //     Expanded(
+          //       child: CustomElevatedButtonWithIcon(
+          //         onPressed: () {},
+          //         titleText: AppStrings.apple,
+          //         iconSrc: AppIcons.appleIcon,
+          //         imageType: ImageType.svg,
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );

@@ -66,7 +66,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         )
                     ),
                     CustomText(text:controller.username , fontSize: 16, fontWeight: FontWeight.w500,top: 8),
-                    CustomText(text:"${controller.number}  ${controller.phoneNumber}", fontSize: 12, color: AppColors.whiteDarkHover,top: 8,bottom: 8),
+                    CustomText(text:"${controller.phoneNumber}", fontSize: 12, color: AppColors.whiteDarkHover,top: 8,bottom: 8),
                   ],);
                 }
               ),

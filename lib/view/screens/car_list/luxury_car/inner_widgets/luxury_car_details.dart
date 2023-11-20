@@ -17,7 +17,7 @@ class LuxuryCarDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<LuxuryCarController>(builder: (controller) {
       return Expanded(
-        child: SingleChildScrollView(
+        child: controller.isLoading ?const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,),):SingleChildScrollView(
           child: Column(
               children: List.generate(
             controller.luxuryCarList.length,

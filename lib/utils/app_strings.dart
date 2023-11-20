@@ -163,7 +163,7 @@ class AppStrings{
   static const String seeDetails = "See details";
 
   //selwct car
-  static const String carlicenseno = "Car license no :";
+  static  String carlicenseno = "Car license no:";
   static const String carColor = "Car color:";
 static const String carmodel ="Car model:";
 static const String rentalInformation = "Rental Information";
@@ -194,8 +194,8 @@ static const String hsbcmxico ="Hsbc méxico";
 static const String totalAmount ="Total Amount";
 static const String drivingLicenseNo ="Driving license no:";
 static const String ine ="INE:";
-static const String rentalDate ="Rental date";
-static const String rentalTime ="Rental time";
+static const String rentalDate ="Rental date :";
+static const String rentalTime ="Rental time :";
 static const String pickupLocation  ="Pickup location :";
 static const String endTrip  ="End Trip";
 static const String sendReview  ="Send Review";

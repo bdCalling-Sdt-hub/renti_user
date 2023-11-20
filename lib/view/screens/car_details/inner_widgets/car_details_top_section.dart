@@ -55,13 +55,9 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: AppColors.whiteDArkHover,
-                          image: controller.carDetailsModel.cars!.image != null
-                              ? DecorationImage(
+                          image: controller.carDetailsModel.cars?.image!=null? DecorationImage(
                                   image: CachedNetworkImageProvider(controller
-                                          .carDetailsModel
-                                          .cars!
-                                          .image![itemIndex] ??
-                                      ""),
+                                          .carDetailsModel.cars?.image?[itemIndex]??""),
                                   fit: BoxFit.fill)
                               : const DecorationImage(
                                   image: AssetImage(AppImages.carImage),
@@ -143,7 +139,7 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                 color: Colors.grey.withOpacity(0.2),
                 activeColor: AppColors.blackNormal,
               ),
-              dotsCount: controller.carDetailsModel.cars?.image?.length ?? 0,
+              dotsCount: controller.carDetailsModel.cars?.image?.length ?? 1,
               position: currentIndex,
             )
           ],

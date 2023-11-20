@@ -64,106 +64,116 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      bottom: false,
-      child: GetBuilder<HomeController>(
-        builder: (controller) =>  Scaffold(
-          key: scaffoldKey,
-          drawer: const CustomDrawer(),
-          appBar: CustomAppBar(
-            // top: 20,
-            appBarContent: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () => scaffoldKey.currentState?.openDrawer(),
-                  child: const Icon(Icons.menu,
-                      color: AppColors.primaryColor, size: 40),
-                ),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: ()=>Get.toNamed(AppRoute.searchScreen),
-                    child: Container(
-                      margin:  const EdgeInsets.symmetric(horizontal: 16),
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: AppColors.whiteLight,
-                        border: Border.all(color: AppColors.whiteNormalActive),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child:  Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Icon(Icons.search,
-                              size: 20, color: AppColors.whiteNormalActive),
-                          CustomText(
-                              text:AppStrings.searchCar.tr,
-                              color: AppColors.whiteNormalActive,
-                              left: 8),
-                        ],
+    return WillPopScope(
+      onWillPop: () async {
+       return await showDialog(context: context, builder: (context) {
+         return AlertDialog(
+           content: CustomText(text: "Want to Log out!",),
+         );
+
+        });
+      },
+      child: SafeArea(
+        top: false,
+
+        child: GetBuilder<HomeController>(
+          builder: (controller) =>  Scaffold(
+            key: scaffoldKey,
+            drawer: const CustomDrawer(),
+            appBar: CustomAppBar(
+              // top: 20,
+              appBarContent: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () => scaffoldKey.currentState?.openDrawer(),
+                    child: const Icon(Icons.menu,
+                        color: AppColors.primaryColor, size: 40),
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: ()=>Get.toNamed(AppRoute.searchScreen),
+                      child: Container(
+                        margin:  const EdgeInsets.symmetric(horizontal: 16),
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: AppColors.whiteLight,
+                          border: Border.all(color: AppColors.whiteNormalActive),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child:  Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Icon(Icons.search,
+                                size: 20, color: AppColors.whiteNormalActive),
+                            CustomText(
+                                text:AppStrings.searchCar.tr,
+                                color: AppColors.whiteNormalActive,
+                                left: 8),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                IconButton(onPressed: (){
-                  Get.to(()=>NotificationScreen());
-                }, icon:const Icon(Icons.notifications_none_outlined,color:AppColors.darkBlueColor,size:28,)),
-                const SizedBox(width: 4,),
-                GestureDetector(
-                    onTap: () {
-                      Get.toNamed(AppRoute.profileDetails);
-                    },
-                    child: Container(
-                        height: 40, width: 40,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: controller.profileImage.isEmpty ? const DecorationImage(
-                                image: AssetImage("assets/images/user.png"),
-                                fit: BoxFit.fill
-                            ) : DecorationImage(
-                                image: NetworkImage(controller.profileImage),
-                                fit: BoxFit.fill
-                            )
-                        )
-                    )
-                ),
+                  IconButton(onPressed: (){
+                    Get.to(()=>NotificationScreen());
+                  }, icon:const Icon(Icons.notifications_none_outlined,color:AppColors.darkBlueColor,size:28,)),
+                  const SizedBox(width: 4,),
+                  GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoute.profileDetails);
+                      },
+                      child: Container(
+                          height: 40, width: 40,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: controller.profileImage.isEmpty ? const DecorationImage(
+                                  image: AssetImage("assets/images/user.png"),
+                                  fit: BoxFit.fill
+                              ) : DecorationImage(
+                                  image: NetworkImage(controller.profileImage),
+                                  fit: BoxFit.fill
+                              )
+                          )
+                      )
+                  ),
 
 
 
 
-              ],
+                ],
+              ),
             ),
-          ),
-          body: controller.isLoading? const Center(
-            child: CircularProgressIndicator(color: AppColors.darkBlueColor,),
-          ): controller.offerCarList.isEmpty && controller.luxuryCarList.isEmpty ? const NoDataFoundWidget() : SingleChildScrollView(
-            padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const HomeTopSection(),
-                controller.offerCarList.isNotEmpty ? const Column(
-                  children: [
-                    SizedBox(height: 24),
-                    HomePopularSection(),
-                  ],
-                ) : const SizedBox(),
-                controller.luxuryCarList.isNotEmpty ? const Column(
-                  children: [
-                    SizedBox(height: 24),
-                    HomeLuxuryCarSection(),
-                  ],
-                ) : const SizedBox()
-              ],
+            body: controller.isLoading? const Center(
+              child: CircularProgressIndicator(color: AppColors.darkBlueColor,),
+            ): controller.offerCarList.isEmpty && controller.luxuryCarList.isEmpty ? const NoDataFoundWidget() : SingleChildScrollView(
+              padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const HomeTopSection(),
+                  controller.offerCarList.isNotEmpty ? const Column(
+                    children: [
+                      SizedBox(height: 24),
+                      HomePopularSection(),
+                    ],
+                  ) : const SizedBox(),
+                  controller.luxuryCarList.isNotEmpty ? const Column(
+                    children: [
+                      SizedBox(height: 24),
+                      HomeLuxuryCarSection(),
+                    ],
+                  ) : const SizedBox()
+                ],
+              ),
             ),
+            bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0),
           ),
-          bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0),
         ),
       ),
     ) ;

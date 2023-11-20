@@ -33,7 +33,6 @@ class SignInController extends GetxController{
     print("status code: ${responseModel.statusCode}");
 
     if(responseModel.statusCode == 200){
-
       SignInResponseModel signInResponseModel = SignInResponseModel.fromJson(jsonDecode(responseModel.responseJson));
       print("data: ${signInResponseModel.user.toString()}");
       AppUtils.successToastMessage("Sign In Successfully");
@@ -75,7 +74,8 @@ class SignInController extends GetxController{
       Get.toNamed(AppRoute.otpScreen);
     }
     else{
-      Get.offAndToNamed(AppRoute.homeScreen);
+      signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, true);
+      Get.offAllNamed(AppRoute.homeScreen);
       clearData();
     }
 

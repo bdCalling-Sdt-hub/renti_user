@@ -45,6 +45,7 @@ class AppIcons{
   static const String messageIcon = "$basePath/message_icon.svg";
   static const String personIcon = "$basePath/person_icon.svg";
   static const String history = "$basePath/history.svg";
+  static const String noInternet = "$basePath/no_internet.svg";
 
 
 }

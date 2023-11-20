@@ -30,7 +30,6 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void initState() {
     DeviceUtils.authUtils();
-
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(SignInRepo(apiService: Get.find()));
     Get.put(SignInController(signInRepo: Get.find()));
@@ -39,7 +38,6 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   void dispose() {
-
     DeviceUtils.screenUtils();
     super.dispose();
   }
@@ -54,7 +52,7 @@ class _SignInScreenState extends State<SignInScreen> {
         child: Scaffold(
             backgroundColor: AppColors.primaryColor,
             appBar:  CustomAppBar(
-              appBarContent: CustomBack(text: AppStrings.signIn.tr),
+              appBarContent: CustomText(text: AppStrings.signIn.tr,color: AppColors.whiteLight,fontWeight: FontWeight.w500,top: 15,fontSize: 18,),
             ),
             body: GetBuilder<SignInController>(
               builder: (controller) => LayoutBuilder(
@@ -85,7 +83,6 @@ class _SignInScreenState extends State<SignInScreen> {
                                     Get.toNamed(AppRoute.signUpScreen);
 
                                   },
-
                                   child:  CustomText(
                                     top: 24,
                                     text: AppStrings.signUp.tr,

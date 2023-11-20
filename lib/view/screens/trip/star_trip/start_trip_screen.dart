@@ -43,28 +43,24 @@ class _StartTripScreenState extends State<StartTripScreen> {
     return SafeArea(
         child: Scaffold(
           appBar: CustomAppBar(
-              appBarContent: GestureDetector(
-                onTap: (){
-                  Get.offAllNamed(AppRoute.homeScreen);
-                },
-                child: const Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_back_ios_new,
-                      color: AppColors.blackNormal,
-                      size: 18,
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    CustomText(
-                        text: AppStrings.startTrip,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.blackNormal
-                    )
-                  ],
-                ),
+              appBarContent: Row(
+                children: [
+                  IconButton(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onPressed: (){  Get.offAllNamed(AppRoute.homeScreen);}, icon: const Icon(
+                    Icons.arrow_back_ios_new,
+                    size: 18,
+                    color: AppColors.blackNormal,
+                  ),),
+
+                   CustomText(
+                      text: AppStrings.startTrip.tr,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.blackNormal
+                  )
+                ],
               )),
           body: LayoutBuilder(
             builder: (context, constraint) {
@@ -91,12 +87,12 @@ class _StartTripScreenState extends State<StartTripScreen> {
                 return BottomNavButton(
                     onTap: (){
                   if(controller.firstImg == null || controller.secondImg == null || controller.thirdImg == null){
-                    AppUtils.successToastMessage("please select 3 images");
+                    AppUtils.successToastMessage("please select 3 images".tr);
                   }
                   else{
                     controller.addCarMultipleFilesAndParams(controller.rentUser[index ??0].id ?? "");
                   }
-                }, buttonName: AppStrings.startTrip, buttonColor: AppColors.primaryColor);
+                }, buttonName: AppStrings.startTrip.tr, buttonColor: AppColors.primaryColor);
               }
           ),
         )

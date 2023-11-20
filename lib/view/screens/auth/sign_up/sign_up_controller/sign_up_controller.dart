@@ -8,6 +8,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:renti_user/core/global/api_url_container.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_repo/sign_up_repo.dart';
 
@@ -31,6 +32,7 @@ class SignUpController extends GetxController{
   TextEditingController expireDateController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
   TextEditingController ineNumberController = TextEditingController();
+  TextEditingController dateOfBirthController = TextEditingController();
 
   List<String> genderList = ["Male", "Female", "Others"];
   int selectedGender = 0;
@@ -54,13 +56,17 @@ class SignUpController extends GetxController{
 
   Future<void> pickDrivingLicenceFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, allowedExtensions: ["pdf"], type: FileType.custom);
-
     if (result != null && result.files.isNotEmpty) {
-      uploadDrivingLicense = File(result.files.single.path.toString());
-      drivingLicenseFileName = result.files.single.name;
-
-      kycDocFiles.add(uploadDrivingLicense!);
-      update();
+     PlatformFile file = result.files.first;
+     if(file.extension == "pdf" ){
+       uploadDrivingLicense = File(result.files.single.path.toString());
+       drivingLicenseFileName = result.files.single.name;
+       kycDocFiles.add(uploadDrivingLicense!);
+       update();
+     }
+     else {
+       AppUtils.successToastMessage("only pdf file allow".tr);
+     }
     }
   }
 
@@ -68,10 +74,16 @@ class SignUpController extends GetxController{
     FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, allowedExtensions: ["pdf"], type: FileType.custom);
 
     if (result != null && result.files.isNotEmpty) {
-      uploadPassport = File(result.files.single.path.toString());
-      passportFileName = result.files.single.name;
-      kycDocFiles.add(uploadPassport!);
-      update();
+      PlatformFile file = result.files.first;
+      if(file.extension == "pdf"){
+        uploadPassport = File(result.files.single.path.toString());
+        passportFileName = result.files.single.name;
+        kycDocFiles.add(uploadPassport!);
+        update();
+      }
+      else{
+        AppUtils.successToastMessage("only pdf file allow".tr);
+      }
     }
   }
 
@@ -193,5 +205,28 @@ class SignUpController extends GetxController{
 
     isSubmit = false;
     update();
+  }
+
+  Future<void> dateOfBirthPicker(BuildContext context) async{
+    final DateTime? picked = await showDatePicker(
+      builder: (context, child) => Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme:  const ColorScheme.light(
+              primary: AppColors.primaryColor, // <-- SEE HERE
+              onPrimary: AppColors.whiteLight, // <-- SEE HERE
+              onSurface: AppColors.primaryColor, // <-- SEE HERE
+            ),
+          ),
+          child: child!
+      ),
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1950),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != dateOfBirthController.text) {
+      dateOfBirthController.text = "${picked.year}-${picked.month}-${picked.day}";
+      update();
+    }
   }
 }

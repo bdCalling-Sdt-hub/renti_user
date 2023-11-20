@@ -10,7 +10,6 @@ class CustomBack extends StatelessWidget {
         this.vertical = 0,
         this.text = "",
         this.fontSize = 18,
-        this.height =44,
         this.onTap,
         this.left = 8,
         this.fontWeight = FontWeight.w500,
@@ -21,7 +20,7 @@ class CustomBack extends StatelessWidget {
   final double vertical;
   final String text;
   final double fontSize;
-  final double ? height;
+
   final VoidCallback? onTap;
   final double left;
   final FontWeight fontWeight;
@@ -31,26 +30,26 @@ class CustomBack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return GestureDetector(
-      onTap: (){
-        Get.back();
-      },
-      child: Container(
-        height: height,
-        // width: width,
-        padding: EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
-        child: Row(
-          children: [
-            Icon(Icons.arrow_back_ios_new, size: fontSize, color: AppColors.whiteLight),
-            CustomText(
-              left: left,
-              text: text,
-              fontSize: fontSize,
-              fontWeight: fontWeight,
-              color: color,
-            ),
-          ],
-        ),
+    return Container(
+
+      // width: width,
+      padding: EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          IconButton(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onPressed: (){Get.back();}, icon: Icon(Icons.arrow_back_ios_new, size: fontSize, color: AppColors.whiteLight),),
+          CustomText(
+            left: left,
+            text: text,
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            color: color,
+          ),
+        ],
       ),
     );
   }

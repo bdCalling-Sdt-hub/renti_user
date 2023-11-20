@@ -57,24 +57,21 @@ class _CancelRequestScreenState extends State<CancelRequestScreen> {
     return  SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          appBarContent: GestureDetector(
-            onTap: (){
-              Get.back();
-            },
-            child:  Row(
-              children: [
-                const Icon(Icons.arrow_back_ios_new,color: AppColors.blackNormal,size: 18,),
-                const SizedBox(width: 8,),
-                Text(
-                  "Car Details".tr,
-                  style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.blackNormal
-                ),
-                )
-              ],
-            ),
+          appBarContent: Row(
+            children: [
+                 IconButton(
+                   splashColor: Colors.transparent,
+                   highlightColor: Colors.transparent,
+                   onPressed: (){Get.back();}, icon:  const Icon(Icons.arrow_back_ios_new,color: AppColors.blackNormal,size: 18,),),
+              Text(
+                "Car Details".tr,
+                style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: AppColors.blackNormal
+              ),
+              )
+            ],
           )
         ),
           body: LayoutBuilder(builder: (context, constraint) => GetBuilder<RentHistoryController>(

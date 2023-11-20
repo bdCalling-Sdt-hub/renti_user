@@ -19,8 +19,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
       return  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomText(
-            text:  AppStrings.rentalInformation,
+           CustomText(
+            text:  AppStrings.rentalInformation.tr,
             fontSize: 16,
             fontWeight: FontWeight.w500,
             color: AppColors.blackNormal,
@@ -29,8 +29,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.carmodel,
+               CustomText(
+                text: AppStrings.carmodel.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: AppColors.whiteDarkHover,
@@ -43,8 +43,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.carColor,
+               CustomText(
+                text: AppStrings.carColor.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: AppColors.whiteDarkHover,
@@ -57,8 +57,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.carlicenseno,
+               CustomText(
+                text: AppStrings.carlicenseno.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: AppColors.whiteDarkHover,
@@ -71,8 +71,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.rentalTime,
+               CustomText(
+                text: AppStrings.rentalTime.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: AppColors.whiteDarkHover,
@@ -85,8 +85,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.rentalDate,
+               CustomText(
+                text: AppStrings.rentalDate.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: AppColors.whiteDarkHover,
@@ -96,8 +96,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
             ],
           ),
           const SizedBox(height: 16),
-          const CustomText(
-            text:  AppStrings.hostInformation,
+           CustomText(
+            text:  AppStrings.hostInformation.tr,
             fontSize: 16,
             fontWeight: FontWeight.w500,
             color: AppColors.blackNormal,
@@ -108,8 +108,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.name,
+               CustomText(
+                text: AppStrings.name.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: AppColors.whiteDarkHover,
@@ -122,8 +122,8 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.ine,
+               CustomText(
+                text: AppStrings.ine.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: AppColors.whiteDarkHover,
@@ -134,25 +134,25 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
             ],
           ),
           const SizedBox(height: 8,),
-          const Row(
+           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
-                text: AppStrings.drivingLicenseNo,
+                text: AppStrings.drivingLicenseNo.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: AppColors.whiteDarkHover,
               ),
-              SizedBox(),
-              Text("--",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+              const SizedBox(),
+              const Text("--",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
             ],
           ),
           const SizedBox(height: 8,),
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.pickupLocation,
+               CustomText(
+                text: AppStrings.pickupLocation.tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: AppColors.whiteDarkHover,

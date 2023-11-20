@@ -46,28 +46,24 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
         child: Scaffold(
         backgroundColor: AppColors.whiteLight,
         appBar: CustomAppBar(
-            appBarContent: GestureDetector(
-              onTap: () {
-                Get.back();
-                // navigator?.pop();
-              },
-              child: Row(
+            appBarContent: Row(
           children: [
-              const Icon(
-                Icons.arrow_back_ios_new,
-                size: 18,
-                color: AppColors.blackNormal,
-              ),
-               CustomText(
-                text: AppStrings.carDetails.tr,
-                color: AppColors.blackNormal,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                left: 14,
-              )
+           IconButton(
+             splashColor: Colors.transparent,
+             highlightColor: Colors.transparent,
+             onPressed: (){Get.back();}, icon:  const Icon(
+             Icons.arrow_back_ios_new,
+             size: 18,
+             color: AppColors.blackNormal,
+           ),),
+             CustomText(
+              text: AppStrings.carDetails.tr,
+              color: AppColors.blackNormal,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            )
           ],
-        ),
-            )),
+        )),
         body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) => GetBuilder<CarDetailsController>(
             builder: (controller) {
