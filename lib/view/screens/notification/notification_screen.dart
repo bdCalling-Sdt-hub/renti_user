@@ -51,13 +51,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         backgroundColor: AppColors.whiteLight,
         centerTitle: false,
       ),
-      // appBar: CustomAppBar(
-      //
-      //   appBarContent: CustomBack(
-      //     text: "Notification".tr,
-      //     color: AppColors.blackNormal,
-      //   ),
-      // ),
+
       body: LayoutBuilder(
         builder: (context, constraints) => Obx(()=>_notificationController.loading.value?const Center(
           child: CircularProgressIndicator(),

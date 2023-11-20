@@ -4,6 +4,7 @@ import 'package:renti_user/core/global/api_url_container.dart';
 import 'package:renti_user/service/notification.dart';
 import 'package:renti_user/utils/app_constents.dart';
 import 'package:renti_user/view/screens/no_internet/no_internet_screen.dart';
+import 'package:renti_user/view/screens/notification/notification_screen.dart';
 
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
@@ -13,6 +14,7 @@ class SocketService extends GetxController {
   late io.Socket socket;
 
   NoInternetScreen notificationClass = const NoInternetScreen();
+  // NotificationScreen notificationHelper =  const NotificationScreen();
 
   List<dynamic> messageList = [];
   List<dynamic> allMessageList = [];
