@@ -11,51 +11,29 @@ class TermConditionController extends GetxController{
   TermConditionRepo termConditionRepo;
 
   TermConditionController( {required this.termConditionRepo});
-
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    aboutUsGetResponse();
-    super.onReady();
-  }
-
-  bool isLoading = false;
+  bool isLoading = true;
   String content = "";
-  Future<void> aboutUsGetResponse() async{
+  initialState(){
+    isLoading = false;
+    update();
+    termAndConUsGetResponse();
     isLoading = true;
     update();
+  }
+
+  Future<void> termAndConUsGetResponse() async{
+
 
     ApiResponseModel responseModel = await termConditionRepo.ternConditionResponse();
 
     print("status code: ${responseModel.statusCode}");
 
     if(responseModel.statusCode == 200){
-     TermConditionModel termConditionModel = TermConditionModel.fromJson(jsonDecode(responseModel.responseJson));
-      content = termConditionModel.termsCondition!.content??"";
-      // print("data: ${termConditionModel.termsCondition.toString()}");
-      // await gotoNextStep(privacyPolicyModel);
-    }
-    else{
       isLoading = false;
       update();
+     TermConditionModel termConditionModel = TermConditionModel.fromJson(jsonDecode(responseModel.responseJson));
+      content = termConditionModel.termsCondition!.content??"";
     }
-
-    isLoading = false;
-    update();
   }
-
-/*gotoNextStep(SignInResponseModel signInResponseModel) async{
-
-    if(signInResponseModel.user == null){
-      Get.toNamed(AppRoute.signInScreen);
-    }
-    else if(signInResponseModel.user?.emailVerified == false){
-      Get.toNamed(AppRoute.otpScreen);
-    }
-    else{
-      Get.offAndToNamed(AppRoute.homeScreen);
-    }*/
-
-
 
 }

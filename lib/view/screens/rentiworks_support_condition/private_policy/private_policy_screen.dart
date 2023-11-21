@@ -25,7 +25,11 @@ class _PrivatePolicyScreenState extends State<PrivatePolicyScreen> {
   void initState() {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(PrivacyPolicyRepo(apiService: Get.find()));
-    Get.put(PrivacyPolicyController(privacyPolicyRepo: Get.find()));
+   final controller = Get.put(PrivacyPolicyController(privacyPolicyRepo: Get.find()));
+   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+     controller.initialState();
+
+   });
     super.initState();
   }
 
@@ -45,26 +49,19 @@ class _PrivatePolicyScreenState extends State<PrivatePolicyScreen> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child:  GetBuilder<PrivacyPolicyController>(
-            builder: (controller) {
-              if(controller.isLoading){
-                const Center(
-                  child:  CircularProgressIndicator(),
-                );
-              }
-              return controller.content!=null&&controller.content.isNotEmpty? SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+            builder: (controller) => controller.isLoading?const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,),): controller.content!=null&&controller.content.isNotEmpty? SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
 
-                Html(
-                data: controller.content.toString().toUpperCase(),
-                 )
-                  ],
-                ),
-              ):const NoDataFoundWidget();
-            }
+                  Html(
+                    data: controller.content.toString().toUpperCase(),
+                  )
+                ],
+              ),
+            ):const NoDataFoundWidget()
           ),
         ),
       ),

@@ -45,21 +45,16 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child:  GetBuilder<AboutUstController>(
-                builder: (controller) {
-                  if(controller.isLoading){
-                    const Center(child: CircularProgressIndicator(),);
-                  }
-                  return controller.content==""&&controller.content.isEmpty ? const NoDataFoundWidget(): SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                builder: (controller) =>controller.isLoading?const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,),): controller.content==""&&controller.content.isEmpty ? const NoDataFoundWidget(): SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Html(data: controller.content,),
-                      ],
-                    ),
-                  );
-                }
+                    ],
+                  ),
+                )
               ),
             ),
       ),

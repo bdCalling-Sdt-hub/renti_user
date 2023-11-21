@@ -15,7 +15,6 @@ import '../../../widgets/buttons/custom_back_button.dart';
 import '../../../widgets/container/custom_container.dart';
 
 class HowRentiWorksScreen extends StatefulWidget {
-
   const HowRentiWorksScreen({super.key});
 
   @override
@@ -23,13 +22,13 @@ class HowRentiWorksScreen extends StatefulWidget {
 }
 
 class _HowRentiWorksScreenState extends State<HowRentiWorksScreen> {
-
   @override
   void initState() {
     DeviceUtils.authUtils();
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(HowRentiWorksRepo(apiService: Get.find()));
-    final controller = Get.put(HowRentiWorksController(howRentiWorksRepo: Get.find()));
+    final controller =
+        Get.put(HowRentiWorksController(howRentiWorksRepo: Get.find()));
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.loadData();
@@ -40,36 +39,39 @@ class _HowRentiWorksScreenState extends State<HowRentiWorksScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      top: false,
-      bottom: false,
-      child: Scaffold(
-      backgroundColor: AppColors.primaryColor,
-      appBar:  CustomAppBar(
-        appBarContent: CustomBack(
-          text: AppStrings.rentiWorks.tr,
-        ),
-      ),
-      body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) => GetBuilder<HowRentiWorksController>(
-          builder: (controller){
-            if(controller.isLoading){
-              const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            return CustomContainer(
-
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: controller.content.isNotEmpty&&controller.content!=null?  SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
-                child: Html(data: controller.content),
-              ): const NoDataFoundWidget(),
-            );
-          }
-        ),
-      )
-    ));
+        top: false,
+        bottom: false,
+        child: Scaffold(
+            backgroundColor: AppColors.primaryColor,
+            appBar: CustomAppBar(
+              appBarContent: CustomBack(
+                text: AppStrings.rentiWorks.tr,
+              ),
+            ),
+            body: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) =>
+                  GetBuilder<HowRentiWorksController>(
+                      builder: (controller) => controller.isLoading
+                          ? const Scaffold(
+                              body: Center(
+                              child: CircularProgressIndicator(
+                                color: AppColors.primaryColor,
+                              ),
+                            ))
+                          : CustomContainer(
+                              height: MediaQuery.of(context).size.height,
+                              width: MediaQuery.of(context).size.width,
+                              child: controller.content.isNotEmpty &&
+                                      controller.content != null
+                                  ? SingleChildScrollView(
+                                      physics: const BouncingScrollPhysics(),
+                                      padding:
+                                          const EdgeInsetsDirectional.symmetric(
+                                              horizontal: 20, vertical: 24),
+                                      child: Html(data: controller.content),
+                                    )
+                                  : const NoDataFoundWidget(),
+                            )),
+            )));
   }
 }

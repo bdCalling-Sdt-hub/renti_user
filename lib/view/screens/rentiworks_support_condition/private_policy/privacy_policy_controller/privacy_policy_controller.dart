@@ -9,51 +9,43 @@ class PrivacyPolicyController extends GetxController{
   PrivacyPolicyRepo privacyPolicyRepo;
   PrivacyPolicyController({required this.privacyPolicyRepo});
 
- @override
-  void onReady() {
-    // TODO: implement onReady
-   privacyPolicyGetResponse();
-    super.onReady();
-  }
+ // @override
+ //  void onReady() {
+ //    // TODO: implement onReady
+ //   privacyPolicyGetResponse();
+ //    super.onReady();
+ //  }
 
-  bool isLoading = false;
+  bool isLoading = true;
   String content = "";
 
+     initialState (){
+      isLoading = false;
+      update();
+      privacyPolicyGetResponse();
+      isLoading = true;
+      update();
+    }
   Future<void> privacyPolicyGetResponse() async{
-    isLoading = true;
-    update();
-
     ApiResponseModel responseModel = await privacyPolicyRepo.privacyPolicyResponse();
 
     print("status code: ${responseModel.statusCode}");
 
     if(responseModel.statusCode == 200){
+      isLoading = false;
+      update();
      PrivacyPolicyModel  privacyPolicyModel = PrivacyPolicyModel.fromJson(jsonDecode(responseModel.responseJson));
       print("data: ${privacyPolicyModel.privacyPolicy.toString()}");
       content = privacyPolicyModel.privacyPolicy!.content??"";
-      // await gotoNextStep(privacyPolicyModel);
-    }
-    else{
-      isLoading = false;
-      update();
-    }
 
-    isLoading = false;
-    update();
+    }
+    // else{
+    //   isLoading = false;
+    //   update();
+    // }
+
+    // isLoading = false;
+    // update();
   }
-
-  /*gotoNextStep(SignInResponseModel signInResponseModel) async{
-
-    if(signInResponseModel.user == null){
-      Get.toNamed(AppRoute.signInScreen);
-    }
-    else if(signInResponseModel.user?.emailVerified == false){
-      Get.toNamed(AppRoute.otpScreen);
-    }
-    else{
-      Get.offAndToNamed(AppRoute.homeScreen);
-    }*/
-
-
 
 }

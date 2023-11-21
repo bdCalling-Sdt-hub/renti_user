@@ -25,7 +25,10 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
   void initState() {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(TermConditionRepo(apiService: Get.find()));
-    Get.put(TermConditionController(termConditionRepo: Get.find()));
+   final controller = Get.put(TermConditionController(termConditionRepo: Get.find()));
+   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+     controller.initialState();
+   });
     super.initState();
   }
 
@@ -44,21 +47,16 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child:   GetBuilder<TermConditionController>(
-                builder: (controller) {
-                  if(controller.isLoading){
-                    const Center(child: CircularProgressIndicator(),);
-                  }
-                  return controller.content.isNotEmpty && controller.content!=null? SingleChildScrollView(
-                    padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                           Html(data: controller.content.toString().toUpperCase(),)
-                      ],
-                    ),
-                  ):const NoDataFoundWidget();
-                }
+                builder: (controller) =>controller.isLoading?const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,),): controller.content.isNotEmpty && controller.content!=null? SingleChildScrollView(
+                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Html(data: controller.content.toString().toUpperCase(),)
+                    ],
+                  ),
+                ):const NoDataFoundWidget()
               ),
             ),
       ),

@@ -54,18 +54,11 @@ class _SupportScreenState extends State<SupportScreen> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: GetBuilder<SupportController>(
-              builder: (controller) {
-                if(controller.isLoading){
-                  const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                return controller.content.isNotEmpty&&controller.content!=null? SingleChildScrollView(
-                    padding: const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
-                    physics: const BouncingScrollPhysics(),
-                    child: Html(data: controller.content)
-                ): const NoDataFoundWidget();
-              }
+              builder: (controller) =>controller.isLoading?const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,),) :controller.content.isNotEmpty&&controller.content!=null? SingleChildScrollView(
+                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
+                  physics: const BouncingScrollPhysics(),
+                  child: Html(data: controller.content)
+              ): const NoDataFoundWidget()
             ),
           );
         }
