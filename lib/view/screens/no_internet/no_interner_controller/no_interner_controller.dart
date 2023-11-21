@@ -29,7 +29,7 @@ class NoInternetController extends GetxController {
           ),
           snackStyle: SnackStyle.GROUNDED,
           duration:
-           const Duration(days: 1));
+           const Duration(seconds: 20));
              Get.offAllNamed(AppRoute.noInternet);
 
     } else {

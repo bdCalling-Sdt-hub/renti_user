@@ -140,7 +140,7 @@ Map<String, String> english = {
   "Sent Rent Request": "Sent Rent Request",
 
   "Payment": "Payment",
-  "Card Number": "Card Number",
+  // "Credit Card Number": "Credit Card Number",
   "Enter Your Card Number": "Enter Your Card Number",
   "Expired Date": "Expired Date",
   "CVV": "CVV",
@@ -167,4 +167,10 @@ Map<String, String> english = {
   "Rental date :":"Rental date",
   "Rental time :":"Rental time",
   "Pickup location :":"Pickup location",
+
+  // nave bar
+  "Home" : "Home",
+  "Search" : "Search",
+  "Message" : "Message",
+  "Profile":"Profile",
 };

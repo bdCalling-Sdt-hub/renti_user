@@ -68,7 +68,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                  Column(
                    crossAxisAlignment: CrossAxisAlignment.start,
                    children: [
-                     CustomText(text: "Card Number".tr, bottom: 12),
+                     CustomText(text: "Credit Card Number".tr, bottom: 12),
                      CustomTextField(
                        inputFormatters: [
                          FilteringTextInputFormatter.digitsOnly,
@@ -85,7 +85,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                            color: AppColors.whiteNormalActive),
                        validator: (value){
                          if(value == null || value.isEmpty){
-                           return "Enter your card number".tr;
+                           return "Enter your Credit card number".tr;
                          }
                          else if(value.length > 19 || value.length <19){
                            return "Enter your valid card number";

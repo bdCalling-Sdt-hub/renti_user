@@ -36,7 +36,7 @@ class _PrivatePolicyScreenState extends State<PrivatePolicyScreen> {
       backgroundColor: AppColors.primaryColor,
       appBar:  CustomAppBar(
         appBarContent: CustomBack(
-          text: AppStrings.privacyPolicy.tr,
+          text: AppStrings.privacyPolicy.tr.toUpperCase(),
         ),
       ),
       body: LayoutBuilder(

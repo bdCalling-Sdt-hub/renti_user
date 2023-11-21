@@ -71,7 +71,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                       SvgPicture.asset(unselectedIcon[index], height: 24, width: 24, color:  index == bottomNavIndex ? AppColors.primaryColor : const Color(0xffBFBFBF)),
                       const SizedBox(height: 8),
                       Text(
-                        navList[index],
+                        navList[index].tr,
                         style: GoogleFonts.nunitoSans(
                           color: index == bottomNavIndex ? AppColors.primaryColor : const Color(0xffBFBFBF),
                           fontSize: 12,

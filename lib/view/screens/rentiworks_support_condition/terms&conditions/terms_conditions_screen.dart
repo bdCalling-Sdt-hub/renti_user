@@ -35,7 +35,7 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
       backgroundColor: AppColors.primaryColor,
       appBar:  CustomAppBar(
         appBarContent: CustomBack(
-          text:AppStrings.termsConditions.tr,
+          text:AppStrings.termsConditions.tr.toUpperCase(),
         ),
       ),
       body:LayoutBuilder(

@@ -55,12 +55,12 @@ Map<String, String> spanish = {
   "Please enter the OTP code.": "Por favor ingrese el código OTP.",
   //drawer
 
-  "Rent History": "Historial de alquiler",
+  "Rent History": "Historial de renta",
   "Payment Method": "Método de pago",
   "How Renti Works": "Cómo funciona Renti",
-  "Support": "Apoyo",
+  "Support": "ayuda",
   "Settings": "Ajustes",
-  "About Us": "Sobre nosotras",
+  "About Us": "Sobre nosotros",
   "Log Out": "Cerrar sesión",
   "You sure want to log out": "Seguro que quieres cerrar sesión",
   "Yes": "Sí",
@@ -132,11 +132,12 @@ Map<String, String> spanish = {
   "Update Profile": "Actualización del perfil",
   "Cancel Request": "Cancelar petición",
   //payment
+
   "Make Payment": "Hacer el pago",
   "Total Amount": "Cantidad total",
   "Trip Details": "Detalles del viaje",
   "Payment": "Pago",
-  "Card Number": "Número de tarjeta",
+  // "Credit Card Number": "Número de tarjeta",
   "Enter Your Card Number": "Ingrese su número de tarjeta",
   "Expired Date": "Fecha de vencimiento",
   "CVV": "CVV",
@@ -161,4 +162,10 @@ Map<String, String> spanish = {
   "Rental date :":"Fecha de alquiler",
   "Rental time :":"tiempo de alquilere",
   "Pickup location :":"Lugar de recogida",
+
+  // nave bar
+  "Home" : "Hogar",
+  "Search" : "Buscar",
+  "Message" : "Mensaje",
+  "Profile":"Perfil",
 };

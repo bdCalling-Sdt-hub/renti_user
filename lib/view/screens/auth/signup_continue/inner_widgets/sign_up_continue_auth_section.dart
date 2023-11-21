@@ -79,7 +79,7 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return AppStrings.notBeEmpty.tr;
-                      } else if (value.length < 11) {
+                      } else if (value.length > 8){
                         return "Enter your valid phone number".tr;
                       } else {
                         return null;
