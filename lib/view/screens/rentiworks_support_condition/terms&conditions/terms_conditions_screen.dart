@@ -54,7 +54,7 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                           Html(data: controller.content.toString(),)
+                           Html(data: controller.content.toString().toUpperCase(),)
                       ],
                     ),
                   ):const NoDataFoundWidget();
