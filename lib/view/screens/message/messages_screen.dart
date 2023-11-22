@@ -7,6 +7,7 @@ import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
@@ -55,6 +56,7 @@ class _MessageScreenState extends State<MessageScreen> {
 
   @override
   void initState() {
+    DeviceUtils.screenUtils();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       getAllChats();
     });

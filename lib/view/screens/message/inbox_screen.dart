@@ -35,7 +35,7 @@ class _InboxScreenState extends State<InboxScreen> {
     socketService.addNewChat({
       "participants": [userUid, hostUid],
     }, userUid );
-    DeviceUtils.screenUtils();
+    // DeviceUtils.screenUtils();
 
     super.initState();
   }

@@ -8,10 +8,8 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/service/notification.dart';
-import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/view/screens/settings/change_language/translator.dart';
 import 'core/di_service/dependency_injection.dart' as di;
-
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin=FlutterLocalNotificationsPlugin();
 
@@ -19,8 +17,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey = "pk_test_51NrcLcSJXOqjAG5dxabD5XzUNXE0S3xjn4tFp8aJqZZR4SsQOCZ3SM9MNTbFgCYopG7R8d0XcgvvY9AM6SIxCQKX00mzWSTRUm";
   await di.initDependency();
-  // final socketService = SocketService();
-  // socketService.socket;
+
 
   await NotificationHelper.initLocalNotification(flutterLocalNotificationsPlugin);
 

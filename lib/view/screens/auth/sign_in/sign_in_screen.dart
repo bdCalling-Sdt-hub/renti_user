@@ -3,16 +3,12 @@ import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
-
 import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_controller/sign_in_controller.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_repo/sign_in_repo.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
-import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
 import 'package:renti_user/view/widgets/container/custom_container.dart';
-import 'package:renti_user/view/widgets/custom_will_pop/custom_will_pop_widget.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 import 'inner_widget/sign_in_auth.dart';

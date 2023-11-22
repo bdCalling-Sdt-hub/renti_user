@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/main.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/service/notification.dart';
+import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
@@ -22,9 +25,6 @@ import 'package:renti_user/view/widgets/error_widget/no_data_found_widget.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../core/helper/shared_preference_helper.dart';
-import '../../../service/socket_service.dart';
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -36,9 +36,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // late ProfileDetailsController  profileController;
 
+
   @override
   void initState() {
-    DeviceUtils.screenUtils();
+     DeviceUtils.screenUtils();
+     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     Get.put(ProfileDetailsRepo(apiService: Get.find()));
     Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
     Get.put(ApiService(sharedPreferences: Get.find()));
@@ -50,6 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     super.initState();
   }
+
+
 
   SocketService socketService = SocketService();
   String userUid = "";
@@ -64,20 +68,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-       return await showDialog(context: context, builder: (context) {
-         return AlertDialog(
-           content: CustomText(text: "Want to Log out!",),
-         );
 
-        });
+
+    return WillPopScope(
+      onWillPop: () async{
+        return true;
       },
       child: SafeArea(
         top: false,
-
         child: GetBuilder<HomeController>(
+
           builder: (controller) =>  Scaffold(
+            backgroundColor: AppColors.whiteLight,
             key: scaffoldKey,
             drawer: const CustomDrawer(),
             appBar: CustomAppBar(
@@ -119,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   IconButton(onPressed: (){
-                    Get.to(()=>NotificationScreen());
+                    Get.to(()=>const NotificationScreen());
                   }, icon:const Icon(Icons.notifications_none_outlined,color:AppColors.darkBlueColor,size:28,)),
                   const SizedBox(width: 4,),
                   GestureDetector(
@@ -178,4 +180,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     ) ;
   }
+
 }
+

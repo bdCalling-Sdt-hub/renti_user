@@ -42,4 +42,8 @@ class DeviceUtils{
         )
     );
   }
+
+  //  Future hideSystemBar() async {
+  //   SystemChrome.setEnabledSystemOverLays([]);
+  // }
 }
