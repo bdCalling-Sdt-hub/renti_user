@@ -34,9 +34,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  // late ProfileDetailsController  profileController;
-
-
   @override
   void initState() {
      DeviceUtils.screenUtils();
@@ -52,8 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     super.initState();
   }
-
-
 
   SocketService socketService = SocketService();
   String userUid = "";
@@ -72,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return WillPopScope(
       onWillPop: () async{
-        return true;
+        return false;
       },
       child: SafeArea(
         top: false,

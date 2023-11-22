@@ -1,4 +1,3 @@
-import 'package:custom_will_pop_scope/custom_will_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/service/api_service.dart';
