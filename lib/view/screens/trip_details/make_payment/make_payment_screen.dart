@@ -173,6 +173,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
     );
   }
 }
+
 class CardExpirationFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
