@@ -31,7 +31,8 @@ class CustomTextField extends StatefulWidget {
     this.readOnly = false,
     this.onTap,
     this.inputFormatters,
-    super.key}
+    this.maxLength,
+    super.key,  }
   );
 
   final TextEditingController? textEditingController;
@@ -59,6 +60,7 @@ class CustomTextField extends StatefulWidget {
   final bool readOnly;
   final VoidCallback? onTap;
   final List<TextInputFormatter>? inputFormatters;
+  final int ?maxLength;
 
 
   @override
@@ -72,6 +74,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLength: widget.maxLength,
       inputFormatters: widget.inputFormatters,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       readOnly: widget.readOnly,
@@ -90,6 +93,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintStyle: widget.hintStyle,
         fillColor: widget.fillColor,
         filled: true,
+        counterText: "",
         prefixIcon: widget.isPrefixIcon ? Padding(
           padding:  const EdgeInsetsDirectional.only(start: 0, top: 10, bottom: 10, end: 0),
           child: SvgPicture.asset(widget.prefixIconSrc ?? "", color: widget.prefixIconColor),

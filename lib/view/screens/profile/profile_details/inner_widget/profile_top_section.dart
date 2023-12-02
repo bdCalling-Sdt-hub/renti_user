@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
@@ -7,6 +8,7 @@ import 'package:renti_user/view/screens/profile/edit_profile/edit_profile_contro
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class ProfileTopSection extends StatelessWidget {
@@ -19,16 +21,28 @@ class ProfileTopSection extends StatelessWidget {
     return GetBuilder<ProfileDetailsController>(
       builder: (controller){
         return GestureDetector(
-          onTap: () {
-            editProfileController.nameController.text = controller.fullNameController.text;
-            editProfileController.numberController.text = controller.phoneNumberController.text;
-            editProfileController.emailController.text = controller.emailController.text;
-            editProfileController.addressController.text = controller.addressController.text;
+          onTap: () async {
+            editProfileController.nameController.text =
+                controller.fullNameController.text;
+            editProfileController.numberController.text =
+                controller.phoneNumberController.text;
+            editProfileController.emailController.text =
+                controller.emailController.text;
+            editProfileController.addressController.text =
+                controller.addressController.text;
             editProfileController.profileImage = controller.profileImage;
             editProfileController.userId = controller.userId;
             Get.toNamed(AppRoute.profileSettingsScreen);
+            //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+            //   String token = prefs.getString(SharedPreferenceHelper.userIdKey)??"";
+            //   if(token.isEmpty){
+            //     Get.toNamed(AppRoute.signInScreen);
+            //   }
+            //   else{
+            //
+            //   }
+            // },
           },
-
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             margin: const EdgeInsets.only(bottom: 16),

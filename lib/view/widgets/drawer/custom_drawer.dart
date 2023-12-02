@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
@@ -11,6 +12,7 @@ import 'package:renti_user/view/screens/logout/logout_repo/logout_repo.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class CustomDrawer extends StatefulWidget {
 
   const CustomDrawer({super.key});
@@ -201,7 +203,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                               children: [
                                 Expanded(
                                     child:InkWell(
-                                      onTap: () {
+                                      onTap: () async{
+                                        final SharedPreferences prefs = await SharedPreferences.getInstance();
+                                        await prefs.remove(SharedPreferenceHelper.userIdKey);
                                         controller.logout();
 
                                       },

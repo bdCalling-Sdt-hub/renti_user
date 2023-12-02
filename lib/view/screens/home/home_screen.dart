@@ -10,6 +10,7 @@ import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
+import 'package:renti_user/view/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:renti_user/view/screens/home/home_controller/home_controller.dart';
 import 'package:renti_user/view/screens/home/home_repo/home_repo.dart';
@@ -85,12 +86,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   GestureDetector(
                     onTap: () => scaffoldKey.currentState?.openDrawer(),
-                    child: const Icon(Icons.menu,
-                        color: AppColors.primaryColor, size: 40),
+                    child: const Icon(Icons.menu, color: AppColors.primaryColor, size: 40),
                   ),
                   Expanded(
                     child: GestureDetector(
-                      onTap: ()=>Get.toNamed(AppRoute.searchScreen),
+                      onTap: () async{
+                        final SharedPreferences prefers = await SharedPreferences.getInstance();
+                        String token  = prefers.getString(SharedPreferenceHelper.userIdKey)??"";
+                        if(token.isEmpty){
+                          Get.toNamed(AppRoute.signInScreen);
+                        }else{
+                          Get.toNamed(AppRoute.searchScreen);
+                        }
+                      },
                       child: Container(
                         margin:  const EdgeInsets.symmetric(horizontal: 16),
                         padding:
@@ -115,13 +123,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  IconButton(onPressed: (){
-                    Get.to(()=>const NotificationScreen());
+                  IconButton(onPressed: () async {
+                    final SharedPreferences prefs  = await SharedPreferences.getInstance();
+                    String token = prefs.getString(SharedPreferenceHelper.userIdKey) ?? "";
+                    if(token.isEmpty){
+                      Get.to(const SignInScreen());
+                    }
+                    else{ Get.to(()=>const NotificationScreen());}
                   }, icon:const Icon(Icons.notifications_none_outlined,color:AppColors.darkBlueColor,size:28,)),
                   const SizedBox(width: 4,),
                   GestureDetector(
-                      onTap: () {
-                        Get.toNamed(AppRoute.profileDetails);
+                      onTap: ()async{
+                        final SharedPreferences prefs  = await SharedPreferences.getInstance();
+                        String token = prefs.getString(SharedPreferenceHelper.userIdKey) ?? "";
+                        if(token.isEmpty){
+                          Get.to(const SignInScreen());
+                        }
+                        else{ Get.toNamed(AppRoute.profileDetails);}
                       },
                       child: Container(
                           height: 40, width: 40,

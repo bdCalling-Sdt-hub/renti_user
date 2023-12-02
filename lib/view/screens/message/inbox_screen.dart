@@ -75,7 +75,7 @@ class _InboxScreenState extends State<InboxScreen> {
                   IconButton(onPressed: (){Get.back();}, icon: const Icon(
                     Icons.arrow_back_ios_new,
                     size: 18,
-                    color: AppColors.blackNormal,
+                    color: AppColors.whiteLight,
                   ),),
                   const SizedBox(width: 10,),
                   Container(

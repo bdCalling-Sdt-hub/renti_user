@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroBottomSection extends StatefulWidget {
 
@@ -49,8 +51,15 @@ class _IntroBottomSectionState extends State<IntroBottomSection> {
         ),
         const SizedBox(height: 24),
         CustomElevatedButton(
-          onPressed: () {
-          Get.toNamed(AppRoute.signInScreen);
+          onPressed: ()async{
+            final SharedPreferences prefes  = await SharedPreferences.getInstance();
+            String token  =  prefes.getString(SharedPreferenceHelper.userIdKey) ?? "";
+            if(token.isNotEmpty){
+              Get.toNamed(AppRoute.homeScreen);
+            }
+         else {
+              Get.toNamed(AppRoute.signInScreen);
+            }
           },
           titleText: AppStrings.getStarted.tr,
           buttonWidth: double.maxFinite,

@@ -1,5 +1,5 @@
 class ApiUrlContainer {
-  static const bool is_debug_mode = false;
+  static const bool is_debug_mode = true;
 
   static const String baseAddress =
       is_debug_mode ? "http://192.168.10.14" : "http://104.131.72.121";
@@ -27,15 +27,11 @@ class ApiUrlContainer {
   static const String allCarsEndPoint = "/car/all";
   static const String rentAll = "/rent/all";
   static const String carDetailsEndPoint = "/car";
-
   static const String rentHistoryEndPoint = "/rent/rent-history";
-
   static const String offerCarEndPoint = "/car/offer";
   static const String rentRequestPaymentEndPoint = "/payment";
   static const String luxuryCarEndPoint = "/car/luxury";
-
   static const String supportEndPoint = "/support";
-
   static const String sentRentRequestEndPoint = "/rent/request";
   static const String rentDetailsEndPont = "/rent";
   static const String cancelRentRequestEndPoint = "/rent/cancel/request";

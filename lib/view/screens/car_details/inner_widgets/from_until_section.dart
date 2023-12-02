@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
+import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
@@ -13,6 +14,10 @@ import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_loading_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../core/helper/shared_preference_helper.dart';
+import '../../../../core/helper/shared_preference_helper.dart';
 class FromUntilSection extends StatefulWidget {
 
   final String carId;
@@ -103,12 +108,19 @@ class _FromUntilSectionState extends State<FromUntilSection> {
           const SizedBox(height: 24),
           controller.isSubmit ? CustomElevatedLoadingButton(buttonWidth: MediaQuery.of(context).size.width) : CustomElevatedButton(
             buttonWidth: MediaQuery.of(context).size.width,
-            onPressed: () {
-              controller.sentRentRequest(
-                  carId: widget.carId,
-                  startDate: controller.startTripDateController.text.toString(),
-                  endDate: controller.endTripDateController.text.toString()
-              );
+            onPressed: () async {
+
+              final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+              String token = prefs.getString(SharedPreferenceHelper.userIdKey)??"";
+              if(token.isEmpty){
+                Get.toNamed(AppRoute.signInScreen);
+              }
+
+              else{
+                controller.sentRentRequest(carId: widget.carId, startDate: controller.startTripDateController.text.toString(),
+              endDate: controller.endTripDateController.text.toString());
+              }
             },
             titleText: AppStrings.sentRentRequest.tr
           ),

@@ -71,7 +71,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                       flex: 1,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: AppColors.whiteLight,
@@ -100,6 +100,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                       child: CustomTextField(
                         textEditingController: controller.numberController,
                         keyboardType: TextInputType.phone,
+                        maxLength: 8,
                         hintText: AppStrings.enterPhoneNumber,
                         hintStyle: GoogleFonts.poppins(
                             fontSize: 14,

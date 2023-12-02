@@ -69,9 +69,7 @@ class CarDetailsController extends GetxController{
       else if(responseModel.statusCode == 500){
         AppUtils.successToastMessage("Rent request already exits");
       }
-      // else if(responseModel.statusCode == 400){
-      //   AppUtils.successToastMessage("Rent request already exits");
-      // }
+
       else{
         AppUtils.successToastMessage("Internal server error");
       }
@@ -88,8 +86,6 @@ class CarDetailsController extends GetxController{
 
   gotoNextStep() {
     Get.offAndToNamed(AppRoute.rentiHistory);
-
-
   }
 
   Future<void> startTripDatePicker(BuildContext context) async{
@@ -106,7 +102,7 @@ class CarDetailsController extends GetxController{
       ),
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2023),
+      firstDate: DateTime.now(),
       lastDate: DateTime(2101),
     );
     if (picked != null && picked != startTripDateController.text) {
@@ -128,7 +124,7 @@ class CarDetailsController extends GetxController{
       ),
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2023),
+      firstDate: DateTime.now(),
       lastDate: DateTime(2101),
     );
     if (picked != null && picked != endTripDateController.text) {
