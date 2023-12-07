@@ -28,7 +28,10 @@ class ChangePasswordController extends GetxController{
 
     if(responseModel.statusCode == 200){
       ChangePasswordModel model = ChangePasswordModel.fromJson(jsonDecode(responseModel.responseJson));
-      AppUtils.successToastMessage(model.message ?? "Change Password Successfully");
+      AppUtils.successToastMessage(model.message ?? "Change Password Successfully".tr);
+    }
+    else if(responseModel.statusCode == 401){
+      AppUtils.successToastMessage("current password doesn't match".tr);
     }
 
     clearData();

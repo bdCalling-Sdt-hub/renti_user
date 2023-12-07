@@ -40,7 +40,7 @@ class SignUpRepo{
       "ine" : ineNumber,
       "role" : "user"
     };
-     print("================$params");
+
     ApiResponseModel responseModel = await apiService.request(url, responseMethod, params, passHeader: false);
 
     return responseModel;

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:renti_user/core/global/api_response_method.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/core/global/api_url_container.dart';
@@ -27,6 +28,7 @@ class OTPRepo{
     String uri = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.forgetPasswordEndPoint}";
     String requestMethod = ApiResponseMethod.postMethod;
     final String? email = apiService.sharedPreferences.getString( SharedPreferenceHelper.userEmailKey);
+    debugPrint("=====================$email");
     Map<String, String> params = {
       "email" : email??""
     };

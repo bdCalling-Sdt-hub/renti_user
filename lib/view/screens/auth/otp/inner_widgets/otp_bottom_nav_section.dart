@@ -23,7 +23,7 @@ class _OtpBottomNavSectionState extends State<OtpBottomNavSection> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: controller.isSubmit ? const CustomElevatedLoadingButton() : CustomElevatedButton(
             onPressed: () => controller.verifyOtpResponse(widget.email, widget.fromForgetScreen),
-            titleText: AppStrings.verify
+            titleText: AppStrings.verify.tr
           ),
         );
       }

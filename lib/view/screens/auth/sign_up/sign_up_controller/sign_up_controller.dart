@@ -178,7 +178,7 @@ class SignUpController extends GetxController{
         "ine": ineNumberController.text,
         "role": "user"
       };
-
+         print("=================params => $params");
       params.forEach((key, value) {
         request.fields[key] = value;
       });

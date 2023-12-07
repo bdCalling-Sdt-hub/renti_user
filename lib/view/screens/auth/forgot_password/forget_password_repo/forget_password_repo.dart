@@ -10,7 +10,7 @@ class ForgetPasswordRepo{
 
   Future<ApiResponseModel> passEmail({required String email}) async{
 
-    String url = "${ApiUrlContainer.apiBaseUrl}/user/forget-password";
+    String url = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.forgetPasswordEndPoint}";
     String requestMethod = ApiResponseMethod.postMethod;
 
     Map<String, String> params = {

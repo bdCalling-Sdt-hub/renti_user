@@ -80,6 +80,8 @@ class ApiService extends GetxService{
         }
 
         return ApiResponseModel(200, 'Success', response.body);
+      }else if (response.statusCode == 201) {
+        return ApiResponseModel(201, 'Success', response.body);
       }
       else if (response.statusCode == 401) {
         sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, false);

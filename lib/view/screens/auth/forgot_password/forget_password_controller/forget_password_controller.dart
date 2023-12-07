@@ -24,18 +24,20 @@ class ForgetPasswordController extends GetxController{
     isSubmit = true;
     update();
 
-    ApiResponseModel responseModel = await forgetPasswordRepo.passEmail(email: emailController.text);
+    ApiResponseModel responseModel = await forgetPasswordRepo.passEmail(email: emailController.text.trim().toString());
     if(responseModel.statusCode == 201){
       forgetPasswordModel = ForgetPasswordModel.fromJson(jsonDecode(responseModel.responseJson));
-      await forgetPasswordRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userEmailKey, emailController.text.trim().toString());
+      var token = await forgetPasswordRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userEmailKey, emailController.text.trim().toString());
+      debugPrint("=================token$token");
+      AppUtils.successToastMessage("Send verify code at your email");
+      gotoNext();
     }
-
-    AppUtils.successToastMessage("Send verify code at your email");
-    gotoNext();
+    else {
+    AppUtils.successToastMessage("Error to send otp");
+    }
     isSubmit = false;
     update();
   }
-
   void gotoNext() {
     Get.toNamed(AppRoute.otpScreen, arguments: [emailController.text.toString(), true]);
   }

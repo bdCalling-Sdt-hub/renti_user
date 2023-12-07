@@ -47,12 +47,13 @@ class OtpController extends GetxController {
       print("status code: ${responseModel.statusCode}");
     }
     if(responseModel.statusCode == 201){
+
       ForgetPasswordModel forgetPassModel = ForgetPasswordModel.fromJson(jsonDecode(responseModel.responseJson));
-      AppUtils.snackBar("Successful".tr,forgetPassModel.message.toString());
+      AppUtils.successToastMessage(forgetPassModel.message.toString());
     }
     else{
       ForgetPasswordModel forgetPassModel = ForgetPasswordModel.fromJson(jsonDecode(responseModel.responseJson));
-      AppUtils.snackBar("Error".tr,forgetPassModel.message.toString());
+      AppUtils.successToastMessage(forgetPassModel.message.toString());
     }
     isResend = false;
     update();
