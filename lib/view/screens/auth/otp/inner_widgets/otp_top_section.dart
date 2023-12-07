@@ -77,8 +77,10 @@ class _OtpTopSectionState extends State<OtpTopSection> {
             children: [
                CustomText(text:AppStrings.notGetOtp.tr),
               GestureDetector(
-                onTap: () {},
-                child:  CustomText(
+                onTap: () {
+                  controller.resendOtpVerify();
+                },
+                child: controller.isResend ? const CircularProgressIndicator() :CustomText(
                   text: AppStrings.resend.tr,
                   color: AppColors.primaryColor,
                   fontSize: 18,

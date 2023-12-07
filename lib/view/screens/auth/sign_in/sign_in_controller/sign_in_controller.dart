@@ -22,7 +22,15 @@ class SignInController extends GetxController{
   bool remember = false;
   bool isSubmit = false;
 
-  //SocketService socketService = SocketService();
+  saveInfo({required signInResponseModel})async {
+
+    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userIdKey, signInResponseModel.user?.id.toString() ?? "");
+    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.accessTokenKey, signInResponseModel.accessToken ?? "");
+    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.accessTokenType, "Bearer");
+    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.email, signInResponseModel.user?.email.toString() ?? "");
+    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.phoneNumber, signInResponseModel.user?.phoneNumber.toString() ?? "");
+    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.fullName, signInResponseModel.user?.fullName.toString() ?? "");
+  }
 
   Future<void> signInUser() async{
     isSubmit = true;
@@ -53,28 +61,34 @@ class SignInController extends GetxController{
 
     print("email verified: ${signInResponseModel.user?.emailVerified}");
 
+
+
     if(remember){
       await signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, true);
     }
     else{
       await signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, false);
     }
+    // if(signInResponseModel.user?.emailVerified == false){
+    // Get.toNamed(AppRoute.otpScreen);
+    // }
+    // else{
+    //   return ;
+    // }
 
-    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userIdKey, signInResponseModel.user?.id.toString() ?? "");
-    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.accessTokenKey, signInResponseModel.accessToken ?? "");
-    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.accessTokenType, "Bearer");
-    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.email, signInResponseModel.user?.email.toString() ?? "");
-    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.phoneNumber, signInResponseModel.user?.phoneNumber.toString() ?? "");
-    await signInRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.fullName, signInResponseModel.user?.fullName.toString() ?? "");
 
+
+    // var token = await signInRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.accessTokenKey);
     if(signInResponseModel.user == null){
       Get.toNamed(AppRoute.signInScreen);
     }
     else if(signInResponseModel.user?.emailVerified == false){
-      Get.toNamed(AppRoute.otpScreen);
+      Get.toNamed(AppRoute.otpScreen,arguments: [emailController.text,true]);
     }
     else{
       signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, true);
+
+      saveInfo(signInResponseModel: signInResponseModel);
       Get.offAllNamed(AppRoute.homeScreen);
       clearData();
     }

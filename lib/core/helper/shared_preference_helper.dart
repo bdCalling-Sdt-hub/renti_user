@@ -5,6 +5,7 @@ class SharedPreferenceHelper{
   static const String resetPassTokenKey = 'reset_pass_token';
   static const String rememberMeKey = 'remember me';
   static const String fcmDeviceKey='device-key';
+  static const String userEmailKey='email';
 
   static const String userIdKey = 'user_id';
   static const String hasNewNotificationKey = 'new-notification-key';

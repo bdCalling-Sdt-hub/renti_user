@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/view/screens/auth/forgot_password/forgot_password_screen.dart';
 import 'package:renti_user/view/screens/settings/change_password/change_password_controller/change_password_controller.dart';
 import 'package:renti_user/view/screens/settings/change_password/change_password_repo/change_password_repo.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_loading_button.dart';
@@ -139,6 +140,21 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                   }
                                 },
                               ),
+                              
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: TextButton(onPressed: (){
+                                  Get.to(const ForgotPasswordScreen());
+                                }, child:  CustomText(
+                                  text: AppStrings.forgetPassword.tr,
+                                  fontSize: 16,
+                                  color: AppColors.darkBlueColor,
+                                  bottom: 24,
+                                  top: 16,
+                                ),
+
+                                ),
+                              )
                             ],
                           ),
                         ),

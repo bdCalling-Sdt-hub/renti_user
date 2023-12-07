@@ -23,4 +23,15 @@ class OTPRepo{
 
     return responseModel;
   }
+  Future<ApiResponseModel> resendOtpVerifyResult() async{
+    String uri = "${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.forgetPasswordEndPoint}";
+    String requestMethod = ApiResponseMethod.postMethod;
+    final String? email = apiService.sharedPreferences.getString( SharedPreferenceHelper.userEmailKey);
+    Map<String, String> params = {
+      "email" : email??""
+    };
+
+    ApiResponseModel responseModel = await apiService.request(uri, requestMethod, params, passHeader: false);
+    return responseModel;
+  }
 }

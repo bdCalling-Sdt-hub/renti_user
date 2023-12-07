@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:renti_user/view/screens/auth/otp/otp_controller/otp_controller.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_loading_button.dart';
-
-import '../../../../../core/route/app_route.dart';
 import '../../../../../utils/app_strings.dart';
 import '../../../../widgets/buttons/custom_elevated_button.dart';
 

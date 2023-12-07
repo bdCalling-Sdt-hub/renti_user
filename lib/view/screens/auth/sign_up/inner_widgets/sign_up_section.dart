@@ -37,7 +37,6 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                 if (value == null || value.toString().isEmpty) {
                   return AppStrings.notBeEmpty.tr;
                 }
-
                 return null;
               },
               textEditingController: controller.fullNameController,
@@ -206,10 +205,8 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                     setDataToLocalStore(controller,
                         fullName: controller.fullNameController.text,
                         email: controller.emailController.text,
-                        gender: controller.genderList[controller.selectedGender]
-                            .toString(),
-                        dob:
-                            "${controller.dateController.text}/${controller.monthController.text}/${controller.yearController.text}",
+                        gender: controller.genderList[controller.selectedGender].toString(),
+                        dob: controller.dateOfBirthController.text,
                         password: controller.confirmPasswordController.text);
 
                     Get.toNamed(AppRoute.signUpContinueScreen);
@@ -228,16 +225,11 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
       required String gender,
       required String dob,
       required String password}) async {
-    await signUpController.signUpRepo.apiService.sharedPreferences
-        .setString(SharedPreferenceHelper.fullName, fullName);
-    await signUpController.signUpRepo.apiService.sharedPreferences
-        .setString(SharedPreferenceHelper.email, email);
-    await signUpController.signUpRepo.apiService.sharedPreferences
-        .setString(SharedPreferenceHelper.gender, gender);
-    await signUpController.signUpRepo.apiService.sharedPreferences
-        .setString(SharedPreferenceHelper.dob, dob);
-    await signUpController.signUpRepo.apiService.sharedPreferences
-        .setString(SharedPreferenceHelper.password, password);
+    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.fullName, fullName);
+    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.email, email);
+    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.gender, gender);
+    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.dob, dob);
+    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.password, password);
 
     print("full name: $fullName");
     print("email: $email");

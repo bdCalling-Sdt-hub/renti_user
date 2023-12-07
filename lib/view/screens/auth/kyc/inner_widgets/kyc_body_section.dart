@@ -172,7 +172,7 @@ class _KycBodySectionState extends State<KycBodySection> {
                         return null;
                       }
                     },
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.text,
                     textEditingController: controller.ineNumberController,
                     textInputAction: TextInputAction.done,
                     hintText: "Enter your INE/Passport".tr,

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
+import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/auth/forgot_password/forget_password_repo/forget_password_repo.dart';
@@ -26,6 +27,7 @@ class ForgetPasswordController extends GetxController{
     ApiResponseModel responseModel = await forgetPasswordRepo.passEmail(email: emailController.text);
     if(responseModel.statusCode == 201){
       forgetPasswordModel = ForgetPasswordModel.fromJson(jsonDecode(responseModel.responseJson));
+      await forgetPasswordRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userEmailKey, emailController.text.trim().toString());
     }
 
     AppUtils.successToastMessage("Send verify code at your email");

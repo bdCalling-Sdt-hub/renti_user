@@ -1,9 +1,12 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/utils/app_utils.dart';
+import 'package:renti_user/view/screens/auth/forgot_password/forget_pssword_model/forget_password_model.dart';
 import 'package:renti_user/view/screens/auth/otp/otp_model/otp_model.dart';
 import 'package:renti_user/view/screens/auth/otp/otp_repo/otp_repo.dart';
 
@@ -14,6 +17,7 @@ class OtpController extends GetxController {
 
   bool isSubmit = false;
   bool signUp = true;
+  bool isResend = false;
 
   OtpModel otpModel = OtpModel();
 
@@ -32,6 +36,25 @@ class OtpController extends GetxController {
     } else {}
 
     isSubmit = false;
+    update();
+  }
+
+  Future<void> resendOtpVerify() async{
+    isResend = true;
+    update();
+    ApiResponseModel responseModel = await otpRepo.resendOtpVerifyResult();
+    if (kDebugMode) {
+      print("status code: ${responseModel.statusCode}");
+    }
+    if(responseModel.statusCode == 201){
+      ForgetPasswordModel forgetPassModel = ForgetPasswordModel.fromJson(jsonDecode(responseModel.responseJson));
+      AppUtils.snackBar("Successful".tr,forgetPassModel.message.toString());
+    }
+    else{
+      ForgetPasswordModel forgetPassModel = ForgetPasswordModel.fromJson(jsonDecode(responseModel.responseJson));
+      AppUtils.snackBar("Error".tr,forgetPassModel.message.toString());
+    }
+    isResend = false;
     update();
   }
 }

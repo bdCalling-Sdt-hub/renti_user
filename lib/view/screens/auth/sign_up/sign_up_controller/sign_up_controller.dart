@@ -129,6 +129,8 @@ class SignUpController extends GetxController{
 
   Future<void> signUpUser() async {
 
+
+
     isSubmit = true;
     update();
 
@@ -171,10 +173,9 @@ class SignUpController extends GetxController{
         "phoneNumber": "$phoneCode ${phoneNumberController.text}",
         "gender": genderList[selectedGender],
         "address": addressController.text,
-        "dateOfBirth": "${dateController.text}/${monthController.text}/${yearController.text}",
+        "dateOfBirth": dateOfBirthController.text,
         "password": passwordController.text,
         "ine": ineNumberController.text,
-
         "role": "user"
       };
 
@@ -227,6 +228,8 @@ class SignUpController extends GetxController{
     if (picked != null && picked != dateOfBirthController.text) {
       dateOfBirthController.text = "${picked.year}-${picked.month}-${picked.day}";
       update();
+      debugPrint(dateOfBirthController.text);
     }
+    update();
   }
 }

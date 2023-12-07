@@ -45,7 +45,6 @@ class ProfileDetailsController extends GetxController{
       address = profileDetailsModel.user?.address ?? "";
       userId = profileDetailsModel.user?.id ?? "";
       profileImage = profileDetailsModel.user?.image ?? "";
-
       fullNameController.text = username;
       addressController.text = address;
       emailController.text = email;
