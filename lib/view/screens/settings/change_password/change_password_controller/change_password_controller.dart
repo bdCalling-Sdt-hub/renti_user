@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
+import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/settings/change_password/change_password_model/change_password_model.dart';
 import 'package:renti_user/view/screens/settings/change_password/change_password_repo/change_password_repo.dart';
@@ -31,7 +32,9 @@ class ChangePasswordController extends GetxController{
       AppUtils.successToastMessage(model.message ?? "Change Password Successfully".tr);
     }
     else if(responseModel.statusCode == 401){
+       Get.toNamed(AppRoute.changePassword);
       AppUtils.successToastMessage("current password doesn't match".tr);
+
     }
 
     clearData();

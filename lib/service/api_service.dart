@@ -85,7 +85,7 @@ class ApiService extends GetxService{
       }
       else if (response.statusCode == 401) {
         sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, false);
-        Get.offAllNamed(AppRoute. signInScreen);
+         Get.offAllNamed(AppRoute. signInScreen);
         return ApiResponseModel(401, "Unauthorized".tr, response.body);
       } else {
         return ApiResponseModel(500, "Internal Server Error".tr, response.body);

@@ -10,6 +10,7 @@ import 'package:renti_user/view/screens/settings/change_password/change_password
 import 'package:renti_user/view/widgets/buttons/custom_elevated_loading_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../widgets/appbar/custom_app_bar.dart';
@@ -71,7 +72,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               CustomTextField(
                                 isPassword: true,
                                 textEditingController: controller.currentPasswordController,
-                                textInputAction: TextInputAction.done,
+                                textInputAction: TextInputAction.next,
                                 hintText: "Enter current password".tr,
                                 suffixIconColor: AppColors.whiteNormalActive,
                                 hintStyle: GoogleFonts.poppins(
@@ -96,19 +97,22 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               CustomTextField(
                                 isPassword: true,
                                 textEditingController: controller.newPasswordController,
-                                textInputAction: TextInputAction.done,
+                                textInputAction: TextInputAction.next,
                                 hintText: "Enter new password".tr,
                                 suffixIconColor: AppColors.whiteNormalActive,
                                 hintStyle: GoogleFonts.poppins(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
                                     color: AppColors.whiteNormalActive),
-                                validator: (value) {
+                                validator: (value){
+
                                   if (value == null || value.isEmpty) {
                                     return AppStrings.notBeEmpty.tr;
                                   } else if (value.length < 6) {
                                     return AppStrings.passwordShouldBe.tr;
-                                  } else {
+                                  }
+
+                                  else{
                                     return null;
                                   }
                                 },
