@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class AppStrings{
 
   // splash screen Strings
@@ -32,7 +34,7 @@ class AppStrings{
   static const String signIn = "Sign In";
   static const String enterEmail = "Enter your email";
   static const String enterPassword = "Enter your password";
-  static const String notBeEmpty = "This field can not be empty";
+  static const String notBeEmpty = "This filed can not be empty";
   static const String enterValidEmail = "Please enter a valid email";
   static const String passwordShouldBe = "Password should be more than 6 characters";
   static const String password = "Password";
@@ -61,7 +63,6 @@ class AppStrings{
   static const String yy = "YY";
   static const String mm_yy = "MM-YY";
   static const String typeHere = "Type here...";
-  static const String continuw = "Continue";
   static const String creditCardNum = "Credit Card Number";
   static const String enterCreditCardNum = "Enter Credit card Number";
   static const String expireDate = "Expire Date";
@@ -86,7 +87,7 @@ class AppStrings{
   static const String uploadDL = "1.Upload driving licence ";
   static const String rfc = "RFC";
   static const String enterRFC = "Enter RFC";
-  static const String enterIne = "Enter INE/Passport";
+  static const String enterIne = "Enter your INE/Passport";
   static const String inePassword = "INE/Passport";
 
   //KYC Upload Image All Strings
@@ -108,7 +109,7 @@ class AppStrings{
   static const String setNewPassword= "Set New Password";
   static const String newPassword= "New Password";
   static const String forgetPassword= "Forget Password?";
-  static const String newPasswordRange = "Your password must have 8-10 characters.";
+  static const String newPasswordRange = "Your password must have 6 characters.";
   static const String  optCodeTitle= "Please enter the OTP code.";
   static const String  otp= "OTP";
   static const String  verify= "Verify";
@@ -116,25 +117,23 @@ class AppStrings{
   static const String  update= "Update";
   static const String  getVerificationCode= "Get Verification Code";
   static const String  notGetOtp= "Did not get the OTP?";
-  static const String  DontHaveAccount= "Don’t have an account?";
+  static const String  doNotHaveAnAccount = "Don’t have an account?";
   static const String  emailSentTitle= "Please enter your email address for recover your password.";
   static const String  emailError= "Please enter a valid email";
   static const String  passwordError= "Password should be more than 6 characters";
   static const String  enterMail= "Enter your email";
-  static const String  enterpassword= "Enter your email";
 
 
   // drawer all strings
 
   static const String userName = "John Doe";
   static const String userPhone = "(480) 555-0103";
-  static const String rentHistory = "Rent History";
-  static const String paymentMethod = "Payment Method";
-  static const String howRentiWorks = "How Renti Works";
-  static const String support = "Support";
-  static const String settings = "Settings";
-  static const String aboutUs = "About Us";
-  static const String logOut = "Log Out";
+
+  static  String paymentMethod = "Payment Method".tr;
+  static  String support = "Support".tr;
+  static  String settings = "Settings".tr;
+  static  String aboutUs = "About Us".tr;
+  static  String logOut = "Log Out".tr;
 
   //payment method
   static const String bessieCooper = "Bessie Cooper";
@@ -158,13 +157,13 @@ class AppStrings{
    static const String   changePasswordTitle= "Please enter current password to set a new password";
   static const String   currentPassword= "Current password";
   static const String   confirmNewPassword= "Confirm new password";
-  static const String   changePassword= "Change Password";
+  static  String   changePassword= "Change Password";
   static const String   select= "Select";
   //offer car
   static const String seeDetails = "See details";
 
   //selwct car
-  static const String carlicenseno = "Car license no :";
+  static  String carlicenseno = "Car license no:";
   static const String carColor = "Car color:";
 static const String carmodel ="Car model:";
 static const String rentalInformation = "Rental Information";
@@ -195,8 +194,8 @@ static const String hsbcmxico ="Hsbc méxico";
 static const String totalAmount ="Total Amount";
 static const String drivingLicenseNo ="Driving license no:";
 static const String ine ="INE:";
-static const String rentalDate ="Rental date";
-static const String rentalTime ="Rental time";
+static const String rentalDate ="Rental date :";
+static const String rentalTime ="Rental time :";
 static const String pickupLocation  ="Pickup location :";
 static const String endTrip  ="End Trip";
 static const String sendReview  ="Send Review";

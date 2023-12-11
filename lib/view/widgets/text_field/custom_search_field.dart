@@ -40,6 +40,7 @@ class CustomSearchField extends StatelessWidget {
           height: sizeBoxHeight,
         ),
         TextFormField(
+
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,

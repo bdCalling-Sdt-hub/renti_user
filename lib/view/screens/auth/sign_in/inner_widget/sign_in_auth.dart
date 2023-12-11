@@ -4,8 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
-import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
-import 'package:renti_user/view/screens/home/home_screen.dart';
+import 'package:renti_user/utils/app_utils.dart';
+import 'package:renti_user/view/screens/auth/sign_in/sign_in_controller/sign_in_controller.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_loading_button.dart';
+
 import '../../../../../utils/app_icons.dart';
 import '../../../../widgets/buttons/custom_elevated_button.dart';
 import '../../../../widgets/buttons/custom_elevated_button_with_icon.dart';
@@ -21,137 +23,132 @@ class SignInAuth extends StatefulWidget {
 
 class _SignInAuthState extends State<SignInAuth> {
 
-  final _formKey = GlobalKey<FormState>();
-  bool isClicked = false;
-  TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        //Email pass auth section
-        Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //Email Text and TextField.
-               const CustomText(text: AppStrings.email, bottom: 12),
-              CustomTextField(
-                hintText: AppStrings.enterEmail,
-                hintStyle: GoogleFonts.poppins(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: 1,
-                    color: AppColors.whiteNormalActive),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppStrings.notBeEmpty;
-                  } else if (!value.contains(RegExp('\@'))) {
-                    return AppStrings.enterValidEmail;
-                  } else {
-                    return null;
-                  }
-                },
-              ),
 
-              //Password Text and TextField.
-               const CustomText(
-                text: AppStrings.password,
-                bottom: 12,
-                top: 16,
-              ),
-              CustomTextField(
-                isPassword: true,
-                textInputAction: TextInputAction.done,
-                isPrefixIcon: false,
-                hintText:AppStrings.enterPassword,
-                keyboardType: TextInputType.visiblePassword,
-                hintStyle: GoogleFonts.poppins(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: 1,
-                    color: AppColors.whiteNormalActive),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppStrings.notBeEmpty;
-                  } else if (value.length < 6) {
-                    return AppStrings.passwordShouldBe;
-                  } else {
-                    return null;
-                  }
-                },
-              ),
-
-              //Forget Password Button
-              GestureDetector(
-                onTap: () {
-                    Get.toNamed(AppRoute.forgotPasswordScreen);
-                },
-                child:  const Align(
-                  alignment: Alignment.bottomRight,
-                  child: CustomText(
-                    text: AppStrings.forgetPassword,
-                    fontSize: 16,
-                    color: AppColors.darkBlueColor,
-                    bottom: 24,
-                    top: 16,
+    return GetBuilder<SignInController>(
+      builder: (controller) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                 CustomText(text: AppStrings.email.tr, bottom: 12),
+                CustomTextField(
+                  hintText: AppStrings.enterEmail.tr,
+                  textEditingController: controller.emailController,
+                  textInputAction: TextInputAction.next,
+                  focusNode: controller.emailFocusNode,
+                  hintStyle: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      letterSpacing: 1,
+                      color: AppColors.whiteNormalActive),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return AppStrings.notBeEmpty.tr;
+                    } else if (!value.contains(RegExp('\@'))) {
+                      return AppStrings.enterValidEmail.tr;
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                 CustomText(
+                  text: AppStrings.password.tr,
+                  bottom: 12,
+                  top: 16,
+                ),
+                CustomTextField(
+                  isPassword: true,
+                  textEditingController: controller.passwordController,
+                  textInputAction: TextInputAction.done,
+                  focusNode: controller.passwordFocusNode,
+                  isPrefixIcon: false,
+                  hintText:AppStrings.enterPassword.tr,
+                  keyboardType: TextInputType.visiblePassword,
+                  hintStyle: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      letterSpacing: 1,
+                      color: AppColors.whiteNormalActive),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return AppStrings.notBeEmpty.tr;
+                    } else if (value.length < 6) {
+                      return AppStrings.passwordShouldBe.tr;
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                GestureDetector(
+                  onTap: () {
+                      Get.toNamed(AppRoute.forgotPasswordScreen);
+                  },
+                  child:   Align(
+                    alignment: Alignment.bottomRight,
+                    child: CustomText(
+                      text: AppStrings.forgetPassword.tr,
+                      fontSize: 16,
+                      color: AppColors.darkBlueColor,
+                      bottom: 24,
+                      top: 16,
+                    ),
                   ),
                 ),
-              ),
 
-              //Sign In button
-              CustomElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    print(AppStrings.successful);
-                  } else {
-                    print(AppStrings.failed);
-                  }
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>const HomeScreen()));
+                controller.isSubmit ? const CustomElevatedLoadingButton() : CustomElevatedButton(
+                  onPressed: (){
+                    if(formKey.currentState!.validate()){
+                      controller.signInUser();
 
-                },
-                titleText: AppStrings.signIn,
-                buttonWidth: double.maxFinite,
-              ),
-            ],
-          ),
-        ),
-        //Or Text
-         const Align(
-          alignment: Alignment.center,
-          child: CustomText(
-            text: AppStrings.or,
-            top: 24,
-            bottom: 24,
-            fontSize: 16,
-          ),
-        ),
-        //SIgn In with Google and apple
-        Row(
-          children: [
-            Expanded(
-              child: CustomElevatedButtonWithIcon(
-                onPressed: () {},
-                titleText: AppStrings.google,
-                iconSrc: AppIcons.googleIcon,
-                imageType: ImageType.svg,
-              ),
+                    }
+
+                  },
+                  titleText: AppStrings.signIn.tr,
+                  buttonWidth: double.maxFinite,
+                ),
+              ],
             ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: CustomElevatedButtonWithIcon(
-                onPressed: () {},
-                titleText: AppStrings.apple,
-                iconSrc: AppIcons.appleIcon,
-                imageType: ImageType.svg,
-              ),
-            ),
-          ],
-        ),
-      ],
+          ),
+          //  Align(
+          //   alignment: Alignment.center,
+          //   child: CustomText(
+          //     text: "Or".tr,
+          //     top: 24,
+          //     bottom: 24,
+          //     fontSize: 16,
+          //   ),
+          // ),
+          // Row(
+          //   children: [
+          //     Expanded(
+          //       child: CustomElevatedButtonWithIcon(
+          //         onPressed: () {},
+          //         titleText: AppStrings.google,
+          //         iconSrc: AppIcons.googleIcon,
+          //         imageType: ImageType.svg,
+          //       ),
+          //     ),
+          //     const SizedBox(width: 16),
+          //     Expanded(
+          //       child: CustomElevatedButtonWithIcon(
+          //         onPressed: () {},
+          //         titleText: AppStrings.apple,
+          //         iconSrc: AppIcons.appleIcon,
+          //         imageType: ImageType.svg,
+          //       ),
+          //     ),
+          //   ],
+          // ),
+        ],
+      ),
     );
   }
 }

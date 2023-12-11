@@ -23,94 +23,94 @@ class _ReviewDialogState extends State<ReviewDialog> {
       backgroundColor: AppColors.whiteLight,
       titlePadding: const EdgeInsets.only(top: 16,bottom: 24),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8)
+          borderRadius: BorderRadius.circular(8)
       ),
       title: Column(
-        children: [
-           Padding(
-             padding: const EdgeInsets.symmetric(horizontal:  16.0),
-             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(AppStrings.review),
-               GestureDetector(
-                 onTap: (){
-                   Get.back();
-                 },
-                 child: const CustomImage(
-                   size: 22,
-                   imageType: ImageType.svg,
-                   imageSrc:
-                     AppIcons.deleteIcon
-                 ),
-               )
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal:  16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                   Text(AppStrings.review.tr),
+                  GestureDetector(
+                    onTap: (){
+                      Get.back();
+                    },
+                    child: const CustomImage(
+                        size: 22,
+                        imageType: ImageType.svg,
+                        imageSrc:
+                        AppIcons.deleteIcon
+                    ),
+                  )
                 ],
-                ),
-           ),
-          const SizedBox(height: 24,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              children: [
-            const CustomText(
-              text: AppStrings.giveReviewTitle,
-              color: AppColors.black,
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-            ),
-            const SizedBox(height: 16,),
-            RatingBarIndicator(
-              rating: 3.75,
-              itemBuilder: (context, index) => const Icon(
-                Icons.star,
-                color: Colors.amber,
               ),
-              itemCount: 5,
-              itemSize: 40.0,
-              direction: Axis.horizontal,
             ),
-            const SizedBox(height: 32,),
+            const SizedBox(height: 24,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                children: [
+                   CustomText(
+                    text: AppStrings.giveReviewTitle.tr,
+                    color: AppColors.blackNormal,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                  ),
+                  const SizedBox(height: 16,),
+                  RatingBarIndicator(
+                    rating: 3.75,
+                    itemBuilder: (context, index) => const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    itemCount: 5,
+                    itemSize: 40.0,
+                    direction: Axis.horizontal,
+                  ),
+                  const SizedBox(height: 32,),
                   TextFormField(
                     style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.blackNormal
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.blackNormal
                     ),
                     maxLines: 3,
                     decoration: InputDecoration(
-                      hintText: "give your review here........",
+                        hintText: "give your review here........".tr,
 
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: const BorderSide(
-                          color: AppColors.whiteNormalActive,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: const BorderSide(
+                              color: AppColors.whiteNormalActive,
 
+                            )
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: AppColors.whiteNormalActive,
+
+                            )
                         )
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: AppColors.whiteNormalActive,
-
-                        )
-                      )
                     ),
                   ),
-                const SizedBox(height: 14,),
-                CustomElevatedButton(
-                  buttonHeight: 50,
-                  buttonWidth: MediaQuery.of(context).size.width,
-                  onPressed: () {
+                  const SizedBox(height: 14,),
+                  CustomElevatedButton(
+                    buttonHeight: 50,
+                    buttonWidth: MediaQuery.of(context).size.width,
+                    onPressed: () {
 
-                  },
-                  titleText: AppStrings.sendReview,
-                  titleSize: 18,
-                  titleWeight: FontWeight.w600,
-                ),
-        ],
-      ),
-          )
+                    },
+                    titleText: AppStrings.sendReview.tr,
+                    titleSize: 18,
+                    titleWeight: FontWeight.w600,
+                  ),
+                ],
+              ),
+            )
 
-      ]
+          ]
       ),
     );
 

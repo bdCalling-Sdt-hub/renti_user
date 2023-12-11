@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/core/helper/shared_preference_helper.dart';
+import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
@@ -9,62 +14,81 @@ import '../../../../widgets/text/custom_text.dart';
 import '../../../../widgets/text_field/custom_text_field.dart';
 
 class SignUpContinueAuthSection extends StatefulWidget {
-  const SignUpContinueAuthSection({super.key});
+
+  const SignUpContinueAuthSection({
+    super.key,
+  });
 
   @override
   State<SignUpContinueAuthSection> createState() => _SignUpContinueAuthSectionState();
 }
 
 class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
+  
   final formKey = GlobalKey<FormState>();
+  
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      autovalidateMode: AutovalidateMode.always,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //Phone Number Text
-          const CustomText(text: AppStrings.phoneNumber, bottom: 12),
-          //Country Flag and Enter Phone Number TextField
-          SizedBox(
-            height: 56,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 110,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: AppColors.whiteLight,
-                    border: Border.all(
-                        color: AppColors.whiteDark,
-                        width: 1.0,
-                        style: BorderStyle.solid),
-                  ),
-                  child:  const Row(
-                    children: [
-                      CustomImage(
-                          imageSrc: AppIcons.flafMaxico,
-                          imageType: ImageType.svg,
-                          size: 40),
 
-                      CustomText(
-                          text: AppStrings.phone,
-                          left: 10,
-                          color: AppColors.whiteNormalActive)
-                    ],
+    return GetBuilder<SignUpController>(
+      builder: (controller) => Form(
+        key: formKey,
+
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+             CustomText(text: AppStrings.phoneNumber.tr, bottom: 12),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: AppColors.whiteLight,
+                      border: Border.all(
+                          color: AppColors.whiteDark,
+                          width: 1.0,
+                          style: BorderStyle.solid),
+                    ),
+                    child: Row(
+                      children: [
+                        const CustomImage(
+                            imageSrc: AppIcons.flafMaxico,
+                            imageType: ImageType.svg,
+                            size: 40
+                        ),
+                        CustomText(
+                            text: controller.phoneCode,
+                            left: 10,
+                            color: AppColors.blackNormal
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
+                  flex: 2,
                   child: CustomTextField(
 
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return AppStrings.notBeEmpty.tr;
+                      } else if (value.length > 8){
+                        return "Enter your valid phone number".tr;
+                      } else {
+                        return null;
+                      }
+                    },
+                    textEditingController: controller.phoneNumberController,
+                    textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.phone,
-                    hintText: AppStrings.enterPhoneNumber,
+                    hintText: AppStrings.enterPhoneNumber.tr,
                     hintStyle: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
@@ -73,66 +97,118 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                 ),
               ],
             ),
-          ),
-
-          //Address Text and TextField
-          const CustomText(text: AppStrings.address, top: 16, bottom: 12),
-
-          Container(
-            height: 100,
-            padding: const EdgeInsets.symmetric(horizontal: 0,vertical: 0),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: AppColors.whiteLight,border: Border.all(color: AppColors.whiteNormalActive,style: BorderStyle.solid,width: 1.0,strokeAlign: 1)
-            ),
-            child: CustomTextField(
-              textInputAction: TextInputAction.done,
-              fieldBorderColor: AppColors.whiteLight,
-              hintText: AppStrings.enterAddress,
+            //Address Text and TextField
+            CustomText(text: AppStrings.address.tr, top: 16, bottom: 12),
+            CustomTextField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return AppStrings.notBeEmpty.tr;
+                }  else {
+                  return null;
+                }
+              },
+              textEditingController: controller.addressController,
+              hintText: AppStrings.enterAddress.tr,
+              maxLines: 4,
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
+                  letterSpacing: 1,
+                  color: AppColors.whiteNormalActive
+              ),
+            ),
+          /*   CustomText(text: AppStrings.creditCardNum.tr, bottom: 12, top: 16),
+            CustomTextField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return AppStrings.notBeEmpty.tr;
+                }  else {
+                  return null;
+                }
+              },
+              keyboardType: TextInputType.number,
+              hintText: AppStrings.enterCreditCardNum.tr,
+              hintStyle: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 1,
                   color: AppColors.whiteNormalActive),
             ),
-          ),
-          const CustomText(
-              text: AppStrings.creditCardNum, bottom: 12, top: 16),
-          CustomTextField(
-            hintText: AppStrings.enterCreditCardNum,
-            hintStyle: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                letterSpacing: 1,
-                color: AppColors.whiteNormalActive),
-          ),
+             CustomText(
+                text: AppStrings.expireDate.tr,
+                bottom: 12,
+                top: 16),
+            CustomTextField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return AppStrings.notBeEmpty.tr;
+                }  else {
+                  return null;
+                }
+              },
+              keyboardType: TextInputType.text,
+              hintText: "MM-YY".tr,
+              hintStyle: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 1,
+                  color: AppColors.whiteNormalActive),
+            ),
+             CustomText(
+                text: "CVV".tr,
+                bottom: 12,
+                top: 16),
+            CustomTextField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return AppStrings.notBeEmpty.tr;
+                }  else {
+                  return null;
+                }
+              },
+              keyboardType: TextInputType.number,
+              hintText: AppStrings.enterCVV.tr,
+              hintStyle: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 1,
+                  color: AppColors.whiteNormalActive),
+            ),
+            const SizedBox(height: 24),
+            */
 
-          //Confirm Password Text and TextField
-          const CustomText(
-              text: AppStrings.expireDate,
-              bottom: 12,
-              top: 16),
-          CustomTextField(
-            hintText: AppStrings.mm_yy,
-            hintStyle: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                letterSpacing: 1,
-                color: AppColors.whiteNormalActive),
-          ),
-          const CustomText(
-              text: AppStrings.cvv,
-              bottom: 12,
-              top: 16),
-          CustomTextField(
-            hintText: AppStrings.enterCVV,
-            hintStyle: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                letterSpacing: 1,
-                color: AppColors.whiteNormalActive),
-          ),
-        ],
+
+            SizedBox(height: Get.height*0.4,),
+
+            Align(
+
+              child: CustomElevatedButton(
+                  buttonWidth: MediaQuery.of(context).size.width,
+                  onPressed: () => setDataToLocalStore(
+                      controller,
+                      phoneNumber: "${controller.phoneCode} ${controller.phoneNumberController.text}",
+                      address: controller.addressController.text
+                  ),
+                  titleText: "Continue".tr
+              ),
+            )
+          ],
+        ),
       ),
     );
+  }
+
+  setDataToLocalStore(SignUpController signUpController,
+      {required String phoneNumber, required String address}) async{
+
+    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.phoneNumber, phoneNumber);
+    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.address, address);
+
+    print("phone number: $phoneNumber");
+    print("address: $address");
+     if(formKey.currentState!.validate()){
+       Get.toNamed(AppRoute.kycScreen);
+     }
+
   }
 }

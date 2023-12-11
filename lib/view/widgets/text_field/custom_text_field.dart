@@ -1,7 +1,9 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
+
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
     this.textEditingController,
@@ -27,8 +29,10 @@ class CustomTextField extends StatefulWidget {
     this.prefixIconColor,
     this.prefixIconSrc,
     this.readOnly = false,
-    super.key
-     }
+    this.onTap,
+    this.inputFormatters,
+    this.maxLength,
+    super.key,  }
   );
 
   final TextEditingController? textEditingController;
@@ -54,6 +58,9 @@ class CustomTextField extends StatefulWidget {
   final String ?prefixIconSrc;
   final Color ? prefixIconColor;
   final bool readOnly;
+  final VoidCallback? onTap;
+  final List<TextInputFormatter>? inputFormatters;
+  final int ?maxLength;
 
 
   @override
@@ -67,6 +74,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLength: widget.maxLength,
+      inputFormatters: widget.inputFormatters,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       readOnly: widget.readOnly,
       controller: widget.textEditingController,
       focusNode: widget.focusNode,
@@ -83,9 +93,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintStyle: widget.hintStyle,
         fillColor: widget.fillColor,
         filled: true,
+        counterText: "",
         prefixIcon: widget.isPrefixIcon ? Padding(
           padding:  const EdgeInsetsDirectional.only(start: 0, top: 10, bottom: 10, end: 0),
-          child: SvgPicture.asset(widget.prefixIconSrc ?? ""),
+          child: SvgPicture.asset(widget.prefixIconSrc ?? "", color: widget.prefixIconColor),
         ) : null,
         prefixIconColor: widget.prefixIconColor,
         suffixIcon: widget.isPassword ? GestureDetector(
@@ -114,6 +125,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             borderSide: BorderSide(color: widget.fieldBorderColor, width: 1),
             gapPadding: 0),
       ),
+      onTap: widget.onTap,
     );
   }
 

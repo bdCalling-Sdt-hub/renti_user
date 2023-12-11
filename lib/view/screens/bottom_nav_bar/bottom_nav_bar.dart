@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/core/helper/shared_preference_helper.dart';
+import 'package:renti_user/core/route/app_route.dart%20';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/view/screens/home/home_screen.dart';
-import 'package:renti_user/view/screens/message/inbox/inbox_screen.dart';
-import 'package:renti_user/view/screens/message/messages/messages_screen.dart';
+import 'package:renti_user/view/screens/message/messages_screen.dart';
+
+
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_screen.dart';
 import 'package:renti_user/view/screens/search/search_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   final int currentIndex;
@@ -70,7 +74,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                       SvgPicture.asset(unselectedIcon[index], height: 24, width: 24, color:  index == bottomNavIndex ? AppColors.primaryColor : const Color(0xffBFBFBF)),
                       const SizedBox(height: 8),
                       Text(
-                        navList[index],
+                        navList[index].tr,
                         style: GoogleFonts.nunitoSans(
                           color: index == bottomNavIndex ? AppColors.primaryColor : const Color(0xffBFBFBF),
                           fontSize: 12,
@@ -88,26 +92,49 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
     );
   }
 
-  void onTap(int index) {
+  void onTap(int index) async{
     if (index == 0) {
       if (!(widget.currentIndex == 0)) {
         Get.to(() => const HomeScreen());
       }
     }
-    else if (index == 1) {
-      if (!(widget.currentIndex == 1)) {
-        Get.to(() => const SearchScreen());
+    else if (index == 1){
+      if (!(widget.currentIndex == 1))  {
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        String token = prefs.getString(SharedPreferenceHelper.accessTokenKey)??"";
+        if(token.isNotEmpty){
+          Get.to(() => const SearchScreen());
+        }
+        else{
+
+          Get.toNamed(AppRoute.signInScreen);
+        }
       }
     }
     else if (index == 2) {
       if (!(widget.currentIndex == 2)) {
-        Get.to(() => const MessageScreen());
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        String token = prefs.getString(SharedPreferenceHelper.accessTokenKey)??"";
+        if(token.isEmpty){
+          print("===================tokennnnnnnnnnnnnnnnnnnnnn $token");
+          Get.toNamed(AppRoute.signInScreen);
+        }
+        else{
+          Get.to(() => const MessageScreen());
+        }
       }
     }
     else if (index == 3) {
       if (!(widget.currentIndex == 3)) {
-        Get.to(() => const ProfileDetailsScreen());
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        String token = prefs.getString(SharedPreferenceHelper.accessTokenKey)??"";
+        if(token.isEmpty){
+          Get.toNamed(AppRoute.signInScreen);
+        }
+        else{
+          Get.to(() => const ProfileDetailsScreen());
+        }
+      }
       }
     }
   }
-}

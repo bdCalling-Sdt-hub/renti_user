@@ -11,7 +11,7 @@ class SettingName extends StatefulWidget {
 }
 
 class _SettingNameState extends State<SettingName> {
-  List settingData = ["change Language", "Change Password","Terms & Conditions","Privacy Policy"];
+  List settingData = ["Change Language", "Change Password","Terms & Conditions","Privacy Policy"];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -55,7 +55,7 @@ class _SettingNameState extends State<SettingName> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(
-                        text:settingData[index] ,
+                        text:settingData[index].toString().tr,
                         color: AppColors.blackNormal,
                         fontSize: 16,
                       ),

@@ -8,7 +8,6 @@ class AppColors {
   static const Color lightBlueColorActive = Color(0xffB0B3DD);
 
   //Black Color
-  static const Color black = Color(0xff000000);
   static const Color blackNormal = Color(0xff2E2C2C);
   static const Color blackLightHover = Color(0xffE0DFDF);
 

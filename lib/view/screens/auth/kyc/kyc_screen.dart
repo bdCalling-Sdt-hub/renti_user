@@ -1,21 +1,15 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/core/helper/shared_preference_helper.dart';
+import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
+import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/auth/kyc/inner_widgets/kyc_body_section.dart';
-import 'package:renti_user/view/screens/auth/kyc/inner_widgets/kyc_bottom_nav_section.dart';
-
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_icons.dart';
-import '../../../widgets/appbar/custom_app_bar.dart';
-import '../../../widgets/buttons/custom_back_button.dart';
-import '../../../widgets/buttons/custom_elevated_button.dart';
-import '../../../widgets/container/custom_container.dart';
-import '../../../widgets/image/custom_image.dart';
-import '../../../widgets/text/custom_text.dart';
-import '../../../widgets/text_field/custom_text_field.dart';
+import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
+import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
+import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
+import 'package:renti_user/view/widgets/container/custom_container.dart';
 
 class KYCScreen extends StatefulWidget {
   const KYCScreen({super.key});
@@ -25,29 +19,46 @@ class KYCScreen extends StatefulWidget {
 }
 
 class _KYCScreenState extends State<KYCScreen> {
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    DeviceUtils.authUtils();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    DeviceUtils.authUtils();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      top: true,
+      top: false, bottom: false,
       child: Scaffold(
-        extendBody: true,
         backgroundColor: AppColors.primaryColor,
-        appBar: const CustomAppBar(
-          appBarContent: CustomBack(text: AppStrings.kyc),
+        appBar:  CustomAppBar(
+          appBarContent: CustomBack(text: "KYC".tr),
         ),
-        body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) =>
-              CustomContainer(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: const SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: KycBodySection(),
+        body: GetBuilder<SignUpController>(
+          builder: (controller) => LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) =>
+                CustomContainer(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: const SingleChildScrollView(
+                    padding: EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
+                    physics: BouncingScrollPhysics(),
+                    child: KycBodySection(),
+                  ),
                 ),
-              ),
+          ),
         ),
-        bottomNavigationBar: const KycBottomNavSection()
+
       ),
     );
   }
+
 }
