@@ -53,12 +53,15 @@ class _IntroBottomSectionState extends State<IntroBottomSection> {
         CustomElevatedButton(
           onPressed: ()async{
             final SharedPreferences prefes  = await SharedPreferences.getInstance();
-            String token  =  prefes.getString(SharedPreferenceHelper.userIdKey) ?? "";
-            if(token.isNotEmpty){
+            String token1  =  prefes.getString(SharedPreferenceHelper.accessTokenKey) ?? "";
+
+            if(token1.isNotEmpty){
               Get.toNamed(AppRoute.homeScreen);
+              print("=====================accessTokenKey$token1");
             }
          else {
               Get.toNamed(AppRoute.signInScreen);
+              print("=====================token$token1");
             }
           },
           titleText: AppStrings.getStarted.tr,

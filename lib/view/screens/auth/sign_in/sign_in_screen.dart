@@ -56,14 +56,17 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   CustomText(text: AppStrings.signIn.tr,color: AppColors.whiteLight,fontWeight: FontWeight.w500,top: 15,fontSize: 18,),
                  TextButton(onPressed: () async{
-                   // final  SharedPreferences prefres =  await SharedPreferences.getInstance();
-                   // String token =  prefres.getString(SharedPreferenceHelper.userIdKey)??"";
-                   // if(token.isEmpty){
-                   //   Get.toNamed(AppRoute.homeScreen);
-                   // }
-                   //  else{}
+                   final  SharedPreferences prefres =  await SharedPreferences.getInstance();
+                   String token =  prefres.getString(SharedPreferenceHelper.accessTokenKey)??"";
+                   if(token.isEmpty){
+                     Get.toNamed(AppRoute.homeScreen);
+                     print(token);
+                   }
+                    else{
 
-                   Get.toNamed(AppRoute.homeScreen);
+                   }
+
+                   // Get.toNamed(AppRoute.homeScreen);
 
                  }, child:  const CustomText(text:"Skip",color: AppColors.whiteLight,fontWeight: FontWeight.w500,top: 15,fontSize: 18,),)
 

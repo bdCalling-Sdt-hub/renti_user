@@ -109,12 +109,11 @@ class _FromUntilSectionState extends State<FromUntilSection> {
           controller.isSubmit ? CustomElevatedLoadingButton(buttonWidth: MediaQuery.of(context).size.width) : CustomElevatedButton(
             buttonWidth: MediaQuery.of(context).size.width,
             onPressed: () async {
-
               final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-              String token = prefs.getString(SharedPreferenceHelper.userIdKey)??"";
+              String token = prefs.getString(SharedPreferenceHelper.accessTokenKey)??"";
               if(token.isEmpty){
                 Get.toNamed(AppRoute.signInScreen);
+                print("=============$token");
               }
 
               else{

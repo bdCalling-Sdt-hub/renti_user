@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: GestureDetector(
                       onTap: () async{
                         final SharedPreferences prefers = await SharedPreferences.getInstance();
-                        String token  = prefers.getString(SharedPreferenceHelper.userIdKey)??"";
+                        String token  = prefers.getString(SharedPreferenceHelper.accessTokenKey)??"";
                         if(token.isEmpty){
                           Get.toNamed(AppRoute.signInScreen);
                         }else{
@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   IconButton(onPressed: () async {
                     final SharedPreferences prefs  = await SharedPreferences.getInstance();
-                    String token = prefs.getString(SharedPreferenceHelper.userIdKey) ?? "";
+                    String token = prefs.getString(SharedPreferenceHelper.accessTokenKey) ?? "";
                     if(token.isEmpty){
                       Get.to(const SignInScreen());
                     }
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   GestureDetector(
                       onTap: ()async{
                         final SharedPreferences prefs  = await SharedPreferences.getInstance();
-                        String token = prefs.getString(SharedPreferenceHelper.userIdKey) ?? "";
+                        String token = prefs.getString(SharedPreferenceHelper.accessTokenKey) ?? "";
                         if(token.isEmpty){
                           Get.to(const SignInScreen());
                         }

@@ -101,7 +101,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
     else if (index == 1){
       if (!(widget.currentIndex == 1))  {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
-        String token = prefs.getString(SharedPreferenceHelper.userIdKey)??"";
+        String token = prefs.getString(SharedPreferenceHelper.accessTokenKey)??"";
         if(token.isNotEmpty){
           Get.to(() => const SearchScreen());
         }
@@ -114,7 +114,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
     else if (index == 2) {
       if (!(widget.currentIndex == 2)) {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
-        String token = prefs.getString(SharedPreferenceHelper.userIdKey)??"";
+        String token = prefs.getString(SharedPreferenceHelper.accessTokenKey)??"";
         if(token.isEmpty){
           print("===================tokennnnnnnnnnnnnnnnnnnnnn $token");
           Get.toNamed(AppRoute.signInScreen);
@@ -127,7 +127,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
     else if (index == 3) {
       if (!(widget.currentIndex == 3)) {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
-        String token = prefs.getString(SharedPreferenceHelper.userIdKey)??"";
+        String token = prefs.getString(SharedPreferenceHelper.accessTokenKey)??"";
         if(token.isEmpty){
           Get.toNamed(AppRoute.signInScreen);
         }
