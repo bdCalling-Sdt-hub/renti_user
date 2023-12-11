@@ -31,10 +31,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(LogoutRepo(apiService: Get.find()));
     Get.put(LogoutController(repo: Get.find()));
+    final profileController =  Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
     profileController.initialState();
     super.initState();
   }
-  var profileController=  Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LogoutController>(
@@ -54,7 +54,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                    Container(
+                 controller.isLoading?const SizedBox(
+                   child: CircularProgressIndicator(),) : Container(
                         height: 60, width: 60,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,

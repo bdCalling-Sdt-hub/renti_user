@@ -34,6 +34,8 @@ class SignUpController extends GetxController{
   TextEditingController ineNumberController = TextEditingController();
   TextEditingController dateOfBirthController = TextEditingController();
 
+
+
   List<String> genderList = ["Male", "Female", "Others"];
   int selectedGender = 0;
   List<File> kycDocFiles = [];
@@ -129,8 +131,6 @@ class SignUpController extends GetxController{
 
   Future<void> signUpUser() async {
 
-
-
     isSubmit = true;
     update();
 
@@ -177,8 +177,10 @@ class SignUpController extends GetxController{
         "password": passwordController.text,
         "ine": ineNumberController.text,
         "role": "user"
+
       };
-         print("=================params => $params");
+
+
       params.forEach((key, value) {
         request.fields[key] = value;
       });

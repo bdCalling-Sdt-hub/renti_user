@@ -21,7 +21,6 @@ class SignUpAuthSection extends StatefulWidget {
 
 class _SignUpAuthSectionState extends State<SignUpAuthSection> {
   final formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SignUpController>(

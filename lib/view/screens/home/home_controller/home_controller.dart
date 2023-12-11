@@ -43,6 +43,8 @@ class HomeController extends GetxController{
     if(responseModel.statusCode == 200){
       ProfileDetailsModel model = ProfileDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
       profileImage = model.user?.image ?? "assets/images/user.png";
+      isLoading = true;
+      update();
     }
   }
 

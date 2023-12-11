@@ -141,15 +141,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         }
                         else{ Get.toNamed(AppRoute.profileDetails);}
                       },
-                      child: Container(
+                      child: controller.isLoading?const SizedBox(height:20,width:20,child: CircularProgressIndicator()):Container(
                           height: 40, width: 40,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              image: controller.profileImage.isEmpty ? const DecorationImage(
+                              image: controller.profileImage.isEmpty ?  const DecorationImage(
                                   image: AssetImage("assets/images/user.png"),
                                   fit: BoxFit.fill
                               ) : DecorationImage(
-                                  image: NetworkImage(controller.profileImage),
+                                  image:NetworkImage(controller.profileImage),
                                   fit: BoxFit.fill
                               )
                           )

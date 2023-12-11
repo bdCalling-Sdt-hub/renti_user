@@ -8,7 +8,6 @@ import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_controller/sign_in_controller.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_repo/sign_in_repo.dart';
-import 'package:renti_user/view/screens/home/home_screen.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/container/custom_container.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
