@@ -177,4 +177,6 @@ Map<String, String> english = {
   "Error": "Error",
   "Change Password Successfully": "Change Password Successfully",
   "current password doesn't match": "current password doesn't match",
+  "Email not changeable" : "Email not changeable" ,
+
 };

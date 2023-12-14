@@ -59,6 +59,14 @@ class ProfileSettingsBodySection extends StatelessWidget {
                     }
                   },
                 ),
+                const SizedBox(height: 4,),
+                Row(
+                  children: [
+                    const Icon(Icons.error_outline,size: 14,color: AppColors.redNormal),
+                    CustomText(text: "Email not changeable".tr,color: AppColors.redNormal,left: 4),
+                  ],
+                ),
+
                  CustomText(
                   text: AppStrings.phoneNumber.tr,
                   bottom: 12,

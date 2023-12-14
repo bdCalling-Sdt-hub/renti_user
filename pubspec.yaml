@@ -46,6 +46,8 @@ dependencies:
   dots_indicator: ^3.0.0
   connectivity_plus:
   custom_will_pop_scope:
+  google_maps_flutter: ^2.5.0
+  location: ^5.0.3
 
 
 
