@@ -19,8 +19,7 @@ class CarDetailsScreen extends StatefulWidget {
 
 class _CarDetailsScreenState extends State<CarDetailsScreen> {
 
-  late String carId;
-
+   late String carId;
   @override
   void initState() {
     carId = Get.arguments;

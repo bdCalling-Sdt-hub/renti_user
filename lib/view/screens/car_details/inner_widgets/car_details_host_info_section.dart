@@ -54,7 +54,7 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
                     child: CustomImage(imageSrc: AppIcons.starIcon, size: 12),
                   ),
                   const CustomText(
-                    text: '(4.5)',
+                    text: "--",
                     color: AppColors.blackNormal,
                     bottom: 12,
                     left: 8,
@@ -90,7 +90,7 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
                 color: AppColors.whiteDarkActive,
                 bottom: 12,
               ),
-              SizedBox(width: 24,),
+              const SizedBox(width: 24,),
               Flexible(
                 child: CustomText(
                   maxLines: 1,overflow: TextOverflow.ellipsis,

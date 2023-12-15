@@ -1,11 +1,13 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:renti_user/utils/app_colors.dart';
 class CarDetailsMapSection extends StatefulWidget {
-  const CarDetailsMapSection({super.key});
+   CarDetailsMapSection({super.key,required this.lat,required this.lan});
+
+  double lat;
+  double lan;
 
   @override
   State<CarDetailsMapSection> createState() => _CarDetailsMapSectionState();
@@ -19,7 +21,6 @@ class _CarDetailsMapSectionState extends State<CarDetailsMapSection> {
 
 
   Location location = new Location();
-
   bool ?_serviceEnabled;
   PermissionStatus ?_permissionGranted;
   LocationData ?_locationData ;
@@ -49,7 +50,7 @@ class _CarDetailsMapSectionState extends State<CarDetailsMapSection> {
 
   @override
   void initState() {
-    getLocation();
+     getLocation();
 
     super.initState();
   }
@@ -58,10 +59,10 @@ class _CarDetailsMapSectionState extends State<CarDetailsMapSection> {
     setState(() {
       markers.add(
         Marker(markerId: const MarkerId("current-location"),
-            position: LatLng(_locationData!.latitude!.toDouble(), _locationData!.longitude!.toDouble()),
+            position: LatLng(widget.lat.toDouble(),widget.lan.toDouble()),
             icon: BitmapDescriptor.defaultMarker,
             infoWindow: const InfoWindow(
-                title: "renti app"
+                title: "Car Location"
             )
 
         ),
@@ -72,38 +73,23 @@ class _CarDetailsMapSectionState extends State<CarDetailsMapSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: ShapeDecoration(
-        color: AppColors.whiteLight,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+    return SizedBox(
+      height: 200,
+      child: GoogleMap(
+        zoomControlsEnabled: true,
+        zoomGesturesEnabled: false,
+        mapType: MapType.normal,
+        initialCameraPosition: CameraPosition(
+          target:LatLng(widget.lat.toDouble(),widget.lan.toDouble()),
+          // 23.764211402055338, 90.42693159752628
+          zoom: 15,
         ),
-
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+          addMarker();
+        },
+        markers: markers,
       ),
-
-      child: _locationData!=null? SizedBox(
-        height: 200,
-        child: GoogleMap(
-          zoomControlsEnabled: true,
-          zoomGesturesEnabled: false,
-          mapType: MapType.normal,
-          initialCameraPosition: CameraPosition(
-            target:LatLng(_locationData!.latitude!.toDouble(), _locationData!.longitude!.toDouble()),
-            // 23.764211402055338, 90.42693159752628
-            zoom: 15,
-          ),
-          onMapCreated: (GoogleMapController controller) {
-            _controller.complete(controller);
-            addMarker();
-          },
-          markers: markers,
-        ),
-      ):const Center(child: CircularProgressIndicator(),),
-      // child: const CustomImage(
-      //   imageSrc: AppImages.mapLocationCar,
-      //   imageType: ImageType.png,
-      // ),
     );
   }
 }
