@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:renti_user/utils/app_colors.dart';
-import 'package:renti_user/utils/app_images.dart';
-import 'package:renti_user/view/widgets/image/custom_image.dart';
-
 class CarDetailsMapSection extends StatefulWidget {
   const CarDetailsMapSection({super.key});
 
