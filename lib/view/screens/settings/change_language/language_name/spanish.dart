@@ -173,4 +173,9 @@ Map<String, String> spanish = {
   "Change Password Successfully": "Cambiar contraseña exitosamente",
   "current password doesn't match": "la contraseña actual no coincide",
   "Email not changeable" : "Correo electrónico no modificable" ,
+  "Enter current password" : "Enter current password",
+  "Retype new password" : "Retype new password",
+  "Enter current password": "Introducir la contraseña actual",
+  "Retype new password": "Reescriba nueva contraseña",
+  "Password doesn't match": "La contraseña no coincide",
 };
