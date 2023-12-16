@@ -104,7 +104,7 @@ class _FromUntilSectionState extends State<FromUntilSection> {
           ),
           const CarDetailsCarInfoSection(),
           const CarDetailsHostInfoSection(),
-          const CarDetailsMapSection(),
+           CarDetailsMapSection(lat: controller.lat,lan: controller.lan),
           const SizedBox(height: 24),
           controller.isSubmit ? CustomElevatedLoadingButton(buttonWidth: MediaQuery.of(context).size.width) : CustomElevatedButton(
             buttonWidth: MediaQuery.of(context).size.width,

@@ -35,6 +35,7 @@ class Cars {
   int? year;
   String? carLicenseNumber;
   String? carDescription;
+  String ? carLocation;
   String? insuranceStartDate;
   String? insuranceEndDate;
   List<String>? kyc;
@@ -62,6 +63,7 @@ class Cars {
     this.year,
     this.carLicenseNumber,
     this.carDescription,
+    this.carLocation,
     this.insuranceStartDate,
     this.insuranceEndDate,
     this.kyc,
@@ -90,6 +92,7 @@ class Cars {
     year: json["year"],
     carLicenseNumber: json["carLicenseNumber"],
     carDescription: json["carDescription"],
+    carLocation: json["carLocation"],
     insuranceStartDate: json["insuranceStartDate"],
     insuranceEndDate: json["insuranceEndDate"],
     kyc: json["KYC"] == null ? [] : List<String>.from(json["KYC"]!.map((x) => x)),
@@ -118,6 +121,7 @@ class Cars {
     "year": year,
     "carLicenseNumber": carLicenseNumber,
     "carDescription": carDescription,
+    "carLocation":carLocation,
     "insuranceStartDate": insuranceStartDate,
     "insuranceEndDate": insuranceEndDate,
     "KYC": kyc == null ? [] : List<dynamic>.from(kyc!.map((x) => x)),

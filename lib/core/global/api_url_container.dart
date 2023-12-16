@@ -4,7 +4,7 @@ class ApiUrlContainer {
       is_debug_mode ? "http://192.168.10.14" : "http://104.131.72.121";
 
   static const String apiBaseUrl =
-      is_debug_mode ? "$baseAddress:3001/api" : "$baseAddress:3000/api";
+      is_debug_mode ? "$baseAddress:3000/api" : "$baseAddress:3000/api";
 
   static const String socketGlobal =
       is_debug_mode ? "$baseAddress:9000" : "$baseAddress:9000";

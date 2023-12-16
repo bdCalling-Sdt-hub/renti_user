@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
+// import 'package:location/location.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
@@ -11,6 +13,13 @@ import 'package:renti_user/view/screens/car_details/sent_rent_request_model/sent
 
 class CarDetailsController extends GetxController{
 
+//get colaction
+
+  getLocationAdress(String location )async{
+    List<Location> locations = await locationFromAddress(location);
+    return locations;
+  }
+
   CarDetailsRepo carDetailsRepo;
   CarDetailsController({required this.carDetailsRepo});
 
@@ -18,6 +27,8 @@ class CarDetailsController extends GetxController{
   CarDetailsModel carDetailsModel = CarDetailsModel();
   SentRentRequestModel sentRentRequestModel = SentRentRequestModel();
 
+  double lat=0.0;
+  double lan =0.0;
   // get car details data
   Future<void> loadCarDetailsData(String carId) async{
     isLoading = true;
@@ -26,7 +37,9 @@ class CarDetailsController extends GetxController{
     ApiResponseModel responseModel = await carDetailsRepo.fetchCarDetails(id: carId);
     if(responseModel.statusCode == 200){
       carDetailsModel = CarDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
-
+       List<Location> demo = await getLocationAdress(carDetailsModel.cars!.carLocation ?? "");
+       lat = demo[0].latitude;
+       lan = demo[0].longitude;
     }
     else{
       print("Error");
