@@ -225,7 +225,6 @@ class _InboxScreenState extends State<InboxScreen> {
                       if(messageController.text != "" && messageController.text.isNotEmpty){
                         Get.find<SocketService>().addNewMessage(messageController.text, userUid, Get.find<SocketService>().chatId);
                       }
-
                       messageController.text = "";
                     },
                     child: const Icon(Icons.send,

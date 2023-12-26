@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
@@ -25,6 +26,10 @@ class NoInternetScreen extends StatelessWidget {
             CustomText(
               text: "Check Your Connection.".tr,
               bottom: 60,fontSize: 14,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: CustomElevatedButton(onPressed: ()=> Get.back(), titleText: "Back".tr,buttonWidth: double.maxFinite,buttonHeight: 42),
             ),
           ],
         ),

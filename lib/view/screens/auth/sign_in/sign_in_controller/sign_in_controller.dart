@@ -52,7 +52,6 @@ class SignInController extends GetxController{
     else{
       AppUtils.errorToastMessage("Authentication Failed");
     }
-
     isSubmit = false;
     update();
   }
