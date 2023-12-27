@@ -1,4 +1,3 @@
-import 'package:renti_user/core/route/app_route.dart%20';
 
 Map<String, String> spanish = {
   // auth
