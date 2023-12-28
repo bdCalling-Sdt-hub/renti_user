@@ -69,6 +69,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                   top: 24,
                                   bottom: 12
                               ),
+
+                              ///
                               CustomTextField(
                                 isPassword: true,
                                 textEditingController: controller.currentPasswordController,
