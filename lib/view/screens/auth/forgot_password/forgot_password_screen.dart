@@ -19,7 +19,6 @@ import '../../../widgets/appbar/custom_app_bar.dart';
 import '../../../widgets/buttons/custom_back_button.dart';
 import '../../../widgets/container/custom_container.dart';
 
-
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
 
@@ -28,10 +27,8 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-
   @override
   void initState() {
-
     DeviceUtils.authUtils();
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(ForgetPasswordRepo(apiService: Get.find()));
@@ -44,95 +41,95 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     DeviceUtils.authUtils();
     super.dispose();
   }
+
   var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
-      top: false,
-      child: Scaffold(
-        extendBody: true,
-        backgroundColor: AppColors.primaryColor,
-        appBar:  CustomAppBar(
-          appBarContent: CustomBack(
-            text: AppStrings.forgetPassword.tr,
+        top: false,
+        child: Scaffold(
+          extendBody: true,
+          backgroundColor: AppColors.primaryColor,
+          appBar: CustomAppBar(
+            appBarContent: CustomBack(
+              text: AppStrings.forgetPassword.tr,
+            ),
           ),
-        ),
-        body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) => GetBuilder<ForgetPasswordController>(
-            builder: (controller) {
+          body: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) =>
+                GetBuilder<ForgetPasswordController>(builder: (controller) {
               return CustomContainer(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    child:  SingleChildScrollView(
-                      padding: const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
-                      physics: const BouncingScrollPhysics(),
-                      child:Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-
-                          CustomText(
-                            text: AppStrings.emailSentTitle.tr,
-                            textAlign: TextAlign.start,
-                            fontSize: 16,
-                            bottom: 24,
-                          ),
-                           const Align(
-                            alignment: Alignment.center,
-                            child: CircleAvatar(
-                              backgroundColor: AppColors.primaryColor,
-                              maxRadius: 50,
-                              child: CustomImage(imageSrc: AppIcons.emailLogo,imageType: ImageType.svg,),
-                            ),
-                          ),
-                          CustomText(text: AppStrings.email.tr, top: 24, bottom: 12),
-                          Form(
-                            key: formKey,
-                            child: CustomTextField(
-                              hintText: "Enter your email".tr,
-                              textEditingController: controller.emailController,
-                              textInputAction: TextInputAction.done,
-                              hintStyle: GoogleFonts.poppins(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 1,
-                                  color: AppColors.whiteNormalActive
-                              ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return AppStrings.notBeEmpty.tr;
-                                } else if (!value.contains(RegExp('@'))) {
-                                  return AppStrings.enterValidEmail;
-                                } else {
-
-                                }
-                              },
-                            ),
-                          ),
-                        ],
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: SingleChildScrollView(
+                  padding: const EdgeInsetsDirectional.symmetric(
+                      horizontal: 20, vertical: 24),
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomText(
+                        text: AppStrings.emailSentTitle.tr,
+                        textAlign: TextAlign.start,
+                        fontSize: 16,
+                        bottom: 24,
                       ),
-                    ),
-                  );
-            }
+                      const Align(
+                        alignment: Alignment.center,
+                        child: CircleAvatar(
+                          backgroundColor: AppColors.primaryColor,
+                          maxRadius: 50,
+                          child: CustomImage(
+                            imageSrc: AppIcons.emailLogo,
+                            imageType: ImageType.svg,
+                          ),
+                        ),
+                      ),
+                      CustomText(
+                          text: AppStrings.email.tr, top: 24, bottom: 12),
+                      Form(
+                        key: formKey,
+                        child: CustomTextField(
+                          hintText: "Enter your email".tr,
+                          textEditingController: controller.emailController,
+                          textInputAction: TextInputAction.done,
+                          hintStyle: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              letterSpacing: 1,
+                              color: AppColors.whiteNormalActive),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return AppStrings.notBeEmpty.tr;
+                            } else if (!value.contains(RegExp('@'))) {
+                              return AppStrings.enterValidEmail;
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }),
           ),
-        ),
-        bottomNavigationBar: GetBuilder<ForgetPasswordController>(
-          builder: (controller) {
+          bottomNavigationBar:
+              GetBuilder<ForgetPasswordController>(builder: (controller) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-              child: controller.isSubmit ? const CustomElevatedLoadingButton() : CustomElevatedButton(
-                  buttonWidth: MediaQuery.of(context).size.width,
-                  onPressed: (){
-                    if(formKey.currentState!.validate()){
-                      controller.verifyEmail();
-                    }
-
-                  },
-                  titleText: "Verify Email".tr
-              )
-            );
-          }
-        ),
-    ));
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                child: controller.isSubmit
+                    ? const CustomElevatedLoadingButton()
+                    : CustomElevatedButton(
+                        buttonWidth: MediaQuery.of(context).size.width,
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            controller.verifyEmail();
+                          }
+                        },
+                        titleText: "Verify Email".tr));
+          }),
+        ));
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
-import 'package:renti_user/core/route/app_route.dart%20';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_strings.dart';
@@ -18,8 +18,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/helper/shared_preference_helper.dart';
 import '../../../../core/helper/shared_preference_helper.dart';
-class FromUntilSection extends StatefulWidget {
 
+class FromUntilSection extends StatefulWidget {
   final String carId;
   const FromUntilSection({required this.carId, super.key});
 
@@ -28,10 +28,8 @@ class FromUntilSection extends StatefulWidget {
 }
 
 class _FromUntilSectionState extends State<FromUntilSection> {
-
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<CarDetailsController>(
       builder: (controller) => Column(
         children: [
@@ -42,13 +40,15 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     CustomText(
+                    CustomText(
                       text: AppStrings.from.tr,
                       color: AppColors.blackNormal,
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
-                    const SizedBox(height: 12,),
+                    const SizedBox(
+                      height: 12,
+                    ),
                     CustomTextField(
                       readOnly: true,
                       textEditingController: controller.startTripDateController,
@@ -74,13 +74,15 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     CustomText(
+                    CustomText(
                       text: AppStrings.until.tr,
                       color: AppColors.blackNormal,
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
-                    const SizedBox(height: 12,),
+                    const SizedBox(
+                      height: 12,
+                    ),
                     CustomTextField(
                       readOnly: true,
                       textEditingController: controller.endTripDateController,
@@ -104,25 +106,32 @@ class _FromUntilSectionState extends State<FromUntilSection> {
           ),
           const CarDetailsCarInfoSection(),
           const CarDetailsHostInfoSection(),
-           CarDetailsMapSection(lat: controller.lat,lan: controller.lan),
+          CarDetailsMapSection(lat: controller.lat, lan: controller.lan),
           const SizedBox(height: 24),
-          controller.isSubmit ? CustomElevatedLoadingButton(buttonWidth: MediaQuery.of(context).size.width) : CustomElevatedButton(
-            buttonWidth: MediaQuery.of(context).size.width,
-            onPressed: () async {
-              final SharedPreferences prefs = await SharedPreferences.getInstance();
-              String token = prefs.getString(SharedPreferenceHelper.accessTokenKey)??"";
-              if(token.isEmpty){
-                Get.toNamed(AppRoute.signInScreen);
-                print("=============$token");
-              }
-
-              else{
-                controller.sentRentRequest(carId: widget.carId, startDate: controller.startTripDateController.text.toString(),
-              endDate: controller.endTripDateController.text.toString());
-              }
-            },
-            titleText: AppStrings.sentRentRequest.tr
-          ),
+          controller.isSubmit
+              ? CustomElevatedLoadingButton(
+                  buttonWidth: MediaQuery.of(context).size.width)
+              : CustomElevatedButton(
+                  buttonWidth: MediaQuery.of(context).size.width,
+                  onPressed: () async {
+                    final SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    String token = prefs
+                            .getString(SharedPreferenceHelper.accessTokenKey) ??
+                        "";
+                    if (token.isEmpty) {
+                      Get.toNamed(AppRoute.signInScreen);
+                      print("=============$token");
+                    } else {
+                      controller.sentRentRequest(
+                          carId: widget.carId,
+                          startDate: controller.startTripDateController.text
+                              .toString(),
+                          endDate:
+                              controller.endTripDateController.text.toString());
+                    }
+                  },
+                  titleText: AppStrings.sentRentRequest.tr),
         ],
       ),
     );

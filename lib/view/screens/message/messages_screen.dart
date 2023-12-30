@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
-import 'package:renti_user/core/route/app_route.dart%20';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/device_utils.dart';
@@ -12,7 +12,6 @@ import 'package:renti_user/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 class MessageScreen extends StatefulWidget {
   const MessageScreen({super.key});
@@ -26,7 +25,7 @@ class _MessageScreenState extends State<MessageScreen> {
   String userUid = "";
 
   List<Chat> allChatList = [];
-  List<Participant> participants=[];
+  List<Participant> participants = [];
 
   getAllChats() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -69,7 +68,6 @@ class _MessageScreenState extends State<MessageScreen> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     if (kDebugMode) {
@@ -80,108 +78,118 @@ class _MessageScreenState extends State<MessageScreen> {
       child: Scaffold(
         backgroundColor: AppColors.whiteLight,
         appBar: CustomAppBar(
-          appBarContent: CustomText(text: "Messages".tr, fontSize: 18, fontWeight: FontWeight.w600)),
+            appBarContent: CustomText(
+                text: "Messages".tr,
+                fontSize: 18,
+                fontWeight: FontWeight.w600)),
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: Column(
             children: List.generate(
               participants.length,
               (index) {
-                return participants.isEmpty ? const CircularProgressIndicator() : Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: GestureDetector(
-                    onTap: () {
+                return participants.isEmpty
+                    ? const CircularProgressIndicator()
+                    : Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: GestureDetector(
+                          onTap: () {
+                            var host = participants[index];
 
-                     var host =   participants[index];
-
-                      Get.toNamed(AppRoute.inboxScreen, arguments: [
-                        userUid,
-                        host.fullName,
-                        host.image,
-                        host.id,
-                      ]);
-                    },
-                    child: Slidable(
-                      endActionPane: ActionPane(
-                        motion: const ScrollMotion(),
-                        children: [
-                          SlidableAction(
-                              onPressed: (v) {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return const AlertDialog(
-                                      title: Text("Delete message"),
-                                    );
-                                    // return CommonPopUp(
-                                    //     title: "Delete Message",
-                                    //     onTapYes: () {
-                                    //
-                                    //     },
-                                    //     onTapNo: () {}
-                                    // );
-                                  },
-                                );
-                              },
-                              backgroundColor: AppColors.redNormal,
-                              icon: Icons.delete),
-                        ],
-                      ),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: const EdgeInsets.all(16),
-                        decoration: ShapeDecoration(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          shadows: const [
-                            BoxShadow(
-                              color: AppColors.shadowColor,
-                              blurRadius: 10,
-                              offset: Offset(0, 1),
-                              spreadRadius: 0,
+                            Get.toNamed(AppRoute.inboxScreen, arguments: [
+                              userUid,
+                              host.fullName,
+                              host.image,
+                              host.id,
+                            ]);
+                          },
+                          child: Slidable(
+                            endActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                    onPressed: (v) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return const AlertDialog(
+                                            title: Text("Delete message"),
+                                          );
+                                          // return CommonPopUp(
+                                          //     title: "Delete Message",
+                                          //     onTapYes: () {
+                                          //
+                                          //     },
+                                          //     onTapNo: () {}
+                                          // );
+                                        },
+                                      );
+                                    },
+                                    backgroundColor: AppColors.redNormal,
+                                    icon: Icons.delete),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: 52,
-                              width: 52,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: CachedNetworkImageProvider(participants[index].image.toString()))),
-                            ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              flex: 1,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              padding: const EdgeInsets.all(16),
+                              decoration: ShapeDecoration(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                shadows: const [
+                                  BoxShadow(
+                                    color: AppColors.shadowColor,
+                                    blurRadius: 10,
+                                    offset: Offset(0, 1),
+                                    spreadRadius: 0,
+                                  ),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      //chat.participants[index].role == "user"?
-                                      CustomText(
-                                          text: participants[index].fullName.toString(),
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500) ,
-                                    ],
+                                  Container(
+                                    height: 52,
+                                    width: 52,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: CachedNetworkImageProvider(
+                                                participants[index]
+                                                    .image
+                                                    .toString()))),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            //chat.participants[index].role == "user"?
+                                            CustomText(
+                                                text: participants[index]
+                                                    .fullName
+                                                    .toString(),
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                );
+                      );
               },
             ),
           ),

@@ -12,26 +12,22 @@ import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroBottomSection extends StatefulWidget {
-
-  const IntroBottomSection({ super.key});
+  const IntroBottomSection({super.key});
 
   @override
   State<IntroBottomSection> createState() => _IntroBottomSectionState();
 }
 
 class _IntroBottomSectionState extends State<IntroBottomSection> {
-
-
   @override
   Widget build(BuildContext context) {
-
-    return  Column(
+    return Column(
       children: [
         GestureDetector(
           onTap: () {
             Get.toNamed(AppRoute.selectLanguageScreen);
           },
-          child:  Row(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -51,18 +47,19 @@ class _IntroBottomSectionState extends State<IntroBottomSection> {
         ),
         const SizedBox(height: 24),
         CustomElevatedButton(
-          onPressed: ()async{
-            final SharedPreferences prefes  = await SharedPreferences.getInstance();
-            String token1  =  prefes.getString(SharedPreferenceHelper.accessTokenKey) ?? "";
+          onPressed: () async {
+            //     final SharedPreferences prefes  = await SharedPreferences.getInstance();
+            //     String token1  =  prefes.getString(SharedPreferenceHelper.accessTokenKey) ?? "";
 
-            if(token1.isNotEmpty){
-              Get.toNamed(AppRoute.homeScreen);
-              print("=====================accessTokenKey$token1");
-            }
-         else {
-              Get.toNamed(AppRoute.signInScreen);
-              print("=====================token$token1");
-            }
+            //     if(token1.isNotEmpty){
+            //       Get.toNamed(AppRoute.homeScreen);
+            //       print("=====================accessTokenKey$token1");
+            //     }
+            //  else {
+            //       Get.toNamed(AppRoute.signInScreen);
+            //       print("=====================token$token1");
+            //     }
+            Get.toNamed(AppRoute.homeScreen);
           },
           titleText: AppStrings.getStarted.tr,
           buttonWidth: double.maxFinite,

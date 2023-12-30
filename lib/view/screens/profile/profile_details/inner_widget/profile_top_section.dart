@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:renti_user/core/helper/shared_preference_helper.dart';
-import 'package:renti_user/core/route/app_route.dart%20';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/view/screens/profile/edit_profile/edit_profile_controller/edit_profile_controller.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_controller/profile_details_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 
 class ProfileTopSection extends StatelessWidget {
-
   const ProfileTopSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-       var editProfileController = Get.put(EditProfileController());
+    var editProfileController = Get.put(EditProfileController());
     return GetBuilder<ProfileDetailsController>(
-      builder: (controller){
+      builder: (controller) {
         return GestureDetector(
           onTap: () async {
             editProfileController.nameController.text =
@@ -68,17 +64,18 @@ class ProfileTopSection extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        height: 50, width: 50,
+                        height: 50,
+                        width: 50,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            image: controller.profileImage.isEmpty? const DecorationImage(
-                                image: AssetImage("assets/images/user.png"),
-                                fit: BoxFit.fill
-                            ) : DecorationImage(
-                                image: NetworkImage(controller.profileImage),
-                                fit: BoxFit.fill
-                            )
-                        ),
+                            image: controller.profileImage.isEmpty
+                                ? const DecorationImage(
+                                    image: AssetImage("assets/images/user.png"),
+                                    fit: BoxFit.fill)
+                                : DecorationImage(
+                                    image:
+                                        NetworkImage(controller.profileImage),
+                                    fit: BoxFit.fill)),
                       ),
                       Flexible(
                         child: Column(
@@ -86,7 +83,8 @@ class ProfileTopSection extends StatelessWidget {
                           children: [
                             CustomText(
                               textAlign: TextAlign.start,
-                              maxLines: 1,overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               text: controller.username,
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
