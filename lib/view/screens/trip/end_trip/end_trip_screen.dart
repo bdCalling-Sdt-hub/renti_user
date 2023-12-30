@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:renti_user/core/route/app_route.dart%20';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
@@ -21,11 +21,10 @@ class EndTripScreen extends StatefulWidget {
 }
 
 class _EndTripScreenState extends State<EndTripScreen> {
-
-   int? index;
+  int? index;
   @override
   void initState() {
-    index =Get.arguments;
+    index = Get.arguments;
     DeviceUtils.authUtils();
     Get.put(ApiService(sharedPreferences: Get.find()));
     super.initState();
@@ -43,30 +42,32 @@ class _EndTripScreenState extends State<EndTripScreen> {
       child: Scaffold(
         appBar: CustomAppBar(
             appBarContent: Row(
-              children: [
-                IconButton(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-
-                  onPressed: (){Get.offAllNamed(AppRoute.homeScreen);}, icon: const Icon(
-                  Icons.arrow_back_ios_new,
-                  size: 18,
-                  color: AppColors.blackNormal,
-                ),),
-                const SizedBox(
-                  width: 8,
-                ),
-                CustomText(
-                    text: AppStrings.endTrip.tr,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.blackNormal
-                )
-              ],
-            )),
+          children: [
+            IconButton(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onPressed: () {
+                Get.offAllNamed(AppRoute.homeScreen);
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios_new,
+                size: 18,
+                color: AppColors.blackNormal,
+              ),
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            CustomText(
+                text: AppStrings.endTrip.tr,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: AppColors.blackNormal)
+          ],
+        )),
         body: LayoutBuilder(
           builder: (context, constraint) {
-            return  SingleChildScrollView(
+            return SingleChildScrollView(
               padding: const EdgeInsetsDirectional.symmetric(
                   vertical: 20, horizontal: 20),
               child: Column(
@@ -74,25 +75,33 @@ class _EndTripScreenState extends State<EndTripScreen> {
                 children: [
                   // top Section with upload button
                   const EndTripAddCarImage(),
-                  const SizedBox(height: 24,),
-                  BottomInfoScetion(index: index ?? 0,)
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  BottomInfoScetion(
+                    index: index ?? 0,
+                  )
                 ],
               ),
             );
           },
         ),
-        bottomNavigationBar: GetBuilder<RentHistoryController>(
-            builder: (controller) {
-              return BottomNavButton(onTap: (){
-                if(controller.firstImg == null || controller.secondImg == null || controller.thirdImg == null){
+        bottomNavigationBar:
+            GetBuilder<RentHistoryController>(builder: (controller) {
+          return BottomNavButton(
+              onTap: () {
+                if (controller.firstImg == null ||
+                    controller.secondImg == null ||
+                    controller.thirdImg == null) {
                   AppUtils.successToastMessage("please select 3 images".tr);
+                } else {
+                  controller.addCarMultipleFilesAndParams1(
+                      controller.rentUser[index ?? 0].id ?? "");
                 }
-                else{
-                 controller.addCarMultipleFilesAndParams1(controller.rentUser[index ??0].id ?? "");
-                }
-              }, buttonName: AppStrings.endTrip.tr, buttonColor: AppColors.primaryColor);
-            }
-        ),
+              },
+              buttonName: AppStrings.endTrip.tr,
+              buttonColor: AppColors.primaryColor);
+        }),
       ),
     );
   }

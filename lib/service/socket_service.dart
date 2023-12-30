@@ -2,9 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_url_container.dart';
 import 'package:renti_user/service/notification.dart';
-import 'package:renti_user/utils/app_constents.dart';
 import 'package:renti_user/view/screens/no_internet/no_internet_screen.dart';
-import 'package:renti_user/view/screens/notification/notification_screen.dart';
 
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
@@ -19,10 +17,11 @@ class SocketService extends GetxController {
   List<dynamic> messageList = [];
   List<dynamic> allMessageList = [];
   bool isLoading = false;
-   String chatId = "";
+  String chatId = "";
 
   void connectToSocket() {
-    socket = io.io(ApiUrlContainer.socketGlobal,
+    socket = io.io(
+        ApiUrlContainer.socketGlobal,
         io.OptionBuilder()
             .setTransports(['websocket'])
             .enableAutoConnect()
@@ -108,14 +107,15 @@ class SocketService extends GetxController {
     // });
   }
 
-  listenNotification(){
+  listenNotification() {
     socket.on('user-notification', (data) {
       if (data == null) {
         if (kDebugMode) {
           print("No Data: $data");
         }
       } else {
-        NotificationHelper.showNotification(body:data, fln: flutterLocalNotificationsPlugin);
+        NotificationHelper.showNotification(
+            body: data, fln: flutterLocalNotificationsPlugin);
         // notificationClass
         //     .showNotification(data['allNotification'][0]['message']);
 
@@ -130,8 +130,7 @@ class SocketService extends GetxController {
     });
   }
 
-
-  socketDispose(String event){
+  socketDispose(String event) {
     socket.off(event);
   }
 
@@ -154,12 +153,11 @@ class SocketService extends GetxController {
         print("TTHi is all the chats.....=======> ${chats} ");
       }
       if (chats != null) {
-        List<Chat> data=List<Chat>.from(chats.map((x) => Chat.fromJson(x)));
+        List<Chat> data = List<Chat>.from(chats.map((x) => Chat.fromJson(x)));
         if (kDebugMode) {
           print("Data ====> ${data.length}");
         }
         didFetchChats(data);
-
       }
     });
   }
@@ -268,8 +266,9 @@ class Chat {
 
   factory Chat.fromJson(Map<String, dynamic> json) {
     var participantList = json['participants'] as List;
-    List<Participant> participants =
-    participantList.map((participant) => Participant.fromJson(participant)).toList();
+    List<Participant> participants = participantList
+        .map((participant) => Participant.fromJson(participant))
+        .toList();
 
     return Chat(
       id: json['_id'],
@@ -303,6 +302,3 @@ class Participant {
     );
   }
 }
-
-
-

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:renti_user/core/route/app_route.dart%20';
+import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_strings.dart';
@@ -19,8 +19,8 @@ class StartTripScreen extends StatefulWidget {
   @override
   State<StartTripScreen> createState() => _StartTripScreenState();
 }
-class _StartTripScreenState extends State<StartTripScreen> {
 
+class _StartTripScreenState extends State<StartTripScreen> {
   int? index;
 
   @override
@@ -39,63 +39,66 @@ class _StartTripScreenState extends State<StartTripScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
         child: Scaffold(
-          appBar: CustomAppBar(
-              appBarContent: Row(
+      appBar: CustomAppBar(
+          appBarContent: Row(
+        children: [
+          IconButton(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onPressed: () {
+              Get.offAllNamed(AppRoute.homeScreen);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+              size: 18,
+              color: AppColors.blackNormal,
+            ),
+          ),
+          CustomText(
+              text: AppStrings.startTrip.tr,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: AppColors.blackNormal)
+        ],
+      )),
+      body: LayoutBuilder(
+        builder: (context, constraint) {
+          return GetBuilder<RentHistoryController>(builder: (controller) {
+            return SingleChildScrollView(
+              padding: const EdgeInsetsDirectional.symmetric(
+                  vertical: 20, horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IconButton(
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onPressed: (){  Get.offAllNamed(AppRoute.homeScreen);}, icon: const Icon(
-                    Icons.arrow_back_ios_new,
-                    size: 18,
-                    color: AppColors.blackNormal,
-                  ),),
-
-                   CustomText(
-                      text: AppStrings.startTrip.tr,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.blackNormal
+                  const AddCarImage(),
+                  const SizedBox(height: 24),
+                  BottomScetions(
+                    index: index ?? 0,
                   )
                 ],
-              )),
-          body: LayoutBuilder(
-            builder: (context, constraint) {
-              return GetBuilder<RentHistoryController>(
-                  builder: (controller) {
-                    return SingleChildScrollView(
-                      padding: const EdgeInsetsDirectional.symmetric(
-                          vertical: 20, horizontal: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const AddCarImage(),
-                          const SizedBox(height: 24),
-                          BottomScetions(index: index ?? 0,)
-                        ],
-                      ),
-                    );
-                  }
-              );
-            },
-          ),
-          bottomNavigationBar: GetBuilder<RentHistoryController>(
-              builder: (controller) {
-                return BottomNavButton(
-                    onTap: (){
-                  if(controller.firstImg == null || controller.secondImg == null || controller.thirdImg == null){
-                    AppUtils.successToastMessage("please select 3 images".tr);
-                  }
-                  else{
-                    controller.addCarMultipleFilesAndParams(controller.rentUser[index ??0].id ?? "");
-                  }
-                }, buttonName: AppStrings.startTrip.tr, buttonColor: AppColors.primaryColor);
+              ),
+            );
+          });
+        },
+      ),
+      bottomNavigationBar:
+          GetBuilder<RentHistoryController>(builder: (controller) {
+        return BottomNavButton(
+            onTap: () {
+              if (controller.firstImg == null ||
+                  controller.secondImg == null ||
+                  controller.thirdImg == null) {
+                AppUtils.successToastMessage("please select 3 images".tr);
+              } else {
+                controller.addCarMultipleFilesAndParams(
+                    controller.rentUser[index ?? 0].id ?? "");
               }
-          ),
-        )
-    );
+            },
+            buttonName: AppStrings.startTrip.tr,
+            buttonColor: AppColors.primaryColor);
+      }),
+    ));
   }
 }

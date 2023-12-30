@@ -7,7 +7,7 @@ import 'package:renti_user/view/screens/auth/select_photo/inner_widgets/select_p
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
 
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_strings.dart';
+
 import '../../../widgets/appbar/custom_app_bar.dart';
 import '../../../widgets/buttons/custom_back_button.dart';
 import '../../../widgets/container/custom_container.dart';
@@ -21,7 +21,6 @@ class SelectPhotoScreen extends StatefulWidget {
 }
 
 class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
-
   @override
   void initState() {
     DeviceUtils.screenUtils();
@@ -30,31 +29,32 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
-      top: false, bottom: false,
+      top: false,
+      bottom: false,
       child: Scaffold(
           extendBody: true,
           backgroundColor: AppColors.primaryColor,
-          appBar:  CustomAppBar(
+          appBar: CustomAppBar(
             appBarContent: CustomBack(text: "Select Photo".tr),
           ),
           body: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) => GetBuilder<SignUpController>(
-              builder: (controller) {
-                return CustomContainer(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      child: SingleChildScrollView(
-                        padding: const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 24),
-                        physics: const BouncingScrollPhysics(),
-                        child: GestureDetector(
-                            onTap: () {
-                              controller.openGallery();
-                            },
-                            child: controller.imageFile == null
-                                ? Column(
-                                children: [
+            builder: (BuildContext context, BoxConstraints constraints) =>
+                GetBuilder<SignUpController>(builder: (controller) {
+              return CustomContainer(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: SingleChildScrollView(
+                  padding: const EdgeInsetsDirectional.symmetric(
+                      horizontal: 20, vertical: 24),
+                  physics: const BouncingScrollPhysics(),
+                  child: GestureDetector(
+                      onTap: () {
+                        controller.openGallery();
+                      },
+                      child: controller.imageFile == null
+                          ? Column(
+                              children: [
                                 Container(
                                   height: 150,
                                   width: 150,
@@ -70,8 +70,7 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                                     margin: const EdgeInsets.all(10),
                                     decoration: const BoxDecoration(
                                         color: AppColors.primaryColor,
-                                        shape: BoxShape.circle
-                                    ),
+                                        shape: BoxShape.circle),
                                     height: 130,
                                     width: 130,
                                     child: const Icon(
@@ -81,7 +80,7 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                                     ),
                                   ),
                                 ),
-                                 CustomText(
+                                CustomText(
                                   top: 16,
                                   text: "Upload your photo".tr,
                                   fontSize: 16,
@@ -90,25 +89,21 @@ class _SelectPhotoScreenState extends State<SelectPhotoScreen> {
                                 ),
                               ],
                             )
-                                : Container(
+                          : Container(
                               height: 150,
                               width: 150,
                               decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: FileImage(File(controller.imageFile!.path)),
-                                    fit: BoxFit.fill
-                                )
-                              ),
-                            )
-                        ),
-                      ),
-                    );
-              }
-            ),
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: FileImage(
+                                          File(controller.imageFile!.path)),
+                                      fit: BoxFit.cover)),
+                            )),
+                ),
+              );
+            }),
           ),
-          bottomNavigationBar: const SelectPhotoBottomNavSection()
-      ),
+          bottomNavigationBar: const SelectPhotoBottomNavSection()),
     );
   }
 }

@@ -14,31 +14,28 @@ import '../../../../widgets/text/custom_text.dart';
 import '../../../../widgets/text_field/custom_text_field.dart';
 
 class SignUpContinueAuthSection extends StatefulWidget {
-
   const SignUpContinueAuthSection({
     super.key,
   });
 
   @override
-  State<SignUpContinueAuthSection> createState() => _SignUpContinueAuthSectionState();
+  State<SignUpContinueAuthSection> createState() =>
+      _SignUpContinueAuthSectionState();
 }
 
 class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
-  
   final formKey = GlobalKey<FormState>();
-  
+
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<SignUpController>(
       builder: (controller) => Form(
         key: formKey,
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-             CustomText(text: AppStrings.phoneNumber.tr, bottom: 12),
+            CustomText(text: AppStrings.phoneNumber.tr, bottom: 12),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -46,7 +43,8 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                   flex: 1,
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: AppColors.whiteLight,
@@ -60,13 +58,11 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                         const CustomImage(
                             imageSrc: AppIcons.flafMaxico,
                             imageType: ImageType.svg,
-                            size: 40
-                        ),
+                            size: 40),
                         CustomText(
                             text: controller.phoneCode,
                             left: 10,
-                            color: AppColors.blackNormal
-                        )
+                            color: AppColors.blackNormal)
                       ],
                     ),
                   ),
@@ -75,16 +71,16 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                 Expanded(
                   flex: 2,
                   child: CustomTextField(
-
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return AppStrings.notBeEmpty.tr;
-                      } else if (value.length > 8){
+                      } else if (value.length < 10) {
                         return "Enter your valid phone number".tr;
                       } else {
                         return null;
                       }
                     },
+                    maxLength: 10,
                     textEditingController: controller.phoneNumberController,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.phone,
@@ -103,7 +99,7 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return AppStrings.notBeEmpty.tr;
-                }  else {
+                } else {
                   return null;
                 }
               },
@@ -114,10 +110,9 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
                   letterSpacing: 1,
-                  color: AppColors.whiteNormalActive
-              ),
+                  color: AppColors.whiteNormalActive),
             ),
-          /*   CustomText(text: AppStrings.creditCardNum.tr, bottom: 12, top: 16),
+            /*   CustomText(text: AppStrings.creditCardNum.tr, bottom: 12, top: 16),
             CustomTextField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -177,20 +172,18 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
             const SizedBox(height: 24),
             */
 
-
-            SizedBox(height: Get.height*0.4,),
+            SizedBox(
+              height: Get.height * 0.3,
+            ),
 
             Align(
-
               child: CustomElevatedButton(
                   buttonWidth: MediaQuery.of(context).size.width,
-                  onPressed: () => setDataToLocalStore(
-                      controller,
-                      phoneNumber: "${controller.phoneCode} ${controller.phoneNumberController.text}",
-                      address: controller.addressController.text
-                  ),
-                  titleText: "Continue".tr
-              ),
+                  onPressed: () => setDataToLocalStore(controller,
+                      phoneNumber:
+                          "${controller.phoneCode} ${controller.phoneNumberController.text}",
+                      address: controller.addressController.text),
+                  titleText: "Continue".tr),
             )
           ],
         ),
@@ -199,16 +192,16 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
   }
 
   setDataToLocalStore(SignUpController signUpController,
-      {required String phoneNumber, required String address}) async{
-
-    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.phoneNumber, phoneNumber);
-    await signUpController.signUpRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.address, address);
+      {required String phoneNumber, required String address}) async {
+    await signUpController.signUpRepo.apiService.sharedPreferences
+        .setString(SharedPreferenceHelper.phoneNumber, phoneNumber);
+    await signUpController.signUpRepo.apiService.sharedPreferences
+        .setString(SharedPreferenceHelper.address, address);
 
     print("phone number: $phoneNumber");
     print("address: $address");
-     if(formKey.currentState!.validate()){
-       Get.toNamed(AppRoute.kycScreen);
-     }
-
+    if (formKey.currentState!.validate()) {
+      Get.toNamed(AppRoute.kycScreen);
+    }
   }
 }
