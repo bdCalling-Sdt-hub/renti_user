@@ -63,7 +63,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(text: "Credit Card Number".tr, bottom: 12),
+                  CustomText(text: "Card Number".tr, bottom: 12),
                   CustomTextField(
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,

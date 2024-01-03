@@ -5,7 +5,7 @@ Map<String, String> spanish = {
   "Enter your email": "Introduce tu correo electrónico",
   "Password": "Contraseña",
   "Enter your password": "Ingresa tu contraseña",
-  "Forget Password?": "Contraseña olvidada?",
+  "Forget Password?": " ¿Olvidaste tu contraseña?",
   "Sign In": "Iniciar sesión",
   "Or": "O",
   "Don’t have an account?": "No tienes una cuenta?",
@@ -57,7 +57,7 @@ Map<String, String> spanish = {
   "Rent History": "Historial de renta",
   "Payment Method": "Método de pago",
   "How Renti Works": "Cómo funciona Renti",
-  "Support": "ayuda",
+  "Support": "Ayuda",
   "Settings": "Ajustes",
   "About Us": "Sobre nosotros",
   "Log Out": "Cerrar sesión",
@@ -66,9 +66,9 @@ Map<String, String> spanish = {
   "No": "No",
 
   //setting
-  "Change Password": "Cambiar la contraseña",
+  "Change Password": " Cambiar contraseña",
   "Terms & Conditions": "Términos y condiciones",
-  "Privacy Policy": "política de privacidad",
+  "Privacy Policy": "Política de privacidad",
   "Please enter current password to set a new password":
       "Por favor ingrese la contraseña actual para establecer una nueva contraseña",
   "Current password": "Contraseña actual",
@@ -118,7 +118,7 @@ Map<String, String> spanish = {
   "Review": "Revisar",
   "give your review here........": "deja tu opinion aqui.....",
 
-  "Get Started": "Empezar",
+  "Get Started": "Comenzar",
   "English": "Spanish",
   "Please enter valid date": "Por favor ingresa una fecha válida",
   "Please enter valid month": "Por favor ingrese el mes válido",
@@ -163,7 +163,7 @@ Map<String, String> spanish = {
   "Pickup location :": "Lugar de recogida",
 
   // nave bar
-  "Home": "Hogar",
+  "Home": "Inicio",
   "Search": "Buscar",
   "Message": "Mensaje",
   "Profile": "Perfil",

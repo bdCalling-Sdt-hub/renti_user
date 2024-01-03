@@ -64,7 +64,7 @@ class SignUpController extends GetxController {
   String passportFileName = "";
 
   Future<void> pickDrivingLicenceFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
+    /*FilePickerResult? result = await FilePicker.platform.pickFiles(
         allowMultiple: false,
         allowedExtensions: ["pdf"],
         type: FileType.custom);
@@ -78,11 +78,18 @@ class SignUpController extends GetxController {
       } else {
         AppUtils.successToastMessage("only pdf file allow".tr);
       }
+    }*/
+
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      uploadDrivingLicense = File(pickedFile.path);
+      kycDocFiles.add(uploadDrivingLicense!);
+      update();
     }
   }
 
   Future<void> pickPassportFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
+  /*  FilePickerResult? result = await FilePicker.platform.pickFiles(
         allowMultiple: false,
         allowedExtensions: ["pdf"],
         type: FileType.custom);
@@ -97,6 +104,13 @@ class SignUpController extends GetxController {
       } else {
         AppUtils.successToastMessage("only pdf file allow".tr);
       }
+    }*/
+
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      uploadPassport = File(pickedFile.path);
+      kycDocFiles.add(uploadPassport!);
+      update();
     }
   }
 
@@ -110,7 +124,7 @@ class SignUpController extends GetxController {
   void removePassportFile() {
     uploadPassport = null;
     passportFileName = "";
-    kycDocFiles.removeAt(1);
+    kycDocFiles.removeAt(0);
     update();
   }
 

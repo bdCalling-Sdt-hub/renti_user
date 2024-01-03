@@ -54,56 +54,52 @@ class _KycBodySectionState extends State<KycBodySection> {
                               ),
                             )
                           : Container(
-                              padding:
-                                  const EdgeInsetsDirectional.only(end: 12),
+                              padding: const EdgeInsetsDirectional.only(),
                               width: MediaQuery.of(context).size.width,
-                              height: 52,
+                              height: 200,
                               decoration: BoxDecoration(
                                 color: Colors.transparent,
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(
                                     width: 1, color: const Color(0xFFCCCCCC)),
                               ),
-                              child: Row(
+                              child:  Container(
+                                padding: const EdgeInsetsDirectional.only(end: 12, top: 12),
+                                width: MediaQuery.of(context).size.width-60,
+                                height: 200,
+                                decoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                        width: 1, color: AppColors.whiteNormalActive),
+                                    image: DecorationImage(
+                                        image: FileImage(controller.uploadDrivingLicense!),
+                                        fit: BoxFit.fill)),
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: GestureDetector(
+                                    onTap: () => controller.removeDrivingLicenceFile(),
+                                    child: const Icon(Icons.cancel_outlined,
+                                        color: AppColors.redNormal, size: 24),
+                                  ),
+                                ),
+
+                              ),
+
+
+                        /*Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 50,
-                                        height:
-                                            MediaQuery.of(context).size.height,
-                                        alignment: Alignment.center,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xFFD7263D),
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(8),
-                                            bottomLeft: Radius.circular(8),
-                                          ),
-                                        ),
-                                        child: const CustomImage(
-                                            imageSrc: "assets/icons/pdf.svg"),
-                                      ),
-                                      const SizedBox(width: 12),
-                                      Text(
-                                        controller.drivingLicenseFileName,
-                                        style: GoogleFonts.poppins(
-                                          color: const Color(0xFF2E2C2C),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  GestureDetector(
+
+                                 *//* GestureDetector(
                                     onTap: () =>
                                         controller.removeDrivingLicenceFile(),
                                     child: const Icon(Icons.cancel_outlined,
                                         color: AppColors.redNormal, size: 24),
-                                  )
+                                  )*//*
                                 ],
-                              ),
+                              ),*/
                             ),
                       CustomText(
                         text: "Upload INE/Passport".tr,
@@ -129,6 +125,55 @@ class _KycBodySectionState extends State<KycBodySection> {
                               ),
                             )
                           : Container(
+                        padding: const EdgeInsetsDirectional.only(),
+                        width: MediaQuery.of(context).size.width,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                              width: 1, color: const Color(0xFFCCCCCC)),
+                        ),
+                        child:  Container(
+                          padding: const EdgeInsetsDirectional.only(end: 12, top: 12),
+                          width: MediaQuery.of(context).size.width-60,
+                          height: 200,
+                          decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                  width: 1, color: AppColors.whiteNormalActive),
+                              image: DecorationImage(
+                                  image: FileImage(controller.uploadPassport!),
+                                  fit: BoxFit.fill)),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: GestureDetector(
+                              onTap: () => controller.removePassportFile(),
+                              child: const Icon(Icons.cancel_outlined,
+                                  color: AppColors.redNormal, size: 24),
+                            ),
+                          ),
+
+                        ),
+
+
+                        /*Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+
+                                 *//* GestureDetector(
+                                    onTap: () =>
+                                        controller.removeDrivingLicenceFile(),
+                                    child: const Icon(Icons.cancel_outlined,
+                                        color: AppColors.redNormal, size: 24),
+                                  )*//*
+                                ],
+                              ),*/
+                      ),
+
+                      /*Container(
                               padding:
                                   const EdgeInsetsDirectional.only(end: 12),
                               width: MediaQuery.of(context).size.width,
@@ -179,7 +224,7 @@ class _KycBodySectionState extends State<KycBodySection> {
                                   )
                                 ],
                               ),
-                            ),
+                            ),*/
                       CustomText(
                         text: "INE/Passport".tr,
                         top: 16,

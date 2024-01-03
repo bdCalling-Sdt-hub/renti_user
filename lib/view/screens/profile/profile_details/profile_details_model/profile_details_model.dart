@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final profileDetailsModel = profileDetailsModelFromJson(jsonString);
+
 import 'dart:convert';
 
 ProfileDetailsModel profileDetailsModelFromJson(String str) => ProfileDetailsModel.fromJson(json.decode(str));
@@ -33,7 +37,8 @@ class User {
   String? address;
   String? dateOfBirth;
   String? password;
-  List<dynamic>? kyc;
+  List<String>? kyc;
+  String? ine;
   String? image;
   String? role;
   bool? emailVerified;
@@ -43,7 +48,6 @@ class User {
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
-  String? ine;
 
   User({
     this.id,
@@ -55,6 +59,7 @@ class User {
     this.dateOfBirth,
     this.password,
     this.kyc,
+    this.ine,
     this.image,
     this.role,
     this.emailVerified,
@@ -64,7 +69,6 @@ class User {
     this.createdAt,
     this.updatedAt,
     this.v,
-    this.ine,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -76,7 +80,8 @@ class User {
     address: json["address"],
     dateOfBirth: json["dateOfBirth"],
     password: json["password"],
-    kyc: json["KYC"] == null ? [] : List<dynamic>.from(json["KYC"]!.map((x) => x)),
+    kyc: json["KYC"] == null ? [] : List<String>.from(json["KYC"]!.map((x) => x)),
+    ine: json["ine"],
     image: json["image"],
     role: json["role"],
     emailVerified: json["emailVerified"],
@@ -86,7 +91,6 @@ class User {
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
-    ine: json["ine"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -99,6 +103,7 @@ class User {
     "dateOfBirth": dateOfBirth,
     "password": password,
     "KYC": kyc == null ? [] : List<dynamic>.from(kyc!.map((x) => x)),
+    "ine": ine,
     "image": image,
     "role": role,
     "emailVerified": emailVerified,
@@ -108,6 +113,5 @@ class User {
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
-    "ine": ine,
   };
 }

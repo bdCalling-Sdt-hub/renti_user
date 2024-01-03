@@ -1,7 +1,10 @@
 import 'package:renti_user/utils/app_strings.dart';
 
 Map<String, String> english = {
+
   // auth
+
+
   "Change Language": "Change Language",
 
   "Enter your email": "Enter your email",

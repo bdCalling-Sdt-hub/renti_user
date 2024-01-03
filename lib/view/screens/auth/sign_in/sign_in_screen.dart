@@ -47,8 +47,15 @@ class _SignInScreenState extends State<SignInScreen> {
             backgroundColor: AppColors.primaryColor,
             appBar: CustomAppBar(
               appBarContent: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  IconButton(onPressed: (){
+                    Get.back();
+                  }, icon: const Icon(Icons.arrow_back_ios_new_outlined,color: AppColors.whiteLight,)
+
+                  ),
+                  const SizedBox(width: 16,),
                   CustomText(
                     text: AppStrings.signIn.tr,
                     color: AppColors.whiteLight,
@@ -56,20 +63,6 @@ class _SignInScreenState extends State<SignInScreen> {
                     top: 15,
                     fontSize: 18,
                   ),
-                  //  TextButton(onPressed: () async{
-                  //    final  SharedPreferences prefres =  await SharedPreferences.getInstance();
-                  //    String token =  prefres.getString(SharedPreferenceHelper.accessTokenKey)??"";
-                  //    if(token.isEmpty){
-                  //      Get.toNamed(AppRoute.homeScreen);
-                  //      print(token);
-                  //    }
-                  //     else{
-
-                  //    }
-
-                  //    // Get.toNamed(AppRoute.homeScreen);
-
-                  //  }, child:  const CustomText(text:"Skip",color: AppColors.whiteLight,fontWeight: FontWeight.w500,top: 15,fontSize: 18,),)
                 ],
               ),
             ),
