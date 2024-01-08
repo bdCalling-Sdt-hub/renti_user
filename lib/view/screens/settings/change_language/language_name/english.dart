@@ -184,4 +184,5 @@ Map<String, String> english = {
   "Enter current password": "Enter current password",
   "Retype new password": "Retype new password",
   "Password doesn't match": "Password doesn't match",
+  "Select Licence and passport image" : "Select Licence and passport image"
 };

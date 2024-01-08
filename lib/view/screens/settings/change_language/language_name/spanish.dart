@@ -177,4 +177,5 @@ Map<String, String> spanish = {
   "Enter current password": "Introducir la contraseña actual",
   "Retype new password": "Reescriba nueva contraseña",
   "Password doesn't match": "La contraseña no coincide",
+  "Select Licence and passport image" : "Seleccione Imagen de licencia y pasaporte"
 };

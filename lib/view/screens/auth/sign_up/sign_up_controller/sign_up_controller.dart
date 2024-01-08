@@ -46,7 +46,7 @@ class SignUpController extends GetxController {
   int selectedGender = 0;
   List<File> kycDocFiles = [];
   File? profileImage;
-  String phoneCode = "+52";
+  // String phoneCode = "+52";
 
   void changeGender(int index) {
     selectedGender = index;
@@ -198,7 +198,7 @@ class SignUpController extends GetxController {
       Map<String, String> params = {
         "fullName": fullNameController.text,
         "email": emailController.text,
-        "phoneNumber": "$phoneCode ${phoneNumberController.text}",
+        "phoneNumber": "${phoneNumberController.text}",
         "gender": genderList[selectedGender],
         "address": addressController.text,
         "dateOfBirth": dateOfBirthController.text,

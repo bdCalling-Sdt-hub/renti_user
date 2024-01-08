@@ -57,7 +57,7 @@ class _PrivatePolicyScreenState extends State<PrivatePolicyScreen> {
                 children: [
 
                   Html(
-                    data: controller.content.toString().toUpperCase(),
+                    data: controller.content.toString(),
                   )
                 ],
               ),

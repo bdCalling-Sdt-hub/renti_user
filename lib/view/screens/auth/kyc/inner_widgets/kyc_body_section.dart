@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
 
 import '../../../../../utils/app_colors.dart';
@@ -258,11 +259,13 @@ class _KycBodySectionState extends State<KycBodySection> {
                   ),
                   CustomElevatedButton(
                       buttonWidth: MediaQuery.of(context).size.width,
-                      onPressed: () => setDataToLocalStore(
-                          controller,
-                          controller.drivingLicenseFileName,
-                          controller.passportFileName,
-                          controller.ineNumberController.text),
+                      onPressed: () {
+                        setDataToLocalStore(
+                             controller,
+                            controller.drivingLicenseFileName,
+                            controller.passportFileName,
+                            controller.ineNumberController.text);
+                      },
                       titleText: "Continue".tr),
                 ],
               ),
@@ -274,6 +277,10 @@ class _KycBodySectionState extends State<KycBodySection> {
       String drivingLicenseFileName,
       String passportFileName,
       String ineNumber) async {
+    if(controller.uploadDrivingLicense == null || controller.uploadPassport == null){
+      
+      return AppUtils.errorToastMessage("Select Licence and passport image".tr);
+    }
     await controller.signUpRepo.apiService.sharedPreferences.setString(
         SharedPreferenceHelper.drivingLicense, drivingLicenseFileName);
     await controller.signUpRepo.apiService.sharedPreferences

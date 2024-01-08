@@ -60,7 +60,8 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                             imageType: ImageType.svg,
                             size: 40),
                         CustomText(
-                            text: controller.phoneCode,
+                            // text: controller.phoneCode,
+                          text: "+52",
                             left: 10,
                             color: AppColors.blackNormal)
                       ],
@@ -181,7 +182,7 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                   buttonWidth: MediaQuery.of(context).size.width,
                   onPressed: () => setDataToLocalStore(controller,
                       phoneNumber:
-                          "${controller.phoneCode} ${controller.phoneNumberController.text}",
+                          " ${controller.phoneNumberController.text}",
                       address: controller.addressController.text),
                   titleText: "Continue".tr),
             )
