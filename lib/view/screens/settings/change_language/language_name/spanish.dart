@@ -29,8 +29,7 @@ Map<String, String> spanish = {
   "This filed can not be empty": "Este archivo no puede estar vacío.",
   "Password should be more than 6 characters":
       "La contraseña debe tener más de 6 caracteres.",
-  "Please enter a valid email":
-      "Por favor introduzca una dirección de correo electrónico válida",
+  "Please enter a valid email": "Por favor introduzca una dirección de correo electrónico válida",
   "Enter Credit card CVV": "Ingrese el CVV de la tarjeta de crédito",
   "Enter your valid phone number": "Ingrese su número de teléfono válido",
   "Enter phone number": "Ingresa número telefónico",
@@ -177,5 +176,7 @@ Map<String, String> spanish = {
   "Enter current password": "Introducir la contraseña actual",
   "Retype new password": "Reescriba nueva contraseña",
   "Password doesn't match": "La contraseña no coincide",
-  "Select Licence and passport image" : "Seleccione Imagen de licencia y pasaporte"
+  "Select Licence and passport image" : "Seleccione Imagen de licencia y pasaporte",
+  'User already exists! Please login' : 'Usuario ya existente',
+  "Please enter a valid email": "Por favor introduzca una dirección de correo electrónico válida",
 };

@@ -3,7 +3,7 @@ class ApiUrlContainer {
   static const String baseAddress =
       is_debug_mode ? "http://192.168.10.14" : "http://159.65.25.16";
   static const String apiBaseUrl =
-      is_debug_mode ? "$baseAddress:3000/api" : "$baseAddress:3001/api";
+      is_debug_mode ? "$baseAddress:3000/api" : "$baseAddress:3000/api";
   static const String socketGlobal =
       is_debug_mode ? "$baseAddress:9000" : "$baseAddress:9000";
   static const String signInEndPoint = "/user/sign-in";

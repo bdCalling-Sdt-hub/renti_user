@@ -223,7 +223,7 @@ class SignUpController extends GetxController {
       } else if (response.statusCode == 409) {
         var response1 = await http.Response.fromStream(response);
         print(jsonDecode(response1.body));
-        AppUtils.errorToastMessage('User already exists! Please login');
+        AppUtils.errorToastMessage('User already exists! Please login'.tr);
       } else {
         print('File upload failed with status code: ${response.statusCode}');
         AppUtils.errorToastMessage("File upload failed");

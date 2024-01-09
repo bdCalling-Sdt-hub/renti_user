@@ -276,9 +276,9 @@ class _KycBodySectionState extends State<KycBodySection> {
       SignUpController controller,
       String drivingLicenseFileName,
       String passportFileName,
-      String ineNumber) async {
+      String ineNumber
+      ) async {
     if(controller.uploadDrivingLicense == null || controller.uploadPassport == null){
-      
       return AppUtils.errorToastMessage("Select Licence and passport image".tr);
     }
     await controller.signUpRepo.apiService.sharedPreferences.setString(
