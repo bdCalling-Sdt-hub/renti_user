@@ -26,6 +26,7 @@ class _KycBodySectionState extends State<KycBodySection> {
   Widget build(BuildContext context) {
     return GetBuilder<SignUpController>(
         builder: (controller) => SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
               child: Column(
                 children: [
                   Column(
@@ -255,7 +256,7 @@ class _KycBodySectionState extends State<KycBodySection> {
                     ],
                   ),
                   SizedBox(
-                    height: Get.height * 0.2,
+                    height: Get.height * 0.15,
                   ),
                   CustomElevatedButton(
                       buttonWidth: MediaQuery.of(context).size.width,

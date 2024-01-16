@@ -44,7 +44,7 @@ class LogoutController extends GetxController {
     if (responseModel.statusCode == 200) {
       LogoutModel model =
           LogoutModel.fromJson(jsonDecode(responseModel.responseJson));
-      AppUtils.successToastMessage(model.message ?? "Logout Successfully");
+      AppUtils.successToastMessage("Logout Successfully".tr);
     }
 
     await clearSharedPrefData();

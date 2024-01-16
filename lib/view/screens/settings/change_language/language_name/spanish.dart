@@ -89,14 +89,14 @@ Map<String, String> spanish = {
   "Car Details": "Detalles del coche",
   "YYYY-MM-DD": "AAAA-MM-DD",
 
-  "from": "De",
+  "From": "Desde",
   "Until": "Hasta",
 
   "Car Information": "Información del coche",
   "Total Mileage": "Kilometraje total",
   "Color": "Color",
   "Capacity": "Capacidad",
-  "Gear type": "Tipo de engranaje",
+  "Gear type": "Transmisión",
   "Fuel tank capacity": "Capacidad del tanque de combustible",
   "Host Information": "Información del anfitrión",
   "Name": "Nombre",
@@ -179,4 +179,25 @@ Map<String, String> spanish = {
   "Select Licence and passport image" : "Seleccione Imagen de licencia y pasaporte",
   'User already exists! Please login' : 'Usuario ya existente',
   "Please enter a valid email": "Por favor introduzca una dirección de correo electrónico válida",
+  "Successfully profile updated" : "Perfil actualizado correctamente",
+
+
+  "Request Sent Successfully" : "Solicitud enviada exitosamente",
+  "Please fill-up start date and end date" : "Por favor complete la fecha de inicio y la fecha de finalización",
+  "Rent request already exits" : "La solicitud de alquiler ya existe",
+  "Internal server error" : "Error Interno del Servidor",
+  "Sign In Successfully" : "Iniciar sesión correctamente",
+  "Logout Successfully" : "Cerrar sesión exitosamente",
+  "Did not get OTP" : "No obtuve OTP",
+
+  "Password" : "Contraseña",
+"Your password must have 6 characters." : "Su contraseña debe tener 6 caracteres.",
+  "Confirm Password": "confirmar Contraseña",
+  "Password doesn't match" : "La contraseña no coincide",
+"Update" : "Actualizar",
+  "Password reset successfully": "Restablecimiento de contraseña exitoso"
+
+
+
+
 };

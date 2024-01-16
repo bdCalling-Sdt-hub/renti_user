@@ -71,16 +71,16 @@ class CarDetailsController extends GetxController{
         sentRentRequestModel = SentRentRequestModel.fromJson(jsonDecode(responseModel.responseJson));
         requestStatus = sentRentRequestModel.rents?.requestStatus ?? "";
         await carDetailsRepo.apiService.sharedPreferences.setString("request_status_key", requestStatus);
-        AppUtils.successToastMessage("Request Sent Successfully");
+        AppUtils.successToastMessage("Request Sent Successfully".tr);
         gotoNextStep();
 
       }
 
       else if(startTripDateController.text.isEmpty || endTripDateController.text.isEmpty){
-        AppUtils.successToastMessage("Please fill-up start date and end date");
+        AppUtils.successToastMessage("Please fill-up start date and end date".tr);
       }
       else if(responseModel.statusCode == 500){
-        AppUtils.successToastMessage("Rent request already exits");
+        AppUtils.successToastMessage("Rent request already exits".tr);
       }
 
       else{

@@ -50,11 +50,11 @@ class _SignInScreenState extends State<SignInScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IconButton(onPressed: (){
+          /*        IconButton(onPressed: (){
                     Get.back();
-                  }, icon: const Icon(Icons.arrow_back_ios_new_outlined,color: AppColors.whiteLight,)
+                  }, icon: const Icon(Icons.arrow_back_ios_new_outlined,color: AppColors.whiteLight,)*/
 
-                  ),
+                  // ),
                   const SizedBox(width: 16,),
                   CustomText(
                     text: AppStrings.signIn.tr,

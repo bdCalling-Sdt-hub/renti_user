@@ -102,7 +102,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             if (value == null || value.isEmpty) {
                               return AppStrings.notBeEmpty.tr;
                             } else if (!value.contains(RegExp('@'))) {
-                              return AppStrings.enterValidEmail;
+                              return AppStrings.enterValidEmail.tr;
                             }
                             return null;
                           },

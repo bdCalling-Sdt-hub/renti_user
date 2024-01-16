@@ -26,7 +26,7 @@ class _NewPassWordBottomNavSectionState extends State<NewPassWordBottomNavSectio
                 controller.resetPassword();
               }
             },
-            titleText: AppStrings.update
+            titleText: AppStrings.update.tr
           ),
         );
       }
