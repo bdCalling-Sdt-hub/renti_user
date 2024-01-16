@@ -49,7 +49,7 @@ class OtpController extends GetxController {
     if(responseModel.statusCode == 201){
 
       ForgetPasswordModel forgetPassModel = ForgetPasswordModel.fromJson(jsonDecode(responseModel.responseJson));
-      AppUtils.successToastMessage(forgetPassModel.message.toString());
+      AppUtils.successToastMessage("Successful".tr);
     }
     else{
       ForgetPasswordModel forgetPassModel = ForgetPasswordModel.fromJson(jsonDecode(responseModel.responseJson));

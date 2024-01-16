@@ -195,7 +195,11 @@ Map<String, String> spanish = {
   "Confirm Password": "confirmar Contraseña",
   "Password doesn't match" : "La contraseña no coincide",
 "Update" : "Actualizar",
-  "Password reset successfully": "Restablecimiento de contraseña exitoso"
+  "Password reset successfully": "Restablecimiento de contraseña exitoso",
+
+  "Send verify code at your email":"Enviar código de verificación a su correo electrónico",
+      "Error to send otp":"Error al enviar otp",
+  "Successful" : "Exitoso"
 
 
 

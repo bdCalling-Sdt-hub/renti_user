@@ -29,11 +29,11 @@ class ForgetPasswordController extends GetxController{
       forgetPasswordModel = ForgetPasswordModel.fromJson(jsonDecode(responseModel.responseJson));
       var token = await forgetPasswordRepo.apiService.sharedPreferences.setString(SharedPreferenceHelper.userEmailKey, emailController.text.trim().toString());
       debugPrint("=================token$token");
-      AppUtils.successToastMessage("Send verify code at your email");
+      AppUtils.successToastMessage("Send verify code at your email".tr);
       gotoNext();
     }
     else {
-    AppUtils.successToastMessage("Error to send otp");
+    AppUtils.successToastMessage("Error to send otp".tr);
     }
     isSubmit = false;
     update();
