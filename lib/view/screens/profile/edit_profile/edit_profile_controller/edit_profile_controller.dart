@@ -96,7 +96,7 @@ class EditProfileController extends GetxController {
 
         profileController.initialState();
         update();
-        AppUtils.errorToastMessage("Successfully profile updated");
+        AppUtils.errorToastMessage("Successfully profile updated".tr);
         Get.back();
         print(response.statusCode);
 

@@ -27,8 +27,8 @@ class _NewPasswordAuthSectionState extends State<NewPasswordAuthSection> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText(
-                text: AppStrings.password,
+               CustomText(
+                text: "Password".tr,
                 top: 24,
                 bottom: 12
               ),
@@ -36,7 +36,7 @@ class _NewPasswordAuthSectionState extends State<NewPasswordAuthSection> {
                 isPassword: true,
                 textEditingController: controller.passwordController,
                 textInputAction: TextInputAction.done,
-                hintText: AppStrings.enterPassword,
+                hintText: AppStrings.enterPassword.tr,
                 suffixIconColor: AppColors.whiteNormalActive,
                 hintStyle: GoogleFonts.poppins(
                     fontSize: 14,
@@ -44,16 +44,16 @@ class _NewPasswordAuthSectionState extends State<NewPasswordAuthSection> {
                     color: AppColors.whiteNormalActive),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return AppStrings.notBeEmpty;
+                    return AppStrings.notBeEmpty.tr;
                   } else if (value.length < 6) {
-                    return AppStrings.passwordShouldBe;
+                    return AppStrings.passwordShouldBe.tr;
                   } else {
                     return null;
                   }
                 },
               ),
-              const CustomText(
-                  text: AppStrings.confirmPassword,
+               CustomText(
+                  text: "Confirm Password".tr,
                   top: 24,
                   bottom: 12
               ),
@@ -61,7 +61,7 @@ class _NewPasswordAuthSectionState extends State<NewPasswordAuthSection> {
                 isPassword: true,
                 textEditingController: controller.confirmPasswordController,
                 textInputAction: TextInputAction.done,
-                hintText: AppStrings.enterPassword,
+                hintText: AppStrings.enterPassword.tr,
                 suffixIconColor: AppColors.whiteNormalActive,
                 hintStyle: GoogleFonts.poppins(
                     fontSize: 14,
@@ -69,11 +69,11 @@ class _NewPasswordAuthSectionState extends State<NewPasswordAuthSection> {
                     color: AppColors.whiteNormalActive),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return AppStrings.notBeEmpty;
+                    return AppStrings.notBeEmpty.tr;
                   } else if (value.length < 6) {
-                    return AppStrings.passwordShouldBe;
+                    return AppStrings.passwordShouldBe.tr;
                   } else if(controller.passwordController.text != controller.confirmPasswordController.text){
-                    return "Password doesn't match";
+                    return "Password doesn't match".tr;
                   }
                   else{
                     return null;

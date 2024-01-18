@@ -86,8 +86,8 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                         child: Row(
                           children: [
                             Container(
-                              height: 20,
-                              width: 20,
+                              height: 25,
+                              width: 25,
                               padding: const EdgeInsetsDirectional.all(0.5),
                               decoration: BoxDecoration(
                                   color: Colors.transparent,
@@ -117,7 +117,7 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
             ),
             CustomText(text: AppStrings.dateOfBirth.tr, top: 16, bottom: 12),
             CustomTextField(
-              hintText: "YY-MM-DD".tr,
+              hintText: "YYYY-MM-DD".tr,
               readOnly: true,
               textEditingController: controller.dateOfBirthController,
               textInputAction: TextInputAction.next,
@@ -126,6 +126,13 @@ class _SignUpAuthSectionState extends State<SignUpAuthSection> {
                 fontWeight: FontWeight.w400,
                 color: AppColors.blackNormal,
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return AppStrings.notBeEmpty.tr;
+                }  else {
+                  return null;
+                }
+              },
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,

@@ -1,16 +1,25 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_icons.dart';
+import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/view/screens/trip_details/make_payment/Controller/payment_controller.dart';
+import 'package:renti_user/view/screens/trip_details/make_payment/card_details/card_details_controller/card_details_controller.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/buttons/custom_elevated_loading_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:renti_user/view/widgets/text_field/custom_text_field.dart';
 
+import '../../../../service/api_service.dart';
 import '../../rent_history/rent_history_controller/rent_history_controller.dart';
+import 'card_details/card_details_model/model.dart';
+import 'card_details/repo.dart';
 
 class MakePaymentScreen extends StatefulWidget {
   const MakePaymentScreen(
@@ -24,8 +33,18 @@ class MakePaymentScreen extends StatefulWidget {
 }
 
 class _MakePaymentScreenState extends State<MakePaymentScreen> {
+  @override
+  void initState() {
+    Get.put(ApiService(sharedPreferences: Get.find()));
+    Get.put(CardRepo(apiService: Get.find()));
+    Get.put(CardDetailsController(cardRepo: Get.find()));
+    super.initState();
+  }
+
   final PaymentController _controller = Get.put(PaymentController());
   final _rentController = Get.find<RentHistoryController>();
+
+  // final controller =  Get.put(CardDetailsController());
 
   final formKey = GlobalKey<FormState>();
 
@@ -57,93 +76,226 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
         key: formKey,
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText(text: "Credit Card Number".tr, bottom: 12),
-                  CustomTextField(
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      CardNumberFormatter()
-                    ],
-                    hintText: "XXXX XXXX XXXX XXXX".tr,
-                    textEditingController: _controller.cardNumber,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    // focusNode: controller.emailFocusNode,
-                    hintStyle: GoogleFonts.poppins(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 1,
-                        color: AppColors.whiteNormalActive),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Enter your Credit card number".tr;
-                      } else if (value.length > 19 || value.length < 19) {
-                        return "Enter your valid card number";
-                      }
-                      return null;
-                    },
-                  ),
-                  CustomText(
-                    text: "Expired Date".tr,
-                    bottom: 12,
-                    top: 16,
-                  ),
-                  CustomTextField(
-                    inputFormatters: [CardExpirationFormatter()],
-                    textEditingController: _controller.expiryDate,
-                    // focusNode: controller.passwordFocusNode,
-                    textInputAction: TextInputAction.next,
-                    hintText: "MM/YY".tr,
-                    keyboardType: TextInputType.number,
-                    hintStyle: GoogleFonts.poppins(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 1,
-                        color: AppColors.whiteNormalActive),
-                    validator: (value) {
-                      if (value == null || value.toString().isEmpty) {
-                        return "Enter your Expire date".tr;
-                      } else if (value.toString().length > 5) {
-                        return "Enter your valid Expire date".tr;
-                      }
-                      return null;
-                    },
-                  ),
-                  CustomText(
-                    text: "CVV".tr,
-                    bottom: 12,
-                    top: 16,
-                  ),
-                  CustomTextField(
-                    textEditingController: _controller.cvvCode,
-                    textInputAction: TextInputAction.next,
-                    // focusNode: controller.passwordFocusNode,
+          child: GetBuilder<CardDetailsController>(builder: (controller) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Column(
+                              children: [
+                                const CustomText(
+                                  text: "Are want to payment?",
+                                  color: AppColors.blackNormal,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                ),
+                                const SizedBox(
+                                  height: 24,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    CustomElevatedButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      titleText: "No",
+                                      buttonColor: Colors.red.withOpacity(0.3),
+                                      buttonHeight: 36,
+                                      titleColor: AppColors.blackNormal,
+                                      buttonWidth:
+                                          MediaQuery.of(context).size.width /
+                                              3.5,
+                                    ),
+                                    controller.isLoading
+                                        ? const SizedBox(
+                                            height: 16,
+                                            width: 16,
+                                            child: Center(
+                                              child: CircularProgressIndicator(
+                                                color: AppColors.whiteLight,
+                                                strokeWidth: 2,
+                                              ),
+                                            ),
+                                          )
+                                        : CustomElevatedButton(
+                                            onPressed: () {
+                                              controller.tokenizeCard(
+                                                  rentId: widget.rentId,
+                                                  amount: int.parse(
+                                                      _rentController
+                                                          .rentUser[
+                                                              widget.index]
+                                                          .totalAmount!),
+                                                  email: _rentController
+                                                      .rentUser[widget.index]
+                                                      .userId!
+                                                      .email!,
+                                                  productName: _rentController
+                                                      .rentUser[widget.index]
+                                                      .carId!
+                                                      .carModelName!,
+                                                  index: widget.index);
+                                            },
+                                            titleText: "Yes",
+                                            buttonHeight: 36,
+                                            titleColor: Colors.white,
+                                            buttonWidth: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                3.5,
+                                          ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          );
+                        });
 
-                    hintText: "Enter CVV".tr,
-                    keyboardType: TextInputType.number,
-                    hintStyle: GoogleFonts.poppins(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 1,
-                        color: AppColors.whiteNormalActive),
-                    validator: (value) {
-                      if (value == null || value.toString().isEmpty) {
-                        return "Enter your CVV number".tr;
-                      } else if (value.toString().length > 4) {
-                        return "Enter your valid CVV number";
-                      }
-                      return null;
-                    },
+                    /* controller.tokenizeCard(
+                          rentId: widget.rentId,
+                          amount: int.parse(_rentController
+                              .rentUser[widget.index].totalAmount!),
+                          email: _rentController
+                              .rentUser[widget.index].userId!.email!,
+                          productName: _rentController
+                              .rentUser[widget.index].carId!.carModelName!,
+                          index: widget.index);*/
+                  },
+                  child: Container(
+                    padding:
+                        const EdgeInsets.only(top: 16, left: 26, bottom: 8),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: AppColors.whiteNormalActive, width: 1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.asset(
+                          "assets/images/Card Icon.png",
+                          height: 35,
+                          width: 50,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const CustomText(
+                              bottom: 8,
+                              textAlign: TextAlign.start,
+                              text: "Visa Card",
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            CardDetailsWidget(
+                                cardDetails: controller.cardDetailsModel),
+                          ],
+                        ),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 24,
+                          color: Color(0xff595959),
+                        )
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText(text: "Card Number".tr, bottom: 12),
+                    CustomTextField(
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        CardNumberFormatter()
+                      ],
+                      maxLength: 19,
+                      hintText: "XXXX XXXX XXXX XXXX".tr,
+                      textEditingController: _controller.cardNumber,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
+                      // focusNode: controller.emailFocusNode,
+                      hintStyle: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 1,
+                          color: AppColors.whiteNormalActive),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Enter your Credit card number".tr;
+                        }
+                        return null;
+                      },
+                    ),
+                    CustomText(
+                      text: "Expired Date".tr,
+                      bottom: 12,
+                      top: 16,
+                    ),
+                    CustomTextField(
+                      inputFormatters: [CardExpirationFormatter()],
+                      textEditingController: _controller.expiryDate,
+                      // focusNode: controller.passwordFocusNode,
+                      textInputAction: TextInputAction.next,
+                      hintText: "MM/YY".tr,
+                      keyboardType: TextInputType.number,
+                      maxLength: 5,
+                      hintStyle: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 1,
+                          color: AppColors.whiteNormalActive),
+                      validator: (value) {
+                        if (value == null || value.toString().isEmpty) {
+                          return "Enter your Expire date".tr;
+                        } else if (value.toString().length > 5) {
+                          return "Enter your valid Expire date".tr;
+                        }
+                        return null;
+                      },
+                    ),
+                    CustomText(
+                      text: "CVV".tr,
+                      bottom: 12,
+                      top: 16,
+                    ),
+                    CustomTextField(
+                      textEditingController: _controller.cvvCode,
+                      textInputAction: TextInputAction.next,
+                      // focusNode: controller.passwordFocusNode,
+
+                      hintText: "Enter CVV".tr,
+                      keyboardType: TextInputType.number,
+                      maxLength: 4,
+                      hintStyle: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 1,
+                          color: AppColors.whiteNormalActive),
+                      validator: (value) {
+                        if (value == null || value.toString().isEmpty) {
+                          return "Enter your CVV number".tr;
+                        } else if (value.toString().length > 4) {
+                          return "Enter your valid CVV number";
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            );
+          }),
         ),
       ),
       bottomNavigationBar: GetBuilder<PaymentController>(
@@ -173,6 +325,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
   }
 }
 
+///<----------------card expired date format ------------->
 class CardExpirationFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
@@ -199,6 +352,7 @@ class CardExpirationFormatter extends TextInputFormatter {
   }
 }
 
+///<-----------------cardNumber format -------------->
 class CardNumberFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
@@ -227,5 +381,52 @@ class CardNumberFormatter extends TextInputFormatter {
         offset: string.length,
       ),
     );
+  }
+}
+
+class CardDetailsWidget extends StatelessWidget {
+  final CardDetailsModel cardDetails;
+  final double bottom;
+  final TextAlign textAlign;
+  final double fontSize;
+  final FontWeight fontWeight;
+
+  CardDetailsWidget({
+    required this.cardDetails,
+    this.bottom = 8,
+    this.textAlign = TextAlign.start,
+    this.fontSize = 16,
+    this.fontWeight = FontWeight.w600,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    String maskedCardNumber =
+        getMaskedCardNumber(cardDetails.cardInfo?.creaditCardNumber ?? "");
+
+    return CustomText(
+      bottom: bottom,
+      textAlign: textAlign,
+      text: maskedCardNumber,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+    );
+  }
+
+  String getMaskedCardNumber(String? cardNumber) {
+    // Check for null or empty card number
+    if (cardNumber == null || cardNumber.isEmpty) {
+      return '';
+    }
+
+    // Assuming the last 4 digits are to be shown unmasked
+    String lastFourDigits = cardNumber.substring(cardNumber.length - 4);
+
+    // Pad with spaces if needed
+    String maskedDigits = '*' * (cardNumber.length - 4);
+    maskedDigits = maskedDigits.replaceAllMapped(
+        RegExp(r'.{4}'), (match) => '${match.group(0)} ');
+
+    return '$maskedDigits $lastFourDigits';
   }
 }

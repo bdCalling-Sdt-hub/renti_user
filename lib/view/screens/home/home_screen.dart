@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
@@ -36,9 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     DeviceUtils.screenUtils();
-    // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
-    Get.put(ProfileDetailsRepo(apiService: Get.find()));
-    Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
+
+    // Get.put(ProfileDetailsRepo(apiService: Get.find()));
+    // final profile =   Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
+
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(HomeRepo(apiService: Get.find()));
     final controller = Get.put(HomeController(homeRepo: Get.find()));
@@ -80,23 +82,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   GestureDetector(
-                    onTap: () => scaffoldKey.currentState?.openDrawer(),
+                    onTap: () {
+                      scaffoldKey.currentState?.openDrawer();
+                    },
                     child: const Icon(Icons.menu,
                         color: AppColors.primaryColor, size: 40),
                   ),
                   Expanded(
                     child: GestureDetector(
                       onTap: () async {
-                        // final SharedPreferences prefers =
-                        //     await SharedPreferences.getInstance();
-                        // String token = prefers.getString(
-                        //         SharedPreferenceHelper.accessTokenKey) ??
-                        //     "";
-                        // if (token.isEmpty) {
-                        //   Get.toNamed(AppRoute.signInScreen);
-                        // } else {
-                        //   Get.toNamed(AppRoute.searchScreen);
-                        // }
                         Get.toNamed(AppRoute.searchScreen);
                       },
                       child: Container(
@@ -174,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               "assets/images/user.png"),
                                           fit: BoxFit.fill)
                                       : DecorationImage(
-                                          image: NetworkImage(
+                                          image: CachedNetworkImageProvider(
                                               controller.profileImage),
                                           fit: BoxFit.fill)))),
                 ],

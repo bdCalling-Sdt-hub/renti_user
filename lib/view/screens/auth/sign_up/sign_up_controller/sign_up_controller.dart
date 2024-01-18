@@ -46,7 +46,7 @@ class SignUpController extends GetxController {
   int selectedGender = 0;
   List<File> kycDocFiles = [];
   File? profileImage;
-  String phoneCode = "+52";
+  // String phoneCode = "+52";
 
   void changeGender(int index) {
     selectedGender = index;
@@ -64,7 +64,7 @@ class SignUpController extends GetxController {
   String passportFileName = "";
 
   Future<void> pickDrivingLicenceFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
+    /*FilePickerResult? result = await FilePicker.platform.pickFiles(
         allowMultiple: false,
         allowedExtensions: ["pdf"],
         type: FileType.custom);
@@ -78,11 +78,18 @@ class SignUpController extends GetxController {
       } else {
         AppUtils.successToastMessage("only pdf file allow".tr);
       }
+    }*/
+
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      uploadDrivingLicense = File(pickedFile.path);
+      kycDocFiles.add(uploadDrivingLicense!);
+      update();
     }
   }
 
   Future<void> pickPassportFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
+  /*  FilePickerResult? result = await FilePicker.platform.pickFiles(
         allowMultiple: false,
         allowedExtensions: ["pdf"],
         type: FileType.custom);
@@ -97,6 +104,13 @@ class SignUpController extends GetxController {
       } else {
         AppUtils.successToastMessage("only pdf file allow".tr);
       }
+    }*/
+
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      uploadPassport = File(pickedFile.path);
+      kycDocFiles.add(uploadPassport!);
+      update();
     }
   }
 
@@ -110,7 +124,7 @@ class SignUpController extends GetxController {
   void removePassportFile() {
     uploadPassport = null;
     passportFileName = "";
-    kycDocFiles.removeAt(1);
+    kycDocFiles.removeAt(0);
     update();
   }
 
@@ -184,12 +198,15 @@ class SignUpController extends GetxController {
       Map<String, String> params = {
         "fullName": fullNameController.text,
         "email": emailController.text,
-        "phoneNumber": "$phoneCode ${phoneNumberController.text}",
+        "phoneNumber": phoneNumberController.text,
         "gender": genderList[selectedGender],
         "address": addressController.text,
         "dateOfBirth": dateOfBirthController.text,
         "password": passwordController.text,
         "ine": ineNumberController.text,
+        'creaditCardNumber': creditCardNumberController.text.replaceAll(' ', ''),
+        'expireDate': expireDateController.text,
+        'cvv': cvvController.text,
         "role": "user"
       };
 
@@ -209,7 +226,7 @@ class SignUpController extends GetxController {
       } else if (response.statusCode == 409) {
         var response1 = await http.Response.fromStream(response);
         print(jsonDecode(response1.body));
-        AppUtils.errorToastMessage('User already exists! Please login');
+        AppUtils.errorToastMessage('User already exists! Please login'.tr);
       } else {
         print('File upload failed with status code: ${response.statusCode}');
         AppUtils.errorToastMessage("File upload failed");

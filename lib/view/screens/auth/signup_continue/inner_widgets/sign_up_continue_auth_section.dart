@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
@@ -12,6 +13,7 @@ import '../../../../../utils/app_strings.dart';
 import '../../../../widgets/image/custom_image.dart';
 import '../../../../widgets/text/custom_text.dart';
 import '../../../../widgets/text_field/custom_text_field.dart';
+import '../../../trip_details/make_payment/make_payment_screen.dart';
 
 class SignUpContinueAuthSection extends StatefulWidget {
   const SignUpContinueAuthSection({
@@ -60,7 +62,8 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                             imageType: ImageType.svg,
                             size: 40),
                         CustomText(
-                            text: controller.phoneCode,
+                            // text: controller.phoneCode,
+                          text: "+52",
                             left: 10,
                             color: AppColors.blackNormal)
                       ],
@@ -112,17 +115,24 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                   letterSpacing: 1,
                   color: AppColors.whiteNormalActive),
             ),
-            /*   CustomText(text: AppStrings.creditCardNum.tr, bottom: 12, top: 16),
+               CustomText(text: AppStrings.creditCardNum.tr, bottom: 12, top: 16),
             CustomTextField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return AppStrings.notBeEmpty.tr;
-                }  else {
+                }
+                else {
                   return null;
                 }
               },
+              maxLength: 19,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                CardNumberFormatter()
+              ],
+              hintText: "XXXX XXXX XXXX XXXX".tr,
+              textEditingController: controller.creditCardNumberController,
               keyboardType: TextInputType.number,
-              hintText: AppStrings.enterCreditCardNum.tr,
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
@@ -137,12 +147,16 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return AppStrings.notBeEmpty.tr;
-                }  else {
+                }
+                else {
                   return null;
                 }
               },
+              inputFormatters: [CardExpirationFormatter()],
               keyboardType: TextInputType.text,
-              hintText: "MM-YY".tr,
+              hintText: "MM/YY".tr,
+              textEditingController: controller.expireDateController,
+              maxLength: 5,
               hintStyle: GoogleFonts.poppins(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
@@ -151,16 +165,20 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
             ),
              CustomText(
                 text: "CVV".tr,
+
                 bottom: 12,
                 top: 16),
             CustomTextField(
+              maxLength: 4,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return AppStrings.notBeEmpty.tr;
-                }  else {
+                }
+                else {
                   return null;
                 }
               },
+              textEditingController: controller.cvvController,
               keyboardType: TextInputType.number,
               hintText: AppStrings.enterCVV.tr,
               hintStyle: GoogleFonts.poppins(
@@ -170,19 +188,11 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                   color: AppColors.whiteNormalActive),
             ),
             const SizedBox(height: 24),
-            */
-
-            SizedBox(
-              height: Get.height * 0.3,
-            ),
 
             Align(
               child: CustomElevatedButton(
                   buttonWidth: MediaQuery.of(context).size.width,
-                  onPressed: () => setDataToLocalStore(controller,
-                      phoneNumber:
-                          "${controller.phoneCode} ${controller.phoneNumberController.text}",
-                      address: controller.addressController.text),
+                  onPressed: () => setDataToLocalStore(controller, phoneNumber: " ${controller.phoneNumberController.text}", address: controller.addressController.text),
                   titleText: "Continue".tr),
             )
           ],

@@ -43,7 +43,7 @@ class SignInController extends GetxController{
     if(responseModel.statusCode == 200){
       SignInResponseModel signInResponseModel = SignInResponseModel.fromJson(jsonDecode(responseModel.responseJson));
       print("data: ${signInResponseModel.user.toString()}");
-      AppUtils.successToastMessage("Sign In Successfully");
+      AppUtils.successToastMessage("Sign In Successfully".tr);
       //socketService.emit("join-room", {"uid": "123"});
       signInRepo.apiService.sharedPreferences.setString("room_id", "123");
 

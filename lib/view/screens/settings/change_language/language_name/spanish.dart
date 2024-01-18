@@ -5,7 +5,7 @@ Map<String, String> spanish = {
   "Enter your email": "Introduce tu correo electrónico",
   "Password": "Contraseña",
   "Enter your password": "Ingresa tu contraseña",
-  "Forget Password?": "Contraseña olvidada?",
+  "Forget Password?": " ¿Olvidaste tu contraseña?",
   "Sign In": "Iniciar sesión",
   "Or": "O",
   "Don’t have an account?": "No tienes una cuenta?",
@@ -29,8 +29,7 @@ Map<String, String> spanish = {
   "This filed can not be empty": "Este archivo no puede estar vacío.",
   "Password should be more than 6 characters":
       "La contraseña debe tener más de 6 caracteres.",
-  "Please enter a valid email":
-      "Por favor introduzca una dirección de correo electrónico válida",
+  "Please enter a valid email": "Por favor introduzca una dirección de correo electrónico válida",
   "Enter Credit card CVV": "Ingrese el CVV de la tarjeta de crédito",
   "Enter your valid phone number": "Ingrese su número de teléfono válido",
   "Enter phone number": "Ingresa número telefónico",
@@ -57,7 +56,7 @@ Map<String, String> spanish = {
   "Rent History": "Historial de renta",
   "Payment Method": "Método de pago",
   "How Renti Works": "Cómo funciona Renti",
-  "Support": "ayuda",
+  "Support": "Ayuda",
   "Settings": "Ajustes",
   "About Us": "Sobre nosotros",
   "Log Out": "Cerrar sesión",
@@ -66,9 +65,9 @@ Map<String, String> spanish = {
   "No": "No",
 
   //setting
-  "Change Password": "Cambiar la contraseña",
+  "Change Password": " Cambiar contraseña",
   "Terms & Conditions": "Términos y condiciones",
-  "Privacy Policy": "política de privacidad",
+  "Privacy Policy": "Política de privacidad",
   "Please enter current password to set a new password":
       "Por favor ingrese la contraseña actual para establecer una nueva contraseña",
   "Current password": "Contraseña actual",
@@ -90,14 +89,14 @@ Map<String, String> spanish = {
   "Car Details": "Detalles del coche",
   "YYYY-MM-DD": "AAAA-MM-DD",
 
-  "from": "De",
+  "From": "Desde",
   "Until": "Hasta",
 
   "Car Information": "Información del coche",
   "Total Mileage": "Kilometraje total",
   "Color": "Color",
   "Capacity": "Capacidad",
-  "Gear type": "Tipo de engranaje",
+  "Gear type": "Transmisión",
   "Fuel tank capacity": "Capacidad del tanque de combustible",
   "Host Information": "Información del anfitrión",
   "Name": "Nombre",
@@ -118,7 +117,7 @@ Map<String, String> spanish = {
   "Review": "Revisar",
   "give your review here........": "deja tu opinion aqui.....",
 
-  "Get Started": "Empezar",
+  "Get Started": "Comenzar",
   "English": "Spanish",
   "Please enter valid date": "Por favor ingresa una fecha válida",
   "Please enter valid month": "Por favor ingrese el mes válido",
@@ -163,7 +162,7 @@ Map<String, String> spanish = {
   "Pickup location :": "Lugar de recogida",
 
   // nave bar
-  "Home": "Hogar",
+  "Home": "Inicio",
   "Search": "Buscar",
   "Message": "Mensaje",
   "Profile": "Perfil",
@@ -177,4 +176,32 @@ Map<String, String> spanish = {
   "Enter current password": "Introducir la contraseña actual",
   "Retype new password": "Reescriba nueva contraseña",
   "Password doesn't match": "La contraseña no coincide",
+  "Select Licence and passport image" : "Seleccione Imagen de licencia y pasaporte",
+  'User already exists! Please login' : 'Usuario ya existente',
+  "Please enter a valid email": "Por favor introduzca una dirección de correo electrónico válida",
+  "Successfully profile updated" : "Perfil actualizado correctamente",
+
+
+  "Request Sent Successfully" : "Solicitud enviada exitosamente",
+  "Please fill-up start date and end date" : "Por favor complete la fecha de inicio y la fecha de finalización",
+  "Rent request already exits" : "La solicitud de alquiler ya existe",
+  "Internal server error" : "Error Interno del Servidor",
+  "Sign In Successfully" : "Iniciar sesión correctamente",
+  "Logout Successfully" : "Cerrar sesión exitosamente",
+  "Did not get OTP" : "No obtuve OTP",
+
+  "Password" : "Contraseña",
+"Your password must have 6 characters." : "Su contraseña debe tener 6 caracteres.",
+  "Confirm Password": "confirmar Contraseña",
+  "Password doesn't match" : "La contraseña no coincide",
+"Update" : "Actualizar",
+  "Password reset successfully": "Restablecimiento de contraseña exitoso",
+
+  "Send verify code at your email":"Enviar código de verificación a su correo electrónico",
+      "Error to send otp":"Error al enviar otp",
+  "Successful" : "Exitoso"
+
+
+
+
 };

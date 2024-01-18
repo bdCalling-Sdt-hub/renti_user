@@ -10,9 +10,6 @@ import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/buttons/custom_back_button.dart';
 import 'package:renti_user/view/widgets/container/custom_container.dart';
 import 'package:renti_user/view/widgets/error_widget/no_data_found_widget.dart';
-import 'package:renti_user/view/widgets/text/custom_text.dart';
-
-
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({super.key});
 

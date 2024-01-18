@@ -41,7 +41,7 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: AppStrings.from.tr,
+                      text: "From".tr,
                       color: AppColors.blackNormal,
                       fontSize: 14,
                       fontWeight: FontWeight.w500,

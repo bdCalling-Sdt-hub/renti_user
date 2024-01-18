@@ -32,7 +32,7 @@ class ResetPasswordController extends GetxController{
     if(responseModel.statusCode == 200){
       model = ResetPasswordModel.fromJson(jsonDecode(responseModel.responseJson));
       repo.apiService.sharedPreferences.remove(SharedPreferenceHelper.userEmailKey);
-      AppUtils.successToastMessage(model.message ?? "Password reset successfully".tr);
+      AppUtils.successToastMessage("Password reset successfully".tr);
       Get.offAllNamed(AppRoute.signInScreen);
     }
     else{

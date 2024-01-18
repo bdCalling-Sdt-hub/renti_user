@@ -1,7 +1,10 @@
 import 'package:renti_user/utils/app_strings.dart';
 
 Map<String, String> english = {
+
   // auth
+
+
   "Change Language": "Change Language",
 
   "Enter your email": "Enter your email",
@@ -91,7 +94,7 @@ Map<String, String> english = {
   "Car Details": "Car Details",
   "YYYY-MM-DD": "YYYY-MM-DD",
   "MM-YY": "MM-YY",
-  "from": "From",
+  "From": "From",
   "Until": "Until",
   "Car Information": "Car Information",
   "Total Mileage": "Total Mileage",
@@ -181,4 +184,28 @@ Map<String, String> english = {
   "Enter current password": "Enter current password",
   "Retype new password": "Retype new password",
   "Password doesn't match": "Password doesn't match",
+  "Select Licence and passport image" : "Select Licence and passport image",
+  'User already exists! Please login' : 'User already exists! Please login',
+
+  "Successfully profile updated" : "Successfully profile updated",
+
+  "Request Sent Successfully" : "Request Sent Successfully",
+  "Please fill-up start date and end date" : "Please fill-up start date and end date",
+  "Rent request already exits" : "Rent request already exits",
+  "Internal server error" : "Internal server error",
+
+  "Sign In Successfully" : "Sign In Successfully",
+  "Logout Successfully" : "Logout Successfully",
+
+  "Did not get OTP" : "Did not get OTP",
+  "New Password" : "New Password",
+  "Password" : "Password",
+  "Your password must have 6 characters." : "Your password must have 6 characters.",
+"Confirm Password": "Confirm Password",
+  "Password doesn't match" : "Password doesn't match",
+  "Update" : "Update",
+  "Password reset successfully": "Password reset successfully",
+  "Send verify code at your email":"Send verify code at your email",
+  "Error to send otp":"Error to send otp",
+  "Successful" : "Successful"
 };

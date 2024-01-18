@@ -75,7 +75,7 @@ class _OtpTopSectionState extends State<OtpTopSection> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-               CustomText(text:AppStrings.notGetOtp.tr),
+               CustomText(text:"Did not get OTP".tr),
               GestureDetector(
                 onTap: () {
                   controller.resendOtpVerify();

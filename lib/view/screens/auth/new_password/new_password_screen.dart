@@ -45,9 +45,9 @@ class NewPasswordScreenState extends State<NewPasswordScreen> {
       child: Scaffold(
         extendBody: true,
         backgroundColor: AppColors.primaryColor,
-        appBar:  const CustomAppBar(
+        appBar:   CustomAppBar(
           appBarContent: CustomBack(
-            text: AppStrings.newPassword,
+            text: "New Password".tr,
           ),
         ),
         body: LayoutBuilder(
@@ -56,14 +56,14 @@ class NewPasswordScreenState extends State<NewPasswordScreen> {
               return CustomContainer(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
-                child: const SingleChildScrollView(
-                  padding: EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
-                  physics: BouncingScrollPhysics(),
+                child:  SingleChildScrollView(
+                  padding: const EdgeInsetsDirectional.symmetric(vertical: 24, horizontal: 20),
+                  physics: const BouncingScrollPhysics(),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText(text: AppStrings.newPasswordRange, fontSize: 16),
-                      NewPasswordAuthSection(),
+                      CustomText(text: "Your password must have 6 characters.".tr, fontSize: 16),
+                      const NewPasswordAuthSection(),
                     ],
                   ),
                 ),

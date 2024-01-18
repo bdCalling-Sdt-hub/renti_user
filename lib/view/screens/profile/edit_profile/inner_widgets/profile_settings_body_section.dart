@@ -108,7 +108,7 @@ class ProfileSettingsBodySection extends StatelessWidget {
                       child: CustomTextField(
                         textEditingController: controller.numberController,
                         keyboardType: TextInputType.phone,
-                        maxLength: 8,
+                        maxLength: 10,
                         hintText: AppStrings.enterPhoneNumber,
                         hintStyle: GoogleFonts.poppins(
                             fontSize: 14,

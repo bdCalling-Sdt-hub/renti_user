@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
+import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_up/sign_up_controller/sign_up_controller.dart';
 
 import '../../../../../utils/app_colors.dart';
@@ -25,6 +26,7 @@ class _KycBodySectionState extends State<KycBodySection> {
   Widget build(BuildContext context) {
     return GetBuilder<SignUpController>(
         builder: (controller) => SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
               child: Column(
                 children: [
                   Column(
@@ -54,56 +56,52 @@ class _KycBodySectionState extends State<KycBodySection> {
                               ),
                             )
                           : Container(
-                              padding:
-                                  const EdgeInsetsDirectional.only(end: 12),
+                              padding: const EdgeInsetsDirectional.only(),
                               width: MediaQuery.of(context).size.width,
-                              height: 52,
+                              height: 200,
                               decoration: BoxDecoration(
                                 color: Colors.transparent,
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(
                                     width: 1, color: const Color(0xFFCCCCCC)),
                               ),
-                              child: Row(
+                              child:  Container(
+                                padding: const EdgeInsetsDirectional.only(end: 12, top: 12),
+                                width: MediaQuery.of(context).size.width-60,
+                                height: 200,
+                                decoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                        width: 1, color: AppColors.whiteNormalActive),
+                                    image: DecorationImage(
+                                        image: FileImage(controller.uploadDrivingLicense!),
+                                        fit: BoxFit.fill)),
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: GestureDetector(
+                                    onTap: () => controller.removeDrivingLicenceFile(),
+                                    child: const Icon(Icons.cancel_outlined,
+                                        color: AppColors.redNormal, size: 24),
+                                  ),
+                                ),
+
+                              ),
+
+
+                        /*Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 50,
-                                        height:
-                                            MediaQuery.of(context).size.height,
-                                        alignment: Alignment.center,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xFFD7263D),
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(8),
-                                            bottomLeft: Radius.circular(8),
-                                          ),
-                                        ),
-                                        child: const CustomImage(
-                                            imageSrc: "assets/icons/pdf.svg"),
-                                      ),
-                                      const SizedBox(width: 12),
-                                      Text(
-                                        controller.drivingLicenseFileName,
-                                        style: GoogleFonts.poppins(
-                                          color: const Color(0xFF2E2C2C),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  GestureDetector(
+
+                                 *//* GestureDetector(
                                     onTap: () =>
                                         controller.removeDrivingLicenceFile(),
                                     child: const Icon(Icons.cancel_outlined,
                                         color: AppColors.redNormal, size: 24),
-                                  )
+                                  )*//*
                                 ],
-                              ),
+                              ),*/
                             ),
                       CustomText(
                         text: "Upload INE/Passport".tr,
@@ -129,6 +127,55 @@ class _KycBodySectionState extends State<KycBodySection> {
                               ),
                             )
                           : Container(
+                        padding: const EdgeInsetsDirectional.only(),
+                        width: MediaQuery.of(context).size.width,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                              width: 1, color: const Color(0xFFCCCCCC)),
+                        ),
+                        child:  Container(
+                          padding: const EdgeInsetsDirectional.only(end: 12, top: 12),
+                          width: MediaQuery.of(context).size.width-60,
+                          height: 200,
+                          decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                  width: 1, color: AppColors.whiteNormalActive),
+                              image: DecorationImage(
+                                  image: FileImage(controller.uploadPassport!),
+                                  fit: BoxFit.fill)),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: GestureDetector(
+                              onTap: () => controller.removePassportFile(),
+                              child: const Icon(Icons.cancel_outlined,
+                                  color: AppColors.redNormal, size: 24),
+                            ),
+                          ),
+
+                        ),
+
+
+                        /*Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+
+                                 *//* GestureDetector(
+                                    onTap: () =>
+                                        controller.removeDrivingLicenceFile(),
+                                    child: const Icon(Icons.cancel_outlined,
+                                        color: AppColors.redNormal, size: 24),
+                                  )*//*
+                                ],
+                              ),*/
+                      ),
+
+                      /*Container(
                               padding:
                                   const EdgeInsetsDirectional.only(end: 12),
                               width: MediaQuery.of(context).size.width,
@@ -179,7 +226,7 @@ class _KycBodySectionState extends State<KycBodySection> {
                                   )
                                 ],
                               ),
-                            ),
+                            ),*/
                       CustomText(
                         text: "INE/Passport".tr,
                         top: 16,
@@ -209,15 +256,17 @@ class _KycBodySectionState extends State<KycBodySection> {
                     ],
                   ),
                   SizedBox(
-                    height: Get.height * 0.2,
+                    height: Get.height * 0.15,
                   ),
                   CustomElevatedButton(
                       buttonWidth: MediaQuery.of(context).size.width,
-                      onPressed: () => setDataToLocalStore(
-                          controller,
-                          controller.drivingLicenseFileName,
-                          controller.passportFileName,
-                          controller.ineNumberController.text),
+                      onPressed: () {
+                        setDataToLocalStore(
+                             controller,
+                            controller.drivingLicenseFileName,
+                            controller.passportFileName,
+                            controller.ineNumberController.text);
+                      },
                       titleText: "Continue".tr),
                 ],
               ),
@@ -228,7 +277,11 @@ class _KycBodySectionState extends State<KycBodySection> {
       SignUpController controller,
       String drivingLicenseFileName,
       String passportFileName,
-      String ineNumber) async {
+      String ineNumber
+      ) async {
+    if(controller.uploadDrivingLicense == null || controller.uploadPassport == null){
+      return AppUtils.errorToastMessage("Select Licence and passport image".tr);
+    }
     await controller.signUpRepo.apiService.sharedPreferences.setString(
         SharedPreferenceHelper.drivingLicense, drivingLicenseFileName);
     await controller.signUpRepo.apiService.sharedPreferences
