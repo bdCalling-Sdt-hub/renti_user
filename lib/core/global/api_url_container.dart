@@ -1,7 +1,7 @@
 class ApiUrlContainer {
   static const bool is_debug_mode =  true;
   static const String baseAddress =
-      is_debug_mode ? "http://192.168.10.14" : "http://159.65.25.16";
+      is_debug_mode ? "http://192.168.10.14" : "http://46.101.82.12";
   static const String apiBaseUrl =
       is_debug_mode ? "$baseAddress:3001/api" : "$baseAddress:3000/api";
   static const String socketGlobal =
