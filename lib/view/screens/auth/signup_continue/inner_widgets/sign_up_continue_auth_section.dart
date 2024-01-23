@@ -117,14 +117,14 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
             ),
                CustomText(text: AppStrings.creditCardNum.tr, bottom: 12, top: 16),
             CustomTextField(
-              validator: (value) {
+              /*validator: (value) {
                 if (value == null || value.isEmpty) {
                   return AppStrings.notBeEmpty.tr;
                 }
                 else {
                   return null;
                 }
-              },
+              },*/
               maxLength: 19,
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
@@ -144,14 +144,14 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                 bottom: 12,
                 top: 16),
             CustomTextField(
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return AppStrings.notBeEmpty.tr;
-                }
-                else {
-                  return null;
-                }
-              },
+              // validator: (value) {
+              //   if (value == null || value.isEmpty) {
+              //     return AppStrings.notBeEmpty.tr;
+              //   }
+              //   else {
+              //     return null;
+              //   }
+              // },
               inputFormatters: [CardExpirationFormatter()],
               keyboardType: TextInputType.text,
               hintText: "MM/YY".tr,
