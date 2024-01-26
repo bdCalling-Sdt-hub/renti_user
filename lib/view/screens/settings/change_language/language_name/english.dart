@@ -207,5 +207,6 @@ Map<String, String> english = {
   "Password reset successfully": "Password reset successfully",
   "Send verify code at your email":"Send verify code at your email",
   "Error to send otp":"Error to send otp",
-  "Successful" : "Successful"
+  "Successful" : "Successful",
+  "Current and new password could not be same" : "Current and new password could not be same"
 };

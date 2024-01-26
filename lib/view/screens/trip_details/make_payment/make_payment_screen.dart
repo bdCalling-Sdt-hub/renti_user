@@ -1,13 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/utils/app_colors.dart';
-import 'package:renti_user/utils/app_icons.dart';
-import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/view/screens/trip_details/make_payment/Controller/payment_controller.dart';
 import 'package:renti_user/view/screens/trip_details/make_payment/card_details/card_details_controller/card_details_controller.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
@@ -80,7 +75,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
+               controller.cardNumber.isEmpty?const SizedBox(): GestureDetector(
                   onTap: () {
                     showDialog(
                         context: context,
@@ -113,18 +108,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                                           MediaQuery.of(context).size.width /
                                               3.5,
                                     ),
-                                    controller.isLoading
-                                        ? const SizedBox(
-                                            height: 16,
-                                            width: 16,
-                                            child: Center(
-                                              child: CircularProgressIndicator(
-                                                color: AppColors.whiteLight,
-                                                strokeWidth: 2,
-                                              ),
-                                            ),
-                                          )
-                                        : CustomElevatedButton(
+                                    controller.isLoading ? const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,)) :CustomElevatedButton(
                                             onPressed: () {
                                               controller.tokenizeCard(
                                                   rentId: widget.rentId,
@@ -142,6 +126,8 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                                                       .carId!
                                                       .carModelName!,
                                                   index: widget.index);
+
+                                               Get.back();
                                             },
                                             titleText: "Yes",
                                             buttonHeight: 36,
@@ -169,8 +155,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                           index: widget.index);*/
                   },
                   child: Container(
-                    padding:
-                        const EdgeInsets.only(top: 16, left: 26, bottom: 8),
+                    padding: const EdgeInsets.only(top: 16, left: 26, bottom: 8),
                     decoration: BoxDecoration(
                       border: Border.all(
                           color: AppColors.whiteNormalActive, width: 1),
@@ -207,9 +192,13 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                     ),
                   ),
                 ),
+
+
                 const SizedBox(
                   height: 12,
                 ),
+
+
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

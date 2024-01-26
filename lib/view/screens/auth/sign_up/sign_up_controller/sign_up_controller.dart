@@ -21,25 +21,25 @@ class SignUpController extends GetxController {
   bool isSubmit = false;
 
   TextEditingController fullNameController =
-      TextEditingController(text: kDebugMode ? "Rafsan Hossain" : "");
+      TextEditingController();
   TextEditingController emailController =
-      TextEditingController(text: kDebugMode ? "mdh9583156@gmail.com" : "");
+      TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController monthController = TextEditingController();
   TextEditingController yearController = TextEditingController();
   TextEditingController passwordController =
-      TextEditingController(text: kDebugMode ? "1234567" : "");
+      TextEditingController();
   TextEditingController confirmPasswordController =
-      TextEditingController(text: kDebugMode ? "1234567" : "");
+      TextEditingController();
   TextEditingController phoneNumberController =
-      TextEditingController(text: kDebugMode ? "1234567891" : "");
+      TextEditingController();
   TextEditingController addressController =
-      TextEditingController(text: kDebugMode ? "Badda" : "");
+      TextEditingController();
   TextEditingController creditCardNumberController = TextEditingController();
   TextEditingController expireDateController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
   TextEditingController ineNumberController =
-      TextEditingController(text: kDebugMode ? "1234567" : "");
+      TextEditingController();
   TextEditingController dateOfBirthController = TextEditingController();
 
   List<String> genderList = ["Male", "Female", "Others"];

@@ -77,9 +77,7 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return AppStrings.notBeEmpty.tr;
-                      } else if (value.length < 10) {
-                        return "Enter your valid phone number".tr;
-                      } else {
+                      }  else {
                         return null;
                       }
                     },
@@ -153,7 +151,7 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
               //   }
               // },
               inputFormatters: [CardExpirationFormatter()],
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.number,
               hintText: "MM/YY".tr,
               textEditingController: controller.expireDateController,
               maxLength: 5,
@@ -170,14 +168,14 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                 top: 16),
             CustomTextField(
               maxLength: 4,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return AppStrings.notBeEmpty.tr;
-                }
-                else {
-                  return null;
-                }
-              },
+              // validator: (value) {
+              //   if (value == null || value.isEmpty) {
+              //     return AppStrings.notBeEmpty.tr;
+              //   }
+              //   else {
+              //     return null;
+              //   }
+              // },
               textEditingController: controller.cvvController,
               keyboardType: TextInputType.number,
               hintText: AppStrings.enterCVV.tr,

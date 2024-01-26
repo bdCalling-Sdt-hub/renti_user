@@ -15,13 +15,16 @@ import '../card_details_model/model.dart';
 import '../repo.dart';
 
 class CardDetailsController extends GetxController {
-  bool isLoading = false;
+
 
   final rentHistoryController = Get.find<RentHistoryController>();
 
   /// <--------card controller ------->
+  ///
+    bool isLoading = false;
 
   CardRepo cardRepo;
+  String cardNumber = "";
 
   CardDetailsController({required this.cardRepo});
 
@@ -33,21 +36,20 @@ class CardDetailsController extends GetxController {
 
   CardDetailsModel cardDetailsModel = CardDetailsModel();
   Future<void> cardGetResponse() async {
-    isLoading = true;
-    update();
+
     ApiResponseModel responseModel = await cardRepo.cardResponse();
     print("status code: ${responseModel.statusCode}");
 
     if (responseModel.statusCode == 200) {
-      cardDetailsModel =
-          CardDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
-    } else {
-      isLoading = false;
+
+      cardDetailsModel = CardDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
+      cardNumber = cardDetailsModel.cardInfo?.creaditCardNumber ?? "";
       update();
+
+    } else {
+
     }
 
-    isLoading = false;
-    update();
   }
 
   Future<void> tokenizeCard(

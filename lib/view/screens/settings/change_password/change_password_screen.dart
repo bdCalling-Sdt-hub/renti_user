@@ -116,7 +116,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                 return AppStrings.notBeEmpty.tr;
                               } else if (value.length < 6) {
                                 return AppStrings.passwordShouldBe.tr;
-                              } else {
+                              }else if (controller
+                                  .newPasswordController.text ==
+                                  controller.currentPasswordController.text) {
+                                return "Current and new password could not be same".tr;
+                              }
+
+
+                              else {
                                 return null;
                               }
                             },

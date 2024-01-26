@@ -199,7 +199,8 @@ Map<String, String> spanish = {
 
   "Send verify code at your email":"Enviar código de verificación a su correo electrónico",
       "Error to send otp":"Error al enviar otp",
-  "Successful" : "Exitoso"
+  "Successful" : "Exitoso",
+  "Current and new password could not be same" : "La contraseña actual y la nueva no pueden ser iguales"
 
 
 

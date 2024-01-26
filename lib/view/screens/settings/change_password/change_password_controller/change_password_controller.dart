@@ -29,14 +29,13 @@ class ChangePasswordController extends GetxController {
         retypePassword: confirmPasswordController.text);
 
     if (responseModel.statusCode == 200) {
-      ChangePasswordModel model =
-          ChangePasswordModel.fromJson(jsonDecode(responseModel.responseJson));
-      AppUtils.successToastMessage(
-          model.message ?? "Change Password Successfully".tr);
+      ChangePasswordModel model = ChangePasswordModel.fromJson(jsonDecode(responseModel.responseJson));
+      AppUtils.successToastMessage(model.message ?? "Change Password Successfully".tr);
     } else if (responseModel.statusCode == 401) {
       Get.toNamed(AppRoute.changePassword);
       AppUtils.successToastMessage("current password doesn't match".tr);
     }
+
 
     clearData();
     isSubmit = false;
