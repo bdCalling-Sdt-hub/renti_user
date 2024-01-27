@@ -33,7 +33,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     Get.put(ChangePasswordController(repo: Get.find()));
     super.initState();
   }
-
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -64,7 +64,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       color: AppColors.blackNormal,
                     ),
                     Form(
-                      key: controller.formKey,
+                      key: formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -188,9 +188,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               ? const CustomElevatedLoadingButton()
               : CustomElevatedButton(
                   onPressed: () {
-                    if (controller.formKey.currentState!.validate()) {
+                    if (formKey.currentState!.validate()) {
                       controller.changePassword();
-                      Get.toNamed(AppRoute.signInScreen);
                     }
                   },
                   titleText: AppStrings.changePassword.tr),

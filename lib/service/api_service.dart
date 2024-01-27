@@ -83,11 +83,19 @@ class ApiService extends GetxService{
       }else if (response.statusCode == 201) {
         return ApiResponseModel(201, 'Success', response.body);
       }
+
       else if (response.statusCode == 401) {
         sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, false);
          Get.offAllNamed(AppRoute. signInScreen);
         return ApiResponseModel(401, "Unauthorized".tr, response.body);
-      } else {
+      }
+
+      else if (response.statusCode == 402) {
+        return ApiResponseModel(402, 'Forgot password', response.body);
+
+      }
+
+      else {
         return ApiResponseModel(500, "Internal Server Error".tr, response.body);
       }
     } on SocketException {
