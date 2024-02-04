@@ -1,9 +1,7 @@
 import 'package:renti_user/utils/app_strings.dart';
 
 Map<String, String> english = {
-
   // auth
-
 
   "Change Language": "Change Language",
 
@@ -184,29 +182,32 @@ Map<String, String> english = {
   "Enter current password": "Enter current password",
   "Retype new password": "Retype new password",
   "Password doesn't match": "Password doesn't match",
-  "Select Licence and passport image" : "Select Licence and passport image",
-  'User already exists! Please login' : 'User already exists! Please login',
+  "Select Licence and passport image": "Select Licence and passport image",
+  'User already exists! Please login': 'User already exists! Please login',
 
-  "Successfully profile updated" : "Successfully profile updated",
+  "Successfully profile updated": "Successfully profile updated",
 
-  "Request Sent Successfully" : "Request Sent Successfully",
-  "Please fill-up start date and end date" : "Please fill-up start date and end date",
-  "Rent request already exits" : "Rent request already exits",
-  "Internal server error" : "Internal server error",
+  "Request Sent Successfully": "Request Sent Successfully",
+  "Please fill-up start date and end date":
+      "Please fill-up start date and end date",
+  "Rent request already exits": "Rent request already exits",
+  "Internal server error": "Internal server error",
 
-  "Sign In Successfully" : "Sign In Successfully",
-  "Logout Successfully" : "Logout Successfully",
+  "Sign In Successfully": "Sign In Successfully",
+  "Logout Successfully": "Logout Successfully",
 
-  "Did not get OTP" : "Did not get OTP",
-  "New Password" : "New Password",
-  "Password" : "Password",
-  "Your password must have 6 characters." : "Your password must have 6 characters.",
-"Confirm Password": "Confirm Password",
-  "Password doesn't match" : "Password doesn't match",
-  "Update" : "Update",
+  "Did not get OTP": "Did not get OTP",
+  "New Password": "New Password",
+  "Password": "Password",
+  "Your password must have 6 characters.":
+      "Your password must have 6 characters.",
+  "Confirm Password": "Confirm Password",
+  "Password doesn't match": "Password doesn't match",
+  "Update": "Update",
   "Password reset successfully": "Password reset successfully",
-  "Send verify code at your email":"Send verify code at your email",
-  "Error to send otp":"Error to send otp",
-  "Successful" : "Successful",
-  "Current and new password could not be same" : "Current and new password could not be same"
+  "Send verify code at your email": "Send verify code at your email",
+  "Error to send otp": "Error to send otp",
+  "Successful": "Successful",
+  "Current and new password could not be same":
+      "Current and new password could not be same"
 };

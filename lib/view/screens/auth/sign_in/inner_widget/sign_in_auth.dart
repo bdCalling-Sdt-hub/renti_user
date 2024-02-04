@@ -107,7 +107,6 @@ class _SignInAuthState extends State<SignInAuth> {
                   onPressed: (){
                     if(formKey.currentState!.validate()){
                       controller.signInUser();
-
                     }
 
                   },

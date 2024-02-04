@@ -86,7 +86,7 @@ class SearchesCarSection extends StatelessWidget {
                                         ),
                                       ),
                                       const TextSpan(
-                                          text: '/hr',
+                                          text: '/day',
                                           style: TextStyle(
                                             color: AppColors.primaryColor,
                                             fontSize: 10,

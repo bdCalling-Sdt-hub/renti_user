@@ -100,7 +100,7 @@ class TopUploadSection extends StatelessWidget {
                         ],
                       ),
                       CustomText(
-                        text: '\$${controller.rentUser[index].carId?.hourlyRate ?? "---"} /hour',
+                        text: '\$${controller.rentUser[index].carId?.hourlyRate ?? "---"} /day',
                         fontSize: 14,
                         color: AppColors.whiteDarkActive,
                         left: 8,

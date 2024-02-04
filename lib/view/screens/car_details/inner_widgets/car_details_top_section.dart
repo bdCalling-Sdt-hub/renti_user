@@ -124,7 +124,7 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                       ),
                       CustomText(
                         text:
-                            '\$${controller.carDetailsModel.cars?.hourlyRate ?? ""} /hour',
+                            '\$${controller.carDetailsModel.cars?.hourlyRate ?? ""} ${"/day"}',
                         fontSize: 14,
                         color: AppColors.whiteDarkActive,
                         left: 8,

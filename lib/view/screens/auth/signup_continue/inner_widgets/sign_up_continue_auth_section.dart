@@ -55,9 +55,9 @@ class _SignUpContinueAuthSectionState extends State<SignUpContinueAuthSection> {
                           width: 1.0,
                           style: BorderStyle.solid),
                     ),
-                    child: Row(
+                    child: const Row(
                       children: [
-                        const CustomImage(
+                        CustomImage(
                             imageSrc: AppIcons.flafMaxico,
                             imageType: ImageType.svg,
                             size: 40),

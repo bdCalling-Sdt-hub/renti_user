@@ -136,7 +136,7 @@ class HomePopularSection extends StatelessWidget {
                                                  ),
                                                ),
                                                TextSpan(
-                                                   text: '/hr',
+                                                   text: '/day',
                                                    style: GoogleFonts.openSans(
                                                      color: AppColors.primaryColor,
                                                      fontSize: 10,

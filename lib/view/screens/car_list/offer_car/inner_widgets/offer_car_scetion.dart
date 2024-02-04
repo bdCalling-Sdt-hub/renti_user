@@ -99,7 +99,7 @@ class OfferCarSection extends StatelessWidget {
                                                 text:
                                                     "\$${controller.offerCarList[index].hourlyRate ?? "---"}"),
                                             const CustomText(
-                                                text: "/hr",
+                                                text: "/day",
                                                 color: AppColors.primaryColor)
                                           ],
                                         ),

@@ -99,7 +99,7 @@ class _CancelRequestTopSectionState extends State<CancelRequestTopSection> {
                         ],
                       ),
                       CustomText(
-                        text: '\$${controller.rentUser[widget.index].carId?.hourlyRate ?? "---"} /hour',
+                        text: '\$${controller.rentUser[widget.index].carId?.hourlyRate ?? "---"} /day',
                         fontSize: 14,
                         color: AppColors.whiteDarkActive,
                         left: 8,

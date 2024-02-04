@@ -43,10 +43,7 @@ class SignInController extends GetxController{
     if(responseModel.statusCode == 200){
       SignInResponseModel signInResponseModel = SignInResponseModel.fromJson(jsonDecode(responseModel.responseJson));
       print("data: ${signInResponseModel.user.toString()}");
-      AppUtils.successToastMessage("Sign In Successfully".tr);
-      //socketService.emit("join-room", {"uid": "123"});
       signInRepo.apiService.sharedPreferences.setString("room_id", "123");
-
       await gotoNextStep(signInResponseModel);
     }
     else{
@@ -59,39 +56,31 @@ class SignInController extends GetxController{
   gotoNextStep(SignInResponseModel signInResponseModel) async{
 
     print("email verified: ${signInResponseModel.user?.emailVerified}");
-
-
-
     if(remember){
       await signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, true);
     }
     else{
       await signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, false);
     }
-    // if(signInResponseModel.user?.emailVerified == false){
-    // Get.toNamed(AppRoute.otpScreen);
-    // }
-    // else{
-    //   return ;
-    // }
-
-
-
-    // var token = await signInRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.accessTokenKey);
     if(signInResponseModel.user == null){
       Get.toNamed(AppRoute.signInScreen);
     }
     else if(signInResponseModel.user?.emailVerified == false){
       Get.toNamed(AppRoute.otpScreen,arguments: [emailController.text,true]);
     }
-    else{
+    else if(signInResponseModel.user?.approved == false){
+      AppUtils.successToastMessage("Please wait for admin approval");
+    }
+    else if(signInResponseModel.user?.isBanned == true){
+      AppUtils.successToastMessage("Banned by admin");
+    }
+    else if (signInResponseModel.user?.emailVerified == true && signInResponseModel.user?.approved == true && signInResponseModel.user?.isBanned !="true"){
       signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, true);
-
       saveInfo(signInResponseModel: signInResponseModel);
       Get.offAllNamed(AppRoute.homeScreen);
+      AppUtils.successToastMessage("Sign In Successfully".tr);
       clearData();
     }
-
     if(remember){
       changeRememberMe();
     }

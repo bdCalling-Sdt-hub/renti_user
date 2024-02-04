@@ -94,7 +94,7 @@ class LuxuryCarDetails extends StatelessWidget {
                                       "${"\$"}${controller.luxuryCarList[index].hourlyRate}",
                                 ),
                                 const CustomText(
-                                  text: "/hr",
+                                  text: "/day",
                                 )
                               ],
                             ),
