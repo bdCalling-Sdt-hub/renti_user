@@ -94,7 +94,10 @@ class ApiService extends GetxService{
         return ApiResponseModel(402, 'Forgot password', response.body);
 
       }
+      else if (response.statusCode == 410) {
+        return ApiResponseModel(410, 'OTP verify failed', response.body);
 
+      }
       else {
         return ApiResponseModel(500, "Internal Server Error".tr, response.body);
       }

@@ -10,7 +10,7 @@ class ApiUrlContainer {
   static const String updateProfile = "/user/update/";
   static const String signUpEndPoint = "/user/usersignup";
   static const String forgetPasswordEndPoint = "/user/forget-password";
-  static const String verifyEmailEndPoint = "/user/verify";
+  static const String verifyEmailEndPoint = "/user/verify-code";
   static const String resetPasswordEndPoint = "/user/update-password";
   static const String logoutEndPoint = "/user/logout";
   static const String changePasswordEndPoint = "/user/change-password";

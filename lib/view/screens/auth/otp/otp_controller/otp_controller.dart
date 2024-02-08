@@ -23,6 +23,9 @@ class OtpController extends GetxController {
 
   TextEditingController otpController = TextEditingController();
 
+  removeOTP(){
+    otpController.clear();
+  }
   Future<void> verifyOtpResponse(String email, bool fromForgetScreen) async {
     isSubmit = true;
     update();
@@ -33,8 +36,12 @@ class OtpController extends GetxController {
       otpModel = OtpModel.fromJson(jsonDecode(responseModel.responseJson));
 
       fromForgetScreen ? Get.offAndToNamed(AppRoute.newPassword) : Get.offAndToNamed(AppRoute.signInScreen);
-    } else {}
 
+    } else if (responseModel.statusCode == 410) {
+       AppUtils.successToastMessage("OTP Verify Failed");
+       removeOTP();
+
+    }
     isSubmit = false;
     update();
   }
@@ -47,10 +54,10 @@ class OtpController extends GetxController {
       print("status code: ${responseModel.statusCode}");
     }
     if(responseModel.statusCode == 201){
-
       ForgetPasswordModel forgetPassModel = ForgetPasswordModel.fromJson(jsonDecode(responseModel.responseJson));
       AppUtils.successToastMessage("Successful".tr);
     }
+
     else{
       ForgetPasswordModel forgetPassModel = ForgetPasswordModel.fromJson(jsonDecode(responseModel.responseJson));
       AppUtils.successToastMessage(forgetPassModel.message.toString());
