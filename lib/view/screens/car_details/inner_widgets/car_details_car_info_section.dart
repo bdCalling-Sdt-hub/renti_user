@@ -98,7 +98,7 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
               ),
             ],
           ),
-           Row(
+           /*Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
@@ -120,7 +120,7 @@ class _CarDetailsCarInfoSectionState extends State<CarDetailsCarInfoSection> {
                 ),
               ),
             ],
-          ),
+          ),*/
         ],
       );
     }

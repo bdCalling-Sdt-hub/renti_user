@@ -13,6 +13,8 @@ import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/global/api_url_container.dart';
+
 class MessageScreen extends StatefulWidget {
   const MessageScreen({super.key});
 
@@ -99,7 +101,7 @@ class _MessageScreenState extends State<MessageScreen> {
                             Get.toNamed(AppRoute.inboxScreen, arguments: [
                               userUid,
                               host.fullName,
-                              host.image,
+                             "${ApiUrlContainer.imageUrl}${host.image}",
                               host.id,
                             ]);
                           },
@@ -157,9 +159,8 @@ class _MessageScreenState extends State<MessageScreen> {
                                         image: DecorationImage(
                                             fit: BoxFit.cover,
                                             image: CachedNetworkImageProvider(
-                                                participants[index]
-                                                    .image
-                                                    .toString()))),
+                                               "${ApiUrlContainer.imageUrl}${participants[index].image.toString()}",
+                                            ))),
                                   ),
                                   const SizedBox(width: 8),
                                   Expanded(

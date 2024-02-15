@@ -63,7 +63,7 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
               )
             ],
           ),
-          Row(
+          /*Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
                CustomText(
@@ -100,7 +100,7 @@ class _CarDetailsHostInfoSectionState extends State<CarDetailsHostInfoSection> {
                 ),
               ),
             ],
-          ),
+          ),*/
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

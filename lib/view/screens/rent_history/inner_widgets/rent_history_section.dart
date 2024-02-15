@@ -10,6 +10,8 @@ import 'package:renti_user/view/screens/rent_history/rent_history_model/rent_his
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
+import '../../../../core/global/api_url_container.dart';
+
 class RentHistorySection extends StatelessWidget {
   const RentHistorySection({super.key});
   @override
@@ -210,10 +212,7 @@ class RentHistorySection extends StatelessWidget {
                                                 image: DecorationImage(
                                                     fit: BoxFit.fill,
                                                     image: NetworkImage(
-                                                        controller
-                                                                .rentUser[index]
-                                                                .carId
-                                                                ?.image?[0] ??
+                                                        "${ApiUrlContainer.imageUrl}${controller.rentUser[index].carId?.image?[0]}" ??
                                                             '')),
                                                 borderRadius:
                                                     const BorderRadius.only(

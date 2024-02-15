@@ -9,6 +9,8 @@ import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
+import '../../../../../core/global/api_url_container.dart';
+
 class OfferCarSection extends StatelessWidget {
   const OfferCarSection({super.key});
 
@@ -48,30 +50,32 @@ class OfferCarSection extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Row(
-                                      children: [
-                                        CustomText(
-                                          text: controller
-                                              .offerCarList[index].carModelName
-                                              .toString(),
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.darkBlueColor,
-                                        ),
-                                        // const SizedBox(
-                                        //   width: 8,
-                                        // ),
-                                        // const CustomImage(imageSrc: AppIcons.starIcon),
-                                        const SizedBox(
-                                          width: 8,
-                                        ),
-                                        const CustomText(
-                                          text: "",
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w400,
-                                          color: AppColors.blackNormal,
-                                        )
-                                      ],
+                                    FittedBox(
+                                      child: Row(
+                                        children: [
+                                          CustomText(
+                                            text: controller
+                                                .offerCarList[index].carModelName
+                                                .toString(),
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color: AppColors.darkBlueColor,
+                                          ),
+                                          // const SizedBox(
+                                          //   width: 8,
+                                          // ),
+                                          // const CustomImage(imageSrc: AppIcons.starIcon),
+                                          const SizedBox(
+                                            width: 8,
+                                          ),
+                                          const CustomText(
+                                            text: "",
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                            color: AppColors.blackNormal,
+                                          )
+                                        ],
+                                      ),
                                     ),
                                     const SizedBox(height: 10),
                                     Row(
@@ -128,9 +132,7 @@ class OfferCarSection extends StatelessWidget {
                                     height: 120,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      image: NetworkImage(controller
-                                          .offerCarList[index].image![0]
-                                          .toString()),
+                                      image: NetworkImage("${ApiUrlContainer.imageUrl}${controller.offerCarList[index].image![0].toString()}"),
                                       fit: BoxFit.fill),
                                 ),
                               )),

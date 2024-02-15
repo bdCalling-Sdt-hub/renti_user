@@ -8,6 +8,7 @@ import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_strings.dart';
+import '../../../../core/global/api_url_container.dart';
 
 class HostInfo extends StatelessWidget {
   
@@ -35,7 +36,7 @@ class HostInfo extends StatelessWidget {
                       arguments: [
                     controller.rentHistoryModel.userWiseRent![index].userId!.id,
                     controller.rentHistoryModel.userWiseRent![index].hostId!.fullName,
-                    controller.rentHistoryModel.userWiseRent![index].hostId!.image,
+                    "${ApiUrlContainer.imageUrl}${controller.rentHistoryModel.userWiseRent![index].hostId!.image}",
                     controller.rentHistoryModel.userWiseRent![index].hostId!.id
                   ]
                   ),
@@ -84,7 +85,7 @@ class HostInfo extends StatelessWidget {
                 )
               ],
             ),
-            Row(
+           /* Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                  CustomText(
@@ -121,7 +122,7 @@ class HostInfo extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
+            ),*/
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

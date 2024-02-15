@@ -12,6 +12,8 @@ import 'package:renti_user/view/screens/car_details/car_details_controller/car_d
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
+import '../../../../core/global/api_url_container.dart';
+
 class CarDetailsTopSection extends StatefulWidget {
   CarDetailsTopSection({super.key});
 
@@ -43,7 +45,8 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
         child: Column(
           children: [
             CarouselSlider.builder(
-              itemCount: controller.carDetailsModel.cars?.image?.length,
+              //"${ApiUrlContainer.imageUrl}${controller.rentUser[widget.index].carId?.image}"
+              itemCount: "${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image}".length,
               itemBuilder: (BuildContext context, int itemIndex,
                       int pageIndex) =>
                   Container(
@@ -55,9 +58,8 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: AppColors.whiteDArkHover,
-                          image: controller.carDetailsModel.cars?.image!=null? DecorationImage(
-                                  image: CachedNetworkImageProvider(controller
-                                          .carDetailsModel.cars?.image?[itemIndex]??""),
+                          image: "${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image}"!=null? DecorationImage(
+                                  image: CachedNetworkImageProvider("${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image?[itemIndex]}"??""),
                                   fit: BoxFit.fill)
                               : const DecorationImage(
                                   image: AssetImage(AppImages.carImage),

@@ -12,6 +12,8 @@ import 'package:renti_user/view/screens/search/search_model/search_model.dart';
 import 'package:renti_user/view/screens/search/search_repo/search_repo.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
+import '../../../../core/global/api_url_container.dart';
+
 class SearchesCarSection extends StatelessWidget {
   const SearchesCarSection({super.key});
 
@@ -105,7 +107,7 @@ class SearchesCarSection extends StatelessWidget {
                     height: 80,
                     decoration:   ShapeDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(controller.carList[index].image![0]),
+                        image: NetworkImage("${ApiUrlContainer.imageUrl}${controller.carList[index].image![0]}"),
                         // image: AssetImage(AppImages.carBg),
                         fit: BoxFit.cover,
                       ),

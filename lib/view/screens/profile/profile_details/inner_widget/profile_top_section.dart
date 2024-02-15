@@ -8,6 +8,8 @@ import 'package:renti_user/view/screens/profile/profile_details/profile_details_
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
+import '../../../../../core/global/api_url_container.dart';
+
 class ProfileTopSection extends StatelessWidget {
   const ProfileTopSection({super.key});
 
@@ -74,7 +76,7 @@ class ProfileTopSection extends StatelessWidget {
                                     fit: BoxFit.fill)
                                 : DecorationImage(
                                     image:
-                                        NetworkImage(controller.profileImage),
+                                        NetworkImage("${ApiUrlContainer.imageUrl}${controller.profileImage}"),
                                     fit: BoxFit.fill)),
                       ),
                       Flexible(

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/global/api_url_container.dart';
 import '../../../utils/app_colors.dart';
 import '../../widgets/image/custom_image.dart';
 import '../../widgets/text/custom_text.dart';
@@ -111,7 +112,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                             margin: const EdgeInsets.only(right: 16),
                             decoration:  BoxDecoration(
                               color: AppColors.whiteDarkHover,
-                              image: DecorationImage(image:NetworkImage(data.image!),fit: BoxFit.fill),
+                              image: DecorationImage(image:NetworkImage("${ApiUrlContainer.imageUrl}${data.image!}"),fit: BoxFit.fill),
                               shape: BoxShape.circle,
                             ),
 

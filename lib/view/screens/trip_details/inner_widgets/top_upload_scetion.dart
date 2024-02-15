@@ -7,6 +7,7 @@ import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 import '../../../../../utils/app_icons.dart';
+import '../../../../core/global/api_url_container.dart';
 
 class TopUploadSection extends StatelessWidget {
   
@@ -42,9 +43,9 @@ class TopUploadSection extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: AppColors.whiteDArkHover,
-                    image:  controller.rentUser[index].carId?.image != null ? DecorationImage(
+                    image:  "${ApiUrlContainer.imageUrl}${controller.rentUser[index].carId?.image}" != null ? DecorationImage(
                         image: NetworkImage(
-                          controller.rentUser[index].carId?.image![0] ?? ""
+                          "${ApiUrlContainer.imageUrl}${controller.rentUser[index].carId?.image![0]}" ?? ""
                         ),
                         fit: BoxFit.fill
                     ) : const DecorationImage(

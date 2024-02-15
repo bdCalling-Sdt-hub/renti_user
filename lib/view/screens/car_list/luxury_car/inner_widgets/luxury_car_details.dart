@@ -9,6 +9,8 @@ import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
+import '../../../../../core/global/api_url_container.dart';
+
 class LuxuryCarDetails extends StatelessWidget {
   const LuxuryCarDetails({
     super.key,
@@ -47,13 +49,16 @@ class LuxuryCarDetails extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            CustomText(
-                              text: controller
-                                      .luxuryCarList[index].carModelName ??
-                                  "",
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.darkBlueColor,
+                            Flexible(
+                              child: CustomText(
+                                text: controller
+                                        .luxuryCarList[index].carModelName ??
+                                    "",
+                                fontSize: 18,
+                                overflow: TextOverflow.ellipsis,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.darkBlueColor,
+                              ),
                             ),
                             const SizedBox(
                               width: 8,
@@ -71,34 +76,36 @@ class LuxuryCarDetails extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            const CustomImage(
-                                imageSrc: AppIcons.lucidFuel, size: 16),
-                            Row(
-                              children: [
-                                CustomText(
-                                  text: controller
-                                          .luxuryCarList[index].totalRun ??
-                                      "",
-                                  color: AppColors.whiteDarkActive,
-                                  left: 8,
-                                  textAlign: TextAlign.start,
-                                ),
-                                const CustomText(
-                                    text: "/L",
-                                    color: AppColors.whiteDarkActive),
-                                const SizedBox(width: 16),
-                                CustomText(
-                                  text:
-                                      "${"\$"}${controller.luxuryCarList[index].hourlyRate}",
-                                ),
-                                const CustomText(
-                                  text: "/day",
-                                )
-                              ],
-                            ),
-                          ],
+                        FittedBox(
+                          child: Row(
+                            children: [
+                              const CustomImage(
+                                  imageSrc: AppIcons.lucidFuel, size: 16),
+                              Row(
+                                children: [
+                                  CustomText(
+                                    text: controller
+                                            .luxuryCarList[index].totalRun ??
+                                        "",
+                                    color: AppColors.whiteDarkActive,
+                                    left: 8,
+                                    textAlign: TextAlign.start,
+                                  ),
+                                  const CustomText(
+                                      text: "/L",
+                                      color: AppColors.whiteDarkActive),
+                                  const SizedBox(width: 16),
+                                  CustomText(
+                                    text:
+                                        "${"\$"}${controller.luxuryCarList[index].hourlyRate}",
+                                  ),
+                                  const CustomText(
+                                    text: "/day",
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 8),
                         CustomElevatedButton(
@@ -125,10 +132,7 @@ class LuxuryCarDetails extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(bottomRight: Radius.circular(4),topRight: Radius.circular(4)),
                           image: DecorationImage(
-                              image: NetworkImage(controller
-                                      .luxuryCarList[index].image![0]
-                                      .toString() ??
-                                  ""),
+                              image: NetworkImage("${ApiUrlContainer.imageUrl}${controller.luxuryCarList[index].image![0].toString()}" ?? ""),
                               fit: BoxFit.fill)),
                     ),
                   ),

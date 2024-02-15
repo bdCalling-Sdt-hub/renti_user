@@ -9,6 +9,8 @@ import 'package:renti_user/view/screens/rent_history/rent_history_controller/ren
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
+import '../../../../core/global/api_url_container.dart';
+
 
 class CancelRequestHostInfo extends StatefulWidget {
   
@@ -44,7 +46,7 @@ class _CancelRequestHostInfoState extends State<CancelRequestHostInfo> {
                     Get.toNamed(AppRoute.inboxScreen, arguments: [
                         controller.rentHistoryModel.userWiseRent![widget.index].userId!.id,
                         controller.rentHistoryModel.userWiseRent![widget.index].hostId!.fullName,
-                      controller.rentHistoryModel.userWiseRent![widget.index].hostId!.image,
+                        "${ApiUrlContainer.imageUrl}${controller.rentHistoryModel.userWiseRent![widget.index].hostId!.image}",
                       controller.rentHistoryModel.userWiseRent![widget.index].hostId!.id
                         ]
 

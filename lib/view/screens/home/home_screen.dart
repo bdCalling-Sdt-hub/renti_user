@@ -24,6 +24,8 @@ import 'package:renti_user/view/widgets/error_widget/no_data_found_widget.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/global/api_url_container.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -162,14 +164,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: 40,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  image: controller.profileImage.isEmpty
+                                  image: "${ApiUrlContainer.imageUrl}${controller.profileImage}".isEmpty
                                       ? const DecorationImage(
                                           image: AssetImage(
                                               "assets/images/user.png"),
                                           fit: BoxFit.fill)
                                       : DecorationImage(
                                           image: CachedNetworkImageProvider(
-                                              controller.profileImage),
+                                              "${ApiUrlContainer.imageUrl}${controller.profileImage}"),
                                           fit: BoxFit.fill)))),
                 ],
               ),
