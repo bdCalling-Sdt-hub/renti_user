@@ -1,14 +1,12 @@
 class ApiUrlContainer {
   /// =========================>forLocal==========================>
-  static const String imageUrl =  "http://192.168.10.14:3001";
+  //static const String imageUrl =  "http://192.168.10.14:3001";
 
 
   /// =========================>ForLive ==========================>
-  // static const String imageUrl =  "http://192.168.10.14:3001";
+  static const String imageUrl =  "http://46.101.82.12:3000";
 
-
-
-  static const bool is_debug_mode =  true;
+  static const bool is_debug_mode =  false;
   static const String baseAddress =
       is_debug_mode ? "http://192.168.10.14" : "http://46.101.82.12";
   static const String apiBaseUrl =

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/core/global/api_url_container.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/api_service.dart';
@@ -72,11 +73,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           height: 60, width: 60,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              image: proController.profileImage.isEmpty ? const DecorationImage(
+                              image: "${ApiUrlContainer.imageUrl}${proController.profileImage}"==null || "${ApiUrlContainer.imageUrl}${proController.profileImage}".isEmpty? const DecorationImage(
                                   image: AssetImage("assets/images/user.png"),
                                   fit: BoxFit.fill
                               ) : DecorationImage(
-                                  image: CachedNetworkImageProvider(proController.profileImage),
+                                  image: CachedNetworkImageProvider("${ApiUrlContainer.imageUrl}${proController.profileImage}"),
                                   fit: BoxFit.fill
                               )
                           )

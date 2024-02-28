@@ -66,10 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
+
+    return PopScope(
+
+     canPop: false,
       child: SafeArea(
         top: false,
         child: GetBuilder<HomeController>(
@@ -152,6 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Get.to(const SignInScreen());
                         } else {
                           Get.toNamed(AppRoute.profileDetails);
+                          print("---------------------${ApiUrlContainer.imageUrl}${controller.profileImage}");
                         }
                       },
                       child: controller.isLoading
@@ -166,13 +167,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                   shape: BoxShape.circle,
                                   image: "${ApiUrlContainer.imageUrl}${controller.profileImage}".isEmpty
                                       ? const DecorationImage(
-                                          image: AssetImage(
-                                              "assets/images/user.png"),
+                                          image: AssetImage("assets/images/user.png"),
                                           fit: BoxFit.fill)
                                       : DecorationImage(
-                                          image: CachedNetworkImageProvider(
-                                              "${ApiUrlContainer.imageUrl}${controller.profileImage}"),
-                                          fit: BoxFit.fill)))),
+                                          image: CachedNetworkImageProvider("${ApiUrlContainer.imageUrl}${controller.profileImage}"),
+                                          fit: BoxFit.fill)
+                              )
+                      )
+                  ),
                 ],
               ),
             ),

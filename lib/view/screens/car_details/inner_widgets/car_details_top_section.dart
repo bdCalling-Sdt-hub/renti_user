@@ -9,13 +9,14 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/view/screens/car_details/car_details_controller/car_details_controller.dart';
+import 'package:renti_user/view/screens/trip_details/make_payment/card_details/card_details_controller/card_details_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
 import '../../../../core/global/api_url_container.dart';
 
 class CarDetailsTopSection extends StatefulWidget {
-  CarDetailsTopSection({super.key});
+  const CarDetailsTopSection({super.key});
 
   @override
   State<CarDetailsTopSection> createState() => _CarDetailsTopSectionState();
@@ -23,6 +24,7 @@ class CarDetailsTopSection extends StatefulWidget {
 
 class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
   int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CarDetailsController>(
@@ -58,7 +60,7 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: AppColors.whiteDArkHover,
-                          image: "${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image}"!=null? DecorationImage(
+                          image: "${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image}".isNotEmpty? DecorationImage(
                                   image: CachedNetworkImageProvider("${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image?[itemIndex]}"??""),
                                   fit: BoxFit.fill)
                               : const DecorationImage(
@@ -73,7 +75,7 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                 enableInfiniteScroll: true,
                 viewportFraction: 1,
                 height: 200.0,
-                autoPlay: true,
+                autoPlay: false,
               ),
             ),
             Padding(

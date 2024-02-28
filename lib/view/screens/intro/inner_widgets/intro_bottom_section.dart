@@ -50,7 +50,6 @@ class _IntroBottomSectionState extends State<IntroBottomSection> {
           onPressed: () async {
             //     final SharedPreferences prefes  = await SharedPreferences.getInstance();
             //     String token1  =  prefes.getString(SharedPreferenceHelper.accessTokenKey) ?? "";
-
             //     if(token1.isNotEmpty){
             //       Get.toNamed(AppRoute.homeScreen);
             //       print("=====================accessTokenKey$token1");
