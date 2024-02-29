@@ -9,7 +9,6 @@ import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
 import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/view/screens/car_details/car_details_controller/car_details_controller.dart';
-import 'package:renti_user/view/screens/trip_details/make_payment/card_details/card_details_controller/card_details_controller.dart';
 import 'package:renti_user/view/widgets/image/custom_image.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 
@@ -48,24 +47,27 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
           children: [
             CarouselSlider.builder(
               //"${ApiUrlContainer.imageUrl}${controller.rentUser[widget.index].carId?.image}"
-              itemCount: "${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image}".length,
+              itemCount: 3,
               itemBuilder: (BuildContext context, int itemIndex,
-                      int pageIndex) =>
-                  Container(
-                      margin: const EdgeInsets.only(right: 5, left: 5),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 44, horizontal: 44),
-                      height: 200,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: AppColors.whiteDArkHover,
-                          image: "${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image}".isNotEmpty? DecorationImage(
-                                  image: CachedNetworkImageProvider("${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image?[itemIndex]}"??""),
-                                  fit: BoxFit.fill)
-                              : const DecorationImage(
-                                  image: AssetImage(AppImages.carImage),
-                                  fit: BoxFit.fill))),
+                      int pageIndex) {
+                print("=========================${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image}".length);
+               return Container(
+                    margin: const EdgeInsets.only(right: 5, left: 5),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 44, horizontal: 44),
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: AppColors.whiteDArkHover,
+                        image: "${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image}".isNotEmpty? DecorationImage(
+                            image: CachedNetworkImageProvider("${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image?[0]}"??""),
+                            fit: BoxFit.fill)
+                            : const DecorationImage(
+                            image: AssetImage(AppImages.carImage),
+                            fit: BoxFit.fill)));
+              },
+
               options: CarouselOptions(
                 onPageChanged: (index, reason) {
                   setState(() {

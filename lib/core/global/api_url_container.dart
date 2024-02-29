@@ -2,7 +2,6 @@ class ApiUrlContainer {
   /// =========================>forLocal==========================>
   //static const String imageUrl =  "http://192.168.10.14:3001";
 
-
   /// =========================>ForLive ==========================>
   static const String imageUrl =  "http://46.101.82.12:3000";
 
