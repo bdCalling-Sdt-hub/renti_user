@@ -71,7 +71,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
                       physics: const BouncingScrollPhysics(),
                       child: Column(
                         children: [
-                           CarDetailsTopSection(),
+                           const CarDetailsTopSection(),
                           const SizedBox(height: 24,),
                           FromUntilSection(carId: carId),
                         ],

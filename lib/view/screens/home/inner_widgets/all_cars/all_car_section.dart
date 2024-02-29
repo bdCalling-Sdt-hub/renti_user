@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renti_user/core/global/api_url_container.dart';
 import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/utils/app_icons.dart';
@@ -82,7 +83,7 @@ class HomeLuxuryCarSection extends StatelessWidget {
                               height: 120,
                               decoration:  ShapeDecoration(
                                 image: DecorationImage(
-                                  image: NetworkImage(controller.luxuryCarList[index].image![0].toString()) ,
+                                  image: NetworkImage("${ApiUrlContainer.imageUrl}${controller.luxuryCarList[index].image![0].toString()}") ,
                                   // image: AssetImage(AppImages.carImage),
                                   fit: BoxFit.fill,
                                 ),

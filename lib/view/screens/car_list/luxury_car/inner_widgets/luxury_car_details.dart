@@ -109,11 +109,14 @@ class LuxuryCarDetails extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         CustomElevatedButton(
-                          onPressed: () => Get.toNamed(
-                              AppRoute.carDetails,
-                              arguments: controller
-                                  .luxuryCarList[index].id
-                                  .toString()),
+                          onPressed: () {
+                            print("================gvxcvcxv=================>${ApiUrlContainer.imageUrl}${controller.luxuryCarList[index].image![0].toString()}");
+                            Get.toNamed(
+                                AppRoute.carDetails,
+                                arguments: controller
+                                    .luxuryCarList[index].id
+                                    .toString());
+                          },
                           titleText: AppStrings.seeDetails.tr,
                           titleWeight: FontWeight.w400,
                           titleSize: 10,
@@ -130,9 +133,9 @@ class LuxuryCarDetails extends StatelessWidget {
                     child: Container(
                       height: 120,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(bottomRight: Radius.circular(4),topRight: Radius.circular(4)),
+                        borderRadius: const BorderRadius.only(bottomRight: Radius.circular(4),topRight: Radius.circular(4)),
                           image: DecorationImage(
-                              image: NetworkImage("${ApiUrlContainer.imageUrl}${controller.luxuryCarList[index].image![0].toString()}" ?? ""),
+                              image: NetworkImage("${controller.luxuryCarList[index].image![0].toString()}" ?? ""),
                               fit: BoxFit.fill)),
                     ),
                   ),

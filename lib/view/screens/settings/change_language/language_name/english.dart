@@ -8,7 +8,7 @@ Map<String, String> english = {
   "Enter your email": "Enter your email",
   "Password": "Password",
   "Enter your password": "Enter your password",
-  "Forget Password?": "Forget Password?",
+  "Forget Password?": "Forgot Password?",
   "Confirm Password": "Confirm Password",
   "Sign In": "Sign In",
   "Or": "Or",
@@ -105,7 +105,7 @@ Map<String, String> english = {
   "Contact": "Contact",
   "Email": "Email",
   "Address": "Address",
-  "Sent Rent Request": "Sent Rent Request",
+  "Sent Rent Request": "Send Rent Request",
 
   //profile
   "Profile": "Profile",
@@ -174,7 +174,7 @@ Map<String, String> english = {
   "Search": "Search",
   "Message": "Message",
   "Profile": "Profile",
-  "Password reset successfully": "Password reset successfully",
+  "Password reset successfully": "Password reset successful",
   "Error": "Error",
   "Change Password Successfully": "Change Password Successfully",
   "current password doesn't match": "current password doesn't match",
@@ -205,7 +205,7 @@ Map<String, String> english = {
   "Password doesn't match": "Password doesn't match",
   "Update": "Update",
   "Password reset successfully": "Password reset successfully",
-  "Send verify code at your email": "Send verify code at your email",
+  "Send verify code at your email": "Sent verification code to your email",
   "Error to send otp": "Error to send otp",
   "Successful": "Successful",
   "Current and new password could not be same":

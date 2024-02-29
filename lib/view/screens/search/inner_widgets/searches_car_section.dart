@@ -107,7 +107,7 @@ class SearchesCarSection extends StatelessWidget {
                     height: 80,
                     decoration:ShapeDecoration(
                       image: DecorationImage(
-                        image: NetworkImage("${ApiUrlContainer.imageUrl}${controller.carList[index].image![0]}"),
+                        image: NetworkImage("${ApiUrlContainer.imageUrl}${controller.carList[index].image?[0]}"),
                         // image: AssetImage(AppImages.carBg),
                         fit: BoxFit.cover,
                       ),
