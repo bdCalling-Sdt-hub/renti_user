@@ -135,7 +135,7 @@ class LuxuryCarDetails extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(bottomRight: Radius.circular(4),topRight: Radius.circular(4)),
                           image: DecorationImage(
-                              image: NetworkImage("${controller.luxuryCarList[index].image![0].toString()}" ?? ""),
+                              image: NetworkImage("${ApiUrlContainer.imageUrl}${controller.luxuryCarList[index].image![0].toString()}" ?? "Image Loading"),
                               fit: BoxFit.fill)),
                     ),
                   ),

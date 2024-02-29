@@ -1,6 +1,6 @@
 class ApiUrlContainer {
   /// =========================>forLocal==========================>
-  //static const String imageUrl =  "http://192.168.10.14:3001";
+ // static const String imageUrl =  "http://192.168.10.14:3001";
 
   /// =========================>ForLive ==========================>
   static const String imageUrl =  "http://46.101.82.12:3000";
@@ -12,10 +12,10 @@ class ApiUrlContainer {
       is_debug_mode ? "$baseAddress:3001/api" : "$baseAddress:3000/api";
   static const String socketGlobal =
       is_debug_mode ? "$baseAddress:9000" : "$baseAddress:9000";
-  static const String signInEndPoint = "/user/sign-in";
+  static const String signInEndPoint = "/user/user/sign-in";
   static const String updateProfile = "/user/update/";
   static const String signUpEndPoint = "/user/usersignup";
-  static const String forgetPasswordEndPoint = "/user/forget-password";
+  static const String forgetPasswordEndPoint = "/user/user/forget-password";
   static const String verifyEmailEndPoint = "/user/verify-code";
   static const String resetPasswordEndPoint = "/user/update-password";
   static const String logoutEndPoint = "/user/logout";
