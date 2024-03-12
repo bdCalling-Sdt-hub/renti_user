@@ -48,7 +48,7 @@ class _PopularCarScreenState extends State<PopularCarScreen> {
                   color: AppColors.blackNormal,
                 ),),
                  CustomText(
-                  text: "Offer Cars".tr,
+                  text: "All Cars".tr,
                   color: AppColors.blackNormal,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -63,31 +63,6 @@ class _PopularCarScreenState extends State<PopularCarScreen> {
                 child: CircularProgressIndicator()
             ) : Column(
               children: [
-               /* TextFormField(
-                  cursorColor: AppColors.blackNormal,
-                  showCursor: true,
-                  style: GoogleFonts.poppins(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.blackNormal),
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.search_outlined,size: 20,color: AppColors.whiteNormalActive),
-                    hintText: AppStrings.searchCar,
-                    hintStyle: const TextStyle(
-                        color: AppColors.whiteNormalActive,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14
-                    ),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8)
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: const BorderSide(color: AppColors.whiteNormalActive,width: 1)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: const BorderSide(color: AppColors.whiteNormalActive,width: 1),
-                    ),
-                  ),
-                ),*/
                 const SizedBox(height: 24),
                 Expanded(
                   child: SingleChildScrollView(

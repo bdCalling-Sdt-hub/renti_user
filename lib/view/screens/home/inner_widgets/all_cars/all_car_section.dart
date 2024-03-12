@@ -18,7 +18,6 @@ class HomeLuxuryCarSection extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return GetBuilder<HomeController>(
-
       builder: (controller) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

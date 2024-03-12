@@ -58,15 +58,13 @@ class OfferCarSection extends StatelessWidget {
                                                 .offerCarList[index].carModelName
                                                 .toString(),
                                             fontSize: 18,
+                                            maxLines: 2,
                                             fontWeight: FontWeight.w500,
                                             color: AppColors.darkBlueColor,
                                           ),
-                                          // const SizedBox(
-                                          //   width: 8,
-                                          // ),
-                                          // const CustomImage(imageSrc: AppIcons.starIcon),
+
                                           const SizedBox(
-                                            width: 8,
+
                                           ),
                                           const CustomText(
                                             text: "",
@@ -74,15 +72,15 @@ class OfferCarSection extends StatelessWidget {
                                             fontWeight: FontWeight.w400,
                                             color: AppColors.blackNormal,
                                           )
+                                          // const CustomImage(
+                                          //     imageSrc: AppIcons.lucidFuel,
+                                          //     size: 16),
                                         ],
                                       ),
                                     ),
                                     const SizedBox(height: 10),
                                     Row(
                                       children: [
-                                        const CustomImage(
-                                            imageSrc: AppIcons.lucidFuel,
-                                            size: 16),
                                         Row(
                                           children: [
                                             CustomText(
@@ -139,7 +137,7 @@ class OfferCarSection extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Positioned.fill(
+                      /*  Positioned.fill(
                           top: 0,
                           right: 0,
                           child: Align(
@@ -160,7 +158,7 @@ class OfferCarSection extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                 )),
                           ),
-                        ),
+                        ),*/
                       ])));
     });
   }

@@ -4,6 +4,7 @@ import 'package:renti_user/core/global/api_response_model.dart';
 import 'package:renti_user/view/screens/car_list/offer_car/offer_car_model/offer_car_model.dart';
 
 import 'package:renti_user/view/screens/car_list/offer_car/offer_car_repo/offer_car_repo.dart';
+import 'package:renti_user/view/screens/home/inner_widgets/all_cars/all_cars_model/all_cars_model.dart';
 
 class OfferCarController extends GetxController{
 
@@ -12,9 +13,9 @@ class OfferCarController extends GetxController{
 
   bool isLoading = false;
 
-  OfferCarModel offerCarModel = OfferCarModel();
+  AllCarsModel offerCarModel = AllCarsModel();
 
-  List<OfferCar> offerCarList = [];
+  List<Car> offerCarList = [];
 
   void initialState() async{
 
@@ -32,8 +33,8 @@ class OfferCarController extends GetxController{
     ApiResponseModel responseModel = await offerCarRepo.fetchOfferCar();
 
     if(responseModel.statusCode == 200){
-      offerCarModel = OfferCarModel.fromJson(jsonDecode(responseModel.responseJson));
-      List<OfferCar>? tempOfferCarList = offerCarModel.offerCars;
+      offerCarModel = AllCarsModel.fromJson(jsonDecode(responseModel.responseJson));
+      List<Car>? tempOfferCarList = offerCarModel.cars;
       if(tempOfferCarList != null && tempOfferCarList.isNotEmpty){
         offerCarList.addAll(tempOfferCarList);
       }
