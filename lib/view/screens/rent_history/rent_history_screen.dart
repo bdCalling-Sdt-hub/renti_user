@@ -94,7 +94,6 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
               await Future.delayed(const Duration(seconds: 4));
               controller.rentHistoryResult();
               controller.rentUser.clear();
-
               print("Refresh completed");
             },
             child: const SingleChildScrollView(

@@ -38,7 +38,7 @@ class RentHistoryController extends GetxController{
       List<UserWiseRent>? tempCarList = rentHistoryModel.userWiseRent;
       if(tempCarList != null && tempCarList.isNotEmpty){
         rentUser.addAll(tempCarList);
-        rentUser.refresh();
+       // rentUser.refresh();
         update();
       }
     }
