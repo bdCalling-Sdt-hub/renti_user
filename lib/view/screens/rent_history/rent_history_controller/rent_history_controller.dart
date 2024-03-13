@@ -70,7 +70,7 @@ class RentHistoryController extends GetxController{
 
   void selectImage() async{
     if(firstImg==null){
-      AppUtils.successToastMessage("Selecet Imadjdfohisgp ");
+      AppUtils.successToastMessage("Select Images");
     }
   }
 
@@ -94,8 +94,12 @@ class RentHistoryController extends GetxController{
       }
     }
   }
-
+  ///===================Start Tripp =======================////
+  ///
+  bool isSubmitStart = false;
   Future<void> addCarMultipleFilesAndParams(String id) async {
+    isSubmitStart = true;
+    update();
     String? token = rentHistoryRepo.apiService.sharedPreferences.getString(SharedPreferenceHelper.accessTokenKey);
     try {
       print("okay 1");
@@ -144,6 +148,8 @@ class RentHistoryController extends GetxController{
       print("okay 3");
       print(e.toString());
     }
+    isSubmitStart = false;
+    update();
   }
 
   //END TRIP Controller
@@ -178,8 +184,10 @@ class RentHistoryController extends GetxController{
       }
     }
   }
-
+///===================EndTrip =======================////
   Future<void> addCarMultipleFilesAndParams1(String id) async {
+    isSubmitStart = true;
+    update();
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString(SharedPreferenceHelper.accessTokenKey);
 
@@ -222,15 +230,17 @@ class RentHistoryController extends GetxController{
       var response = await request.send();
 
       if (response.statusCode == 200) {
+
         Get.offAllNamed(AppRoute.homeScreen);
-      } else {
-        print(response.statusCode);
-        print('Response body: ${await response.stream.bytesToString()}');
       }
+
+
     } catch (e) {
       print("okay 3");
       print(e.toString());
     }
+    isSubmitStart = true;
+    update();
   }
 
 }

@@ -25,6 +25,9 @@ class CardDetailsController extends GetxController {
 
   CardRepo cardRepo;
   String cardNumber = "";
+  String cvv = "";
+  String exDate = "";
+  String exMonth = "";
 
   CardDetailsController({required this.cardRepo});
 
@@ -36,14 +39,19 @@ class CardDetailsController extends GetxController {
 
   CardDetailsModel cardDetailsModel = CardDetailsModel();
   Future<void> cardGetResponse() async {
-
     ApiResponseModel responseModel = await cardRepo.cardResponse();
-    print("status code: ${responseModel.statusCode}");
+     print("status code: ${responseModel.statusCode}");
 
     if (responseModel.statusCode == 200) {
-
       cardDetailsModel = CardDetailsModel.fromJson(jsonDecode(responseModel.responseJson));
       cardNumber = cardDetailsModel.cardInfo?.creaditCardNumber ?? "";
+      cvv = cardDetailsModel.cardInfo?.cvv ?? "";
+      exDate = cardDetailsModel.cardInfo?.expireDate?.substring(0, 2) ?? "";
+      exMonth = cardDetailsModel.cardInfo?.expireDate?.substring(3, 5) ?? "";
+      print("=======================>>Card Number $cardNumber");
+      print("=======================>>Cvv Number $cvv");
+      print("=======================>>ExDate  $exDate");
+      print("=======================>>ExMonth Number $exMonth");
       update();
 
     } else {
@@ -58,7 +66,7 @@ class CardDetailsController extends GetxController {
       required int amount,
       required String email,
       required int index}) async {
-    print(cardDetailsModel.cardInfo?.expireDate?.substring(0, 2) ?? "");
+    print(cardDetailsModel.cardInfo?.expireDate?.substring(0, 1) ?? "");
     print(cardDetailsModel.cardInfo?.expireDate?.substring(3, 5) ?? "");
     isLoading = true;
     update();
@@ -70,10 +78,10 @@ class CardDetailsController extends GetxController {
       var request = http.Request('POST', Uri.parse(ApiUrlContainer.stripeUrl));
 
       request.bodyFields = {
-        'card[exp_month]': cardDetailsModel.cardInfo?.expireDate?.substring(0, 2) ?? "",
-        'card[exp_year]': cardDetailsModel.cardInfo?.expireDate?.substring(3, 5) ?? "",
-       'card[number]': cardDetailsModel.cardInfo?.creaditCardNumber.toString() ?? "",
-        'card[cvc]': cardDetailsModel.cardInfo?.cvv.toString() ?? "",
+        'card[exp_month]': exDate,
+        'card[exp_year]': exMonth,
+         'card[number]': cardNumber,
+        'card[cvc]': cvv,
       };
       request.headers.addAll(headers);
 
@@ -82,7 +90,7 @@ class CardDetailsController extends GetxController {
       });
 
       request.headers.forEach((key, value) {
-        print('$key: $value');
+       print('$key: $value');
       });
 
       print("================headers : $headers");
@@ -98,7 +106,7 @@ class CardDetailsController extends GetxController {
         isLoading = false;
         update();
       } else {
-        print(response.reasonPhrase);
+       print(response.reasonPhrase);
       }
     } on Exception catch (e) {
       AppUtils.successToastMessage(e.toString());
@@ -108,13 +116,7 @@ class CardDetailsController extends GetxController {
     update();
   }
 
-  payment(
-      {required String rentId,
-      required String productName,
-      required int amount,
-      required String email,
-      required String token,
-      required int index}) async {
+  payment({required String rentId, required String productName, required int amount, required String email, required String token, required int index}) async {
     try {
       Map<String, dynamic> body = {
         "product": {"name": productName, "price": amount},

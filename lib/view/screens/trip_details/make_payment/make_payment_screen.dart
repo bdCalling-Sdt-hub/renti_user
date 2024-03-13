@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/view/screens/trip_details/make_payment/Controller/payment_controller.dart';
 import 'package:renti_user/view/screens/trip_details/make_payment/card_details/card_details_controller/card_details_controller.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
@@ -108,7 +109,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                                           MediaQuery.of(context).size.width /
                                               3.5,
                                     ),
-                                    controller.isLoading ? const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,)) :CustomElevatedButton(
+                                    controller.isLoading ? const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,)) : CustomElevatedButton(
                                             onPressed: () {
                                               controller.tokenizeCard(
                                                   rentId: widget.rentId,
@@ -126,8 +127,8 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                                                       .carId!
                                                       .carModelName!,
                                                   index: widget.index);
-
                                                Get.back();
+                                               AppUtils.successToastMessage("Payment Processing");
                                             },
                                             titleText: "Yes",
                                             buttonHeight: 36,
@@ -144,15 +145,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                           );
                         });
 
-                    /* controller.tokenizeCard(
-                          rentId: widget.rentId,
-                          amount: int.parse(_rentController
-                              .rentUser[widget.index].totalAmount!),
-                          email: _rentController
-                              .rentUser[widget.index].userId!.email!,
-                          productName: _rentController
-                              .rentUser[widget.index].carId!.carModelName!,
-                          index: widget.index);*/
+
                   },
                   child: Container(
                     padding: const EdgeInsets.only(top: 16, left: 26, bottom: 8),
@@ -179,8 +172,8 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),
-                            CardDetailsWidget(
-                                cardDetails: controller.cardDetailsModel),
+                            CardDetailsWidget(cardDetails: controller.cardDetailsModel,),
+                            //CardDetailsWidget(cardDetails: controller.cvv.toString()??""),
                           ],
                         ),
                         const Icon(
@@ -385,13 +378,13 @@ class CardDetailsWidget extends StatelessWidget {
     this.bottom = 8,
     this.textAlign = TextAlign.start,
     this.fontSize = 16,
-    this.fontWeight = FontWeight.w600,
+    this.fontWeight = FontWeight.w600
   });
 
   @override
   Widget build(BuildContext context) {
-    String maskedCardNumber =
-        getMaskedCardNumber(cardDetails.cardInfo?.creaditCardNumber ?? "");
+    String maskedCardNumber = getMaskedCardNumber(cardDetails.cardInfo?.creaditCardNumber ?? "");
+  //  String cvv = getMaskedCardNumber(cardDetails.cardInfo?.cvv ?? "");
 
     return CustomText(
       bottom: bottom,

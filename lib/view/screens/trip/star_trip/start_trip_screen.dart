@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/route/app_route.dart';
@@ -8,6 +9,8 @@ import 'package:renti_user/utils/app_utils.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 import 'package:renti_user/view/widgets/appbar/custom_app_bar.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_button.dart';
+import 'package:renti_user/view/widgets/buttons/custom_elevated_loading_button.dart';
 import 'package:renti_user/view/widgets/buttons/custom_nav_button.dart';
 import 'package:renti_user/view/widgets/text/custom_text.dart';
 import 'inner_widgets/bottom_scetions.dart';
@@ -83,17 +86,18 @@ class _StartTripScreenState extends State<StartTripScreen> {
           });
         },
       ),
-      bottomNavigationBar:
-          GetBuilder<RentHistoryController>(builder: (controller) {
-        return BottomNavButton(
+      bottomNavigationBar: GetBuilder<RentHistoryController>(builder: (controller) {
+        return controller.isSubmitStart?SizedBox(height:56,child: CustomElevatedLoadingButton()) : BottomNavButton(
             onTap: () {
               if (controller.firstImg == null ||
                   controller.secondImg == null ||
                   controller.thirdImg == null) {
-                AppUtils.successToastMessage("please select 3 images".tr);
+
+              AppUtils.successToastMessage("please select 3 images".tr);
+
               } else {
-                controller.addCarMultipleFilesAndParams(
-                    controller.rentUser[index ?? 0].id ?? "");
+                controller.addCarMultipleFilesAndParams(controller.rentUser[index ?? 0].id ?? "");
+                print("hfdsakdfh sldfkj h");
               }
             },
             buttonName: AppStrings.startTrip.tr,

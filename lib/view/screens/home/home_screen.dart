@@ -6,6 +6,7 @@ import 'package:renti_user/core/route/app_route.dart';
 import 'package:renti_user/service/api_service.dart';
 import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/utils/app_colors.dart';
+import 'package:renti_user/utils/app_images.dart';
 import 'package:renti_user/utils/app_strings.dart';
 import 'package:renti_user/utils/device_utils.dart';
 import 'package:renti_user/view/screens/auth/sign_in/sign_in_screen.dart';
@@ -39,10 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     DeviceUtils.screenUtils();
-
-    // Get.put(ProfileDetailsRepo(apiService: Get.find()));
-    // final profile =   Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
-
     Get.put(ApiService(sharedPreferences: Get.find()));
     Get.put(HomeRepo(apiService: Get.find()));
     final controller = Get.put(HomeController(homeRepo: Get.find()));
@@ -66,176 +63,167 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return SafeArea(
+      top: false,
+      child: GetBuilder<HomeController>(
+        builder: (controller){
+          return RefreshIndicator (
+            backgroundColor: Colors.white,
+            color: AppColors.primaryColor,
+            onRefresh: () async {
+              print("Refresh triggered");
+             await Future.delayed(const Duration(seconds: 4));
+               controller.loadLuxuryCarData();
+               // controller.loadAllCarData();
+               //  controller.loadUserData();
+                print("======================data${controller.allCarList.length}");
 
-    return PopScope(
-
-     canPop: false,
-      child: SafeArea(
-        top: false,
-        child: GetBuilder<HomeController>(
-          builder: (controller){
-            return RefreshIndicator (
-              backgroundColor: Colors.white,
-              color: AppColors.primaryColor,
-              onRefresh: () async {
-                print("Refresh triggered");
-               await Future.delayed(const Duration(seconds: 4));
-                 controller.loadLuxuryCarData();
-                 controller.loadAllCarData();
-                  controller.loadUserData();
-
-              print("======================data${controller.allCarList.length}");
-                // controller.loadUserData();
-                //
-                print("Refresh completed");
-              },
-         child: Scaffold(
-              backgroundColor: AppColors.whiteLight,
-              key: scaffoldKey,
-              drawer: const CustomDrawer(),
-              appBar: CustomAppBar(
-                // top: 20,
-                appBarContent: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        scaffoldKey.currentState?.openDrawer();
+                 print("Refresh completed");
+            },
+       child: Scaffold(
+            backgroundColor: AppColors.whiteLight,
+            key: scaffoldKey,
+            drawer: const CustomDrawer(),
+            appBar: CustomAppBar(
+              // top: 20,
+              appBarContent: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      scaffoldKey.currentState?.openDrawer();
+                    },
+                    child: const Icon(Icons.menu,
+                        color: AppColors.primaryColor, size: 40),
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () async {
+                        Get.toNamed(AppRoute.searchScreen);
                       },
-                      child: const Icon(Icons.menu,
-                          color: AppColors.primaryColor, size: 40),
-                    ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () async {
-                          Get.toNamed(AppRoute.searchScreen);
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 16),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 8),
-                          decoration: BoxDecoration(
-                            color: AppColors.whiteLight,
-                            border:
-                            Border.all(color: AppColors.whiteNormalActive),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.search,
-                                  size: 20, color: AppColors.whiteNormalActive),
-                              CustomText(
-                                  text: AppStrings.searchCar.tr,
-                                  color: AppColors.whiteNormalActive,
-                                  left: 8),
-                            ],
-                          ),
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: AppColors.whiteLight,
+                          border:
+                          Border.all(color: AppColors.whiteNormalActive),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Icon(Icons.search,
+                                size: 20, color: AppColors.whiteNormalActive),
+                            CustomText(
+                                text: AppStrings.searchCar.tr,
+                                color: AppColors.whiteNormalActive,
+                                left: 8),
+                          ],
                         ),
                       ),
                     ),
-                    IconButton(
-                        onPressed: () async {
-                          final SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                          String token = prefs.getString(
-                              SharedPreferenceHelper.accessTokenKey) ??
-                              "";
-                          if (token.isEmpty) {
-                            Get.to(const SignInScreen());
-                          } else {
-                            Get.to(() => const NotificationScreen());
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.notifications_none_outlined,
-                          color: AppColors.darkBlueColor,
-                          size: 28,
-                        )),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    GestureDetector(
-                        onTap: () async {
-                          final SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                          String token = prefs.getString(
-                              SharedPreferenceHelper.accessTokenKey) ??
-                              "";
-                          if (token.isEmpty) {
-                            Get.to(const SignInScreen());
-                          } else {
-                            Get.toNamed(AppRoute.profileDetails);
-                            print("---------------------${ApiUrlContainer.imageUrl}${controller.profileImage}");
-                          }
-                        },
-                        child: controller.isLoading
-                            ? const SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator())
-                            : Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: "${ApiUrlContainer.imageUrl}${controller.profileImage}".isEmpty
-                                    ? const DecorationImage(
-                                    image: AssetImage("assets/images/user.png"),
-                                    fit: BoxFit.fill)
-                                    : DecorationImage(
-                                    image: CachedNetworkImageProvider("${ApiUrlContainer.imageUrl}${controller.profileImage}"),
-                                    fit: BoxFit.fill)
-                            )
-                        )
-                    ),
-                  ],
-                ),
+                  ),
+                  IconButton(
+                      onPressed: () async {
+                        final SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                        String token = prefs.getString(
+                            SharedPreferenceHelper.accessTokenKey) ??
+                            "";
+                        if (token.isEmpty) {
+                          Get.to(const SignInScreen());
+                        } else {
+                          Get.to(() => const NotificationScreen());
+                        }
+                      },
+                      icon: const Icon(
+                        Icons.notifications_none_outlined,
+                        color: AppColors.darkBlueColor,
+                        size: 28,
+                      )),
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  GestureDetector(
+                      onTap: () async {
+                        final SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                        String token = prefs.getString(
+                            SharedPreferenceHelper.accessTokenKey) ??
+                            "";
+                        if (token.isEmpty) {
+                          Get.to(const SignInScreen());
+                        } else {
+                          Get.toNamed(AppRoute.profileDetails);
+                          print("---------------------${ApiUrlContainer.imageUrl}${controller.profileImage}");
+                        }
+                      },
+                      child:controller.isLoading?const SizedBox(
+                        height: 15,
+                          width: 15,
+                          child: CircularProgressIndicator(strokeWidth: 3,)) :Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: controller.profileImage.isEmpty
+                                  ? const DecorationImage(
+                                  image: AssetImage("assets/images/user.png"),
+                                  fit: BoxFit.fill)
+                                  : DecorationImage(
+                                  image: CachedNetworkImageProvider(controller.profileImage),
+                                  fit: BoxFit.fill)
+                          )
+                      )
+                  ),
+                ],
               ),
-              body: controller.isLoading
-                  ? const Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.darkBlueColor,
-                ),
-              )
-                  : controller.allCarList.isEmpty &&
-                  controller.luxuryCarList.isEmpty
-                  ? const NoDataFoundWidget()
-                  : SingleChildScrollView(
-                padding: const EdgeInsetsDirectional.symmetric(
-                    vertical: 24, horizontal: 20),
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const HomeTopSection(),
-                    controller.allCarList.isNotEmpty
-                        ? const Column(
-                      children: [
-                        SizedBox(height: 24),
-                        HomeLuxuryCarSection(),
-                      ],
-                    )
-                        : const SizedBox(),
-                    controller.luxuryCarList.isNotEmpty
-                        ? const Column(
-                      children: [
-                        SizedBox(height: 24),
-                        HomePopularSection(),
-                      ],
-                    )
-                        : const SizedBox()
-                  ],
-                ),
-              ),
-              bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0),
             ),
-          );
-          },
-        ),
+            body: controller.isLoading
+                ? const Center(
+              child: CircularProgressIndicator(
+                color: AppColors.darkBlueColor,
+              ),
+            )
+                : controller.allCarList.isEmpty &&
+                controller.luxuryCarList.isEmpty
+                ? const NoDataFoundWidget()
+                : SingleChildScrollView(
+              padding: const EdgeInsetsDirectional.symmetric(
+                  vertical: 24, horizontal: 20),
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const HomeTopSection(),
+                  controller.allCarList.isNotEmpty
+                      ? const Column(
+                    children: [
+                      SizedBox(height: 24),
+                      HomeLuxuryCarSection(),
+                    ],
+                  )
+                      : const SizedBox(),
+                  controller.luxuryCarList.isNotEmpty
+                      ? const Column(
+                    children: [
+                      SizedBox(height: 24),
+                      HomePopularSection(),
+                    ],
+                  )
+                      : const SizedBox()
+                ],
+              ),
+            ),
+            bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0),
+          ),
+        );
+        },
       ),
     );
   }

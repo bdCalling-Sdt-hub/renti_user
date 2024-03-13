@@ -39,18 +39,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
     Get.put(ProfileDetailsRepo(apiService: Get.find()));
     final profileController =  Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
-
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       profileController.initialState();
 
     });
-    // final controller = Get.put(HomeController(homeRepo: Get.find()));
-
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    // Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
     return Drawer(
       width: 230,
       backgroundColor: AppColors.whiteLight,
@@ -63,24 +59,24 @@ class _CustomDrawerState extends State<CustomDrawer> {
             //Drawer Top Section
             const SizedBox(height: 30),
             GetBuilder<ProfileDetailsController>(
-
                 builder: (proController) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       proController.isLoading?const SizedBox(
-                        child: CircularProgressIndicator(),) : Container(
-                          height: 60, width: 60,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: "${ApiUrlContainer.imageUrl}${proController.profileImage}"==null || "${ApiUrlContainer.imageUrl}${proController.profileImage}".isEmpty? const DecorationImage(
-                                  image: AssetImage("assets/images/user.png"),
-                                  fit: BoxFit.fill
-                              ) : DecorationImage(
-                                  image: CachedNetworkImageProvider("${ApiUrlContainer.imageUrl}${proController.profileImage}"),
-                                  fit: BoxFit.fill
-                              )
-                          )
+                        child: CircularProgressIndicator(color: AppColors.primaryColor),) : Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: proController.profileImage.isEmpty
+                                ? const DecorationImage(
+                                image: AssetImage("assets/images/user.png"),
+                                fit: BoxFit.fill)
+                                : DecorationImage(
+                                image: NetworkImage("${ApiUrlContainer.imageUrl}${proController.profileImage}"),
+                                fit: BoxFit.fill)
+                        ),
                       ),
                       CustomText(text:proController.username , fontSize: 16, fontWeight: FontWeight.w500,top: 8),
                       CustomText(text:"+52 ${proController.phoneNumber}", fontSize: 12, color: AppColors.whiteDarkHover,top: 8,bottom: 8),

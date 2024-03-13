@@ -204,7 +204,7 @@ class SignUpController extends GetxController {
         "dateOfBirth": dateOfBirthController.text,
         "password": passwordController.text,
         "ine": ineNumberController.text,
-        'creaditCardNumber': creditCardNumberController.text.replaceAll(' ', ''),
+        'creaditCardNumber': creditCardNumberController.text,
         'expireDate': expireDateController.text,
         'cvv': cvvController.text,
         "role": "user"
