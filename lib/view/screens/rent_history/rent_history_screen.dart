@@ -86,10 +86,22 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
                 ))
               ],
             ),
-          ) : const SingleChildScrollView(
-            padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-            physics: BouncingScrollPhysics(),
-            child: RentHistorySection(),
+          ) : RefreshIndicator(
+            backgroundColor: Colors.white,
+            color: AppColors.primaryColor,
+            onRefresh: () async {
+              print("Refresh triggered");
+              await Future.delayed(const Duration(seconds: 4));
+              controller.rentHistoryResult();
+              controller.rentUser.clear();
+
+              print("Refresh completed");
+            },
+            child: const SingleChildScrollView(
+              padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+              physics: BouncingScrollPhysics(),
+              child: RentHistorySection(),
+            ),
           );
         }
       )

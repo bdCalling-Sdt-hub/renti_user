@@ -6,17 +6,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 
 class NotificationHelper {
-  static Future<void> initLocalNotification(
-      FlutterLocalNotificationsPlugin fln) async {
+  static Future<void> initLocalNotification(FlutterLocalNotificationsPlugin fln) async {
     AndroidInitializationSettings initializationSettingsAndroid =
         const AndroidInitializationSettings("@mipmap/ic_launcher");
     var initializationSettingsIOS = const DarwinInitializationSettings();
-    var initializationSettings = InitializationSettings(
-        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-    fln
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.requestNotificationsPermission();
+    var initializationSettings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+    fln.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
 
     await fln.initialize(
       initializationSettings,
@@ -52,6 +47,8 @@ class NotificationHelper {
   }
 
 // <-------------------------- Show Text Notification  --------------------------->
+
+
   static Future<void> showTextNotification(
       String title,
       String body,
@@ -76,8 +73,8 @@ class NotificationHelper {
         payload:
             notificationBody != null ? jsonEncode(notificationBody) : null);
   }
-
 // <-------------------------- Show Big Text Notification  --------------------------->
+
   static Future<void> showBigTextNotification(
       String title,
       String body,
@@ -155,8 +152,6 @@ class NotificationHelper {
 // <-------------------------- On Click Notification Screen Route --------------------------->
 
   static void handleNotificationRedirection(Map<String, dynamic> data) {
-    // Use the data in the message.data to determine which page to redirect to.
-    // For example, suppose you send a 'page' key in your notificati  on data:
   }
 }
 
@@ -165,64 +160,6 @@ class NotificationHelper {
 
 
 
-// import 'package:flutter/widgets.dart';
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-//
-// class NotificationClass {
-//   //Bindings which needs to call from main.dart file
-//
-//   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-//       FlutterLocalNotificationsPlugin();
-//
-//   void notificationBindings() async {
-//     WidgetsFlutterBinding.ensureInitialized();
-//
-//      AndroidInitializationSettings initializationSettingsAndroid =
-//         AndroidInitializationSettings("@mipmap/ic_launcher");
-//
-//      InitializationSettings initializationSettings =
-//         InitializationSettings(
-//       android: initializationSettingsAndroid,
-//       iOS: null,
-//     );
-//
-//     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-//   }
-//
-//   //Show the Notification
-//
-//   Future<void> showNotification(String message) async {
-//      AndroidNotificationDetails androidPlatformChannelSpecifics =
-//         AndroidNotificationDetails(
-//       'Resid-Host', //String channelId,
-//
-//       'Host Notification', // String channelName,
-//       importance: Importance.max,
-//       priority: Priority.max,
-//     );
-//
-//      NotificationDetails platformChannelSpecifics =
-//         NotificationDetails(android: androidPlatformChannelSpecifics);
-//
-//     await flutterLocalNotificationsPlugin.show(
-//       0, // notification id
-//       'New Notification',
-//       message,
-//       platformChannelSpecifics,
-//     );
-//   }
-// }
-
-// Channel ID: This is a unique string identifier for the notification channel.
-//It's used to specify and differentiate the channel when creating and displaying notifications.
-// Each channel ID should be unique to your app.
-//You can choose a meaningful and descriptive name for the channel ID,
-//typically related to the purpose or type of notifications it represents.
-
-// Channel Name: This is a human-readable name for the notification channel.
-// It's typically a user-friendly and descriptive name that is displayed in the system's
-//notification settings, allowing users to understand the purpose of the channel.
-//The channel name helps users decide how to prioritize and manage notifications.
 
 
 

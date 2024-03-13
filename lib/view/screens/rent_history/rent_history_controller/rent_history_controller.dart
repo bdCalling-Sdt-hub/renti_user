@@ -31,7 +31,7 @@ class RentHistoryController extends GetxController{
     update();
   }
 
-  Future<void> rentHistoryResult() async{
+  rentHistoryResult() async{
     ApiResponseModel responseModel = await rentHistoryRepo.rentHistoryRepoResponse();
     if(responseModel.statusCode == 200){
       rentHistoryModel = RentHistoryModel.fromJson(jsonDecode(responseModel.responseJson));
