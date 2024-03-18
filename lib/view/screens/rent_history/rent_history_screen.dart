@@ -96,10 +96,31 @@ class _RentHistoryScreenState extends State<RentHistoryScreen> {
               controller.rentUser.clear();
               print("Refresh completed");
             },
-            child: const SingleChildScrollView(
+            child:  SingleChildScrollView(
               padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
               physics: BouncingScrollPhysics(),
-              child: RentHistorySection(),
+              child:controller.rentUser.isEmpty?Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CustomImage(
+                      imageSrc: "assets/icons/empty.svg",
+                      imageType: ImageType.svg,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      "No Data Found".tr,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xffCCCCCC),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400
+                      ),
+                    )
+                  ],
+                ),
+              ): RentHistorySection(),
             ),
           );
         }

@@ -47,7 +47,7 @@ Map<String, String> english = {
   "Select Photo": "Select Photo",
   "Upload your photo": "Upload your photo",
   "Verify Email": "Verify Email",
-  "Please enter your email address for recover your password.":
+  "Please enter your email address to recover your password.":
       "Please enter your email address for recover your password.",
   "Resend": "Resend",
   "Verify": "Verify",
@@ -196,7 +196,7 @@ Map<String, String> english = {
   "Sign In Successfully": "Sign In Successfully",
   "Logout Successfully": "Logout Successfully",
 
-  "Did not get OTP": "Did not get OTP",
+  "Did not get OTP": "Did not get OTP?",
   "New Password": "New Password",
   "Password": "Password",
   "Your password must have 6 characters.":

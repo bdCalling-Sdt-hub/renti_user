@@ -85,7 +85,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
                             title: Column(
                               children: [
                                 const CustomText(
-                                  text: "Are want to payment?",
+                                  text: "Do you want to make payment?",
                                   color: AppColors.blackNormal,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16,
