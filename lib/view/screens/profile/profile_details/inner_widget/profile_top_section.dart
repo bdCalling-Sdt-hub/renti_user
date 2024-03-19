@@ -20,12 +20,9 @@ class ProfileTopSection extends StatelessWidget {
       builder: (controller) {
         return GestureDetector(
           onTap: () async {
-            editProfileController.nameController.text =
-                controller.fullNameController.text;
-            editProfileController.numberController.text =
-                controller.phoneNumberController.text;
-            editProfileController.emailController.text =
-                controller.emailController.text;
+            editProfileController.nameController.text = controller.fullNameController.text;
+            editProfileController.numberController.text = controller.phoneNumberController.text;
+            editProfileController.emailController.text = controller.emailController.text;
             editProfileController.addressController.text =
                 controller.addressController.text;
             editProfileController.profileImage = controller.profileImage;
@@ -76,7 +73,7 @@ class ProfileTopSection extends StatelessWidget {
                                     fit: BoxFit.fill)
                                 : DecorationImage(
                                     image:
-                                        NetworkImage("${ApiUrlContainer.imageUrl}${controller.profileImage}"),
+                                        NetworkImage("${controller.profileImage}"),
                                     fit: BoxFit.fill)),
                       ),
                       Flexible(

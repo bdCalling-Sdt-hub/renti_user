@@ -100,6 +100,8 @@ class _InboxScreenState extends State<InboxScreen> {
           ),
 
         ),
+
+
         body: GetBuilder<SocketService>(
           builder: (socketService) {
             return socketService.messageList.isEmpty

@@ -74,8 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
               print("Refresh triggered");
              await Future.delayed(const Duration(seconds: 4));
                controller.loadLuxuryCarData();
-               // controller.loadAllCarData();
-               //  controller.loadUserData();
+
                 print("======================data${controller.allCarList.length}");
 
                  print("Refresh completed");

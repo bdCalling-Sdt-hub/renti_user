@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/global/api_response_model.dart';
+import 'package:renti_user/core/global/api_url_container.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_model/profile_details_model.dart';
 import 'package:renti_user/view/screens/profile/profile_details/profile_details_repo/profile_details_repo.dart';
@@ -44,7 +45,7 @@ class ProfileDetailsController extends GetxController{
       phoneNumber = profileDetailsModel.user?.phoneNumber ?? "";
       address = profileDetailsModel.user?.address ?? "";
       userId = profileDetailsModel.user?.id ?? "";
-      profileImage = profileDetailsModel.user?.image ?? "";
+      profileImage = "${ApiUrlContainer.imageUrl}${profileDetailsModel.user?.image ?? ""}";
       fullNameController.text = username;
       addressController.text = address;
       emailController.text = email;

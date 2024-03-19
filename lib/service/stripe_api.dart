@@ -18,8 +18,7 @@ class StripeApi {
           "payment_method_types[]": "card"
         },
         headers: {
-          'Authorization':
-          'Bearer sk_test_51NrcLcSJXOqjAG5dahsxt4pz7cPpq1x7sjvjlnOMi219k6DYo2dVsJk6XE2Pih1p8FfblB00mh7tqCGPLmmKpFsu00cbtRcbQ2',
+          'Authorization': 'Bearer sk_test_51NrcLcSJXOqjAG5dahsxt4pz7cPpq1x7sjvjlnOMi219k6DYo2dVsJk6XE2Pih1p8FfblB00mh7tqCGPLmmKpFsu00cbtRcbQ2',
           'Content-Type': 'application/x-www-form-urlencoded'
         },
       );

@@ -88,23 +88,23 @@ class SocketService extends GetxController {
       update();
     });
 
-    // socket.on('host-notification', (data) {
-    //   if (data == null) {
-    //     if (kDebugMode) {
-    //       print("No Data: $data");
-    //     }
-    //   } else {
-    //     NotificationHelper.showNotification(body: {}, fln:flutterLocalNotificationsPlugin);
-    //     // notificationClass
-    //     //     .showNotification(data['allNotification'][0]['message']);
-    //     if (kDebugMode) {
-    //       print("This is  Data: $data");
-    //     }
-    //     if (kDebugMode) {
-    //       print("This is Data msg : ${data['allNotification'][0]['message']}");
-    //     }
-    //   }
-    // });
+    socket.on('host-notification', (data) {
+      if (data == null) {
+        if (kDebugMode) {
+          print("No Data: $data");
+        }
+      } else {
+        NotificationHelper.showNotification(body: {}, fln:flutterLocalNotificationsPlugin);
+        // notificationClass
+        //     .showNotification(data['allNotification'][0]['message']);
+        if (kDebugMode) {
+          print("This is  Data: $data");
+        }
+        if (kDebugMode) {
+          print("This is Data msg : ${data['allNotification'][0]['message']}");
+        }
+      }
+    });
   }
 
   listenNotification() {

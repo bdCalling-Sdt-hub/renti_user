@@ -17,13 +17,13 @@ class NotificationHelper {
       initializationSettings,
       onDidReceiveNotificationResponse: (NotificationResponse? paylod) async {
         try {
-          Map<String, dynamic> _payloadData;
+          Map<String, dynamic> payloadData;
           if (paylod != null && paylod.payload!.isNotEmpty) {
-            _payloadData = jsonDecode(paylod.payload!);
+            payloadData = jsonDecode(paylod.payload!);
             debugPrint(
-                "======> Initialize Local Notification payload : $_payloadData");
+                "======> Initialize Local Notification payload : $payloadData");
 
-            handleNotificationRedirection(_payloadData);
+            handleNotificationRedirection(payloadData);
           }
         } catch (error) {}
         return;

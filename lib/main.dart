@@ -43,7 +43,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.noTransition,
       transitionDuration: const Duration(milliseconds: 200),
-
       initialRoute: AppRoute.introScreen,
       navigatorKey: Get.key,
       getPages: AppRoute.routes,
