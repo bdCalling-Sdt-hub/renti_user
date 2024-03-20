@@ -1,19 +1,17 @@
 class ApiUrlContainer {
   /// =========================>forLocal==========================>
 
-  // static const String imageUrl =  "http://192.168.10.14:3001";
+//  static const String apiBaseUrl = "http://192.168.10.14:3001/api/";
+//  static const String socketGlobal = "http://192.168.10.14:9000";
+//  static const String imageUrl = "http://192.168.10.14:3001";
 
 
   /// =========================>ForLive ==========================>
-  static const String imageUrl =  "http://46.101.82.12:3001";
 
-  static const bool is_debug_mode =  false;
-  static const String baseAddress =
-      is_debug_mode ? "http://192.168.10.14" : "http://46.101.82.12";
-  static const String apiBaseUrl =
-      is_debug_mode ? "$baseAddress:3001/api" : "$baseAddress:3001/api";
-  static const String socketGlobal =
-      is_debug_mode ? "$baseAddress:9000" : "$baseAddress:9000";
+  static const String apiBaseUrl = "renticarshare.com/api";
+  static const String socketGlobal = "http://46.101.82.12:9000";
+  static const String imageUrl = "renticarshare.com";
+
   static const String signInEndPoint = "/user/user/sign-in";
   static const String updateProfile = "/user/update/";
   static const String signUpEndPoint = "/user/usersignup";
