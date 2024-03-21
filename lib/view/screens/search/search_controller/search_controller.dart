@@ -14,12 +14,12 @@ class SearchScreenController extends GetxController{
   List<Car> carList = [];
 
   Future<void> searchResult({ String search = ""}) async{
-    carList.clear();
+
     isLoading = true;
     update();
+    carList.clear();
 
-
-    ApiResponseModel responseModel = await searchRepo.searchRepoResponse( search: search! );
+    ApiResponseModel responseModel = await searchRepo.searchRepoResponse( search: search );
 
     if(responseModel.statusCode == 200){
       searchModel = SearchModel.fromJson(jsonDecode(responseModel.responseJson));
@@ -28,7 +28,6 @@ class SearchScreenController extends GetxController{
         carList.addAll(temCarList);
       }
     }
-
     isLoading = false;
     update();
   }

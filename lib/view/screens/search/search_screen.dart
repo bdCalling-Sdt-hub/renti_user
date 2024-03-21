@@ -30,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
     Get.put(SearchRepo(apiService: Get.find()));
     final controller = Get.put(SearchScreenController(searchRepo: Get.find()));
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      controller.searchResult();
+       controller.searchResult();
     });
     super.initState();
   }
@@ -60,13 +60,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   onChanged: (value) {
                      controller.searchResult(search: value.toString());
                      },
-
                   prefixIconSrc: AppIcons.searchIcon,
                   isPrefixIcon: true,
                   suffixIcon: GestureDetector(
                     onTap: (){
                       controller.searchController.clear();
-                      controller.searchResult();
+                   // controller.searchResult();
                     },
                     child: SvgPicture.asset(
                       AppIcons.deleteIcon,
