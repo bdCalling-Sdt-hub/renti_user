@@ -158,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Get.to(const SignInScreen());
                         } else {
                           Get.toNamed(AppRoute.profileDetails);
-                          print("---------------------${ApiUrlContainer.imageUrl}${controller.profileImage}");
+                          print("---------------------${controller.profileImage}");
                         }
                       },
                       child:controller.isLoading?const SizedBox(

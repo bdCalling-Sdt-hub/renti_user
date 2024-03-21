@@ -40,7 +40,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     Get.put(ProfileDetailsRepo(apiService: Get.find()));
     final profileController =  Get.put(ProfileDetailsController(profileDetailsRepo: Get.find()));
 
-    print("===============Profile Image => ${ApiUrlContainer.imageUrl}${profileController.profileDetailsModel.user?.image}");
+    print("===============Profile Image => ${profileController.profileImage}");
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       profileController.initialState();
 
@@ -71,12 +71,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         width: 60,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            image: "${ApiUrlContainer.imageUrl}${proController.profileDetailsModel.user?.image}".isEmpty
+                            image: "${proController.profileImage}".isEmpty
                                 ? const DecorationImage(
                                 image: AssetImage("assets/images/user.png"),
                                 fit: BoxFit.fill)
                                 : DecorationImage(
-                                image: NetworkImage("${ApiUrlContainer.imageUrl}${proController.profileDetailsModel.user?.image}"),
+                                image: NetworkImage("${proController.profileImage}"),
                                 fit: BoxFit.fill)
                         ),
                       ),
