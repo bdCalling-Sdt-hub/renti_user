@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () async {
-                        Get.toNamed(AppRoute.searchScreen);
+                        Get.toNamed(AppRoute.searchScreen,);
                       },
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 16),
