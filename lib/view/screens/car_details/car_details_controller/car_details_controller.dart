@@ -51,6 +51,8 @@ class CarDetailsController extends GetxController{
   }
 
   // sent rent request
+
+
   TextEditingController startTripDateController = TextEditingController();
   TextEditingController endTripDateController = TextEditingController();
 

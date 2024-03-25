@@ -16,7 +16,9 @@ class SearchScreenController extends GetxController{
   Future<void> searchResult({String search = ""}) async {
     isLoading = true;
     update();
-    carList.clear(); // Clear carList before adding new items
+    carList.clear();
+
+    // Clear carList before adding new items
 
     ApiResponseModel responseModel = await searchRepo.searchRepoResponse(search: search);
 

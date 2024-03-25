@@ -9,7 +9,7 @@ Map<String, String> spanish = {
   "Sign In": "Iniciar sesión",
   "Or": "O",
   "Don’t have an account?": "No tienes una cuenta?",
-  "Sign Up": "Inscribirse",
+  "Sign Up": "Registrarse",
 
   "Full Name": "Nombre completo",
 
@@ -98,12 +98,12 @@ Map<String, String> spanish = {
   "Capacity": "Capacidad",
   "Gear type": "Transmisión",
   "Fuel tank capacity": "Capacidad del tanque de combustible",
-  "Host Information": "Información del anfitrión",
+  "Host Information": "Información del socio",
   "Name": "Nombre",
   "Contact": "Contacto",
   "Email": "Correo electrónico",
-  "Address": "DIRECCIÓN",
-  "Sent Rent Request": "Solicitud de alquiler enviada",
+  "Address": "Dirección",
+  "Sent Rent Request": "Enviar solicitud de renta",
 
   //profile
   "Profile": "Perfil",
@@ -183,10 +183,10 @@ Map<String, String> spanish = {
 
 
   "Request Sent Successfully" : "Solicitud enviada exitosamente",
-  "Please fill-up start date and end date" : "Por favor complete la fecha de inicio y la fecha de finalización",
-  "Rent request already exits" : "La solicitud de alquiler ya existe",
+  "Please fill-up start date and end date" : "Por favor completa las fechas de tu viaje",
+  "Rent request already exits" : "La solicitud de renta ya existe",
   "Internal server error" : "Error Interno del Servidor",
-  "Sign In Successfully" : "Iniciar sesión correctamente",
+  "Sign In Successfully" : "Inicio exitoso",
   "Logout Successfully" : "Cerrar sesión exitosamente",
   "Did not get OTP" : "No obtuve OTP",
 
@@ -200,7 +200,11 @@ Map<String, String> spanish = {
   "Send verify code at your email":"Enviar código de verificación a su correo electrónico",
       "Error to send otp":"Error al enviar otp",
   "Successful" : "Exitoso",
-  "Current and new password could not be same" : "La contraseña actual y la nueva no pueden ser iguales"
+  "Current and new password could not be same" : "La contraseña actual y la nueva no pueden ser iguales",
+
+
+  "All Cars" : "Todos los carros",
+  '/day' : "/día"
 
 
 
