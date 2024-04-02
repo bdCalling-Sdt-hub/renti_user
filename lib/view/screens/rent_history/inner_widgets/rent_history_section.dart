@@ -39,11 +39,11 @@ class RentHistorySection extends StatelessWidget {
                               }
                               if (user.requestStatus == "Rejected") {
                                 AppUtils.successToastMessage(
-                                    "Rejected by Car Owner");
+                                    "Rejected by Car Owner".tr);
                               }
                               if (user.requestStatus == "Pending") {
                                 AppUtils.successToastMessage(
-                                    "Wait for Host Approval");
+                                    "Wait for Host Approval".tr);
                               }
                               if (user.requestStatus == "Accepted" &&
                                   user.payment == "Completed") {

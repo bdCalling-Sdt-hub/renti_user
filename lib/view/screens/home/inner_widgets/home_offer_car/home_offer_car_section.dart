@@ -75,23 +75,26 @@ class HomePopularSection extends StatelessWidget {
                        child: Column(
                          crossAxisAlignment: CrossAxisAlignment.start,
                          children: [
-                           Container(
-                             width: MediaQuery.of(context).size.width * 0.6,
-                             height: 120,
-                             decoration:  ShapeDecoration(
-                               image: DecorationImage(
-                                 image: NetworkImage("${ApiUrlContainer.imageUrl}${controller.allCarList[index].image![0]}"),
-                                 fit: BoxFit.fill,
-                               ),
-                               shape: const RoundedRectangleBorder(
-                                 borderRadius: BorderRadius.only(
-                                   topLeft: Radius.circular(4),
-                                   topRight: Radius.circular(4),
-                                 ),
-                               ),
-                             ),
-                           ),
-                           CustomText(
+                       Container(
+                       width: MediaQuery.of(context).size.width * 0.6,
+                 height: 120,
+                 decoration: ShapeDecoration(
+                   image: controller.allCarList[index].image != null && controller.allCarList[index].image!.isNotEmpty
+                       ? DecorationImage(
+                     image: NetworkImage("${ApiUrlContainer.imageUrl}${controller.allCarList[index].image![0]}"),
+                     fit: BoxFit.fill,
+                   )
+                       :const DecorationImage(image: AssetImage("assets/images/No-Image-Placeholder.png"),fit: BoxFit.fill),// If image list is empty, set image to null
+                   shape: const RoundedRectangleBorder(
+                     borderRadius: BorderRadius.only(
+                       topLeft: Radius.circular(4),
+                       topRight: Radius.circular(4),
+                     ),
+                   ),
+                 ),
+               ),
+
+                 CustomText(
                              left:12,
                              top:12,
                              bottom: 12,

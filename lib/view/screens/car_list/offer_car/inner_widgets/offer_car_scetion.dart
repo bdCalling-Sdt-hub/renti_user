@@ -126,14 +126,15 @@ class OfferCarSection extends StatelessWidget {
                               ),
                               Expanded(
                                 flex: 3,
-                                  child: Container(
+                                  child:  Container(
                                     height: 120,
                                 decoration: BoxDecoration(
-                                  image: DecorationImage(
+                                  image:controller.offerCarList[index].image!.isNotEmpty&&controller.offerCarList[index].image !=null?DecorationImage(
                                       image: NetworkImage("${ApiUrlContainer.imageUrl}${controller.offerCarList[index].image![0].toString()}"),
-                                      fit: BoxFit.fill),
+                                      fit: BoxFit.fill):const DecorationImage(image: AssetImage("assets/images/No-Image-Placeholder.png"),fit: BoxFit.fill),
                                 ),
-                              )),
+                              )
+                              ),
                             ],
                           ),
                         ),

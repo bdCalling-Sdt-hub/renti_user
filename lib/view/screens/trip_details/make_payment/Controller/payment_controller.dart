@@ -51,7 +51,7 @@ class PaymentController extends GetxController {
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
-
+      print('===================StripeResponse$response');
       if (response.statusCode == 200) {
         //print(await response.stream.bytesToString());
         var data = json.decode(await response.stream.bytesToString());

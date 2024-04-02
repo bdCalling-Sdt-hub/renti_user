@@ -93,7 +93,7 @@ class RentalInfo extends StatelessWidget {
               ),
             ],
           ),
-           Row(
+         /*  Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
@@ -113,7 +113,7 @@ class RentalInfo extends StatelessWidget {
                 ),
               ),
             ],
-          ),
+          ),*/
         ],
       );
 

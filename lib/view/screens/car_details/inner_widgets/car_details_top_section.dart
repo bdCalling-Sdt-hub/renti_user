@@ -45,13 +45,13 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
         ),
         child: Column(
           children: [
-            CarouselSlider.builder(
+           controller.carDetailsModel.cars!.image!.isNotEmpty? CarouselSlider.builder(
               //"${ApiUrlContainer.imageUrl}${controller.rentUser[widget.index].carId?.image}"
               itemCount: 3,
               itemBuilder: (BuildContext context, int itemIndex,
-                      int pageIndex) {
+                  int pageIndex) {
                 print("=========================${ApiUrlContainer.imageUrl}${controller.carDetailsModel.cars?.image}".length);
-               return Container(
+                return Container(
                     margin: const EdgeInsets.only(right: 5, left: 5),
                     padding: const EdgeInsets.symmetric(
                         vertical: 44, horizontal: 44),
@@ -79,7 +79,7 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                 height: 200.0,
                 autoPlay: false,
               ),
-            ),
+            ) : SizedBox(),
             Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
@@ -140,14 +140,14 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                 ],
               ),
             ),
-            DotsIndicator(
+            controller.carDetailsModel.cars!.image!.isNotEmpty && controller.carDetailsModel.cars?.image!=null? DotsIndicator(
               decorator: DotsDecorator(
                 color: Colors.grey.withOpacity(0.2),
                 activeColor: AppColors.blackNormal,
               ),
               dotsCount: controller.carDetailsModel.cars?.image?.length ?? 1,
               position: currentIndex,
-            )
+            ):const SizedBox()
           ],
         ),
       ),

@@ -3,7 +3,7 @@ import 'package:renti_user/utils/app_strings.dart';
 Map<String, String> english = {
   // auth
 
-  "Change Language": "Change Language",
+  "Change Language": "Change language",
 
   "Enter your email": "Enter your email",
   "Password": "Password",
@@ -56,8 +56,8 @@ Map<String, String> english = {
   //drawer
   "Rent History": "Rent history",
   "Payment Method": "Payment Method",
-  "How Renti Works": "How renti works",
-  "Support": "Support",
+  "How Renti Works": "How Renti works",
+  "Support": "Help",
   "Settings": "Settings",
   "About Us": "About us",
   "Log Out": "Log out",
@@ -66,9 +66,9 @@ Map<String, String> english = {
   "No": "No",
 
   //settings screen
-  "Change Password": "Change Password",
-  "Terms & Conditions": "Terms & Conditions",
-  "Privacy Policy": "Privacy Policy",
+  "Change Password": "Change password",
+  "Terms & Conditions": "Terms and Conditions",
+  "Privacy Policy": "Privacy policy",
   // change .password
   "Please enter current password to set a new password":
       "Please enter current password to set a new password",
@@ -157,7 +157,7 @@ Map<String, String> english = {
   "Enter your CVV number": "Enter your CVV number",
   "Enter your valid CVV number": "Enter your valid CVV number",
   "please select 3 images": "please select 3 images",
-  "Start Trip": "Start Trip",
+  "Start Trip": "Start trip",
 
   "Car license no:": "Car license no",
   "Car color:": "Car color",
@@ -212,5 +212,13 @@ Map<String, String> english = {
       "Current and new password could not be same",
 
   "All Cars" : "All cars",
-  '/day' : "/day"
+  "Please wait for admin approval" : "Please wait for admin approval",
+  "Banned by admin" : "Banned by admin",
+  "Rejected by Car Owner" : "Rejected by Car Owner",
+
+  '/day' : "/day",
+  "Wait for host approval" :  "Wait for host approval",
+  "Before finishing your trip, upload pictures of the car to verify the conditions is being returned" : "Before finishing your trip, upload pictures of the car to verify the conditions is being returned",
+  "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car": "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car"
+
 };

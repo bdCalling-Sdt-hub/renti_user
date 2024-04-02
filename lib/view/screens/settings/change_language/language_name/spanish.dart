@@ -151,15 +151,15 @@ Map<String, String> spanish = {
   "Enter your valid CVV number": "Ingrese su número CVV válido",
   "please select 3 images": "por favor seleccione 3 imágenes",
   "Start Trip": "Iniciar viaje",
-  "Car license no :": "Licencia de auto no",
+  "Car license no :": "Car plates",
   "Car color:": "Color del coche",
   "Car model:": "Modelo de auto",
   "Rental Information": "Información de alquiler",
   "Driving license no:": "Licencia de conducir no",
   "INE:": "INE",
-  "Rental date :": "Fecha de alquiler",
-  "Rental time :": "tiempo de alquilere",
-  "Pickup location :": "Lugar de recogida",
+  "Rental date :": "Inicio de renta",
+  "Rental time :": "Días de renta",
+  "Pickup location :": "Punto de recolección",
 
   // nave bar
   "Home": "Inicio",
@@ -204,7 +204,16 @@ Map<String, String> spanish = {
 
 
   "All Cars" : "Todos los carros",
-  '/day' : "/día"
+  '/day' : "/día",
+
+
+  "Before finishing your trip, upload pictures of the car to verify the conditions is being returned" : "Antes de terminar tu viaje, sube fotos del coche para verificar las condiciones en las que es regresado",
+  "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car": "Por razones de seguridad, toma fotos de cómo recibes el coche antes de inciar tu viaje. Esto ayuda a prevenir problemas sobre las condiciones del coche"
+  ,"Wait for host approval" :  "El socio debe aceptar tu solicitud de renta",
+  "Please wait for admin approval" : "Espere la aprobación del administrador",
+  "Banned by admin" : "Prohibido por el administrador",
+  "Rejected by Car Owner" : "Rechazado por el propietario del coche",
+
 
 
 

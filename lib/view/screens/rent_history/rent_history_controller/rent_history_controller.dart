@@ -67,7 +67,6 @@ class RentHistoryController extends GetxController{
   File? thirdImg;
   final imagePicker = ImagePicker();
 
-
   void selectImage() async{
     if(firstImg==null){
       AppUtils.successToastMessage("Select Images");
@@ -94,6 +93,29 @@ class RentHistoryController extends GetxController{
       }
     }
   }
+
+
+  void openCamera({required int index}) async {
+    final pickedFile = await imagePicker.pickImage(
+      source: ImageSource.camera,
+    );
+    if (pickedFile != null) {
+      if (index == 0) {
+        firstImg = File(pickedFile.path);
+        addCarImages.add(firstImg!);
+        update();
+      } else if (index == 1) {
+        secondImg = File(pickedFile.path);
+        addCarImages.add(secondImg!);
+        update();
+      } else if (index == 2) {
+        thirdImg = File(pickedFile.path);
+        addCarImages.add(thirdImg!);
+        update();
+      }
+    }
+  }
+
   ///===================Start Tripp =======================////
   ///
   bool isSubmitStart = false;

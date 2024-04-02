@@ -88,6 +88,7 @@ class HomeController extends GetxController{
       List<Car>? tempList = model.cars;
       if(tempList != null && tempList.isNotEmpty){
         allCarList.addAll(tempList);
+
       }
     }
   }

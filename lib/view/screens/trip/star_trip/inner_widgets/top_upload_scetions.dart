@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:renti_user/utils/app_colors.dart';
 import 'package:renti_user/view/screens/rent_history/rent_history_controller/rent_history_controller.dart';
 
+import '../../../../widgets/text/custom_text.dart';
+
 class AddCarImage extends StatelessWidget {
   const AddCarImage({super.key});
 
@@ -19,7 +21,28 @@ class AddCarImage extends StatelessWidget {
                 ? Expanded(
               child: GestureDetector(
                 onTap: () {
-                  controller.openGallery(index: 0);
+                  // controller.openGallery(index: 0);
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title:  CustomText(
+                            text:
+                            "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car".tr,
+                            maxLines: 4,
+                          ),
+                          actions: [
+
+                            IconButton(onPressed: () {
+                              controller.openCamera(index: 0);
+                            }, icon: const Icon(Icons.camera_alt_outlined)),
+                            IconButton(onPressed: () {
+                              controller.openGallery(index: 0);
+                              Get.back();
+                            }, icon: const Icon(Icons.photo_album)),
+                          ],
+                        );
+                      });
                 },
                 child: Container(
                   padding: const EdgeInsets.all(16),
@@ -36,7 +59,28 @@ class AddCarImage extends StatelessWidget {
                 : Expanded(
               child: GestureDetector(
                 onTap: () {
-                  controller.openGallery(index: 0);
+                  // controller.openGallery(index: 0);
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title:  CustomText(
+                            text:
+                            "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car".tr,
+                            maxLines: 4,
+                          ),
+                          actions: [
+
+                            IconButton(onPressed: () {
+                              controller.openCamera(index: 0);
+                            }, icon: const Icon(Icons.camera_alt_outlined)),
+                            IconButton(onPressed: () {
+                              controller.openGallery(index: 0);
+                              Get.back();
+                            }, icon: const Icon(Icons.photo_album)),
+                          ],
+                        );
+                      });
                 },
                 child: Container(
                   padding: const EdgeInsets.all(16),
@@ -57,12 +101,32 @@ class AddCarImage extends StatelessWidget {
               child: Column(
                 children: [
                   //Second Image
-
                   controller.secondImg == null
                       ? Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        controller.openGallery(index: 1);
+                        // controller.openGallery(index: 0);
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title:  CustomText(
+                                  text:
+                                  "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car".tr,
+                                  maxLines: 4,
+                                ),
+                                actions: [
+
+                                  IconButton(onPressed: () {
+                                    controller.openCamera(index: 1);
+                                  }, icon: const Icon(Icons.camera_alt_outlined)),
+                                  IconButton(onPressed: () {
+                                    controller.openGallery(index: 1);
+                                    Get.back();
+                                  }, icon: const Icon(Icons.photo_album)),
+                                ],
+                              );
+                            });
                       },
                       child: Container(
                         padding: const EdgeInsets.all(16),
@@ -79,7 +143,28 @@ class AddCarImage extends StatelessWidget {
                       : Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        controller.openGallery(index: 1);
+                        // controller.openGallery(index: 0);
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title:  CustomText(
+                                  text:
+                                  "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car".tr,
+                                  maxLines: 4,
+                                ),
+                                actions: [
+
+                                  IconButton(onPressed: () {
+                                    controller.openCamera(index: 1);
+                                  }, icon: const Icon(Icons.camera_alt_outlined)),
+                                  IconButton(onPressed: () {
+                                    controller.openGallery(index: 1);
+                                    Get.back();
+                                  }, icon: const Icon(Icons.photo_album)),
+                                ],
+                              );
+                            });
                       },
                       child: Container(
                         padding: const EdgeInsets.all(16),
@@ -104,7 +189,28 @@ class AddCarImage extends StatelessWidget {
                       ? Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        controller.openGallery(index: 2);
+                        // controller.openGallery(index: 0);
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title:  CustomText(
+                                  text:
+                                  "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car".tr,
+                                  maxLines: 4,
+                                ),
+                                actions: [
+
+                                  IconButton(onPressed: () {
+                                    controller.openCamera(index: 2);
+                                  }, icon: const Icon(Icons.camera_alt_outlined)),
+                                  IconButton(onPressed: () {
+                                    controller.openGallery(index: 2);
+                                    Get.back();
+                                  }, icon: const Icon(Icons.photo_album)),
+                                ],
+                              );
+                            });
                       },
                       child: Container(
                         padding: const EdgeInsets.all(16),
@@ -121,7 +227,28 @@ class AddCarImage extends StatelessWidget {
                       : Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        controller.openGallery(index: 2);
+                        // controller.openGallery(index: 0);
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title:  CustomText(
+                                  text:
+                                  "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car".tr,
+                                  maxLines: 4,
+                                ),
+                                actions: [
+
+                                  IconButton(onPressed: () {
+                                    controller.openCamera(index: 2);
+                                  }, icon: const Icon(Icons.camera_alt_outlined)),
+                                  IconButton(onPressed: () {
+                                    controller.openGallery(index: 2);
+                                    Get.back();
+                                  }, icon: const Icon(Icons.photo_album)),
+                                ],
+                              );
+                            });
                       },
                       child: Container(
                         padding: const EdgeInsets.all(16),

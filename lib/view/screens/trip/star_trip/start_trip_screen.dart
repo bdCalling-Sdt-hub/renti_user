@@ -87,7 +87,7 @@ class _StartTripScreenState extends State<StartTripScreen> {
         },
       ),
       bottomNavigationBar: GetBuilder<RentHistoryController>(builder: (controller) {
-        return controller.isSubmitStart?SizedBox(height:56,child: CustomElevatedLoadingButton()) : BottomNavButton(
+        return controller.isSubmitStart?const SizedBox(height:56,child: CustomElevatedLoadingButton()) : BottomNavButton(
             onTap: () {
               if (controller.firstImg == null ||
                   controller.secondImg == null ||

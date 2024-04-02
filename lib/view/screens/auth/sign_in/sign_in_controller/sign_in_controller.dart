@@ -69,10 +69,10 @@ class SignInController extends GetxController{
       Get.toNamed(AppRoute.otpScreen,arguments: [emailController.text,true]);
     }
     else if(signInResponseModel.user?.approved == false){
-      AppUtils.successToastMessage("Please wait for admin approval");
+      AppUtils.successToastMessage("Please wait for admin approval".tr);
     }
     else if(signInResponseModel.user?.isBanned == true){
-      AppUtils.successToastMessage("Banned by admin");
+      AppUtils.successToastMessage("Banned by admin".tr);
     }
     else if (signInResponseModel.user?.emailVerified == true && signInResponseModel.user?.approved == true && signInResponseModel.user?.isBanned !="true"){
       signInRepo.apiService.sharedPreferences.setBool(SharedPreferenceHelper.rememberMeKey, true);

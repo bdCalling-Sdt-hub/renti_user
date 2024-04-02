@@ -199,15 +199,15 @@ class _SearchScreenState extends State<SearchScreen> {
                                         width: 120,
                                         height: 80,
                                         decoration: ShapeDecoration(
-                                          image: DecorationImage(
-                                            image: NetworkImage(
+                                          image: controller.carList [index].image!=null&&controller.carList [index].image!.isNotEmpty? DecorationImage(
+                                            image:  NetworkImage(
                                                 "${ApiUrlContainer
                                                     .imageUrl}${controller
                                                     .carList[index]
                                                     .image?[0]}"),
                                             // image: AssetImage(AppImages.carBg),
                                             fit: BoxFit.cover,
-                                          ),
+                                          ) : const DecorationImage(image: AssetImage("assets/images/No-Image-Placeholder.png"),fit: BoxFit.fill),
                                           shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.only(
                                                 topRight: Radius.circular(8),
