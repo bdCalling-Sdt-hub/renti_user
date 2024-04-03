@@ -97,7 +97,6 @@ class _MessageScreenState extends State<MessageScreen> {
                         child: GestureDetector(
                           onTap: () {
                             var host = participants[index];
-
                             Get.toNamed(AppRoute.inboxScreen, arguments: [
                               userUid,
                               host.fullName,

@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:get/get.dart';
+
 import 'package:renti_user/core/route/app_route.dart';
 
 import 'package:renti_user/service/notification.dart';
+import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/view/screens/settings/change_language/translator.dart';
 import 'core/di_service/dependency_injection.dart' as di;
 
@@ -20,6 +19,9 @@ void main() async {
 
   Stripe.publishableKey = "pk_test_51NrcLcSJXOqjAG5dxabD5XzUNXE0S3xjn4tFp8aJqZZR4SsQOCZ3SM9MNTbFgCYopG7R8d0XcgvvY9AM6SIxCQKX00mzWSTRUm";
   await di.initDependency();
+
+  SocketService service = Get.put(SocketService());
+  service.connectToSocket();
 
   await NotificationHelper.initLocalNotification(flutterLocalNotificationsPlugin);
 

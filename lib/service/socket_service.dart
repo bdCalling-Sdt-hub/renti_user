@@ -11,7 +11,7 @@ import '../main.dart';
 class SocketService extends GetxController {
   late io.Socket socket;
 
-  NoInternetScreen notificationClass = const NoInternetScreen();
+  //NoInternetScreen notificationClass = const NoInternetScreen();
   // NotificationScreen notificationHelper =  const NotificationScreen();
 
   List<dynamic> messageList = [];
@@ -27,8 +27,8 @@ class SocketService extends GetxController {
             .enableAutoConnect()
             .build());
 
-    socket.onConnect((data) => debugPrint("Connection Established"));
-    socket.onConnectError((data) => print("Connection Error"));
+    socket.onConnect((data) => debugPrint("Connection Established$data"));
+    socket.onConnectError((data) => print("================>Connection Error$data"));
 
     socket.connect();
 
@@ -37,6 +37,7 @@ class SocketService extends GetxController {
         print("=======> Join check Listen this is: $data");
       }
     });
+
 
     socket.on('new-chat', (chat) {
       chatId = chat["_id"];
@@ -49,6 +50,9 @@ class SocketService extends GetxController {
         print("chat id type: ${chat.runtimeType}");
       }
     });
+
+
+///============all message ===============///
 
     socket.on('all-messages', (messages) {
       messageList.clear();
@@ -67,7 +71,8 @@ class SocketService extends GetxController {
       }
       isLoading = false;
       update();
-    });
+    }
+    );
 
     socket.on('all-chats', (chats) {
       allMessageList.clear();
@@ -88,6 +93,8 @@ class SocketService extends GetxController {
       update();
     });
 
+    /// =================== notification ========================
+
     socket.on('host-notification', (data) {
       if (data == null) {
         if (kDebugMode) {
@@ -104,8 +111,13 @@ class SocketService extends GetxController {
           print("This is Data msg : ${data['allNotification'][0]['message']}");
         }
       }
-    });
+    }
+    );
   }
+
+
+
+
 
   listenNotification() {
     socket.on('user-notification', (data) {
@@ -196,6 +208,7 @@ class SocketService extends GetxController {
     socket.disconnect();
   }
 }
+
 /*class Chat {
   String id;
   List<Participant> participants;

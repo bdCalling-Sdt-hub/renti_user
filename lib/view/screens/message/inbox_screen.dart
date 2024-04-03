@@ -31,6 +31,7 @@ class _InboxScreenState extends State<InboxScreen> {
     hostUid = Get.arguments[3];
 
     final socketService = Get.find<SocketService>();
+
     socketService.joinRoom(userUid);
     socketService.addNewChat({
       "participants": [userUid, hostUid],

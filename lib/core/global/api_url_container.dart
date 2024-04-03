@@ -1,16 +1,16 @@
 class ApiUrlContainer {
 
   /// =========================>ForLive ==========================>
-
+  //
   static const String apiBaseUrl = "https://renticarshare.com/api";
   static const String socketGlobal = "http://46.101.82.12:9000";
   static const String imageUrl = "https://renticarshare.com";
 
   /// =========================>forLocal==========================>
 
-//  static const String apiBaseUrl = "http://192.168.10.14:3001/api/";
-//  static const String socketGlobal = "http://192.168.10.14:9000";
-//  static const String imageUrl = "http://192.168.10.14:3001";
+ // static const String apiBaseUrl = "http://192.168.10.14:3001/api/";
+ // static const String socketGlobal = "http://192.168.10.14:9001";
+ // static const String imageUrl = "http://192.168.10.14:3001";
 
   static const String signInEndPoint = "/user/user/sign-in";
   static const String updateProfile = "/user/update/";
