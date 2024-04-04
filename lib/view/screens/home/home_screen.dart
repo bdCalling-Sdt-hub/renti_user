@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
     userUid = prefs.getString(SharedPreferenceHelper.userIdKey).toString();
     socketService.connectToSocket();
     socketService.joinRoom(userUid);
-    socketService.listenNotification();
+    //socketService.listenNotification();
     debugPrint("===========> Join room with home screen");
   }
 

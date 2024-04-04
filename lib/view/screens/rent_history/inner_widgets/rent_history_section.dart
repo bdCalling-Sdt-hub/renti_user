@@ -171,35 +171,16 @@ class RentHistorySection extends StatelessWidget {
                                                         vertical: 4,
                                                         horizontal: 8),
                                                     decoration: BoxDecoration(
-                                                      color: controller.rentUser[index].requestStatus ==
-                                                              "Pending"
-                                                          ? const Color(
-                                                              0xffFFEED0)
-                                                          : controller
-                                                                      .rentUser[
-                                                                          index]
-                                                                      .requestStatus ==
-                                                                  "Reserved"
-                                                              ? const Color(
-                                                                  0xFFFBE9EC)
-                                                              : controller
-                                                                          .rentUser[
-                                                                              index]
-                                                                          .requestStatus ==
-                                                                      "Cancel"
-                                                                  ? AppColors
-                                                                      .primaryColor
-                                                                      .withOpacity(
-                                                                          0.1)
+                                                      color: controller.rentUser[index].requestStatus == "Pending" ? const Color(0xffFFEED0)
+                                                          : controller.rentUser[index].requestStatus == "Reserved" ? const Color(0xFFFBE9EC): controller.rentUser[index].requestStatus == "Cancel"
+                                                                  ? AppColors.primaryColor.withOpacity(0.1)
                                                                   : const Color(
                                                                       0xffE6F6F4),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               4),
                                                     ),
-                                                    child: tripStatusText(
-                                                        controller
-                                                            .rentUser[index]),
+                                                    child: tripStatusText(controller.rentUser[index]),
                                                   )
                                                 ],
                                               ),
@@ -234,27 +215,27 @@ class RentHistorySection extends StatelessWidget {
   Widget tripStatusText(UserWiseRent rentUser) {
     String statusText = "";
     if (rentUser.requestStatus == "Pending") {
-      statusText = "Pending";
+      statusText = "Pending".tr;
     }
     if (rentUser.requestStatus == "Rejected") {
-      statusText = "Rejected";
+      statusText = "Rejected".tr;
     }
     if (rentUser.requestStatus == "Accepted" && rentUser.payment == "Pending") {
-      statusText = "Accepted";
+      statusText = "Accepted".tr;
     }
     if (rentUser.requestStatus == "Accepted" &&
         rentUser.payment == "Completed") {
-      statusText = "Reserved";
+      statusText = "Reserved".tr;
     }
     if (rentUser.requestStatus == "Accepted" &&
         rentUser.payment == "Completed" &&
         rentUser.carId!.tripStatus == "Start") {
-      statusText = "Start";
+      statusText = "Start".tr;
     }
     if (rentUser.requestStatus == "Completed" &&
         rentUser.payment == "Completed" &&
         rentUser.carId!.tripStatus == "End") {
-      statusText = "End Trip";
+      statusText = "End Trip".tr;
     }
     return Text(statusText);
   }

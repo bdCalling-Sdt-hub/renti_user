@@ -142,6 +142,7 @@ class CarId {
   String? carDoors;
   String? carSeats;
   String? totalRun;
+  String? totalDays;
   String? hourlyRate;
   String? registrationDate;
   int? popularity;
@@ -169,6 +170,7 @@ class CarId {
     this.carDoors,
     this.carSeats,
     this.totalRun,
+    this.totalDays,
     this.hourlyRate,
     this.registrationDate,
     this.popularity,
@@ -225,6 +227,7 @@ class CarId {
     "carDoors": carDoors,
     "carSeats": carSeats,
     "totalRun": totalRun,
+    "totalDays": totalDays,
     "hourlyRate": hourlyRate,
     "registrationDate": registrationDate,
     "popularity": popularity,

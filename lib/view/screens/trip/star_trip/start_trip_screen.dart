@@ -97,7 +97,7 @@ class _StartTripScreenState extends State<StartTripScreen> {
 
               } else {
                 controller.addCarMultipleFilesAndParams(controller.rentUser[index ?? 0].id ?? "");
-                print("hfdsakdfh sldfkj h");
+
               }
             },
             buttonName: AppStrings.startTrip.tr,

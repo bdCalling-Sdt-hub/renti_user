@@ -67,18 +67,22 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
               Text(controller.rentUser[widget.index].carId?.carLicenseNumber ?? "--",style: const TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
             ],
           ),
+
+          ///========================= total run =====================///
+
+
           const SizedBox(height: 8,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
                CustomText(
-                text: AppStrings.rentalTime.tr,
+                text: "Total days".tr,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: AppColors.whiteDarkHover,
               ),
               const SizedBox(),
-              Text(controller.rentUser[widget.index].carId?.totalRun ?? "--",style: const TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+              Text(controller.rentUser[widget.index].carId?.totalDays ?? "--",style: const TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
             ],
           ),
           const SizedBox(height: 8,),
@@ -133,7 +137,7 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
 
             ],
           ),
-          const SizedBox(height: 8,),
+          /*const SizedBox(height: 8,),
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -144,9 +148,9 @@ class _BottomInfoScetionState extends State<BottomInfoScetion> {
                 color: AppColors.whiteDarkHover,
               ),
               const SizedBox(),
-              const Text("--",style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+               Text(controller.rentUser[widget.index].hostId,style: TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
             ],
-          ),
+          ),*/
           const SizedBox(height: 8,),
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

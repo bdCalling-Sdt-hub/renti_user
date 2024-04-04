@@ -11,10 +11,10 @@ import 'package:renti_user/service/socket_service.dart';
 import 'package:renti_user/view/screens/settings/change_language/translator.dart';
 import 'core/di_service/dependency_injection.dart' as di;
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =  FlutterLocalNotificationsPlugin();
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
 
   Stripe.publishableKey = "pk_test_51NrcLcSJXOqjAG5dxabD5XzUNXE0S3xjn4tFp8aJqZZR4SsQOCZ3SM9MNTbFgCYopG7R8d0XcgvvY9AM6SIxCQKX00mzWSTRUm";
@@ -22,8 +22,9 @@ void main() async {
 
   SocketService service = Get.put(SocketService());
   service.connectToSocket();
+  service.listenNotification();
 
-  await NotificationHelper.initLocalNotification(flutterLocalNotificationsPlugin);
+  await NotificationHelper.initLocalNotification();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

@@ -140,8 +140,8 @@ class _InboxScreenState extends State<InboxScreen> {
                                 color: socketService.messageList[index]
                                             ["sender"]["role"] !=
                                         "user"
-                                    ? AppColors.primaryColor
-                                    : const Color(0xffE2E2E2),
+                                    ? const Color(0xffE2E2E2)
+                                    : AppColors.primaryColor ,
                               ),
                               child: Text(
                                 socketService.messageList[index]["message"],
@@ -150,8 +150,8 @@ class _InboxScreenState extends State<InboxScreen> {
                                     color: socketService.messageList[index]
                                                 ["sender"]["role"] !=
                                             "user"
-                                        ? AppColors.whiteNormalActive
-                                        : AppColors.primaryColor,
+                                        ? AppColors.primaryColor
+                                        : AppColors.whiteLight,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500),
                               ),

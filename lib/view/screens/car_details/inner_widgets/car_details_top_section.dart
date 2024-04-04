@@ -45,7 +45,7 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
         ),
         child: Column(
           children: [
-           controller.carDetailsModel.cars!.image!.isNotEmpty? CarouselSlider.builder(
+           controller.carDetailsModel.cars!.image!.isNotEmpty &&  controller.carDetailsModel.cars?.image!=null? CarouselSlider.builder(
               //"${ApiUrlContainer.imageUrl}${controller.rentUser[widget.index].carId?.image}"
               itemCount: 3,
               itemBuilder: (BuildContext context, int itemIndex,

@@ -51,6 +51,9 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                     ),
                     CustomTextField(
                       readOnly: true,
+                      inputTextStyle: TextStyle(
+                        fontSize: 12
+                      ),
                       textEditingController: controller.startTripDateController,
                       textAlign: TextAlign.start,
                       fieldBorderRadius: 4,
@@ -60,6 +63,7 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                         fontSize: 10,
                         fontWeight: FontWeight.w400,
                       ),
+
                       fillColor: Colors.transparent,
                       isPrefixIcon: true,
                       prefixIconSrc: AppIcons.calenderIcon,
@@ -88,6 +92,7 @@ class _FromUntilSectionState extends State<FromUntilSection> {
                       textEditingController: controller.endTripDateController,
                       fieldBorderRadius: 4,
                       hintText: "YYYY-MM-DD".tr,
+                      inputTextStyle: TextStyle(fontSize: 12),
                       hintStyle: GoogleFonts.poppins(
                         color: AppColors.whiteDarkActive,
                         fontSize: 10,

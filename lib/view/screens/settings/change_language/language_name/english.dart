@@ -217,6 +217,18 @@ Map<String, String> english = {
   "Rejected by Car Owner" : "Rejected by Car Owner",
 
   '/day' : "/day",
+
+  "Pending":"Pending",
+  "Rejected" : "Rejected",
+  "Accepted" : "Accepted",
+  "Reserved" : "Reserved",
+  "Start" : "Started",
+  "End" : "End",
+  "Total days": "Total days",
+
+
+
+
   "Wait for host approval" :  "Wait for host approval",
   "Before finishing your trip, upload pictures of the car to verify the conditions is being returned" : "Before finishing your trip, upload pictures of the car to verify the conditions is being returned",
   "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car": "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car"

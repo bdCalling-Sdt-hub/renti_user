@@ -71,6 +71,7 @@ class PaymentController extends GetxController {
   }
 
 
+
   payment({required String rentId, required String productName, required int amount, required String email, required String token, required int index}) async {
     try {
       Map<String, dynamic> body = {
@@ -85,8 +86,8 @@ class PaymentController extends GetxController {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $t'
       };
-      debugPrint(
-          "=======> Url : ${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.paymentApi}/$rentId");
+      debugPrint("=======> Url : ${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.paymentApi}/$rentId");
+
       var response = await http.post(
           Uri.parse("${ApiUrlContainer.apiBaseUrl}${ApiUrlContainer.paymentApi}/$rentId"),
           body: json.encode(body),

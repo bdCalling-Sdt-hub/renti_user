@@ -3,7 +3,7 @@ class ApiUrlContainer {
   /// =========================>ForLive ==========================>
   //
   static const String apiBaseUrl = "https://renticarshare.com/api";
-  static const String socketGlobal = "http://46.101.82.12:9000";
+  static const String socketGlobal = "https://renticarshare.com";
   static const String imageUrl = "https://renticarshare.com";
 
   /// =========================>forLocal==========================>

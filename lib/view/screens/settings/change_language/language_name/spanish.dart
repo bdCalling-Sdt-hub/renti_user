@@ -206,6 +206,12 @@ Map<String, String> spanish = {
   "All Cars" : "Todos los carros",
   '/day' : "/día",
 
+  "Pending":"Pendiente",
+  "Rejected" : "Cancelado",
+  "Accepted" : "Aceptado",
+  "Reserved" : "Reserved",
+  "Start" : "Comenzado",
+  "End" : "Terminado",
 
   "Before finishing your trip, upload pictures of the car to verify the conditions is being returned" : "Antes de terminar tu viaje, sube fotos del coche para verificar las condiciones en las que es regresado",
   "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car": "Por razones de seguridad, toma fotos de cómo recibes el coche antes de inciar tu viaje. Esto ayuda a prevenir problemas sobre las condiciones del coche"
@@ -213,9 +219,7 @@ Map<String, String> spanish = {
   "Please wait for admin approval" : "Espere la aprobación del administrador",
   "Banned by admin" : "Prohibido por el administrador",
   "Rejected by Car Owner" : "Rechazado por el propietario del coche",
-
-
-
+  "Total days": "Días totales",
 
 
 };
