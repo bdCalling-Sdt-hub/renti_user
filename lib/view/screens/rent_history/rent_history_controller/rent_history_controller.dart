@@ -35,6 +35,7 @@ class RentHistoryController extends GetxController{
     ApiResponseModel responseModel = await rentHistoryRepo.rentHistoryRepoResponse();
     if(responseModel.statusCode == 200){
       rentHistoryModel = RentHistoryModel.fromJson(jsonDecode(responseModel.responseJson));
+      print("========================responseModel.responseJson>>${responseModel.responseJson}");
       List<UserWiseRent>? tempCarList = rentHistoryModel.userWiseRent;
       if(tempCarList != null && tempCarList.isNotEmpty){
         rentUser.addAll(tempCarList);

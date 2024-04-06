@@ -81,7 +81,7 @@ class _BottomScetionsState extends State<BottomScetions> {
                   color: AppColors.whiteDarkHover,
                 ),
                 const SizedBox(),
-                Text(controller.rentUser[widget.index].carId?.totalDays??"--",style: const TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
+                Text("${controller.rentUser[widget.index].totalDays}"??"--",style: const TextStyle(color: Color(0xff2E2C2C),fontSize: 16,fontWeight:FontWeight.w500)),
               ],
             ),
             const SizedBox(height: 8,),

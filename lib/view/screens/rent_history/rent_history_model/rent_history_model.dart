@@ -65,6 +65,7 @@ class UserWiseRent {
   String? rentTripNumber;
   String? totalAmount;
   String? totalHours;
+  String? totalDays;
   String? requestStatus;
   String? startDate;
   String? endDate;
@@ -81,6 +82,7 @@ class UserWiseRent {
     this.rentTripNumber,
     this.totalAmount,
     this.totalHours,
+    this.totalDays,
     this.requestStatus,
     this.startDate,
     this.endDate,
@@ -98,6 +100,8 @@ class UserWiseRent {
     rentTripNumber: json["rentTripNumber"],
     totalAmount: json["totalAmount"],
     totalHours: json["totalHours"],
+    totalDays: json["totalDays"],
+
     requestStatus: json["requestStatus"],
     startDate: json["startDate"],
     endDate: json["endDate"],
@@ -115,6 +119,7 @@ class UserWiseRent {
     "rentTripNumber": rentTripNumber,
     "totalAmount": totalAmount,
     "totalHours": totalHours,
+    "totalDays": totalDays,
     "requestStatus": requestStatus,
     "startDate": startDate,
     "endDate": endDate,
@@ -191,6 +196,7 @@ class CarId {
     image: json["image"] == null ? [] : List<String>.from(json["image"]!.map((x) => x)),
     year: json["year"],
     carLicenseNumber: json["carLicenseNumber"],
+
     carDescription: json["carDescription"],
     insuranceStartDate: json["insuranceStartDate"],
     insuranceEndDate: json["insuranceEndDate"],
@@ -199,6 +205,7 @@ class CarId {
     carDoors: json["carDoors"],
     carSeats: json["carSeats"],
     totalRun: json["totalRun"],
+    totalDays: json["totalDays"],
     hourlyRate: json["hourlyRate"],
     registrationDate: json["registrationDate"],
     popularity: json["popularity"],
