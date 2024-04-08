@@ -211,26 +211,23 @@ Map<String, String> english = {
   "Current and new password could not be same":
       "Current and new password could not be same",
 
-  "All Cars" : "All cars",
-  "Please wait for admin approval" : "Please wait for admin approval",
-  "Banned by admin" : "Banned by admin",
-  "Rejected by Car Owner" : "Rejected by Car Owner",
+  "All Cars": "All cars",
+  "Please wait for admin approval": "Please wait for admin approval",
+  "Banned by admin": "Banned by admin",
+  "Rejected by Car Owner": "Rejected by Car Owner",
 
-  '/day' : "/day",
+  '/day': "/day",
 
-  "Pending":"Pending",
-  "Rejected" : "Rejected",
-  "Accepted" : "Accepted",
-  "Reserved" : "Reserved",
-  "Start" : "Started",
-  "End" : "End",
+  "Pending": "Pending",
+  "Rejected": "Rejected",
+  "Accepted": "Accepted",
+  "Reserved": "Reserved",
+  "Start": "Started",
+  "End": "End",
   "Total days": "Total days",
-
-
-
-
-  "Wait for host approval" :  "Wait for host approval",
-  "Before finishing your trip, upload pictures of the car to verify the conditions is being returned" : "Before finishing your trip, upload pictures of the car to verify the conditions is being returned",
-  "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car": "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car"
-
+  "Wait for host approval": "Wait for host approval",
+  "Before finishing your trip, upload pictures of the car to verify the conditions is being returned":
+      "Before finishing your trip, upload pictures of the car to verify the conditions is being returned",
+  "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car":
+      "For precautionary reasons, take pictures of how you receive the car before starting the trip. This will prevent issues regarding the conditions of the car"
 };
