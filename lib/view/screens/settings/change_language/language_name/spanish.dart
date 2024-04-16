@@ -164,7 +164,7 @@ Map<String, String> spanish = {
   // nave bar
   "Home": "Inicio",
   "Search": "Buscar",
-  "Message": "Mensaje",
+  "Message": "Mensajes",
   "Profile": "Perfil",
   "Password reset successfully": "Restablecimiento de contraseña exitoso",
   "Error": "Error",
@@ -220,6 +220,7 @@ Map<String, String> spanish = {
   "Banned by admin" : "Prohibido por el administrador",
   "Rejected by Car Owner" : "Rechazado por el propietario del coche",
   "Total days": "Días totales",
+  "Notification" : "Notificaciones",
 
 
 };

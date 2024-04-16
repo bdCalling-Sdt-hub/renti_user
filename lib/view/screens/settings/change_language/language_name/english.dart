@@ -89,7 +89,7 @@ Map<String, String> english = {
   "Search Car": "Search Car",
 
   //car details
-  "Car Details": "Car Details",
+  "Car Details": "Car details",
   "YYYY-MM-DD": "YYYY-MM-DD",
   "MM-YY": "MM-YY",
   "From": "From",
@@ -172,7 +172,7 @@ Map<String, String> english = {
   // nave bar
   "Home": "Home",
   "Search": "Search",
-  "Message": "Message",
+  "Message": "Messages",
   "Profile": "Profile",
   "Password reset successfully": "Password reset successful",
   "Error": "Error",
@@ -223,6 +223,7 @@ Map<String, String> english = {
   "Accepted": "Accepted",
   "Reserved": "Reserved",
   "Start": "Started",
+  "Notification" : "Notifications",
   "End": "End",
   "Total days": "Total days",
   "Wait for host approval": "Wait for host approval",

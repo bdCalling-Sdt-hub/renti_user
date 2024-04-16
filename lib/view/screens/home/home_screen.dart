@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:renti_user/core/helper/shared_preference_helper.dart';
 import 'package:renti_user/core/route/app_route.dart';
@@ -117,10 +119,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             const Icon(Icons.search,
                                 size: 20, color: AppColors.whiteNormalActive),
-                            CustomText(
-                                text: AppStrings.searchCar.tr,
-                                color: AppColors.whiteNormalActive,
-                                left: 8),
+                            Flexible(
+                              child: CustomText(
+                                  text: AppStrings.searchCar.tr,
+                                  maxLines: 1,
+                                  color: AppColors.whiteNormalActive,
+                                  left: 8),
+                            ),
                           ],
                         ),
                       ),

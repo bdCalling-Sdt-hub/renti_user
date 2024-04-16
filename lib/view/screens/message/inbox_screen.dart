@@ -189,6 +189,7 @@ class _InboxScreenState extends State<InboxScreen> {
                       child: TextFormField(
                         cursorColor: AppColors.blackNormal,
                         keyboardType: TextInputType.multiline,
+                        maxLines: null,
                         textAlign: TextAlign.left,
                         textInputAction: TextInputAction.done,
                         controller: messageController,

@@ -79,7 +79,7 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                 height: 200.0,
                 autoPlay: false,
               ),
-            ) : SizedBox(),
+            ) : const SizedBox(),
             Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
@@ -145,7 +145,8 @@ class _CarDetailsTopSectionState extends State<CarDetailsTopSection> {
                 color: Colors.grey.withOpacity(0.2),
                 activeColor: AppColors.blackNormal,
               ),
-              dotsCount: controller.carDetailsModel.cars?.image?.length ?? 1,
+             dotsCount: 3,
+             // dotsCount: controller.carDetailsModel.cars?.image?.length ?? 1,
               position: currentIndex,
             ):const SizedBox()
           ],

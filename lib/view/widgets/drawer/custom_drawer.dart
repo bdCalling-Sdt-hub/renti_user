@@ -144,7 +144,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 child:  Row(
                   children: [
                     const CustomImage(imageSrc: AppIcons.support1,size: 18,),
-                    CustomText(text: AppStrings.support.tr,color: AppColors.whiteDarkHover,left: 8)
+                    CustomText(text: "Support".tr,color: AppColors.whiteDarkHover,left: 8)
                   ],
                 ),
               ),
@@ -182,7 +182,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 child:  Row(
                   children: [
                     const CustomImage(imageSrc: AppIcons.settingsIcon,size: 18,),
-                    CustomText(text: AppStrings.settings.tr,color: AppColors.whiteDarkHover,left: 8)
+                    CustomText(text: "Settings".tr,color: AppColors.whiteDarkHover,left: 8)
                   ],
                 ),
               ),
