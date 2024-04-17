@@ -234,6 +234,11 @@ class RentHistorySection extends StatelessWidget {
     }
     if (rentUser.requestStatus == "Completed" &&
         rentUser.payment == "Completed" &&
+        rentUser.carId!.tripStatus == "Start") {
+      statusText = "End Trip".tr;
+    }
+    if (rentUser.requestStatus == "Completed" &&
+        rentUser.payment == "Completed" &&
         rentUser.carId!.tripStatus == "End") {
       statusText = "End Trip".tr;
     }
